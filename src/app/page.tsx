@@ -29,10 +29,29 @@ export default function Home() {
     return () => { document.body.removeChild(script); };
   }, []);
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const [emailLoading, setEmailLoading] = useState(false);
+  const [emailError, setEmailError] = useState('');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: integrate with email provider (Buttondown/ConvertKit/Mailchimp)
-    setEmailSubmitted(true);
+    setEmailLoading(true);
+    setEmailError('');
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to subscribe');
+      }
+      setEmailSubmitted(true);
+    } catch (err) {
+      setEmailError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setEmailLoading(false);
+    }
   };
 
   const hero = featuredContent;
@@ -57,15 +76,14 @@ export default function Home() {
 
           {/* Main nav */}
           <div className="flex items-center justify-between py-3">
-            <a href="/" className="flex items-center gap-3">
-              <Image src="/logos/icon-gold.png" alt="M" width={36} height={36} className="w-9 h-9" />
-              <Image src="/logos/word-gold.png" alt="The Monarch Report" width={200} height={24} className="h-5 w-auto hidden sm:block" />
+            <a href="/" className="flex items-center">
+              <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} className="h-8 w-auto" priority />
             </a>
-            <nav className="flex items-center gap-1 text-xs font-mono">
+            <nav className="hidden md:flex items-center gap-1 text-xs font-mono">
               <a href="#latest" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Latest</a>
               <a href="#articles" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Articles</a>
               <a href="#reels" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Video</a>
-              <a href="/dashboard" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Data</a>
+              <a href="/dashboard" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Economic Dashboard</a>
               <a href="#about" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">About</a>
               <a href="#newsletter" className="px-3 py-1.5 bg-[#b8860b] hover:bg-[#d4a017] text-black font-bold rounded transition-colors ml-2">Subscribe</a>
             </nav>
@@ -211,11 +229,12 @@ export default function Home() {
                     required
                     className="flex-1 bg-[#0a0a0a] border border-[#222] rounded px-3 py-2 text-xs font-mono text-white placeholder:text-[#444] focus:border-[#b8860b] focus:outline-none transition-colors"
                   />
-                  <button type="submit" className="px-3 py-2 bg-[#b8860b] hover:bg-[#d4a017] text-black text-xs font-mono font-bold rounded transition-colors">
-                    Go
+                  <button type="submit" disabled={emailLoading} className="px-3 py-2 bg-[#b8860b] hover:bg-[#d4a017] text-black text-xs font-mono font-bold rounded transition-colors disabled:opacity-50">
+                    {emailLoading ? '...' : 'Go'}
                   </button>
                 </form>
               )}
+              {emailError && <p className="text-red-400 text-[10px] font-mono mt-1">{emailError}</p>}
             </div>
 
             {/* About teaser */}
@@ -303,11 +322,12 @@ export default function Home() {
                 required
                 className="flex-1 bg-[#0a0a0a] border border-[#333] rounded-lg px-4 py-3 text-sm font-mono text-white placeholder:text-[#555] focus:border-[#b8860b] focus:outline-none transition-colors"
               />
-              <button type="submit" className="px-6 py-3 bg-[#b8860b] hover:bg-[#d4a017] text-black font-mono font-bold text-sm rounded-lg transition-colors">
-                Subscribe
+              <button type="submit" disabled={emailLoading} className="px-6 py-3 bg-[#b8860b] hover:bg-[#d4a017] text-black font-mono font-bold text-sm rounded-lg transition-colors disabled:opacity-50">
+                {emailLoading ? 'Subscribing...' : 'Subscribe'}
               </button>
             </form>
           )}
+          {emailError && <p className="text-red-400 text-xs font-mono mt-2">{emailError}</p>}
           <p className="text-[#444] text-[10px] font-mono mt-3">{newsletter.disclaimer}</p>
         </div>
       </section>
