@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { featuredContent, siteConfig, newsletter, xHandle, instagramHandle } from '@/lib/content';
 import { walletMetrics, macroMetrics } from '@/lib/data';
@@ -9,24 +9,209 @@ interface ExchangeData {
   rate: number;
 }
 
+interface TweetData {
+  id: string;
+  url: string;
+  text: string;
+  createdAt: string;
+  likeCount: number;
+  retweetCount: number;
+  replyCount: number;
+  viewCount: number;
+  bookmarkCount: number;
+  media: string[];
+  isArticle: boolean;
+  articleId: string | null;
+  articleUrl: string | null;
+  authorName: string;
+  authorHandle: string;
+  authorAvatar: string;
+  authorVerified: boolean;
+  links: { display: string; url: string }[];
+}
+
+function timeAgo(dateStr: string): string {
+  const now = Date.now();
+  const then = new Date(dateStr).getTime();
+  const diff = now - then;
+  const mins = Math.floor(diff / 60000);
+  if (mins < 60) return `${mins}m`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h`;
+  const days = Math.floor(hrs / 24);
+  if (days < 30) return `${days}d`;
+  return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+function formatCount(n: number): string {
+  if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
+  return n.toString();
+}
+
+function TweetCard({ tweet, compact }: { tweet: TweetData; compact?: boolean }) {
+  // Process text: replace t.co links with display URLs
+  let displayText = tweet.text;
+  tweet.links.forEach(link => {
+    const tcoPattern = /https?:\/\/t\.co\/\w+/;
+    displayText = displayText.replace(tcoPattern, '');
+  });
+  // Remove trailing media t.co links
+  displayText = displayText.replace(/https?:\/\/t\.co\/\w+\s*$/g, '').trim();
+
+  const truncated = compact && displayText.length > 280;
+  const shownText = truncated ? displayText.slice(0, 280) + '...' : displayText;
+
+  return (
+    <a href={tweet.url} target="_blank" rel="noopener noreferrer" className="block group">
+      <div className="bg-[#111] border border-[#222] rounded-lg p-4 hover:border-[#333] transition-colors h-full">
+        {/* Author row */}
+        <div className="flex items-center gap-2 mb-2">
+          {tweet.authorAvatar && (
+            <img src={tweet.authorAvatar} alt="" className="w-5 h-5 rounded-full" />
+          )}
+          <span className="text-xs font-mono text-white font-bold">{tweet.authorName}</span>
+          {tweet.authorVerified && <span className="text-blue-400 text-[10px]">✓</span>}
+          <span className="text-[#555] text-xs font-mono">@{tweet.authorHandle}</span>
+          <span className="text-[#444] text-xs font-mono ml-auto">{timeAgo(tweet.createdAt)}</span>
+        </div>
+
+        {/* Text */}
+        <p className="text-[#ccc] text-sm font-mono leading-relaxed whitespace-pre-line mb-3">
+          {shownText}
+        </p>
+
+        {/* Links */}
+        {tweet.links.length > 0 && (
+          <div className="mb-3 space-y-1">
+            {tweet.links.map((link, i) => (
+              <span key={i} className="block text-[#b8860b] text-xs font-mono truncate">
+                {link.display}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Media */}
+        {tweet.media.length > 0 && !compact && (
+          <div className={`mb-3 gap-1 ${tweet.media.length > 1 ? 'grid grid-cols-2' : ''}`}>
+            {tweet.media.slice(0, 4).map((url, i) => (
+              <img
+                key={i}
+                src={url}
+                alt=""
+                className="w-full rounded-md border border-[#222] object-cover"
+                style={{ maxHeight: tweet.media.length > 1 ? '150px' : '300px' }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Engagement */}
+        <div className="flex items-center gap-4 text-[#555] text-[11px] font-mono">
+          <span className="group-hover:text-[#888] transition-colors">
+            ↩ {formatCount(tweet.replyCount)}
+          </span>
+          <span className="group-hover:text-green-500/60 transition-colors">
+            ⟳ {formatCount(tweet.retweetCount)}
+          </span>
+          <span className="group-hover:text-red-400/60 transition-colors">
+            ♥ {formatCount(tweet.likeCount)}
+          </span>
+          <span className="ml-auto">
+            👁 {formatCount(tweet.viewCount)}
+          </span>
+        </div>
+      </div>
+    </a>
+  );
+}
+
+function ArticleCard({ tweet }: { tweet: TweetData }) {
+  // Clean out t.co links from text
+  const cleanText = tweet.text.replace(/https?:\/\/t\.co\/\w+/g, '').trim();
+  const lines = cleanText.split('\n').filter(l => l.trim());
+  const headline = lines[0] || null;
+  const body = lines.slice(1).join('\n').trim();
+  const truncBody = body.length > 250 ? body.slice(0, 250) + '...' : body;
+
+  // Link to the X article directly if available, otherwise the tweet
+  const href = tweet.articleUrl || tweet.url;
+
+  // Format date nicely for articles
+  const dateStr = new Date(tweet.createdAt).toLocaleDateString('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric',
+  });
+
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="block group">
+      <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-[#333] transition-colors h-full flex flex-col">
+        {/* Image if available */}
+        {tweet.media.length > 0 && (
+          <img
+            src={tweet.media[0]}
+            alt=""
+            className="w-full h-48 object-cover border-b border-[#222]"
+          />
+        )}
+        <div className="p-5 flex-1 flex flex-col">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[10px] font-mono font-bold tracking-widest text-[#b8860b] bg-[#b8860b15] px-2 py-0.5 rounded-full border border-[#b8860b30]">
+              ARTICLE
+            </span>
+            <span className="text-[#555] text-xs font-mono">{dateStr}</span>
+          </div>
+          {headline ? (
+            <>
+              <h3 className="text-white font-bold text-base leading-snug mb-2 group-hover:text-[#b8860b] transition-colors">
+                {headline}
+              </h3>
+              {truncBody && (
+                <p className="text-[#888] text-xs font-mono leading-relaxed mb-4 flex-1 whitespace-pre-line">
+                  {truncBody}
+                </p>
+              )}
+            </>
+          ) : (
+            <div className="flex-1 flex items-center justify-center py-4">
+              <p className="text-[#666] text-sm font-mono">Long-form article on 𝕏</p>
+            </div>
+          )}
+          <div className="flex items-center justify-between text-[#555] text-[11px] font-mono mt-auto pt-3 border-t border-[#1a1a1a]">
+            <div className="flex items-center gap-3">
+              <span>♥ {formatCount(tweet.likeCount)}</span>
+              <span>⟳ {formatCount(tweet.retweetCount)}</span>
+              <span>👁 {formatCount(tweet.viewCount)}</span>
+            </div>
+            <span className="text-[#b8860b] group-hover:text-[#d4a017] transition-colors">Read article →</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+}
+
 export default function Home() {
   const [liveRate, setLiveRate] = useState<number | null>(null);
   const [email, setEmail] = useState('');
   const [emailSubmitted, setEmailSubmitted] = useState(false);
-  const xTimelineRef = useRef<HTMLDivElement>(null);
+  const [tweets, setTweets] = useState<TweetData[]>([]);
+  const [articles, setArticles] = useState<TweetData[]>([]);
+  const [tweetsLoading, setTweetsLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/exchange-rate').then(r => r.json()).then((d: ExchangeData) => setLiveRate(d.rate)).catch(() => {});
   }, []);
 
-  // Load X embed script
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://platform.twitter.com/widgets.js';
-    script.async = true;
-    script.charset = 'utf-8';
-    document.body.appendChild(script);
-    return () => { document.body.removeChild(script); };
+    fetch('/api/tweets')
+      .then(r => r.json())
+      .then((data: { tweets: TweetData[]; articles: TweetData[] }) => {
+        setTweets(data.tweets || []);
+        setArticles(data.articles || []);
+      })
+      .catch(() => {})
+      .finally(() => setTweetsLoading(false));
   }, []);
 
   const [emailLoading, setEmailLoading] = useState(false);
@@ -170,20 +355,33 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* X Timeline embed — main column */}
-          <div className="lg:col-span-2" ref={xTimelineRef}>
-            <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden">
-              <a
-                className="twitter-timeline"
-                data-theme="dark"
-                data-chrome="noheader nofooter noborders transparent"
-                data-height="700"
-                data-width="100%"
-                href={`https://twitter.com/${xHandle}`}
-              >
-                Loading posts from @{xHandle}...
-              </a>
-            </div>
+          {/* Tweets — main column */}
+          <div className="lg:col-span-2">
+            {tweetsLoading ? (
+              <div className="space-y-4">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="bg-[#111] border border-[#222] rounded-lg p-4 animate-pulse">
+                    <div className="h-4 bg-[#222] rounded w-1/3 mb-3" />
+                    <div className="h-3 bg-[#1a1a1a] rounded w-full mb-2" />
+                    <div className="h-3 bg-[#1a1a1a] rounded w-4/5 mb-2" />
+                    <div className="h-3 bg-[#1a1a1a] rounded w-2/3" />
+                  </div>
+                ))}
+              </div>
+            ) : tweets.length > 0 ? (
+              <div className="space-y-4">
+                {tweets.slice(0, 10).map(tweet => (
+                  <TweetCard key={tweet.id} tweet={tweet} compact />
+                ))}
+              </div>
+            ) : (
+              <div className="bg-[#111] border border-[#222] rounded-lg p-8 text-center">
+                <p className="text-[#555] font-mono text-sm">Loading latest posts...</p>
+                <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-xs font-mono text-[#b8860b] hover:text-[#d4a017]">
+                  View on 𝕏 →
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Sidebar — quick info */}
@@ -263,17 +461,34 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-[#111] border border-[#222] rounded-lg p-8 text-center">
-          <p className="text-[#555] font-mono text-sm mb-4">
-            Articles will automatically appear here from your X long-form posts.
-          </p>
-          <p className="text-[#444] font-mono text-xs mb-4">
-            To feature articles, add their tweet IDs to <code className="text-[#b8860b]">src/lib/content.ts</code> → <code className="text-[#b8860b]">xArticles</code>
-          </p>
-          <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-[#b8860b] hover:text-[#d4a017] border border-[#222] hover:border-[#b8860b40] rounded px-4 py-2 transition-colors">
-            Read articles on 𝕏 →
-          </a>
-        </div>
+        {tweetsLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="bg-[#111] border border-[#222] rounded-lg animate-pulse">
+                <div className="h-48 bg-[#1a1a1a]" />
+                <div className="p-5">
+                  <div className="h-3 bg-[#222] rounded w-1/4 mb-3" />
+                  <div className="h-4 bg-[#222] rounded w-3/4 mb-2" />
+                  <div className="h-3 bg-[#1a1a1a] rounded w-full mb-1" />
+                  <div className="h-3 bg-[#1a1a1a] rounded w-2/3" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : articles.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articles.slice(0, 6).map(article => (
+              <ArticleCard key={article.id} tweet={article} />
+            ))}
+          </div>
+        ) : (
+          <div className="bg-[#111] border border-[#222] rounded-lg p-8 text-center">
+            <p className="text-[#555] font-mono text-sm">No articles found yet.</p>
+            <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-3 text-xs font-mono text-[#b8860b] hover:text-[#d4a017] border border-[#222] hover:border-[#b8860b40] rounded px-4 py-2 transition-colors">
+              Read articles on 𝕏 →
+            </a>
+          </div>
+        )}
       </section>
 
       {/* === INSTAGRAM REELS === */}
