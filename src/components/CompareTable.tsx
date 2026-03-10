@@ -1,6 +1,6 @@
 'use client';
 
-import { Metric } from '@/lib/data';
+import { Metric, PRESIDENCY_START_LABEL } from '@/lib/data';
 import { Locale, t } from '@/lib/translations';
 
 interface CompareRow {
@@ -29,7 +29,7 @@ export default function CompareTable({ rows, locale }: CompareTableProps) {
             <th className="text-right text-[#666666] p-3 text-xs uppercase tracking-wider">
               {t(locale, 'presidencyStart')}
               <br />
-              <span className="text-[#555555] text-[10px]">2022.05</span>
+              <span className="text-[#555555] text-[10px]">{PRESIDENCY_START_LABEL}</span>
             </th>
             <th className="text-right text-[#666666] p-3 text-xs uppercase tracking-wider">
               {t(locale, 'today')}

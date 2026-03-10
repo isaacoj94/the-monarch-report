@@ -1,6 +1,6 @@
 'use client';
 
-import { Metric } from '@/lib/data';
+import { Metric, PRESIDENCY_START_LABEL } from '@/lib/data';
 import { Locale, t } from '@/lib/translations';
 import { AreaChart, Area, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
 
@@ -45,7 +45,7 @@ export default function MetricCard({ metric, label, unitLabel, locale, accentCol
             {arrow} {Math.abs(metric.changePercent)}%
           </span>
           <p className="text-[#555555] text-[10px] font-mono mt-1">
-            {trendLabel} {t(locale, 'since')} 2022.05
+            {trendLabel} {t(locale, 'since')} {PRESIDENCY_START_LABEL}
           </p>
         </div>
       </div>
