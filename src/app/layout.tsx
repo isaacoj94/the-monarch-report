@@ -8,12 +8,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Monarch Report — Korea Economic Reality Monitor",
-  description: "See how policy decisions affect everyday life in Korea. Track gas prices, food costs, exchange rates, debt ratios, and more.",
+  title: "The Monarch Report — Defending Democracy, Faith & Freedom",
+  description: "Independent journalism bringing the truth about Korea and Japan to the West. Trusted by U.S. legislators and policymakers as a resource for facts.",
   openGraph: {
     title: "The Monarch Report",
-    description: "Korea Economic Reality Monitor — Policy decisions vs. your wallet.",
+    description: "Defending Democracy, Faith & Freedom — Independent journalism on Korea and Japan.",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@monarchreport25",
   },
 };
 

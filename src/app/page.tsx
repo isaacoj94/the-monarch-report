@@ -1,230 +1,378 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Locale, t } from '@/lib/translations';
-import { walletMetrics, macroMetrics, PRESIDENT_NAME, PRESIDENCY_START_LABEL } from '@/lib/data';
-import LiveExchangeRate from '@/components/LiveExchangeRate';
-
-const localeLabels: Record<Locale, string> = { en: 'EN', ko: '한국어', ja: '日本語' };
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { featuredContent, siteConfig, newsletter, xHandle, instagramHandle } from '@/lib/content';
+import { walletMetrics, macroMetrics } from '@/lib/data';
 
 interface ExchangeData {
   rate: number;
-  date: string;
-  source: string;
-}
-
-const heroText: Record<Locale, { headline: string; sub: string; cta: string; ctaSub: string }> = {
-  en: {
-    headline: 'Your government says the economy is fine.',
-    sub: 'The numbers tell a different story.',
-    cta: 'See the Full Dashboard',
-    ctaSub: 'Real prices. Real data. Real impact.',
-  },
-  ko: {
-    headline: '정부는 경제가 괜찮다고 말합니다.',
-    sub: '숫자는 다른 이야기를 합니다.',
-    cta: '전체 대시보드 보기',
-    ctaSub: '실제 가격. 실제 데이터. 실제 영향.',
-  },
-  ja: {
-    headline: '政府は経済は大丈夫だと言います。',
-    sub: '数字は別の物語を語ります。',
-    cta: 'フルダッシュボードを見る',
-    ctaSub: 'リアルな価格。リアルなデータ。リアルな影響。',
-  },
-};
-
-function HighlightCard({ label, value, change, color }: { label: string; value: string; change: string; color: string }) {
-  return (
-    <div className="bg-[#111] border border-[#222] rounded-lg p-4 hover:border-[#333] transition-all hover:translate-y-[-2px]">
-      <p className="text-[#777] text-[10px] font-mono uppercase tracking-wider mb-1">{label}</p>
-      <p className="text-white text-xl font-mono font-bold">{value}</p>
-      <p className="text-xs font-mono mt-1" style={{ color }}>
-        {change}
-      </p>
-    </div>
-  );
 }
 
 export default function Home() {
-  const [locale, setLocale] = useState<Locale>('en');
   const [liveRate, setLiveRate] = useState<number | null>(null);
+  const [email, setEmail] = useState('');
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const xTimelineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch('/api/exchange-rate')
-      .then(r => r.json())
-      .then((d: ExchangeData) => setLiveRate(d.rate))
-      .catch(() => {});
+    fetch('/api/exchange-rate').then(r => r.json()).then((d: ExchangeData) => setLiveRate(d.rate)).catch(() => {});
   }, []);
 
-  const hero = heroText[locale];
-  const presidentName = PRESIDENT_NAME[locale];
+  // Load X embed script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://platform.twitter.com/widgets.js';
+    script.async = true;
+    script.charset = 'utf-8';
+    document.body.appendChild(script);
+    return () => { document.body.removeChild(script); };
+  }, []);
 
-  const highlights = [
-    {
-      label: locale === 'ko' ? '휘발유' : locale === 'ja' ? 'ガソリン' : 'Gasoline',
-      value: `₩${walletMetrics.gasPrice.currentValue.toLocaleString()}/L`,
-      change: `↑ ${walletMetrics.gasPrice.changePercent}% ${locale === 'ko' ? '취임 이후' : locale === 'ja' ? '就任以降' : `since ${PRESIDENCY_START_LABEL}`}`,
-      color: '#ef4444',
-    },
-    {
-      label: 'USD/KRW',
-      value: liveRate ? `₩${liveRate.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : `₩${macroMetrics.usdKrw.currentValue.toLocaleString()}`,
-      change: liveRate ? (locale === 'ko' ? '실시간' : locale === 'ja' ? 'ライブ' : 'Live') : `↑ ${macroMetrics.usdKrw.changePercent}%`,
-      color: liveRate ? '#3b82f6' : '#ef4444',
-    },
-    {
-      label: locale === 'ko' ? '가계부채/GDP' : locale === 'ja' ? '家計負債/GDP' : 'Household Debt/GDP',
-      value: `${macroMetrics.householdDebt.currentValue}%`,
-      change: `↑ ${macroMetrics.householdDebt.changePercent}%`,
-      color: '#ef4444',
-    },
-    {
-      label: locale === 'ko' ? '물가상승률' : locale === 'ja' ? 'インフレ率' : 'Inflation (CPI)',
-      value: `${macroMetrics.inflation.currentValue}%`,
-      change: `↑ ${macroMetrics.inflation.changePercent}%`,
-      color: '#eab308',
-    },
-    {
-      label: locale === 'ko' ? '전기 요금' : locale === 'ja' ? '電気代' : 'Electricity Bill',
-      value: `₩${walletMetrics.electricityBill.currentValue.toLocaleString()}`,
-      change: `↑ ${walletMetrics.electricityBill.changePercent}%`,
-      color: '#a855f7',
-    },
-    {
-      label: locale === 'ko' ? '서울 월세' : locale === 'ja' ? 'ソウル家賃' : 'Seoul Rent',
-      value: `₩${(walletMetrics.seoulRent.currentValue / 10000).toFixed(1)}${locale === 'ko' ? '만' : locale === 'ja' ? '万' : '0k'}`,
-      change: `↑ ${walletMetrics.seoulRent.changePercent}%`,
-      color: '#6366f1',
-    },
-  ];
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: integrate with email provider (Buttondown/ConvertKit/Mailchimp)
+    setEmailSubmitted(true);
+  };
+
+  const hero = featuredContent;
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-sm border-b border-[#1a1a1a]">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center text-white text-xs font-bold">M</div>
-            <div>
-              <h1 className="text-sm font-bold tracking-wide">{t(locale, 'siteTitle')}</h1>
-              <p className="text-[10px] text-[#666666] tracking-wider uppercase">{t(locale, 'siteSubtitle')}</p>
+    <div className="min-h-screen bg-[#080808]">
+      {/* === HEADER === */}
+      <header className="sticky top-0 z-50 bg-[#080808]/95 backdrop-blur-sm border-b border-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Ticker bar */}
+          <div className="flex items-center justify-between py-1.5 border-b border-[#141414] text-[10px] font-mono text-[#666]">
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1.5">
+                <span className="relative flex h-1.5 w-1.5"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" /><span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500" /></span>
+                USD/KRW {liveRate ? `₩${liveRate.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : '---'}
+              </span>
+              <span>Gas ₩{walletMetrics.gasPrice.currentValue.toLocaleString()}/L</span>
+              <span>CPI {macroMetrics.inflation.currentValue}%</span>
             </div>
+            <a href="/dashboard" className="text-[#888] hover:text-white transition-colors">Economic Dashboard →</a>
           </div>
-          <div className="flex items-center gap-4">
-            <a
-              href="/dashboard"
-              className="hidden sm:block text-xs font-mono px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded transition-colors"
-            >
-              {hero.cta} →
+
+          {/* Main nav */}
+          <div className="flex items-center justify-between py-3">
+            <a href="/" className="flex items-center gap-3">
+              <Image src="/logos/icon-gold.png" alt="M" width={36} height={36} className="w-9 h-9" />
+              <Image src="/logos/word-gold.png" alt="The Monarch Report" width={200} height={24} className="h-5 w-auto hidden sm:block" />
             </a>
-            <div className="flex items-center gap-1 border border-[#222] rounded-md p-0.5">
-              {(Object.keys(localeLabels) as Locale[]).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLocale(l)}
-                  className={`px-2 py-1 text-[10px] rounded transition-colors ${locale === l ? 'bg-[#222] text-white' : 'text-[#666] hover:text-white'}`}
-                >
-                  {localeLabels[l]}
-                </button>
-              ))}
-            </div>
+            <nav className="flex items-center gap-1 text-xs font-mono">
+              <a href="#latest" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Latest</a>
+              <a href="#articles" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Articles</a>
+              <a href="#reels" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Video</a>
+              <a href="/dashboard" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Data</a>
+              <a href="#about" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">About</a>
+              <a href="#newsletter" className="px-3 py-1.5 bg-[#b8860b] hover:bg-[#d4a017] text-black font-bold rounded transition-colors ml-2">Subscribe</a>
+            </nav>
           </div>
         </div>
       </header>
 
-      {/* Hero */}
-      <main className="flex-1">
-        <section className="max-w-6xl mx-auto px-4 pt-16 pb-12">
+      {/* === HERO: Documentary / Featured Push === */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#111] to-[#080808]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(184,134,11,0.08),transparent_70%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
           <div className="max-w-3xl">
-            <p className="text-red-500 text-xs font-mono uppercase tracking-widest mb-4">
-              {locale === 'ko' ? '대한민국' : locale === 'ja' ? '大韓民国' : 'Republic of Korea'} · {presidentName} · {PRESIDENCY_START_LABEL} —
+            <div className="flex items-center gap-2 mb-6">
+              <span className="text-[10px] font-mono font-bold tracking-widest text-[#b8860b] bg-[#b8860b15] px-3 py-1 rounded-full border border-[#b8860b30]">
+                {hero.tag}
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] mb-4 text-white">
+              {hero.title}
+            </h1>
+            <p className="text-lg md:text-xl text-[#999] leading-relaxed mb-3">
+              {hero.subtitle}
             </p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-4">
-              {hero.headline}
-            </h2>
-            <p className="text-[#888] text-xl md:text-2xl font-light">
-              {hero.sub}
+            <p className="text-sm text-[#666] leading-relaxed max-w-2xl mb-8">
+              {hero.description}
             </p>
-          </div>
-
-          {/* Live Exchange Rate */}
-          <div className="mt-8">
-            <LiveExchangeRate locale={locale} />
-          </div>
-        </section>
-
-        {/* Highlight Grid */}
-        <section className="max-w-6xl mx-auto px-4 pb-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {highlights.map((h) => (
-              <HighlightCard key={h.label} {...h} />
-            ))}
-          </div>
-        </section>
-
-        {/* Why this matters */}
-        <section className="max-w-6xl mx-auto px-4 pb-16">
-          <div className="bg-[#111] border border-[#222] rounded-lg p-6 md:p-8">
-            <h3 className="text-white font-mono text-lg font-bold mb-4">
-              {locale === 'ko' ? '왜 이것이 중요한가' : locale === 'ja' ? 'なぜこれが重要なのか' : 'Why This Matters'}
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6 text-sm font-mono text-[#999] leading-relaxed">
-              <div>
-                <div className="w-8 h-1 bg-red-500 rounded mb-3" />
-                <p>
-                  {locale === 'ko'
-                    ? '정부 발표 경제지표와 국민이 체감하는 현실 사이에는 큰 괴리가 있습니다. 이 대시보드는 그 격차를 보여줍니다.'
-                    : locale === 'ja'
-                    ? '政府発表の経済指標と国民が実感する現実には大きなギャップがあります。このダッシュボードはそのギャップを示します。'
-                    : 'There is a growing gap between official economic indicators and the reality people experience. This dashboard shows that gap.'}
-                </p>
-              </div>
-              <div>
-                <div className="w-8 h-1 bg-blue-500 rounded mb-3" />
-                <p>
-                  {locale === 'ko'
-                    ? '남양주 등 수도권 일부 지역에서 이미 휘발유가 리터당 2,000원을 넘었습니다. "배럴당 150달러"가 아닌 "리터당 2,000원"이 국민의 현실입니다.'
-                    : locale === 'ja'
-                    ? '南楊州など首都圏の一部地域ではすでにガソリンが1リットル2,000ウォンを超えています。「1バレル150ドル」ではなく「1リットル2,000ウォン」が国民の現実です。'
-                    : 'In areas like Namyangju, gas has already crossed ₩2,000 per liter. "150 barrels of oil" means nothing — ₩2,000 per liter is what people actually feel.'}
-                </p>
-              </div>
-              <div>
-                <div className="w-8 h-1 bg-yellow-500 rounded mb-3" />
-                <p>
-                  {locale === 'ko'
-                    ? '이란 제재, 원화 약세, 가계부채 — 이 모든 것이 여러분의 장바구니와 월세에 직접적으로 연결됩니다. 정책 결정의 실제 비용을 추적합니다.'
-                    : locale === 'ja'
-                    ? 'イラン制裁、ウォン安、家計負債 — これらすべてがあなたの買い物かごと家賃に直接つながっています。政策決定の実際のコストを追跡します。'
-                    : 'Iran sanctions, a weak won, household debt — all of these connect directly to your grocery cart and your rent. We track the real cost of policy decisions.'}
-                </p>
-              </div>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={hero.ctaUrl}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#b8860b] hover:bg-[#d4a017] text-black font-mono font-bold text-sm rounded transition-colors"
+              >
+                {hero.ctaText} →
+              </a>
+              {hero.secondaryCta && (
+                <a
+                  href={hero.secondaryCta.url}
+                  className="inline-flex items-center gap-2 px-6 py-3 border border-[#333] hover:border-[#555] text-white font-mono text-sm rounded transition-colors"
+                >
+                  ▶ {hero.secondaryCta.text}
+                </a>
+              )}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA */}
-        <section className="max-w-6xl mx-auto px-4 pb-20 text-center">
-          <a
-            href="/dashboard"
-            className="inline-flex items-center gap-2 text-sm font-mono px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
-          >
-            {hero.cta} →
-          </a>
-          <p className="text-[#555] text-xs font-mono mt-3">{hero.ctaSub}</p>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-[#1a1a1a] py-8">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 bg-red-600 rounded flex items-center justify-center text-white text-[8px] font-bold">M</div>
-            <span className="text-xs text-[#666]">{t(locale, 'siteTitle')}</span>
+      {/* === MISSION STATEMENT BAR === */}
+      <section className="border-y border-[#1a1a1a] bg-[#0c0c0c]">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-1 h-10 bg-[#b8860b] rounded-full" />
+              <div>
+                <p className="text-white font-mono text-sm font-bold">{siteConfig.tagline}</p>
+                <p className="text-[#666] text-xs font-mono">Independent journalism · Trusted by U.S. legislators · Fact-based reporting</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 text-xs font-mono">
+              <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[#888] hover:text-white transition-colors px-3 py-1.5 border border-[#222] rounded hover:border-[#444]">
+                𝕏 Follow
+              </a>
+              <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[#888] hover:text-white transition-colors px-3 py-1.5 border border-[#222] rounded hover:border-[#444]">
+                IG Follow
+              </a>
+            </div>
           </div>
-          <p className="text-[10px] text-[#444] text-center max-w-md">{t(locale, 'disclaimer')}</p>
-          <p className="text-[10px] text-[#444]">themonarchreport.org</p>
+        </div>
+      </section>
+
+      {/* === LATEST FROM X === */}
+      <section id="latest" className="max-w-7xl mx-auto px-4 py-12">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-6 bg-[#b8860b] rounded-full" />
+            <div>
+              <h2 className="text-xl font-bold text-white">Latest</h2>
+              <p className="text-[#666] text-xs font-mono">Live from @{xHandle}</p>
+            </div>
+          </div>
+          <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-[#888] hover:text-white transition-colors">
+            View all on 𝕏 →
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* X Timeline embed — main column */}
+          <div className="lg:col-span-2" ref={xTimelineRef}>
+            <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden">
+              <a
+                className="twitter-timeline"
+                data-theme="dark"
+                data-chrome="noheader nofooter noborders transparent"
+                data-height="700"
+                data-width="100%"
+                href={`https://twitter.com/${xHandle}`}
+              >
+                Loading posts from @{xHandle}...
+              </a>
+            </div>
+          </div>
+
+          {/* Sidebar — quick info */}
+          <div className="space-y-4">
+            {/* Data highlights */}
+            <div className="bg-[#111] border border-[#222] rounded-lg p-4">
+              <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-3">Economic Snapshot</h3>
+              <div className="space-y-3">
+                {[
+                  { label: 'USD/KRW', value: liveRate ? `₩${liveRate.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : `₩${macroMetrics.usdKrw.currentValue}`, color: '#3b82f6', live: !!liveRate },
+                  { label: 'Gas/Liter', value: `₩${walletMetrics.gasPrice.currentValue.toLocaleString()}`, color: '#ef4444' },
+                  { label: 'Inflation', value: `${macroMetrics.inflation.currentValue}%`, color: '#eab308' },
+                  { label: 'Household Debt/GDP', value: `${macroMetrics.householdDebt.currentValue}%`, color: '#ef4444' },
+                  { label: 'Youth Unemployment', value: `${macroMetrics.youthUnemployment.currentValue}%`, color: '#a855f7' },
+                ].map(item => (
+                  <div key={item.label} className="flex items-center justify-between">
+                    <span className="text-[#888] text-xs font-mono">{item.label}</span>
+                    <div className="flex items-center gap-1.5">
+                      {item.live && <span className="relative flex h-1.5 w-1.5"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" /><span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500" /></span>}
+                      <span className="text-xs font-mono font-bold" style={{ color: item.color }}>{item.value}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <a href="/dashboard" className="block mt-4 text-center text-[10px] font-mono text-[#b8860b] hover:text-[#d4a017] border border-[#222] hover:border-[#b8860b40] rounded py-2 transition-colors">
+                Full Economic Dashboard →
+              </a>
+            </div>
+
+            {/* Newsletter mini */}
+            <div className="bg-[#111] border border-[#222] rounded-lg p-4">
+              <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-2">Newsletter</h3>
+              <p className="text-[#666] text-[11px] font-mono mb-3">Get weekly analysis delivered to your inbox.</p>
+              {emailSubmitted ? (
+                <p className="text-[#b8860b] text-xs font-mono">Thank you — we&apos;ll be in touch.</p>
+              ) : (
+                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    required
+                    className="flex-1 bg-[#0a0a0a] border border-[#222] rounded px-3 py-2 text-xs font-mono text-white placeholder:text-[#444] focus:border-[#b8860b] focus:outline-none transition-colors"
+                  />
+                  <button type="submit" className="px-3 py-2 bg-[#b8860b] hover:bg-[#d4a017] text-black text-xs font-mono font-bold rounded transition-colors">
+                    Go
+                  </button>
+                </form>
+              )}
+            </div>
+
+            {/* About teaser */}
+            <div className="bg-[#111] border border-[#222] rounded-lg p-4">
+              <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-2">Who We Are</h3>
+              <p className="text-[#999] text-[11px] font-mono leading-relaxed">
+                {siteConfig.description}
+              </p>
+              <a href="#about" className="block mt-3 text-[10px] font-mono text-[#b8860b] hover:text-[#d4a017] transition-colors">
+                Learn more →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* === FEATURED ARTICLES === */}
+      <section id="articles" className="max-w-7xl mx-auto px-4 py-12">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-6 bg-red-500 rounded-full" />
+            <div>
+              <h2 className="text-xl font-bold text-white">Original Reporting</h2>
+              <p className="text-[#666] text-xs font-mono">In-depth articles by The Monarch Report</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[#111] border border-[#222] rounded-lg p-8 text-center">
+          <p className="text-[#555] font-mono text-sm mb-4">
+            Articles will automatically appear here from your X long-form posts.
+          </p>
+          <p className="text-[#444] font-mono text-xs mb-4">
+            To feature articles, add their tweet IDs to <code className="text-[#b8860b]">src/lib/content.ts</code> → <code className="text-[#b8860b]">xArticles</code>
+          </p>
+          <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-[#b8860b] hover:text-[#d4a017] border border-[#222] hover:border-[#b8860b40] rounded px-4 py-2 transition-colors">
+            Read articles on 𝕏 →
+          </a>
+        </div>
+      </section>
+
+      {/* === INSTAGRAM REELS === */}
+      <section id="reels" className="max-w-7xl mx-auto px-4 py-12">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-6 bg-pink-500 rounded-full" />
+            <div>
+              <h2 className="text-xl font-bold text-white">Video</h2>
+              <p className="text-[#666] text-xs font-mono">Commentary & analysis from @{instagramHandle}</p>
+            </div>
+          </div>
+          <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-[#888] hover:text-white transition-colors">
+            View all on Instagram →
+          </a>
+        </div>
+
+        <div className="bg-[#111] border border-[#222] rounded-lg p-8 text-center">
+          <p className="text-[#555] font-mono text-sm mb-4">
+            Instagram Reels will be embedded here.
+          </p>
+          <p className="text-[#444] font-mono text-xs mb-4">
+            Instagram requires an access token for API access. Once configured, reels auto-populate.
+          </p>
+          <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-[#b8860b] hover:text-[#d4a017] border border-[#222] hover:border-[#b8860b40] rounded px-4 py-2 transition-colors">
+            Watch on Instagram →
+          </a>
+        </div>
+      </section>
+
+      {/* === NEWSLETTER (Full section) === */}
+      <section id="newsletter" className="border-y border-[#1a1a1a] bg-[#0c0c0c]">
+        <div className="max-w-3xl mx-auto px-4 py-16 text-center">
+          <Image src="/logos/icon-gold.png" alt="" width={48} height={48} className="w-12 h-12 mx-auto mb-6 opacity-60" />
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{newsletter.title}</h2>
+          <p className="text-[#888] font-mono text-sm mb-6 max-w-md mx-auto">{newsletter.subtitle}</p>
+          {emailSubmitted ? (
+            <p className="text-[#b8860b] font-mono text-sm">Thank you for subscribing. We&apos;ll be in touch soon.</p>
+          ) : (
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                required
+                className="flex-1 bg-[#0a0a0a] border border-[#333] rounded-lg px-4 py-3 text-sm font-mono text-white placeholder:text-[#555] focus:border-[#b8860b] focus:outline-none transition-colors"
+              />
+              <button type="submit" className="px-6 py-3 bg-[#b8860b] hover:bg-[#d4a017] text-black font-mono font-bold text-sm rounded-lg transition-colors">
+                Subscribe
+              </button>
+            </form>
+          )}
+          <p className="text-[#444] text-[10px] font-mono mt-3">{newsletter.disclaimer}</p>
+        </div>
+      </section>
+
+      {/* === ABOUT === */}
+      <section id="about" className="max-w-7xl mx-auto px-4 py-16">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-1 h-6 bg-[#b8860b] rounded-full" />
+            <h2 className="text-xl font-bold text-white">About The Monarch Report</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 text-sm font-mono text-[#999] leading-relaxed">
+            <div>
+              <h3 className="text-white font-bold mb-3">Our Mission</h3>
+              <p className="mb-4">
+                The Monarch Report exists to bring the truth about Korea and Japan to Western audiences — especially legislators, policymakers, and citizens who care about democracy, human rights, and religious freedom in East Asia.
+              </p>
+              <p>
+                We are social-first journalists. Our reporting originates on X and Instagram, where we reach hundreds of thousands of people with fact-based analysis that mainstream media won&apos;t cover.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-white font-bold mb-3">Our Values</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#b8860b] mt-0.5">◆</span>
+                  <span><strong className="text-white">Democracy</strong> — We believe in transparent governance and the right of the people to hold their leaders accountable.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#b8860b] mt-0.5">◆</span>
+                  <span><strong className="text-white">Freedom of Speech</strong> — The truth must never be silenced. We report what others are afraid to say.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#b8860b] mt-0.5">◆</span>
+                  <span><strong className="text-white">Freedom of Religion</strong> — Religious persecution in any form is an assault on human dignity. We expose it.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#b8860b] mt-0.5">◆</span>
+                  <span><strong className="text-white">Facts First</strong> — Every claim we make is backed by evidence. We show our sources.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* === FOOTER === */}
+      <footer className="border-t border-[#1a1a1a] bg-[#060606]">
+        <div className="max-w-7xl mx-auto px-4 py-10">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-8">
+            <div className="flex items-center gap-3">
+              <Image src="/logos/icon-gold.png" alt="" width={28} height={28} className="w-7 h-7 opacity-60" />
+              <div>
+                <p className="text-xs font-mono text-[#888]">The Monarch Report</p>
+                <p className="text-[10px] font-mono text-[#444]">{siteConfig.tagline}</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-6 text-[11px] font-mono">
+              <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="text-[#666] hover:text-white transition-colors">𝕏 / Twitter</a>
+              <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="text-[#666] hover:text-white transition-colors">Instagram</a>
+              <a href="/dashboard" className="text-[#666] hover:text-white transition-colors">Economic Dashboard</a>
+              <a href="#newsletter" className="text-[#666] hover:text-white transition-colors">Newsletter</a>
+            </div>
+            <p className="text-[10px] font-mono text-[#333]">© 2026 The Monarch Report. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>
