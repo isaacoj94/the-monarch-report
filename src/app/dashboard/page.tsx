@@ -14,6 +14,11 @@ const localeLabels: Record<Locale, string> = { en: 'EN', ko: '한국어', ja: '�
 
 export default function Dashboard() {
   const [locale, setLocale] = useState<Locale>('en');
+  const [activeImpact, setActiveImpact] = useState<string | null>(null);
+
+  const handleImpactClick = (impact: string) => {
+    setActiveImpact(prev => prev === impact ? null : impact);
+  };
 
   const walletCards: { key: string; labelKey: string; unitKey: string; color: string }[] = [
     { key: 'gasPrice', labelKey: 'gasPrice', unitKey: 'perLiter', color: '#ef4444' },
@@ -193,6 +198,57 @@ export default function Dashboard() {
             <p className="text-[#666666] text-xs">{t(locale, 'whyHappeningDesc')}</p>
           </div>
         </div>
+
+        {/* Impact indicator bar */}
+        {activeImpact && (() => {
+          const impactMetric = { ...walletMetrics, ...macroMetrics }[activeImpact];
+          if (!impactMetric) return null;
+          const impactLabel = t(locale, activeImpact);
+          const impactColor = impactMetric.trend === 'rising' ? '#ef4444' : impactMetric.trend === 'falling' ? '#22c55e' : '#eab308';
+          return (
+            <div
+              className="mb-6 bg-[#111] border rounded-lg p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 transition-all duration-300 animate-in"
+              style={{ borderColor: `${impactColor}40` }}
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: impactColor }} />
+                <div>
+                  <p className="text-[#888] text-[10px] font-mono uppercase">
+                    {locale === 'ko' ? '영향받는 지표' : locale === 'ja' ? '影響を受ける指標' : 'Impacted Metric'}
+                  </p>
+                  <p className="text-white font-mono text-sm font-bold">{impactLabel}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="text-right">
+                  <p className="text-[#888] text-[10px] font-mono">
+                    {t(locale, 'presidencyStart')}
+                  </p>
+                  <p className="text-[#666] font-mono text-sm">
+                    {impactMetric.unit === '₩' ? `₩${impactMetric.presidencyStartValue.toLocaleString()}` : `${impactMetric.presidencyStartValue}${impactMetric.unit}`}
+                  </p>
+                </div>
+                <div className="text-xl text-[#555]">→</div>
+                <div className="text-right">
+                  <p className="text-[#888] text-[10px] font-mono">{t(locale, 'today')}</p>
+                  <p className="font-mono text-sm font-bold" style={{ color: impactColor }}>
+                    {impactMetric.unit === '₩' ? `₩${impactMetric.currentValue.toLocaleString()}` : `${impactMetric.currentValue}${impactMetric.unit}`}
+                  </p>
+                </div>
+                <span className="font-mono text-sm font-bold px-2 py-1 rounded" style={{ color: impactColor, backgroundColor: `${impactColor}15` }}>
+                  {impactMetric.changePercent > 0 ? '↑' : '↓'} {Math.abs(impactMetric.changePercent)}%
+                </span>
+              </div>
+              <button
+                onClick={() => setActiveImpact(null)}
+                className="text-[#555] hover:text-white text-xs font-mono transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+          );
+        })()}
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-4">
             <CausalChain
@@ -200,21 +256,35 @@ export default function Dashboard() {
               stepKeys={['gasChainStep1', 'gasChainStep2', 'gasChainStep3', 'gasChainStep4', 'gasChainStep5']}
               locale={locale}
               color="#f59e0b"
+              relatedMetric="gasPrice"
+              activeImpact={activeImpact}
+              onChainClick={handleImpactClick}
             />
             <CausalChain
               titleKey="exchangeChainTitle"
               stepKeys={['exchangeChainStep1', 'exchangeChainStep2', 'exchangeChainStep3', 'exchangeChainStep4', 'exchangeChainStep5']}
               locale={locale}
               color="#3b82f6"
+              relatedMetric="usdKrw"
+              activeImpact={activeImpact}
+              onChainClick={handleImpactClick}
             />
             <CausalChain
               titleKey="debtChainTitle"
               stepKeys={['debtChainStep1', 'debtChainStep2', 'debtChainStep3', 'debtChainStep4', 'debtChainStep5']}
               locale={locale}
               color="#ef4444"
+              relatedMetric="householdDebt"
+              activeImpact={activeImpact}
+              onChainClick={handleImpactClick}
             />
           </div>
-          <Timeline events={timelineEvents} locale={locale} />
+          <Timeline
+            events={timelineEvents}
+            locale={locale}
+            activeImpact={activeImpact}
+            onEventClick={handleImpactClick}
+          />
         </div>
       </section>
 
