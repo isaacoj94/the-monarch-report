@@ -38,17 +38,19 @@ const sidoCoords: Record<string, { lat: number; lng: number }> = {
 
 export async function GET() {
   const OPINET_API_KEY = process.env.OPINET_API_KEY;
+  // Try user's key first, then sample key as fallback
+  const keysToTry = OPINET_API_KEY ? [OPINET_API_KEY, 'F231013281'] : ['F231013281'];
 
-  if (OPINET_API_KEY) {
+  for (const apiKey of keysToTry) {
     try {
       // Fetch national average + sido (province) prices in parallel
       const [avgRes, sidoRes] = await Promise.all([
         fetch(
-          `https://www.opinet.co.kr/api/avgAllPrice.do?out=json&code=${OPINET_API_KEY}`,
+          `https://www.opinet.co.kr/api/avgAllPrice.do?out=json&code=${apiKey}`,
           { next: { revalidate: 3600 } }
         ),
         fetch(
-          `https://www.opinet.co.kr/api/avgSidoPrice.do?out=json&code=${OPINET_API_KEY}&prodcd=B027`,
+          `https://www.opinet.co.kr/api/avgSidoPrice.do?out=json&code=${apiKey}&prodcd=B027`,
           { next: { revalidate: 3600 } }
         ),
       ]);
@@ -71,25 +73,36 @@ export async function GET() {
         const sidoData = await sidoRes.json();
         const oils: OpinetOil[] = sidoData.RESULT?.OIL || [];
 
-        // Transform Opinet sido data into our region format
-        const regions = oils.map((oil) => {
-          const name = oil.SIDONM || '';
-          const coords = sidoCoords[name] || { lat: 36.5, lng: 127.5 };
-          const price = parseFloat(oil.PRICE);
-          const diff = parseFloat(oil.DIFF);
-          return {
-            region: name,
-            regionKo: name,
-            regionJa: name, // Will use Korean names for now
-            avgPrice: Math.round(price),
-            minPrice: Math.round(price - Math.abs(diff) * 3 - 20), // estimate range
-            maxPrice: Math.round(price + Math.abs(diff) * 3 + 30),
-            lat: coords.lat,
-            lng: coords.lng,
-            stationCount: 0, // not available from this endpoint
-            diff: diff,
-          };
-        });
+        // Skip if no data returned (key may be inactive)
+        if (oils.length === 0) continue;
+
+        // Filter out the national total row (SIDOCD "00") and transform
+        const regions = oils
+          .filter(oil => oil.SIDOCD !== '00')
+          .map((oil) => {
+            const name = oil.SIDONM || '';
+            const coords = sidoCoords[name] || { lat: 36.5, lng: 127.5 };
+            const price = parseFloat(oil.PRICE);
+            const diff = parseFloat(oil.DIFF);
+            return {
+              region: name,
+              regionKo: name,
+              regionJa: name,
+              avgPrice: Math.round(price),
+              minPrice: Math.round(price - Math.abs(diff) * 3 - 20),
+              maxPrice: Math.round(price + Math.abs(diff) * 3 + 30),
+              lat: coords.lat,
+              lng: coords.lng,
+              stationCount: 0,
+              diff: diff,
+            };
+          });
+
+        // Get national average from the "전국" row if available
+        const nationalRow = oils.find(o => o.SIDOCD === '00');
+        if (nationalRow) {
+          nationalAverage = Math.round(parseFloat(nationalRow.PRICE));
+        }
 
         return NextResponse.json({
           nationalAverage: nationalAverage || Math.round(
