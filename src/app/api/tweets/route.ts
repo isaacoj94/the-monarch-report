@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 
 // Apify tweet scraper integration for @monarchreport25
-// Caches results for 15 minutes to avoid excessive API calls
+// Reads from the last Apify run's dataset (fast) instead of running the scraper on each request.
+// Kicks off a new background run if data is stale.
 
 const APIFY_TOKEN = process.env.APIFY_API_TOKEN;
 const ACTOR_ID = 'apidojo~tweet-scraper';
@@ -62,10 +63,6 @@ export interface TweetData {
   links: { display: string; url: string }[];
 }
 
-// In-memory cache
-let cache: { data: { tweets: TweetData[]; articles: TweetData[] }; timestamp: number } | null = null;
-const CACHE_TTL = 15 * 60 * 1000; // 15 minutes
-
 function detectArticle(raw: ApifyTweet): { isArticle: boolean; articleId: string | null } {
   const urls = raw.entities?.urls || [];
   for (const u of urls) {
@@ -82,7 +79,6 @@ function transformTweet(raw: ApifyTweet): TweetData {
 
   const links = (raw.entities?.urls || [])
     .filter(u => !u.expanded_url.includes('pic.x.com') && !u.expanded_url.includes('pic.twitter.com'))
-    // For articles, filter out the x.com/i/article link itself (it's the article, not an external link)
     .filter(u => !ARTICLE_URL_PATTERN.test(u.expanded_url))
     .map(u => ({ display: u.display_url, url: u.expanded_url }));
 
@@ -108,13 +104,22 @@ function transformTweet(raw: ApifyTweet): TweetData {
   };
 }
 
-async function fetchFromApify(): Promise<ApifyTweet[]> {
-  if (!APIFY_TOKEN) {
-    throw new Error('APIFY_API_TOKEN not configured');
-  }
-
+// Read results from the most recent Apify run (fast, no waiting for scraper)
+async function readLastRunDataset(): Promise<ApifyTweet[]> {
   const res = await fetch(
-    `https://api.apify.com/v2/acts/${ACTOR_ID}/run-sync-get-dataset-items?token=${APIFY_TOKEN}`,
+    `https://api.apify.com/v2/acts/${ACTOR_ID}/runs/last/dataset/items?token=${APIFY_TOKEN}&limit=50`,
+    { next: { revalidate: 900 } } // cache for 15 min at CDN level
+  );
+  if (!res.ok) {
+    throw new Error(`Failed to read last run dataset: ${res.status}`);
+  }
+  return res.json();
+}
+
+// Fire-and-forget: trigger a new scraper run in the background
+function triggerNewRun() {
+  fetch(
+    `https://api.apify.com/v2/acts/${ACTOR_ID}/runs?token=${APIFY_TOKEN}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -124,43 +129,40 @@ async function fetchFromApify(): Promise<ApifyTweet[]> {
         addUserInfo: true,
       }),
     }
-  );
-
-  if (!res.ok) {
-    throw new Error(`Apify request failed: ${res.status}`);
-  }
-
-  return res.json();
+  ).catch(() => {}); // fire and forget
 }
 
-export async function GET() {
-  try {
-    // Return cached data if fresh
-    if (cache && Date.now() - cache.timestamp < CACHE_TTL) {
-      return NextResponse.json(cache.data);
-    }
+// Track when we last triggered a run (in-memory, resets on cold start)
+let lastRunTriggered = 0;
+const RUN_INTERVAL = 30 * 60 * 1000; // 30 minutes
 
-    const rawTweets = await fetchFromApify();
+export async function GET() {
+  if (!APIFY_TOKEN) {
+    return NextResponse.json(
+      { tweets: [], articles: [], error: 'APIFY_API_TOKEN not configured' },
+      { status: 500 }
+    );
+  }
+
+  try {
+    const rawTweets = await readLastRunDataset();
 
     const allTweets = rawTweets
       .filter(t => t.type === 'tweet' && !t.isRetweet)
       .map(transformTweet)
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-    // Articles = tweets that link to an x.com/i/article/ URL
     const articles = allTweets.filter(t => t.isArticle);
-    // Regular tweets = everything else
     const tweets = allTweets.filter(t => !t.isArticle);
 
-    const data = { tweets, articles };
-    cache = { data, timestamp: Date.now() };
-
-    return NextResponse.json(data);
-  } catch (error) {
-    // Return cached data even if stale on error
-    if (cache) {
-      return NextResponse.json(cache.data);
+    // Trigger a background refresh if it's been a while
+    if (Date.now() - lastRunTriggered > RUN_INTERVAL) {
+      lastRunTriggered = Date.now();
+      triggerNewRun();
     }
+
+    return NextResponse.json({ tweets, articles });
+  } catch (error) {
     return NextResponse.json(
       { tweets: [], articles: [], error: error instanceof Error ? error.message : 'Failed to fetch tweets' },
       { status: 500 }
