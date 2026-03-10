@@ -2,12 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { featuredContent, siteConfig, newsletter, xHandle, instagramHandle } from '@/lib/content';
+import { siteConfig, newsletter, xHandle, instagramHandle } from '@/lib/content';
 import { walletMetrics, macroMetrics } from '@/lib/data';
+import {
+  politicalPrisoners,
+  unLawViolations,
+  japanDissolution,
+  dangerousBills,
+  threatColors,
+  statusLabels,
+} from '@/lib/editorial';
 
-interface ExchangeData {
-  rate: number;
-}
+// === TYPES ===
+
+interface ExchangeData { rate: number }
 
 interface TweetData {
   id: string;
@@ -30,10 +38,17 @@ interface TweetData {
   links: { display: string; url: string }[];
 }
 
+interface KospiData {
+  current: number;
+  previousClose: number;
+  change: number;
+  changePercent: number;
+}
+
+// === HELPERS ===
+
 function timeAgo(dateStr: string): string {
-  const now = Date.now();
-  const then = new Date(dateStr).getTime();
-  const diff = now - then;
+  const diff = Date.now() - new Date(dateStr).getTime();
   const mins = Math.floor(diff / 60000);
   if (mins < 60) return `${mins}m`;
   const hrs = Math.floor(mins / 60);
@@ -49,78 +64,38 @@ function formatCount(n: number): string {
   return n.toString();
 }
 
-function TweetCard({ tweet, compact }: { tweet: TweetData; compact?: boolean }) {
-  // Process text: replace t.co links with display URLs
-  let displayText = tweet.text;
-  tweet.links.forEach(link => {
-    const tcoPattern = /https?:\/\/t\.co\/\w+/;
-    displayText = displayText.replace(tcoPattern, '');
-  });
-  // Remove trailing media t.co links
-  displayText = displayText.replace(/https?:\/\/t\.co\/\w+\s*$/g, '').trim();
+// === COMPONENTS ===
 
-  const truncated = compact && displayText.length > 280;
-  const shownText = truncated ? displayText.slice(0, 280) + '...' : displayText;
+function SectionHeader({ color, title, subtitle }: { color: string; title: string; subtitle: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-6">
+      <div className="w-1 h-6 rounded-full" style={{ backgroundColor: color }} />
+      <div>
+        <h2 className="text-xl font-bold text-white">{title}</h2>
+        <p className="text-[#666] text-xs font-mono">{subtitle}</p>
+      </div>
+    </div>
+  );
+}
+
+function TweetCard({ tweet }: { tweet: TweetData }) {
+  let displayText = tweet.text.replace(/https?:\/\/t\.co\/\w+/g, '').trim();
+  const truncated = displayText.length > 220;
+  const shownText = truncated ? displayText.slice(0, 220) + '...' : displayText;
 
   return (
     <a href={tweet.url} target="_blank" rel="noopener noreferrer" className="block group">
-      <div className="bg-[#111] border border-[#222] rounded-lg p-4 hover:border-[#333] transition-colors h-full">
-        {/* Author row */}
-        <div className="flex items-center gap-2 mb-2">
-          {tweet.authorAvatar && (
-            <img src={tweet.authorAvatar} alt="" className="w-5 h-5 rounded-full" />
-          )}
-          <span className="text-xs font-mono text-white font-bold">{tweet.authorName}</span>
-          {tweet.authorVerified && <span className="text-blue-400 text-[10px]">✓</span>}
-          <span className="text-[#555] text-xs font-mono">@{tweet.authorHandle}</span>
-          <span className="text-[#444] text-xs font-mono ml-auto">{timeAgo(tweet.createdAt)}</span>
+      <div className="bg-[#111] border border-[#222] rounded-lg p-3 hover:border-[#333] transition-colors h-full">
+        <div className="flex items-center gap-2 mb-1.5">
+          {tweet.authorAvatar && <img src={tweet.authorAvatar} alt="" className="w-4 h-4 rounded-full" />}
+          <span className="text-[11px] font-mono text-white font-bold">@{tweet.authorHandle}</span>
+          <span className="text-[#444] text-[10px] font-mono ml-auto">{timeAgo(tweet.createdAt)}</span>
         </div>
-
-        {/* Text */}
-        <p className="text-[#ccc] text-sm font-mono leading-relaxed whitespace-pre-line mb-3">
-          {shownText}
-        </p>
-
-        {/* Links */}
-        {tweet.links.length > 0 && (
-          <div className="mb-3 space-y-1">
-            {tweet.links.map((link, i) => (
-              <span key={i} className="block text-[#b8860b] text-xs font-mono truncate">
-                {link.display}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Media */}
-        {tweet.media.length > 0 && !compact && (
-          <div className={`mb-3 gap-1 ${tweet.media.length > 1 ? 'grid grid-cols-2' : ''}`}>
-            {tweet.media.slice(0, 4).map((url, i) => (
-              <img
-                key={i}
-                src={url}
-                alt=""
-                className="w-full rounded-md border border-[#222] object-cover"
-                style={{ maxHeight: tweet.media.length > 1 ? '150px' : '300px' }}
-              />
-            ))}
-          </div>
-        )}
-
-        {/* Engagement */}
-        <div className="flex items-center gap-4 text-[#555] text-[11px] font-mono">
-          <span className="group-hover:text-[#888] transition-colors">
-            ↩ {formatCount(tweet.replyCount)}
-          </span>
-          <span className="group-hover:text-green-500/60 transition-colors">
-            ⟳ {formatCount(tweet.retweetCount)}
-          </span>
-          <span className="group-hover:text-red-400/60 transition-colors">
-            ♥ {formatCount(tweet.likeCount)}
-          </span>
-          <span className="ml-auto">
-            👁 {formatCount(tweet.viewCount)}
-          </span>
+        <p className="text-[#bbb] text-xs font-mono leading-relaxed whitespace-pre-line mb-2">{shownText}</p>
+        <div className="flex items-center gap-3 text-[#555] text-[10px] font-mono">
+          <span>♥ {formatCount(tweet.likeCount)}</span>
+          <span>⟳ {formatCount(tweet.retweetCount)}</span>
+          <span className="ml-auto">👁 {formatCount(tweet.viewCount)}</span>
         </div>
       </div>
     </a>
@@ -128,82 +103,47 @@ function TweetCard({ tweet, compact }: { tweet: TweetData; compact?: boolean }) 
 }
 
 function ArticleCard({ tweet }: { tweet: TweetData }) {
-  // Clean out t.co links from text
   const cleanText = tweet.text.replace(/https?:\/\/t\.co\/\w+/g, '').trim();
   const lines = cleanText.split('\n').filter(l => l.trim());
   const headline = lines[0] || null;
-  const body = lines.slice(1).join('\n').trim();
-  const truncBody = body.length > 250 ? body.slice(0, 250) + '...' : body;
-
-  // Link to the X article directly if available, otherwise the tweet
   const href = tweet.articleUrl || tweet.url;
-
-  // Format date nicely for articles
-  const dateStr = new Date(tweet.createdAt).toLocaleDateString('en-US', {
-    month: 'short', day: 'numeric', year: 'numeric',
-  });
+  const dateStr = new Date(tweet.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className="block group">
-      <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-[#333] transition-colors h-full flex flex-col">
-        {/* Image if available */}
-        {tweet.media.length > 0 && (
-          <img
-            src={tweet.media[0]}
-            alt=""
-            className="w-full h-48 object-cover border-b border-[#222]"
-          />
-        )}
-        <div className="p-5 flex-1 flex flex-col">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-[10px] font-mono font-bold tracking-widest text-[#b8860b] bg-[#b8860b15] px-2 py-0.5 rounded-full border border-[#b8860b30]">
-              ARTICLE
-            </span>
-            <span className="text-[#555] text-xs font-mono">{dateStr}</span>
-          </div>
-          {headline ? (
-            <>
-              <h3 className="text-white font-bold text-base leading-snug mb-2 group-hover:text-[#b8860b] transition-colors">
-                {headline}
-              </h3>
-              {truncBody && (
-                <p className="text-[#888] text-xs font-mono leading-relaxed mb-4 flex-1 whitespace-pre-line">
-                  {truncBody}
-                </p>
-              )}
-            </>
-          ) : (
-            <div className="flex-1 flex items-center justify-center py-4">
-              <p className="text-[#666] text-sm font-mono">Long-form article on 𝕏</p>
-            </div>
-          )}
-          <div className="flex items-center justify-between text-[#555] text-[11px] font-mono mt-auto pt-3 border-t border-[#1a1a1a]">
-            <div className="flex items-center gap-3">
-              <span>♥ {formatCount(tweet.likeCount)}</span>
-              <span>⟳ {formatCount(tweet.retweetCount)}</span>
-              <span>👁 {formatCount(tweet.viewCount)}</span>
-            </div>
-            <span className="text-[#b8860b] group-hover:text-[#d4a017] transition-colors">Read article →</span>
-          </div>
+      <div className="bg-[#111] border border-[#222] rounded-lg p-3 hover:border-[#333] transition-colors h-full flex flex-col">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-[9px] font-mono font-bold tracking-widest text-[#b8860b] bg-[#b8860b15] px-1.5 py-0.5 rounded border border-[#b8860b30]">ARTICLE</span>
+          <span className="text-[#555] text-[10px] font-mono">{dateStr}</span>
+        </div>
+        <p className="text-white text-sm font-bold leading-snug group-hover:text-[#b8860b] transition-colors flex-1">
+          {headline || 'Long-form article'}
+        </p>
+        <div className="flex items-center justify-between text-[#555] text-[10px] font-mono mt-2 pt-2 border-t border-[#1a1a1a]">
+          <span>♥ {formatCount(tweet.likeCount)} · 👁 {formatCount(tweet.viewCount)}</span>
+          <span className="text-[#b8860b]">Read →</span>
         </div>
       </div>
     </a>
   );
 }
 
+// === MAIN PAGE ===
+
 export default function Home() {
   const [liveRate, setLiveRate] = useState<number | null>(null);
+  const [kospi, setKospi] = useState<KospiData | null>(null);
   const [email, setEmail] = useState('');
   const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [emailLoading, setEmailLoading] = useState(false);
+  const [emailError, setEmailError] = useState('');
   const [tweets, setTweets] = useState<TweetData[]>([]);
   const [articles, setArticles] = useState<TweetData[]>([]);
   const [tweetsLoading, setTweetsLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/exchange-rate').then(r => r.json()).then((d: ExchangeData) => setLiveRate(d.rate)).catch(() => {});
-  }, []);
-
-  useEffect(() => {
+    fetch('/api/kospi').then(r => r.json()).then((d: KospiData) => setKospi(d)).catch(() => {});
     fetch('/api/tweets')
       .then(r => r.json())
       .then((data: { tweets: TweetData[]; articles: TweetData[] }) => {
@@ -213,9 +153,6 @@ export default function Home() {
       .catch(() => {})
       .finally(() => setTweetsLoading(false));
   }, []);
-
-  const [emailLoading, setEmailLoading] = useState(false);
-  const [emailError, setEmailError] = useState('');
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -233,312 +170,377 @@ export default function Home() {
       }
       setEmailSubmitted(true);
     } catch (err) {
-      setEmailError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      setEmailError(err instanceof Error ? err.message : 'Something went wrong.');
     } finally {
       setEmailLoading(false);
     }
   };
-
-  const hero = featuredContent;
 
   return (
     <div className="min-h-screen bg-[#080808]">
       {/* === HEADER === */}
       <header className="sticky top-0 z-50 bg-[#080808]/95 backdrop-blur-sm border-b border-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-4">
-          {/* Ticker bar */}
           <div className="flex items-center justify-between py-1.5 border-b border-[#141414] text-[10px] font-mono text-[#666]">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5">
                 <span className="relative flex h-1.5 w-1.5"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" /><span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500" /></span>
                 USD/KRW {liveRate ? `₩${liveRate.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : '---'}
               </span>
+              <span>KOSPI {kospi ? kospi.current.toLocaleString() : '---'}{kospi && <span className={kospi.change >= 0 ? 'text-green-500' : 'text-red-500'}> {kospi.change >= 0 ? '+' : ''}{kospi.changePercent}%</span>}</span>
               <span>Gas ₩{walletMetrics.gasPrice.currentValue.toLocaleString()}/L</span>
               <span>CPI {macroMetrics.inflation.currentValue}%</span>
             </div>
             <a href="/dashboard" className="text-[#888] hover:text-white transition-colors">Economic Dashboard →</a>
           </div>
-
-          {/* Main nav */}
           <div className="flex items-center justify-between py-3">
             <a href="/" className="flex items-center">
               <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} className="h-8 w-auto" priority />
             </a>
             <nav className="hidden md:flex items-center gap-1 text-xs font-mono">
+              <a href="#faith" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Faith on Fire</a>
+              <a href="#japan" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Japan</a>
+              <a href="#democracy" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Democracy</a>
+              <a href="#economy" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Economy</a>
               <a href="#latest" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Latest</a>
-              <a href="#articles" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Articles</a>
-              <a href="#reels" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Video</a>
-              <a href="/dashboard" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Economic Dashboard</a>
-              <a href="#about" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">About</a>
+              <a href="/dashboard" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Dashboard</a>
               <a href="#newsletter" className="px-3 py-1.5 bg-[#b8860b] hover:bg-[#d4a017] text-black font-bold rounded transition-colors ml-2">Subscribe</a>
             </nav>
           </div>
         </div>
       </header>
 
-      {/* === HERO: Documentary / Featured Push === */}
+      {/* ============================================ */}
+      {/* === HERO: FAITH ON FIRE ==================== */}
+      {/* ============================================ */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#111] to-[#080808]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(184,134,11,0.08),transparent_70%)]" />
-        <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="text-[10px] font-mono font-bold tracking-widest text-[#b8860b] bg-[#b8860b15] px-3 py-1 rounded-full border border-[#b8860b30]">
-                {hero.tag}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a0505] via-[#0d0808] to-[#080808]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(239,68,68,0.06),transparent_70%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 py-14 md:py-20">
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="text-[10px] font-mono font-bold tracking-widest text-red-400 bg-red-400/10 px-3 py-1 rounded-full border border-red-400/20">
+                RELIGIOUS FREEDOM CRISIS
               </span>
+              <span className="text-[10px] font-mono text-[#555]">South Korea & Japan · 2025-2026</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] mb-4 text-white">
-              {hero.title}
+              Faith on Fire
             </h1>
-            <p className="text-lg md:text-xl text-[#999] leading-relaxed mb-3">
-              {hero.subtitle}
+            <p className="text-lg md:text-xl text-[#999] leading-relaxed mb-3 max-w-3xl">
+              Pastors jailed for preaching. An 83-year-old religious leader detained without conviction.
+              A church dissolved for the first time in a democracy without criminal charges.
             </p>
             <p className="text-sm text-[#666] leading-relaxed max-w-2xl mb-8">
-              {hero.description}
+              The Lee Jae-myung government in South Korea and the Japanese courts are waging
+              an unprecedented campaign against religious freedom — in violation of
+              international law. These are the facts.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a
-                href={hero.ctaUrl}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#b8860b] hover:bg-[#d4a017] text-black font-mono font-bold text-sm rounded transition-colors"
-              >
-                {hero.ctaText} →
+              <a href="#faith" className="inline-flex items-center gap-2 px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white font-mono font-bold text-sm rounded transition-colors">
+                See the Evidence →
               </a>
-              {hero.secondaryCta && (
-                <a
-                  href={hero.secondaryCta.url}
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-[#333] hover:border-[#555] text-white font-mono text-sm rounded transition-colors"
-                >
-                  ▶ {hero.secondaryCta.text}
-                </a>
-              )}
+              <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#333] hover:border-[#555] text-white font-mono text-sm rounded transition-colors">
+                Follow on 𝕏
+              </a>
             </div>
+          </div>
+
+          {/* Hero stats strip */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-10">
+            {[
+              { label: 'Religious Leaders Targeted', value: String(politicalPrisoners.length) + '+', color: '#ef4444' },
+              { label: 'Days Dr. Han Detained', value: '170+', color: '#a855f7' },
+              { label: 'Democracy-Eroding Bills', value: String(dangerousBills.length), color: '#f59e0b' },
+              { label: 'UN Laws Violated', value: String(unLawViolations.length), color: '#3b82f6' },
+            ].map(stat => (
+              <div key={stat.label} className="bg-[#111]/80 border border-[#222] rounded-lg p-3 text-center">
+                <p className="text-2xl font-bold font-mono" style={{ color: stat.color }}>{stat.value}</p>
+                <p className="text-[10px] font-mono text-[#666] mt-1">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* === MISSION STATEMENT BAR === */}
+      {/* Mission bar */}
       <section className="border-y border-[#1a1a1a] bg-[#0c0c0c]">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-1 h-10 bg-[#b8860b] rounded-full" />
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-1 h-8 bg-[#b8860b] rounded-full" />
               <div>
                 <p className="text-white font-mono text-sm font-bold">{siteConfig.tagline}</p>
-                <p className="text-[#666] text-xs font-mono">Independent journalism · Trusted by U.S. legislators · Fact-based reporting</p>
+                <p className="text-[#666] text-[11px] font-mono">Independent journalism · Trusted by U.S. legislators · Fact-based</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 text-xs font-mono">
-              <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[#888] hover:text-white transition-colors px-3 py-1.5 border border-[#222] rounded hover:border-[#444]">
-                𝕏 Follow
-              </a>
-              <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[#888] hover:text-white transition-colors px-3 py-1.5 border border-[#222] rounded hover:border-[#444]">
-                IG Follow
-              </a>
+            <div className="flex items-center gap-2 text-xs font-mono">
+              <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="text-[#888] hover:text-white transition-colors px-2.5 py-1 border border-[#222] rounded hover:border-[#444]">𝕏 Follow</a>
+              <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="text-[#888] hover:text-white transition-colors px-2.5 py-1 border border-[#222] rounded hover:border-[#444]">IG Follow</a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* === LATEST FROM X === */}
-      <section id="latest" className="max-w-7xl mx-auto px-4 py-12">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-1 h-6 bg-[#b8860b] rounded-full" />
-            <div>
-              <h2 className="text-xl font-bold text-white">Latest</h2>
-              <p className="text-[#666] text-xs font-mono">Live from @{xHandle}</p>
-            </div>
-          </div>
-          <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-[#888] hover:text-white transition-colors">
-            View all on 𝕏 →
-          </a>
-        </div>
+      {/* ============================================ */}
+      {/* === KOREA: RELIGIOUS FREEDOM UNDER SIEGE === */}
+      {/* ============================================ */}
+      <section id="faith" className="max-w-7xl mx-auto px-4 py-12">
+        <SectionHeader color="#ef4444" title="Korea: Religious Freedom Under Siege" subtitle="Pastors jailed, churches raided, leaders detained without conviction" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Tweets — main column */}
-          <div className="lg:col-span-2">
-            {tweetsLoading ? (
-              <div className="space-y-4">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="bg-[#111] border border-[#222] rounded-lg p-4 animate-pulse">
-                    <div className="h-4 bg-[#222] rounded w-1/3 mb-3" />
-                    <div className="h-3 bg-[#1a1a1a] rounded w-full mb-2" />
-                    <div className="h-3 bg-[#1a1a1a] rounded w-4/5 mb-2" />
-                    <div className="h-3 bg-[#1a1a1a] rounded w-2/3" />
-                  </div>
-                ))}
+        {/* Prisoner cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {politicalPrisoners.map(p => (
+            <div key={p.name} className="bg-[#111] border border-[#222] rounded-lg p-4">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <h3 className="text-white font-bold text-sm">{p.name} <span className="text-[#666] font-normal">({p.nameKo})</span></h3>
+                  <p className="text-[#888] text-[11px] font-mono">{p.title}</p>
+                </div>
+                <span className={`text-[9px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-full border ${
+                  p.status === 'detained' ? 'text-red-400 bg-red-400/10 border-red-400/20' :
+                  p.status === 'released' ? 'text-green-400 bg-green-400/10 border-green-400/20' :
+                  p.status === 'raided' ? 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20' :
+                  'text-blue-400 bg-blue-400/10 border-blue-400/20'
+                }`}>
+                  {p.status.toUpperCase()}
+                </span>
               </div>
-            ) : tweets.length > 0 ? (
-              <div className="space-y-4">
-                {tweets.slice(0, 10).map(tweet => (
-                  <TweetCard key={tweet.id} tweet={tweet} compact />
-                ))}
-              </div>
-            ) : (
-              <div className="bg-[#111] border border-[#222] rounded-lg p-8 text-center">
-                <p className="text-[#555] font-mono text-sm">Loading latest posts...</p>
-                <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-xs font-mono text-[#b8860b] hover:text-[#d4a017]">
-                  View on 𝕏 →
-                </a>
-              </div>
-            )}
-          </div>
-
-          {/* Sidebar — quick info */}
-          <div className="space-y-4">
-            {/* Data highlights */}
-            <div className="bg-[#111] border border-[#222] rounded-lg p-4">
-              <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-3">Economic Snapshot</h3>
-              <div className="space-y-3">
-                {[
-                  { label: 'USD/KRW', value: liveRate ? `₩${liveRate.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : `₩${macroMetrics.usdKrw.currentValue}`, color: '#3b82f6', live: !!liveRate },
-                  { label: 'Gas/Liter', value: `₩${walletMetrics.gasPrice.currentValue.toLocaleString()}`, color: '#ef4444' },
-                  { label: 'Inflation', value: `${macroMetrics.inflation.currentValue}%`, color: '#eab308' },
-                  { label: 'Household Debt/GDP', value: `${macroMetrics.householdDebt.currentValue}%`, color: '#ef4444' },
-                  { label: 'Youth Unemployment', value: `${macroMetrics.youthUnemployment.currentValue}%`, color: '#a855f7' },
-                ].map(item => (
-                  <div key={item.label} className="flex items-center justify-between">
-                    <span className="text-[#888] text-xs font-mono">{item.label}</span>
-                    <div className="flex items-center gap-1.5">
-                      {item.live && <span className="relative flex h-1.5 w-1.5"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" /><span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-blue-500" /></span>}
-                      <span className="text-xs font-mono font-bold" style={{ color: item.color }}>{item.value}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <a href="/dashboard" className="block mt-4 text-center text-[10px] font-mono text-[#b8860b] hover:text-[#d4a017] border border-[#222] hover:border-[#b8860b40] rounded py-2 transition-colors">
-                Full Economic Dashboard →
-              </a>
-            </div>
-
-            {/* Newsletter mini */}
-            <div className="bg-[#111] border border-[#222] rounded-lg p-4">
-              <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-2">Newsletter</h3>
-              <p className="text-[#666] text-[11px] font-mono mb-3">Get weekly analysis delivered to your inbox.</p>
-              {emailSubmitted ? (
-                <p className="text-[#b8860b] text-xs font-mono">Thank you — we&apos;ll be in touch.</p>
-              ) : (
-                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder="your@email.com"
-                    required
-                    className="flex-1 bg-[#0a0a0a] border border-[#222] rounded px-3 py-2 text-xs font-mono text-white placeholder:text-[#444] focus:border-[#b8860b] focus:outline-none transition-colors"
-                  />
-                  <button type="submit" disabled={emailLoading} className="px-3 py-2 bg-[#b8860b] hover:bg-[#d4a017] text-black text-xs font-mono font-bold rounded transition-colors disabled:opacity-50">
-                    {emailLoading ? '...' : 'Go'}
-                  </button>
-                </form>
+              <p className="text-[#666] text-[11px] font-mono mb-2"><strong className="text-[#999]">Charges:</strong> {p.charges}</p>
+              <p className="text-[#888] text-xs font-mono leading-relaxed">{p.details}</p>
+              {p.daysDetained && (
+                <p className="text-red-400 text-[11px] font-mono mt-2 font-bold">{p.daysDetained} days detained</p>
               )}
-              {emailError && <p className="text-red-400 text-[10px] font-mono mt-1">{emailError}</p>}
             </div>
-
-            {/* About teaser */}
-            <div className="bg-[#111] border border-[#222] rounded-lg p-4">
-              <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-2">Who We Are</h3>
-              <p className="text-[#999] text-[11px] font-mono leading-relaxed">
-                {siteConfig.description}
-              </p>
-              <a href="#about" className="block mt-3 text-[10px] font-mono text-[#b8860b] hover:text-[#d4a017] transition-colors">
-                Learn more →
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* === FEATURED ARTICLES === */}
-      <section id="articles" className="max-w-7xl mx-auto px-4 py-12">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-1 h-6 bg-red-500 rounded-full" />
-            <div>
-              <h2 className="text-xl font-bold text-white">Original Reporting</h2>
-              <p className="text-[#666] text-xs font-mono">In-depth articles by The Monarch Report</p>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {tweetsLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map(i => (
-              <div key={i} className="bg-[#111] border border-[#222] rounded-lg animate-pulse">
-                <div className="h-48 bg-[#1a1a1a]" />
-                <div className="p-5">
-                  <div className="h-3 bg-[#222] rounded w-1/4 mb-3" />
-                  <div className="h-4 bg-[#222] rounded w-3/4 mb-2" />
-                  <div className="h-3 bg-[#1a1a1a] rounded w-full mb-1" />
-                  <div className="h-3 bg-[#1a1a1a] rounded w-2/3" />
+        {/* UN Law Violations */}
+        <div className="bg-[#0c0c1a] border border-[#1a1a3a] rounded-lg p-5 mb-4">
+          <h3 className="text-blue-400 text-xs font-mono font-bold uppercase tracking-wider mb-3">
+            International Law Violations — ICCPR (Ratified by South Korea)
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {unLawViolations.map(v => (
+              <div key={v.article} className="flex gap-3">
+                <span className="text-blue-400 text-xs font-mono font-bold whitespace-nowrap mt-0.5">{v.article}</span>
+                <div>
+                  <p className="text-white text-xs font-bold">{v.title}</p>
+                  <p className="text-[#888] text-[11px] font-mono leading-relaxed">{v.description}</p>
                 </div>
               </div>
             ))}
           </div>
-        ) : articles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.slice(0, 6).map(article => (
-              <ArticleCard key={article.id} tweet={article} />
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* === JAPAN: THE DISSOLUTION PRECEDENT ======= */}
+      {/* ============================================ */}
+      <section id="japan" className="max-w-7xl mx-auto px-4 py-12 border-t border-[#141414]">
+        <SectionHeader color="#f59e0b" title="Japan: The Dissolution Precedent" subtitle="First religious organization dissolved without criminal charges in a modern democracy" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Timeline */}
+          <div className="bg-[#111] border border-[#222] rounded-lg p-4">
+            <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-3">Timeline</h3>
+            <div className="space-y-3">
+              {japanDissolution.timeline.map((t, i) => (
+                <div key={i} className="flex gap-3">
+                  <div className="flex flex-col items-center">
+                    <div className={`w-2 h-2 rounded-full ${i === japanDissolution.timeline.length - 1 ? 'bg-yellow-400 animate-pulse' : 'bg-[#444]'}`} />
+                    {i < japanDissolution.timeline.length - 1 && <div className="w-px h-full bg-[#222] mt-1" />}
+                  </div>
+                  <div className="pb-2">
+                    <p className="text-[10px] font-mono text-[#666]">{t.date}</p>
+                    <p className="text-[#ccc] text-xs font-mono leading-relaxed">{t.event}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Communist Connection */}
+          <div className="bg-[#111] border border-[#222] rounded-lg p-4">
+            <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-3">Communist Party Connection</h3>
+            <p className="text-[#999] text-xs font-mono leading-relaxed mb-3">
+              The lawyers behind the dissolution campaign were primarily affiliated with the <strong className="text-white">Japanese Communist Party</strong> and Socialist Party.
+            </p>
+            <div className="bg-[#0a0a0a] border border-[#1a1a1a] rounded p-3 mb-3">
+              <p className="text-[#ccc] text-xs font-mono italic leading-relaxed">&ldquo;{japanDissolution.communistConnection.jcpQuote.text}&rdquo;</p>
+              <p className="text-[#666] text-[10px] font-mono mt-1">— {japanDissolution.communistConnection.jcpQuote.speaker}</p>
+            </div>
+            <div className="space-y-1.5 text-[11px] font-mono text-[#888]">
+              <p><strong className="text-[#999]">Network:</strong> {japanDissolution.communistConnection.organization}</p>
+              <p><strong className="text-[#999]">Members:</strong> {japanDissolution.communistConnection.members}</p>
+              <p><strong className="text-[#999]">Founded:</strong> {japanDissolution.communistConnection.founded}</p>
+            </div>
+          </div>
+
+          {/* Why They Were Targeted */}
+          <div className="bg-[#111] border border-[#222] rounded-lg p-4">
+            <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-3">Why the Church Was Targeted</h3>
+            <ul className="space-y-2">
+              {japanDissolution.antiCommunistHistory.map((fact, i) => (
+                <li key={i} className="flex items-start gap-2 text-[#999] text-xs font-mono leading-relaxed">
+                  <span className="text-[#f59e0b] mt-0.5">◆</span>
+                  <span>{fact}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 pt-3 border-t border-[#1a1a1a]">
+              <h4 className="text-[10px] font-mono text-[#666] uppercase tracking-wider mb-2">International Response</h4>
+              {japanDissolution.internationalReactions.map((r, i) => (
+                <div key={i} className="mb-2">
+                  <p className="text-[#ccc] text-[11px] font-mono italic">&ldquo;{r.quote}&rdquo;</p>
+                  <p className="text-[#555] text-[10px] font-mono">— {r.who}, {r.date}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* === DEMOCRACY IN DECLINE =================== */}
+      {/* ============================================ */}
+      <section id="democracy" className="max-w-7xl mx-auto px-4 py-12 border-t border-[#141414]">
+        <SectionHeader color="#3b82f6" title="Democracy in Decline" subtitle="Bills and actions eroding judicial independence, free speech, and religious freedom" />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          {dangerousBills.map(bill => {
+            const threat = threatColors[bill.threat];
+            const status = statusLabels[bill.status];
+            return (
+              <div key={bill.name} className="bg-[#111] border border-[#222] rounded-lg p-3 hover:border-[#333] transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[8px] font-mono font-bold tracking-wider px-1.5 py-0.5 rounded border" style={{ color: threat.color, backgroundColor: threat.color + '15', borderColor: threat.color + '30' }}>
+                    {threat.label.toUpperCase()}
+                  </span>
+                  <span className="text-[8px] font-mono font-bold tracking-wider" style={{ color: status.color }}>
+                    {status.label}
+                  </span>
+                </div>
+                <h3 className="text-white text-sm font-bold mb-1">{bill.name}</h3>
+                <p className="text-[#999] text-[11px] font-mono leading-relaxed mb-2">{bill.summary}</p>
+                <p className="text-[#555] text-[10px] font-mono">{bill.date}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* === ECONOMIC REALITY ======================= */}
+      {/* ============================================ */}
+      <section id="economy" className="border-y border-[#1a1a1a] bg-[#0c0c0c]">
+        <div className="max-w-7xl mx-auto px-4 py-10">
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-1 h-6 bg-[#06b6d4] rounded-full" />
+              <div>
+                <h2 className="text-xl font-bold text-white">The Economic Cost</h2>
+                <p className="text-[#666] text-xs font-mono">When democracy erodes, the economy follows</p>
+              </div>
+            </div>
+            <a href="/dashboard" className="text-xs font-mono text-[#b8860b] hover:text-[#d4a017] transition-colors border border-[#222] hover:border-[#b8860b40] rounded px-3 py-1.5">
+              Full Dashboard →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {[
+              { label: 'USD/KRW', value: liveRate ? `₩${liveRate.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : `₩${macroMetrics.usdKrw.currentValue}`, change: `+${macroMetrics.usdKrw.changePercent}%`, color: '#3b82f6', bad: true },
+              { label: 'KOSPI', value: kospi ? kospi.current.toLocaleString() : '---', change: kospi ? `${kospi.change >= 0 ? '+' : ''}${kospi.changePercent}%` : '', color: '#06b6d4', bad: kospi ? kospi.change < 0 : false },
+              { label: 'Inflation', value: `${macroMetrics.inflation.currentValue}%`, change: `+${macroMetrics.inflation.changePercent}%`, color: '#eab308', bad: true },
+              { label: 'Gas/Liter', value: `₩${walletMetrics.gasPrice.currentValue.toLocaleString()}`, change: `+${walletMetrics.gasPrice.changePercent}%`, color: '#ef4444', bad: true },
+              { label: 'Household Debt/GDP', value: `${macroMetrics.householdDebt.currentValue}%`, change: `+${macroMetrics.householdDebt.changePercent}%`, color: '#ef4444', bad: true },
+              { label: 'Youth Unemployment', value: `${macroMetrics.youthUnemployment.currentValue}%`, change: `+${macroMetrics.youthUnemployment.changePercent}%`, color: '#a855f7', bad: true },
+            ].map(item => (
+              <div key={item.label} className="bg-[#111] border border-[#222] rounded-lg p-3 text-center">
+                <p className="text-[10px] font-mono text-[#666] mb-1">{item.label}</p>
+                <p className="text-lg font-bold font-mono" style={{ color: item.color }}>{item.value}</p>
+                {item.change && (
+                  <p className={`text-[10px] font-mono mt-0.5 ${item.bad ? 'text-red-400' : 'text-green-400'}`}>
+                    {item.change} since inauguration
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <p className="text-[#555] text-[11px] font-mono text-center mt-4">
+            Korean media focuses on approval ratings. These numbers tell the real story. <a href="/dashboard" className="text-[#b8860b] hover:text-[#d4a017]">See all metrics →</a>
+          </p>
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* === LATEST FROM X + ARTICLES =============== */}
+      {/* ============================================ */}
+      <section id="latest" className="max-w-7xl mx-auto px-4 py-12">
+        <div className="flex items-center justify-between mb-6">
+          <SectionHeader color="#b8860b" title="Latest from The Monarch Report" subtitle={`@${xHandle} on 𝕏`} />
+          <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-[#888] hover:text-white transition-colors">
+            View all →
+          </a>
+        </div>
+
+        {/* Articles row */}
+        {!tweetsLoading && articles.length > 0 && (
+          <div className="mb-6">
+            <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-3">Featured Articles</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {articles.slice(0, 4).map(a => (
+                <ArticleCard key={a.id} tweet={a} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Tweets grid */}
+        {tweetsLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[1, 2, 3, 4, 5, 6].map(i => (
+              <div key={i} className="bg-[#111] border border-[#222] rounded-lg p-3 animate-pulse">
+                <div className="h-3 bg-[#222] rounded w-1/3 mb-2" />
+                <div className="h-2.5 bg-[#1a1a1a] rounded w-full mb-1.5" />
+                <div className="h-2.5 bg-[#1a1a1a] rounded w-4/5 mb-1.5" />
+                <div className="h-2.5 bg-[#1a1a1a] rounded w-2/3" />
+              </div>
+            ))}
+          </div>
+        ) : tweets.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {tweets.slice(0, 9).map(tweet => (
+              <TweetCard key={tweet.id} tweet={tweet} />
             ))}
           </div>
         ) : (
-          <div className="bg-[#111] border border-[#222] rounded-lg p-8 text-center">
-            <p className="text-[#555] font-mono text-sm">No articles found yet.</p>
-            <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-3 text-xs font-mono text-[#b8860b] hover:text-[#d4a017] border border-[#222] hover:border-[#b8860b40] rounded px-4 py-2 transition-colors">
-              Read articles on 𝕏 →
-            </a>
+          <div className="bg-[#111] border border-[#222] rounded-lg p-6 text-center">
+            <p className="text-[#555] font-mono text-sm">Loading posts...</p>
+            <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-xs font-mono text-[#b8860b]">View on 𝕏 →</a>
           </div>
         )}
       </section>
 
-      {/* === INSTAGRAM REELS === */}
-      <section id="reels" className="max-w-7xl mx-auto px-4 py-12">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-1 h-6 bg-pink-500 rounded-full" />
-            <div>
-              <h2 className="text-xl font-bold text-white">Video</h2>
-              <p className="text-[#666] text-xs font-mono">Commentary & analysis from @{instagramHandle}</p>
-            </div>
-          </div>
-          <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-[#888] hover:text-white transition-colors">
-            View all on Instagram →
-          </a>
-        </div>
-
-        <div className="bg-[#111] border border-[#222] rounded-lg p-8 text-center">
-          <p className="text-[#555] font-mono text-sm mb-4">
-            Instagram Reels will be embedded here.
-          </p>
-          <p className="text-[#444] font-mono text-xs mb-4">
-            Instagram requires an access token for API access. Once configured, reels auto-populate.
-          </p>
-          <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-mono text-[#b8860b] hover:text-[#d4a017] border border-[#222] hover:border-[#b8860b40] rounded px-4 py-2 transition-colors">
-            Watch on Instagram →
-          </a>
-        </div>
-      </section>
-
-      {/* === NEWSLETTER (Full section) === */}
+      {/* ============================================ */}
+      {/* === NEWSLETTER ============================= */}
+      {/* ============================================ */}
       <section id="newsletter" className="border-y border-[#1a1a1a] bg-[#0c0c0c]">
-        <div className="max-w-3xl mx-auto px-4 py-16 text-center">
-          <Image src="/logos/icon-gold.png" alt="" width={48} height={48} className="w-12 h-12 mx-auto mb-6 opacity-60" />
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{newsletter.title}</h2>
-          <p className="text-[#888] font-mono text-sm mb-6 max-w-md mx-auto">{newsletter.subtitle}</p>
+        <div className="max-w-3xl mx-auto px-4 py-14 text-center">
+          <Image src="/logos/icon-gold.png" alt="" width={48} height={48} className="w-10 h-10 mx-auto mb-5 opacity-60" />
+          <h2 className="text-2xl font-bold text-white mb-2">{newsletter.title}</h2>
+          <p className="text-[#888] font-mono text-sm mb-5 max-w-md mx-auto">{newsletter.subtitle}</p>
           {emailSubmitted ? (
-            <p className="text-[#b8860b] font-mono text-sm">Thank you for subscribing. We&apos;ll be in touch soon.</p>
+            <p className="text-[#b8860b] font-mono text-sm">Thank you for subscribing.</p>
           ) : (
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                required
-                className="flex-1 bg-[#0a0a0a] border border-[#333] rounded-lg px-4 py-3 text-sm font-mono text-white placeholder:text-[#555] focus:border-[#b8860b] focus:outline-none transition-colors"
-              />
-              <button type="submit" disabled={emailLoading} className="px-6 py-3 bg-[#b8860b] hover:bg-[#d4a017] text-black font-mono font-bold text-sm rounded-lg transition-colors disabled:opacity-50">
-                {emailLoading ? 'Subscribing...' : 'Subscribe'}
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com" required
+                className="flex-1 bg-[#0a0a0a] border border-[#333] rounded-lg px-4 py-3 text-sm font-mono text-white placeholder:text-[#555] focus:border-[#b8860b] focus:outline-none transition-colors" />
+              <button type="submit" disabled={emailLoading}
+                className="px-6 py-3 bg-[#b8860b] hover:bg-[#d4a017] text-black font-mono font-bold text-sm rounded-lg transition-colors disabled:opacity-50">
+                {emailLoading ? '...' : 'Subscribe'}
               </button>
             </form>
           )}
@@ -548,9 +550,9 @@ export default function Home() {
       </section>
 
       {/* === ABOUT === */}
-      <section id="about" className="max-w-7xl mx-auto px-4 py-16">
+      <section id="about" className="max-w-7xl mx-auto px-4 py-14">
         <div className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-6">
             <div className="w-1 h-6 bg-[#b8860b] rounded-full" />
             <h2 className="text-xl font-bold text-white">About The Monarch Report</h2>
           </div>
@@ -566,23 +568,18 @@ export default function Home() {
             </div>
             <div>
               <h3 className="text-white font-bold mb-3">Our Values</h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#b8860b] mt-0.5">◆</span>
-                  <span><strong className="text-white">Democracy</strong> — We believe in transparent governance and the right of the people to hold their leaders accountable.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#b8860b] mt-0.5">◆</span>
-                  <span><strong className="text-white">Freedom of Speech</strong> — The truth must never be silenced. We report what others are afraid to say.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#b8860b] mt-0.5">◆</span>
-                  <span><strong className="text-white">Freedom of Religion</strong> — Religious persecution in any form is an assault on human dignity. We expose it.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#b8860b] mt-0.5">◆</span>
-                  <span><strong className="text-white">Facts First</strong> — Every claim we make is backed by evidence. We show our sources.</span>
-                </li>
+              <ul className="space-y-2.5">
+                {[
+                  { label: 'Democracy', text: 'Transparent governance and the right to hold leaders accountable.' },
+                  { label: 'Freedom of Speech', text: 'The truth must never be silenced.' },
+                  { label: 'Freedom of Religion', text: 'Religious persecution is an assault on human dignity.' },
+                  { label: 'Facts First', text: 'Every claim backed by evidence. We show our sources.' },
+                ].map(v => (
+                  <li key={v.label} className="flex items-start gap-2">
+                    <span className="text-[#b8860b] mt-0.5">◆</span>
+                    <span><strong className="text-white">{v.label}</strong> — {v.text}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -591,8 +588,8 @@ export default function Home() {
 
       {/* === FOOTER === */}
       <footer className="border-t border-[#1a1a1a] bg-[#060606]">
-        <div className="max-w-7xl mx-auto px-4 py-10">
-          <div className="flex flex-col md:flex-row items-start justify-between gap-8">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-6">
             <div className="flex items-center gap-3">
               <Image src="/logos/icon-gold.png" alt="" width={28} height={28} className="w-7 h-7 opacity-60" />
               <div>
