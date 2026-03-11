@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig, newsletter, xHandle, instagramHandle } from '@/lib/content';
@@ -164,6 +164,16 @@ export default function Home() {
   const [emailError, setEmailError] = useState('');
   const [tweets, setTweets] = useState<TweetData[]>([]);
   const [tweetsLoading, setTweetsLoading] = useState(true);
+  const [timelineFilter, setTimelineFilter] = useState<string | null>(null);
+  const [timelineProgress, setTimelineProgress] = useState(0);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const handleTimelineScroll = useCallback(() => {
+    const el = timelineRef.current;
+    if (!el) return;
+    const progress = el.scrollTop / (el.scrollHeight - el.clientHeight);
+    setTimelineProgress(Math.min(1, Math.max(0, progress)));
+  }, []);
 
   useEffect(() => {
     fetch('/api/exchange-rate').then(r => r.json()).then((d: ExchangeData) => setLiveRate(d.rate)).catch(() => {});
@@ -425,70 +435,187 @@ export default function Home() {
         </div>
 
         {/* Korea Democracy Crisis Timeline */}
-        <div className="bg-tm-card border border-tm-border rounded-lg p-5 mt-8">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-red-400 text-xs font-mono font-bold uppercase tracking-wider">
-              Korea Democracy Crisis — Full Timeline
-            </h3>
-            <span className="text-[9px] font-mono text-tm-muted">{koreaTimeline.length} events · Apr 2024 – Mar 2026</span>
-          </div>
-          <p className="text-tm-secondary text-sm mb-5 leading-relaxed">
-            How South Korea went from a thriving democracy to a country where pastors are jailed, churches are raided, judges are threatened with prison, and the president openly agrees to dissolve religious minorities.
-          </p>
-
-          {/* Category filter legend */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {Object.entries(koreaTimelineCategories).map(([key, cat]) => (
-              <span key={key} className="text-[9px] font-mono px-2 py-0.5 rounded-full border" style={{ color: cat.color, borderColor: `${cat.color}33`, backgroundColor: `${cat.color}11` }}>
-                {cat.icon} {cat.label}
+        <div className="bg-tm-card border border-tm-border rounded-lg overflow-hidden mt-8">
+          {/* Header */}
+          <div className="p-5 pb-0">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-red-400 text-xs font-mono font-bold uppercase tracking-wider">
+                Korea Democracy Crisis — Full Timeline
+              </h3>
+              <span className="text-[9px] font-mono text-tm-muted">
+                {timelineFilter
+                  ? `${koreaTimeline.filter(e => e.category === timelineFilter).length} of ${koreaTimeline.length} events`
+                  : `${koreaTimeline.length} events · Jan 2024 – Mar 2026`
+                }
               </span>
-            ))}
+            </div>
+            <p className="text-tm-secondary text-sm mb-4 leading-relaxed">
+              How South Korea went from a thriving democracy to a country where pastors are jailed, churches are raided, judges are threatened with prison, and the president openly agrees to dissolve religious minorities.
+            </p>
+
+            {/* Interactive category filters */}
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              <button
+                onClick={() => setTimelineFilter(null)}
+                className={`text-[10px] font-mono px-2.5 py-1 rounded-full border transition-all cursor-pointer ${
+                  !timelineFilter
+                    ? 'bg-tm-heading text-tm-page border-tm-heading font-bold'
+                    : 'text-tm-muted border-tm-border hover:border-tm-border-hover'
+                }`}
+              >
+                All
+              </button>
+              {Object.entries(koreaTimelineCategories).map(([key, cat]) => (
+                <button
+                  key={key}
+                  onClick={() => setTimelineFilter(timelineFilter === key ? null : key)}
+                  className={`text-[10px] font-mono px-2.5 py-1 rounded-full border transition-all cursor-pointer ${
+                    timelineFilter === key
+                      ? 'font-bold'
+                      : 'hover:opacity-80'
+                  }`}
+                  style={{
+                    color: timelineFilter === key ? '#000' : cat.color,
+                    borderColor: timelineFilter === key ? cat.color : `${cat.color}33`,
+                    backgroundColor: timelineFilter === key ? cat.color : `${cat.color}11`,
+                  }}
+                >
+                  {cat.icon} {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Visual timeline */}
-          <div className="space-y-0">
-            {koreaTimeline.map((entry, i) => {
-              const cat = koreaTimelineCategories[entry.category];
-              const isLast = i === koreaTimeline.length - 1;
-              return (
-                <div key={i} className="flex gap-4 group">
-                  {/* Timeline spine */}
-                  <div className="flex flex-col items-center w-6 shrink-0">
-                    <div
-                      className={`w-3 h-3 rounded-full border-2 shrink-0 ${isLast ? 'animate-pulse' : ''}`}
-                      style={{ borderColor: cat.color, backgroundColor: isLast ? cat.color : 'transparent' }}
-                    />
-                    {!isLast && (
-                      <div className="w-px flex-1 bg-tm-border mt-0.5" />
-                    )}
-                  </div>
+          {/* Scroll progress bar */}
+          <div className="h-0.5 bg-tm-border mx-5">
+            <div
+              className="h-full bg-red-400 transition-all duration-150"
+              style={{ width: `${timelineProgress * 100}%` }}
+            />
+          </div>
 
-                  {/* Content */}
-                  <div className="pb-5 min-w-0">
-                    <div className="flex items-center gap-2 mb-1 flex-wrap">
-                      <span className="text-[10px] font-mono text-tm-muted whitespace-nowrap">{entry.date}</span>
-                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded" style={{ color: cat.color, backgroundColor: `${cat.color}15` }}>
-                        {cat.label.toUpperCase()}
-                      </span>
+          {/* Scrollable timeline container */}
+          <div className="relative">
+            {/* Top fade */}
+            <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-tm-card to-transparent z-10 pointer-events-none" />
+            {/* Bottom fade */}
+            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-tm-card to-transparent z-10 pointer-events-none" />
+
+            <div
+              ref={timelineRef}
+              onScroll={handleTimelineScroll}
+              className="max-h-[600px] overflow-y-auto px-5 py-4 scroll-smooth"
+              style={{ scrollbarWidth: 'thin', scrollbarColor: 'var(--tm-scrollbar-thumb) transparent' }}
+            >
+              {(() => {
+                const filtered = timelineFilter
+                  ? koreaTimeline.filter(e => e.category === timelineFilter)
+                  : koreaTimeline;
+                let lastYear = '';
+
+                return filtered.map((entry, i) => {
+                  const cat = koreaTimelineCategories[entry.category];
+                  const isLast = i === filtered.length - 1;
+                  const year = entry.date.split(', ').pop() || '';
+                  const showYear = year !== lastYear;
+                  if (showYear) lastYear = year;
+
+                  return (
+                    <div key={`${entry.date}-${entry.title}`}>
+                      {/* Year divider */}
+                      {showYear && (
+                        <div className="flex items-center gap-3 mb-4 mt-2">
+                          <span className="text-2xl font-serif font-bold text-tm-heading">{year}</span>
+                          <div className="flex-1 h-px bg-tm-border" />
+                        </div>
+                      )}
+
+                      {entry.featured ? (
+                        /* === FEATURED EVENT CARD === */
+                        <div
+                          className="relative mb-5 rounded-lg border overflow-hidden"
+                          style={{ borderColor: `${cat.color}33` }}
+                        >
+                          {/* Gradient background */}
+                          <div
+                            className="absolute inset-0 opacity-[0.07]"
+                            style={{ background: `linear-gradient(135deg, ${cat.color}, transparent 70%)` }}
+                          />
+                          <div className="relative p-4">
+                            <div className="flex items-center gap-2 mb-2 flex-wrap">
+                              <span
+                                className="text-[10px] font-mono font-bold px-2 py-0.5 rounded"
+                                style={{ color: '#000', backgroundColor: cat.color }}
+                              >
+                                {cat.icon} {cat.label.toUpperCase()}
+                              </span>
+                              <span className="text-[10px] font-mono text-tm-muted">{entry.date}</span>
+                            </div>
+                            <h4 className="text-tm-heading text-base md:text-lg font-serif font-bold leading-snug mb-2">
+                              {entry.title}
+                            </h4>
+                            <p className="text-tm-body text-sm leading-relaxed mb-2">
+                              {entry.description}
+                            </p>
+                            <a
+                              href={entry.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-[10px] font-mono hover:text-tm-gold transition-colors"
+                              style={{ color: cat.color }}
+                            >
+                              {entry.source} ↗
+                            </a>
+                          </div>
+                        </div>
+                      ) : (
+                        /* === STANDARD EVENT === */
+                        <div className="flex gap-3 mb-1">
+                          {/* Timeline dot + line */}
+                          <div className="flex flex-col items-center w-5 shrink-0 mt-1">
+                            <div
+                              className={`w-2.5 h-2.5 rounded-full border-2 shrink-0 ${isLast ? 'animate-pulse' : ''}`}
+                              style={{
+                                borderColor: cat.color,
+                                backgroundColor: isLast ? cat.color : 'transparent',
+                              }}
+                            />
+                            {!isLast && <div className="w-px flex-1 bg-tm-border mt-0.5" />}
+                          </div>
+
+                          {/* Content */}
+                          <div className="pb-4 min-w-0">
+                            <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+                              <span className="text-[10px] font-mono text-tm-muted whitespace-nowrap">{entry.date}</span>
+                              <span
+                                className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded"
+                                style={{ color: cat.color, backgroundColor: `${cat.color}15` }}
+                              >
+                                {cat.label.toUpperCase()}
+                              </span>
+                            </div>
+                            <h4 className="text-tm-heading text-sm font-bold leading-snug mb-0.5">
+                              {entry.title}
+                            </h4>
+                            <p className="text-tm-secondary text-[13px] leading-relaxed mb-1">
+                              {entry.description}
+                            </p>
+                            <a
+                              href={entry.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[10px] font-mono text-tm-muted hover:text-tm-gold transition-colors"
+                            >
+                              {entry.source} ↗
+                            </a>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <h4 className="text-tm-heading text-sm font-bold leading-snug mb-1">
-                      {entry.title}
-                    </h4>
-                    <p className="text-tm-secondary text-sm leading-relaxed mb-1.5">
-                      {entry.description}
-                    </p>
-                    <a
-                      href={entry.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[10px] font-mono text-tm-muted hover:text-tm-gold transition-colors"
-                    >
-                      Source: {entry.source} ↗
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                });
+              })()}
+            </div>
           </div>
         </div>
       </section>

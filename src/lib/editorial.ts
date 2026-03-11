@@ -144,7 +144,7 @@ export interface KoreaTimelineEntry {
   category: 'martial-law' | 'church-raid' | 'legislation' | 'military' | 'foreign-policy' | 'court-case' | 'media' | 'corporate';
   source: string;
   sourceUrl: string;
-  image?: string; // optional photo URL
+  featured?: boolean; // hero treatment for key events
 }
 
 export const koreaTimeline: KoreaTimelineEntry[] = [
@@ -181,6 +181,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'martial-law',
     source: 'CNN',
     sourceUrl: 'https://www.cnn.com/2024/12/03/asia/south-korea-martial-law-yoon-intl-hnk',
+    featured: true,
   },
   {
     date: 'Dec 4, 2024',
@@ -232,6 +233,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'legislation',
     source: 'Foreign Policy',
     sourceUrl: 'https://foreignpolicy.com/2025/06/05/south-korea-president-election-results-lee-jae-myung-foreign-policy/',
+    featured: true,
   },
   // === PRO-NK CONCESSIONS ===
   {
@@ -294,6 +296,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'church-raid',
     source: 'CNN, Al Jazeera',
     sourceUrl: 'https://www.cnn.com/2025/09/22/asia/south-korea-unification-church-arrest',
+    featured: true,
   },
   // === MILITARY PURGE ===
   {
@@ -366,6 +369,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'church-raid',
     source: 'Korea Times',
     sourceUrl: 'https://www.koreatimes.co.kr/southkorea/politics/20260112/president-agrees-on-religious-leaders-call-for-disbanding-unification-church-shincheonji',
+    featured: true,
   },
   // === UN DENOUNCEMENT ===
   {
@@ -400,6 +404,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'court-case',
     source: 'CNN',
     sourceUrl: 'https://www.cnn.com/2026/02/19/asia/south-korea-yoon-suk-yeol-verdict-insurrection-intl-hnk',
+    featured: true,
   },
   // === COUPANG ESCALATION ===
   {
