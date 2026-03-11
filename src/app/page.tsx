@@ -291,13 +291,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,var(--tm-hero-glow),transparent_70%)]" />
         <div className="relative max-w-7xl mx-auto px-4 py-12 md:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Video / Poster */}
-            <div className="aspect-video rounded-lg overflow-hidden border border-tm-border bg-tm-card flex items-center justify-center">
-              <div className="text-center px-6">
-                <p className="text-6xl mb-3">🎬</p>
-                <p className="text-tm-heading font-serif text-xl font-bold mb-1">Official Trailer</p>
-                <p className="text-tm-muted text-sm">Coming Soon</p>
-              </div>
+            {/* Trailer */}
+            <div className="aspect-video rounded-lg overflow-hidden border border-tm-border bg-tm-card">
+              <iframe
+                src="https://www.youtube.com/embed/S2oRBd0spEo"
+                title="You're Next: Do Nothing — Official Trailer"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
             </div>
 
             {/* Copy */}
