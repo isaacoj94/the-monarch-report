@@ -135,6 +135,260 @@ export const japanDissolution = {
   ],
 };
 
+// === KOREA: DEMOCRACY CRISIS TIMELINE ===
+
+export interface KoreaTimelineEntry {
+  date: string;
+  title: string;
+  description: string;
+  category: 'martial-law' | 'church-raid' | 'legislation' | 'military' | 'foreign-policy' | 'court-case' | 'media' | 'corporate';
+  source: string;
+  sourceUrl: string;
+  image?: string; // optional photo URL
+}
+
+export const koreaTimeline: KoreaTimelineEntry[] = [
+  // === PRE-MARTIAL LAW: Why it happened ===
+  {
+    date: 'Apr 10, 2024',
+    title: 'Opposition wins supermajority in National Assembly',
+    description: 'The Democratic Party of Korea (DPK) wins 175 of 300 seats, gaining near two-thirds control. This begins an unprecedented legislative standoff with President Yoon.',
+    category: 'legislation',
+    source: 'Korea Herald',
+    sourceUrl: 'https://www.koreaherald.com/article/10181935',
+  },
+  {
+    date: 'Nov 2024',
+    title: 'Opposition slashes government budget by $4.1 billion',
+    description: 'The DPK-led Assembly cuts the 2025 budget by 4.1 trillion won, removing police and prosecution funding and blocking key government appointments. 22 impeachment motions had been filed against Yoon officials since 2022.',
+    category: 'legislation',
+    source: 'CSIS',
+    sourceUrl: 'https://www.csis.org/analysis/yoon-declares-martial-law-south-korea',
+  },
+  // === MARTIAL LAW ===
+  {
+    date: 'Dec 3, 2024',
+    title: 'President Yoon declares martial law',
+    description: 'At 10:27 PM, Yoon declares emergency martial law in a televised address, accusing the opposition of being "anti-state forces" running a "legislative dictatorship." Troops deployed to the National Assembly.',
+    category: 'martial-law',
+    source: 'CNN',
+    sourceUrl: 'https://www.cnn.com/2024/12/03/asia/south-korea-martial-law-yoon-intl-hnk',
+  },
+  {
+    date: 'Dec 4, 2024',
+    title: 'National Assembly lifts martial law in 6 hours',
+    description: '190 lawmakers breach military lines and unanimously vote to lift martial law at 1:02 AM. Yoon officially lifts it at 4:30 AM. The shortest martial law in Korean history.',
+    category: 'martial-law',
+    source: 'Wikipedia — Martial Law Crisis',
+    sourceUrl: 'https://en.wikipedia.org/wiki/2024_South_Korean_martial_law_crisis',
+  },
+  {
+    date: 'Dec 14, 2024',
+    title: 'Yoon impeached by National Assembly',
+    description: '204 of 300 members vote to impeach President Yoon. His presidential powers are suspended. Prime Minister Han Duck-soo becomes acting president.',
+    category: 'court-case',
+    source: 'Wikipedia — Impeachment of Yoon',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Impeachment_of_Yoon_Suk_Yeol',
+  },
+  // === MEDIA FRAMING ===
+  {
+    date: 'Dec 2024',
+    title: 'Western media frames martial law as "authoritarian coup"',
+    description: 'Major Western outlets universally frame the 6-hour martial law as an attempted coup, with minimal coverage of the opposition\'s two years of legislative obstruction, 22 impeachment motions, and $4.1B budget cuts that prompted it.',
+    category: 'media',
+    source: 'NPR',
+    sourceUrl: 'https://www.npr.org/2024/12/12/g-s1-37854/south-korea-yoon-martial-law',
+  },
+  // === YOON ARREST & TRIAL ===
+  {
+    date: 'Jan 15, 2025',
+    title: 'Yoon arrested after standoff at presidential residence',
+    description: 'After weeks of failed arrest attempts, the Corruption Investigation Office deploys 3,000 police and agents. Yoon surrenders to avoid violence. Placed in Seoul Detention Center.',
+    category: 'court-case',
+    source: 'Wikipedia — Arrest of Yoon',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Arrest_of_Yoon_Suk_Yeol',
+  },
+  {
+    date: 'Apr 4, 2025',
+    title: 'Constitutional Court upholds impeachment',
+    description: 'Yoon is formally removed from office. A special presidential election is called within 60 days.',
+    category: 'court-case',
+    source: 'Al Jazeera',
+    sourceUrl: 'https://www.aljazeera.com/news/2025/5/1/former-south-korean-president-yoon-indicted-for-abuse-of-power',
+  },
+  // === LEE TAKES POWER ===
+  {
+    date: 'Jun 3, 2025',
+    title: 'Lee Jae-myung wins presidential election',
+    description: 'The former opposition leader — who had been convicted of violating election law and was facing corruption charges — wins the snap election. He takes office immediately.',
+    category: 'legislation',
+    source: 'Foreign Policy',
+    sourceUrl: 'https://foreignpolicy.com/2025/06/05/south-korea-president-election-results-lee-jae-myung-foreign-policy/',
+  },
+  // === CHURCH RAIDS BEGIN ===
+  {
+    date: 'Jul 18, 2025',
+    title: 'Prosecutors raid Yoido Full Gospel Church & Far East Broadcasting',
+    description: 'Home and offices of Pastor Lee Young-hoon (one of the world\'s largest congregations) and Pastor Kim Jang-hwan (Far East Broadcasting chairman) raided simultaneously. ~10 locations searched.',
+    category: 'church-raid',
+    source: 'Korea Times',
+    sourceUrl: 'https://www.koreatimes.co.kr/opinion/20251203/raids-on-clergy-reveal-fragility-of-informal-diplomacy',
+  },
+  // === FOREIGN POLICY SHIFTS ===
+  {
+    date: 'Jul 2025',
+    title: 'Lee signals foreign policy shift toward China',
+    description: 'Lee states South Korea "cannot be unilaterally bound" to the US and should "maintain amicable relations with China and Russia." He had previously called US troops an "occupying force" (2021) and said China should "do as it wishes with Taiwan."',
+    category: 'foreign-policy',
+    source: 'The Hill',
+    sourceUrl: 'https://thehill.com/opinion/international/5452599-lee-jaemyung-us-alliance-threat/',
+  },
+  // === TRUMP CONFRONTS LEE ===
+  {
+    date: 'Aug 25, 2025',
+    title: 'Trump decries "vicious raids on churches" before Lee visit',
+    description: 'On Truth Social, Trump calls the church raids "very vicious" hours before Lee\'s White House visit. Lee\'s staff feared a "Zelenskyy moment" public confrontation. The summit avoided public clash but spotlight was placed on Korea.',
+    category: 'church-raid',
+    source: 'Washington Times',
+    sourceUrl: 'https://www.washingtontimes.com/news/2025/aug/25/trump-notes-purge-revolution-south-korea-ahead-meeting-president-lee/',
+  },
+  // === MORE CHURCH TARGETING ===
+  {
+    date: 'Sep 8, 2025',
+    title: 'Pastor Son Hyun-bo arrested for interviewing a candidate',
+    description: 'Busan pastor arrested for interviewing a PPP candidate during a church service and uploading the video. Charged with violating the Public Official Election Act. Spent 143 days in jail.',
+    category: 'church-raid',
+    source: 'Bitter Winter',
+    sourceUrl: 'https://bitterwinter.org/a-religious-liberty-crisis-in-korea-1-after-the-2025-elections/',
+  },
+  {
+    date: 'Sep 22, 2025',
+    title: 'Dr. Hak Ja Han (83) arrested with 1,000+ riot police',
+    description: '83-year-old leader of the Family Federation arrested with massive police deployment. Charged with alleged bribery and embezzlement. Has heart disease, arrhythmia, and glaucoma. Detained without conviction.',
+    category: 'church-raid',
+    source: 'CNN, Al Jazeera',
+    sourceUrl: 'https://www.cnn.com/2025/09/22/asia/south-korea-unification-church-arrest',
+  },
+  // === MILITARY PURGE ===
+  {
+    date: 'Sep 2025',
+    title: 'Lee replaces ALL four-star generals',
+    description: 'Defense Ministry replaces every active four-star general in the first top-level military reshuffle, followed by 20 three-star positions. A special task force investigates 49 government agencies for ties to martial law.',
+    category: 'military',
+    source: 'Korea Herald',
+    sourceUrl: 'https://www.koreaherald.com/article/10566148',
+  },
+  // === USFK RAID ===
+  {
+    date: 'Oct 2025',
+    title: 'Special counsel raids Osan Air Base (USFK)',
+    description: 'Prosecutors search the joint US-Korea facility at Osan Air Base without following SOFA procedures. USFK Lt. Gen. David Iverson sends formal protest letter. Seoul defends the raid.',
+    category: 'foreign-policy',
+    source: 'Korea Herald',
+    sourceUrl: 'https://www.koreaherald.com/article/10595011',
+  },
+  // === ANTI-FREE SPEECH ===
+  {
+    date: 'Dec 2025',
+    title: 'Anti-Fake News Law signed',
+    description: 'Punitive damages up to 5x for publishing "false information." UNESCO warned vague definitions could enable censorship. South Korea\'s press freedom score has fallen 4 consecutive years.',
+    category: 'legislation',
+    source: 'Korea Herald',
+    sourceUrl: 'https://www.koreaherald.com/article/10632927',
+  },
+  // === NORTH KOREAN NEWSPAPER ===
+  {
+    date: 'Dec 26, 2025',
+    title: 'Government opens access to North Korea\'s state newspaper',
+    description: 'The Unification Ministry reclassifies Rodong Sinmun (North Korea\'s main propaganda organ) from "special materials" to "general materials," making it publicly accessible to all citizens.',
+    category: 'foreign-policy',
+    source: 'Korea Times',
+    sourceUrl: 'https://www.koreatimes.co.kr/foreignaffairs/northkorea/20251226/s-korea-to-permit-public-access-to-n-koreas-main-newspaper',
+  },
+  // === TARGETING US COMPANIES ===
+  {
+    date: 'Dec 9, 2025',
+    title: 'Police raid Coupang HQ; Lee says penalties should put them "out of business"',
+    description: 'Police raid the US-listed e-commerce giant over a data breach. President Lee openly demands penalties "so severe that they go out of business." DPK threatens to criminally indict a US-national Coupang executive. House Judiciary issues subpoena.',
+    category: 'corporate',
+    source: 'Bloomberg',
+    sourceUrl: 'https://www.bloomberg.com/news/articles/2025-12-09/south-korea-police-raid-coupang-hq-over-historic-data-breach',
+  },
+  // === LEE ORDERS CHURCH DISSOLUTION REVIEW ===
+  {
+    date: 'Dec 10, 2025',
+    title: 'Lee orders legal review to dissolve religious organizations',
+    description: 'President Lee orders a renewed review of legal measures to dissolve religious organizations engaged in "political interference." Mirrors Japan\'s dissolution of the Unification Church.',
+    category: 'church-raid',
+    source: 'Japan Times',
+    sourceUrl: 'https://www.japantimes.co.jp/news/2025/12/10/asia-pacific/politics/south-korea-religous-group/',
+  },
+  // === CHURCH DISSOLUTION ACT ===
+  {
+    date: 'Jan 9, 2026',
+    title: '"Church Dissolution Act" submitted to National Assembly',
+    description: 'Rep. Choi Hyuk-jin submits Civil Code Amendment Bill granting the state authority to audit, suspend, and dissolve religious organizations and seize their assets. Applies to all religious groups.',
+    category: 'legislation',
+    source: 'Bitter Winter',
+    sourceUrl: 'https://bitterwinter.org/how-to-kill-a-religion-south-koreas-proposed-church-dissolution-act/',
+  },
+  // === LEE MEETS RELIGIOUS LEADERS ===
+  {
+    date: 'Jan 12, 2026',
+    title: 'Lee agrees with religious leaders to disband "heretical" churches',
+    description: 'President Lee meets leaders of 7 major religious communities and voices agreement with their call to disband the Unification Church, Shincheonji, and other "illegitimate, heretical religious organizations."',
+    category: 'church-raid',
+    source: 'Korea Times',
+    sourceUrl: 'https://www.koreatimes.co.kr/southkorea/politics/20260112/president-agrees-on-religious-leaders-call-for-disbanding-unification-church-shincheonji',
+  },
+  // === YOON CONVICTED ===
+  {
+    date: 'Jan 16, 2026',
+    title: 'Yoon convicted — 5-year sentence for abuse of power',
+    description: 'Found guilty of obstruction of justice, abuse of power, and falsification of documents. Sentenced to 5 years in prison in the first of two trials.',
+    category: 'court-case',
+    source: 'Al Jazeera',
+    sourceUrl: 'https://www.aljazeera.com/news/2026/1/16/south-koreas-former-president-yoon-sentenced-to-five-years-what-we-know',
+  },
+  {
+    date: 'Feb 19, 2026',
+    title: 'Yoon sentenced to LIFE for insurrection',
+    description: 'Found guilty of leading an insurrection. Sentenced to life in prison — the harshest penalty short of death. The DPK immediately moves to ban presidential pardons for insurrection.',
+    category: 'court-case',
+    source: 'CNN',
+    sourceUrl: 'https://www.cnn.com/2026/02/19/asia/south-korea-yoon-suk-yeol-verdict-insurrection-intl-hnk',
+  },
+  // === JUDICIAL TAKEOVER ===
+  {
+    date: 'Mar 5, 2026',
+    title: 'Supreme Court expanded from 14 to 26 justices',
+    description: 'President Lee will appoint 22 of 26 justices, giving a single president overwhelming control of the highest court. Chief judges express "grave concern."',
+    category: 'legislation',
+    source: 'Korea Herald',
+    sourceUrl: 'https://www.koreaherald.com/article/10632927',
+  },
+  {
+    date: 'Mar 7, 2026',
+    title: '"Distortion of Law" crime takes effect — judges face 10 years',
+    description: 'Judges or prosecutors who "intentionally misapply laws" can now be imprisoned up to 10 years. Chief judges warned the crime\'s elements are "abstract and overly broad." A chilling effect on judicial independence.',
+    category: 'legislation',
+    source: 'Korea Herald',
+    sourceUrl: 'https://www.koreaherald.com/article/10632927',
+  },
+];
+
+// Category labels and colors for Korea timeline
+export const koreaTimelineCategories: Record<string, { label: string; color: string; icon: string }> = {
+  'martial-law': { label: 'Martial Law', color: '#ef4444', icon: '⚠' },
+  'church-raid': { label: 'Religious Freedom', color: '#a855f7', icon: '⛪' },
+  'legislation': { label: 'Legislation', color: '#f59e0b', icon: '📜' },
+  'military': { label: 'Military', color: '#6b7280', icon: '🎖' },
+  'foreign-policy': { label: 'Foreign Policy', color: '#3b82f6', icon: '🌐' },
+  'court-case': { label: 'Court Case', color: '#ec4899', icon: '⚖' },
+  'media': { label: 'Media', color: '#22c55e', icon: '📰' },
+  'corporate': { label: 'Corporate', color: '#f97316', icon: '🏢' },
+};
+
 // === DEMOCRACY IN DECLINE: Bills Tracker ===
 
 export interface DangerousBill {

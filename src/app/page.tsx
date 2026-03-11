@@ -12,6 +12,8 @@ import {
   dangerousBills,
   threatColors,
   statusLabels,
+  koreaTimeline,
+  koreaTimelineCategories,
 } from '@/lib/editorial';
 import { articles as storedArticles, articleSlug, articleCategory, articleLang } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -419,6 +421,74 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Korea Democracy Crisis Timeline */}
+        <div className="bg-tm-card border border-tm-border rounded-lg p-5 mt-8">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-red-400 text-xs font-mono font-bold uppercase tracking-wider">
+              Korea Democracy Crisis — Full Timeline
+            </h3>
+            <span className="text-[9px] font-mono text-tm-muted">{koreaTimeline.length} events · Apr 2024 – Mar 2026</span>
+          </div>
+          <p className="text-tm-secondary text-sm mb-5 leading-relaxed">
+            How South Korea went from a thriving democracy to a country where pastors are jailed, churches are raided, judges are threatened with prison, and the president openly agrees to dissolve religious minorities.
+          </p>
+
+          {/* Category filter legend */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {Object.entries(koreaTimelineCategories).map(([key, cat]) => (
+              <span key={key} className="text-[9px] font-mono px-2 py-0.5 rounded-full border" style={{ color: cat.color, borderColor: `${cat.color}33`, backgroundColor: `${cat.color}11` }}>
+                {cat.icon} {cat.label}
+              </span>
+            ))}
+          </div>
+
+          {/* Visual timeline */}
+          <div className="space-y-0">
+            {koreaTimeline.map((entry, i) => {
+              const cat = koreaTimelineCategories[entry.category];
+              const isLast = i === koreaTimeline.length - 1;
+              return (
+                <div key={i} className="flex gap-4 group">
+                  {/* Timeline spine */}
+                  <div className="flex flex-col items-center w-6 shrink-0">
+                    <div
+                      className={`w-3 h-3 rounded-full border-2 shrink-0 ${isLast ? 'animate-pulse' : ''}`}
+                      style={{ borderColor: cat.color, backgroundColor: isLast ? cat.color : 'transparent' }}
+                    />
+                    {!isLast && (
+                      <div className="w-px flex-1 bg-tm-border mt-0.5" />
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="pb-5 min-w-0">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <span className="text-[10px] font-mono text-tm-muted whitespace-nowrap">{entry.date}</span>
+                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded" style={{ color: cat.color, backgroundColor: `${cat.color}15` }}>
+                        {cat.label.toUpperCase()}
+                      </span>
+                    </div>
+                    <h4 className="text-tm-heading text-sm font-bold leading-snug mb-1">
+                      {entry.title}
+                    </h4>
+                    <p className="text-tm-secondary text-sm leading-relaxed mb-1.5">
+                      {entry.description}
+                    </p>
+                    <a
+                      href={entry.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[10px] font-mono text-tm-muted hover:text-tm-gold transition-colors"
+                    >
+                      Source: {entry.source} ↗
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
