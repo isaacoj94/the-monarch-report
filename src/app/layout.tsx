@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Inter, Cormorant_Garamond, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -41,7 +52,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${geistMono.variable} font-mono antialiased`}>
+      <body className={`${inter.variable} ${cormorant.variable} ${geistMono.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>
