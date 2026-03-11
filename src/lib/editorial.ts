@@ -233,6 +233,15 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     source: 'Foreign Policy',
     sourceUrl: 'https://foreignpolicy.com/2025/06/05/south-korea-president-election-results-lee-jae-myung-foreign-policy/',
   },
+  // === PRO-NK CONCESSIONS ===
+  {
+    date: 'Jun 11, 2025',
+    title: 'Lee suspends DMZ loudspeaker broadcasts into North Korea',
+    description: 'One of Lee\'s first acts as president — suspending propaganda broadcasts across the DMZ as a unilateral concession to Pyongyang without receiving anything in return. Critics see it as restoring the failed Sunshine Policy.',
+    category: 'foreign-policy',
+    source: 'RFA',
+    sourceUrl: 'https://www.rfa.org/english/korea/2025/06/05/north-korea-election-reaction-lee-jae-myung/',
+  },
   // === CHURCH RAIDS BEGIN ===
   {
     date: 'Jul 18, 2025',
@@ -259,6 +268,15 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'church-raid',
     source: 'Washington Times',
     sourceUrl: 'https://www.washingtontimes.com/news/2025/aug/25/trump-notes-purge-revolution-south-korea-ahead-meeting-president-lee/',
+  },
+  // === MEDIA TAKEOVER ===
+  {
+    date: 'Aug 2025',
+    title: 'DPK passes broadcasting bills — seizes control of public media',
+    description: 'National Assembly overhauls governance of KBS, MBC, and EBS. Boards expanded and restructured so ruling party-aligned unions and associations pick new members. Opposition PPP accuses DPK of taking over all public broadcasters.',
+    category: 'legislation',
+    source: 'Korea Herald',
+    sourceUrl: 'https://www.koreaherald.com/article/10559747',
   },
   // === MORE CHURCH TARGETING ===
   {
@@ -349,6 +367,15 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     source: 'Korea Times',
     sourceUrl: 'https://www.koreatimes.co.kr/southkorea/politics/20260112/president-agrees-on-religious-leaders-call-for-disbanding-unification-church-shincheonji',
   },
+  // === UN DENOUNCEMENT ===
+  {
+    date: 'Jan 2026',
+    title: 'South Korea\'s religious liberty crisis denounced at the United Nations',
+    description: 'NGOs file a written statement with the UN Human Rights Council in Geneva denouncing the escalating religious liberty crisis, focusing on threats to dissolve minority religious organizations under vague legal pretexts.',
+    category: 'church-raid',
+    source: 'Bitter Winter',
+    sourceUrl: 'https://bitterwinter.org/a-growing-religious-liberty-crisis-in-south-korea-denounced-at-the-united-nations/',
+  },
   // === YOON CONVICTED ===
   {
     date: 'Jan 16, 2026',
@@ -373,6 +400,15 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'court-case',
     source: 'CNN',
     sourceUrl: 'https://www.cnn.com/2026/02/19/asia/south-korea-yoon-suk-yeol-verdict-insurrection-intl-hnk',
+  },
+  // === COUPANG ESCALATION ===
+  {
+    date: 'Feb 12, 2026',
+    title: 'US investors sue South Korea over Coupang targeting',
+    description: 'US investment firms invoke investor-state dispute settlement under the US-Korea Free Trade Agreement. House Trade Subcommittee accuses Korean regulators of "aggressively targeting US technology leaders" through "discriminatory regulatory actions."',
+    category: 'corporate',
+    source: 'TechCrunch',
+    sourceUrl: 'https://techcrunch.com/2026/02/12/more-u-s-investors-sue-south-korean-government-over-handling-of-coupang-data-breach/',
   },
   // === JUDICIAL TAKEOVER ===
   {
