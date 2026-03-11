@@ -192,6 +192,8 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'martial-law',
     source: 'Wikipedia — Martial Law Crisis',
     sourceUrl: 'https://en.wikipedia.org/wiki/2024_South_Korean_martial_law_crisis',
+    featured: true,
+    image: '/timeline/martial-law-broadcast.png',
   },
   {
     date: 'Dec 14, 2024',
@@ -200,6 +202,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'court-case',
     source: 'Wikipedia — Impeachment of Yoon',
     sourceUrl: 'https://en.wikipedia.org/wiki/Impeachment_of_Yoon_Suk_Yeol',
+    featured: true,
     image: '/timeline/impeachment-signing.jpg',
   },
   // === MEDIA FRAMING ===
@@ -210,6 +213,8 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'media',
     source: 'NPR',
     sourceUrl: 'https://www.npr.org/2024/12/12/g-s1-37854/south-korea-yoon-martial-law',
+    featured: true,
+    image: '/timeline/protest-flags.jpg',
   },
   // === YOON ARREST & TRIAL ===
   {
@@ -302,6 +307,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     source: 'CNN, Al Jazeera',
     sourceUrl: 'https://www.cnn.com/2025/09/22/asia/south-korea-unification-church-arrest',
     featured: true,
+    image: '/timeline/raid-police-buses.jpg',
   },
   // === MILITARY PURGE ===
   {
