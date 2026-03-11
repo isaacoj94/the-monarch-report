@@ -107,7 +107,7 @@ function transformTweet(raw: ApifyTweet): TweetData {
 // Read results from the most recent Apify run (fast, no waiting for scraper)
 async function readLastRunDataset(): Promise<ApifyTweet[]> {
   const res = await fetch(
-    `https://api.apify.com/v2/acts/${ACTOR_ID}/runs/last/dataset/items?token=${APIFY_TOKEN}&limit=50`,
+    `https://api.apify.com/v2/acts/${ACTOR_ID}/runs/last/dataset/items?token=${APIFY_TOKEN}&limit=200`,
     { next: { revalidate: 900 } } // cache for 15 min at CDN level
   );
   if (!res.ok) {
@@ -125,7 +125,7 @@ function triggerNewRun() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         handles: [HANDLE],
-        tweetsDesired: 50,
+        tweetsDesired: 200,
         addUserInfo: true,
       }),
     }
