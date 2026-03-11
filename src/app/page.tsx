@@ -286,6 +286,70 @@ export default function Home() {
         </div>
       </section>
 
+      {/* === DOCUMENTARY: YOU'RE NEXT =============== */}
+      <section className="relative overflow-hidden bg-tm-section border-y border-tm-border-subtle">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,var(--tm-hero-glow),transparent_70%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 py-12 md:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Video / Poster */}
+            <div className="aspect-video rounded-lg overflow-hidden border border-tm-border bg-tm-card flex items-center justify-center">
+              <div className="text-center px-6">
+                <p className="text-6xl mb-3">🎬</p>
+                <p className="text-tm-heading font-serif text-xl font-bold mb-1">Official Trailer</p>
+                <p className="text-tm-muted text-sm">Coming Soon</p>
+              </div>
+            </div>
+
+            {/* Copy */}
+            <div>
+              <span className="text-[10px] font-mono font-bold tracking-widest text-tm-gold bg-[var(--tm-gold-bg)] px-3 py-1 rounded-full border border-[var(--tm-gold-border)] inline-block mb-4">
+                NOW RAISING FUNDS
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-tm-heading leading-tight mb-3">
+                You&apos;re Next: Do Nothing
+              </h2>
+              <p className="text-base text-tm-body leading-relaxed mb-3">
+                A 5-part documentary series exposing religious persecution across China, Japan, South Korea, and North Korea.
+              </p>
+              <p className="text-sm text-tm-muted italic leading-relaxed mb-6 border-l-2 border-tm-gold pl-4">
+                &ldquo;The only thing necessary for the triumph of evil is for good men to do nothing.&rdquo;
+              </p>
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                {[
+                  { label: 'Episodes', value: '5' },
+                  { label: 'Countries', value: '4' },
+                  { label: 'Target Release', value: 'Q2 2026' },
+                  { label: 'Format', value: '22 min each' },
+                ].map(stat => (
+                  <div key={stat.label} className="bg-tm-card/60 border border-tm-border rounded-md px-3 py-2 text-center">
+                    <p className="text-lg font-serif font-bold text-tm-gold">{stat.value}</p>
+                    <p className="text-[10px] text-tm-muted tracking-wide uppercase">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://www.theprincipleproject.com/projects/youre-next"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-tm-gold hover:bg-tm-gold-hover text-tm-page font-bold text-sm rounded transition-colors"
+                >
+                  Support This Series →
+                </a>
+                <a
+                  href="https://www.theprincipleproject.com/projects/youre-next"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 border border-tm-border-hover hover:border-tm-border-active text-tm-heading text-sm rounded transition-colors"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mission bar */}
       <section className="border-y border-tm-border-subtle bg-tm-section">
         <div className="max-w-7xl mx-auto px-4 py-4">
