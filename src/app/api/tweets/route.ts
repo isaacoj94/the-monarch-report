@@ -1,15 +1,18 @@
 import { NextResponse } from 'next/server';
 
 // Two separate Apify tasks for @monarchreport25:
-// 1. "monarch-recent" — 50 tweets, fast, for the Latest section
-// 2. "monarch-articles" — 500 tweets, deep, catches all X articles
+// 1. monarch-recent (7BwvW5gtNg1gkNleK) — 50 tweets, fast, for the Latest section
+// 2. monarch-articles (Lj52A7qeMvb3gQEbZ) — 500 tweets, deep, catches all X articles
 //
-// Each task has its own run history, so reads are independent and fast.
+// IMPORTANT: Must use task IDs, not names — Apify returns 404 for name-based URLs.
 
 const APIFY_TOKEN = process.env.APIFY_API_TOKEN;
-const TASK_RECENT = 'monarch-recent';
-const TASK_ARTICLES = 'monarch-articles';
+const TASK_RECENT = '7BwvW5gtNg1gkNleK';
+const TASK_ARTICLES = 'Lj52A7qeMvb3gQEbZ';
 const HANDLE = 'monarchreport25';
+
+// Vercel ISR: cache this route's response for 15 minutes at the edge
+export const revalidate = 900;
 
 const ARTICLE_URL_PATTERN = /x\.com\/i\/article\/(\d+)/;
 
@@ -106,27 +109,35 @@ function transformTweet(raw: ApifyTweet): TweetData {
   };
 }
 
-async function readTaskDataset(taskName: string, limit: number): Promise<ApifyTweet[]> {
+async function readTaskDataset(taskId: string, limit: number): Promise<ApifyTweet[]> {
   const res = await fetch(
-    `https://api.apify.com/v2/actor-tasks/${taskName}/runs/last/dataset/items?token=${APIFY_TOKEN}&limit=${limit}`,
-    { next: { revalidate: taskName === TASK_RECENT ? 900 : 3600 } }
+    `https://api.apify.com/v2/actor-tasks/${taskId}/runs/last/dataset/items?token=${APIFY_TOKEN}&limit=${limit}`,
+    { next: { revalidate: taskId === TASK_RECENT ? 900 : 3600 } }
   );
   if (!res.ok) return [];
   return res.json();
 }
 
 // Fire-and-forget: trigger a task run
-function triggerTask(taskName: string) {
+function triggerTask(taskId: string) {
   fetch(
-    `https://api.apify.com/v2/actor-tasks/${taskName}/runs?token=${APIFY_TOKEN}`,
+    `https://api.apify.com/v2/actor-tasks/${taskId}/runs?token=${APIFY_TOKEN}`,
     { method: 'POST' }
   ).catch(() => {});
 }
 
+// In-memory cache: always return last good data even if Apify is slow/down
+interface CachedData {
+  tweets: TweetData[];
+  articles: TweetData[];
+  updatedAt: number;
+}
+let cache: CachedData | null = null;
+
 // Track refresh times per task
 const lastTriggered: Record<string, number> = {};
 const RECENT_INTERVAL = 30 * 60 * 1000;  // 30 min
-const ARTICLES_INTERVAL = 6 * 60 * 60 * 1000; // 6 hours (articles don't change often)
+const ARTICLES_INTERVAL = 6 * 60 * 60 * 1000; // 6 hours
 
 export async function GET() {
   if (!APIFY_TOKEN) {
@@ -137,7 +148,7 @@ export async function GET() {
   }
 
   try {
-    // Fetch both datasets in parallel — both are instant reads
+    // Fetch both datasets in parallel — both are instant reads from last run
     const [recentRaw, deepRaw] = await Promise.all([
       readTaskDataset(TASK_RECENT, 50),
       readTaskDataset(TASK_ARTICLES, 500),
@@ -157,6 +168,11 @@ export async function GET() {
       .filter(t => t.isArticle)
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
+    // Update cache with fresh data
+    if (recentTweets.length > 0 || articles.length > 0) {
+      cache = { tweets: recentTweets, articles, updatedAt: Date.now() };
+    }
+
     // Trigger background refreshes if stale
     const now = Date.now();
     if (now - (lastTriggered[TASK_RECENT] || 0) > RECENT_INTERVAL) {
@@ -170,6 +186,10 @@ export async function GET() {
 
     return NextResponse.json({ tweets: recentTweets, articles });
   } catch (error) {
+    // If Apify fails but we have cached data, return it
+    if (cache) {
+      return NextResponse.json({ tweets: cache.tweets, articles: cache.articles, cached: true });
+    }
     return NextResponse.json(
       { tweets: [], articles: [], error: error instanceof Error ? error.message : 'Failed to fetch tweets' },
       { status: 500 }
