@@ -10,10 +10,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "The Monarch Report — Defending Democracy, Faith & Freedom",
   description: "Independent journalism bringing the truth about Korea and Japan to the West. Trusted by U.S. legislators and policymakers as a resource for facts.",
+  icons: {
+    icon: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "The Monarch Report",
     description: "Defending Democracy, Faith & Freedom — Independent journalism on Korea and Japan.",
     type: "website",
+    siteName: "The Monarch Report",
   },
   twitter: {
     card: "summary_large_image",
