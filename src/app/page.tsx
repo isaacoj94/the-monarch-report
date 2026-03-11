@@ -219,7 +219,7 @@ export default function Home() {
               <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} className="h-8 w-auto" priority />
             </a>
             <nav className="hidden md:flex items-center gap-1 text-xs font-mono">
-              <a href="#faith" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Faith on Fire</a>
+              <a href="#faith" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Faith Under Fire</a>
               <a href="#japan" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Japan</a>
               <a href="#democracy" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Democracy</a>
               <a href="#economy" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Economy</a>
@@ -248,7 +248,7 @@ export default function Home() {
               <span className="text-[10px] text-tm-faint">South Korea & Japan · 2025-2026</span>
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.05] mb-5 text-tm-heading">
-              Faith on Fire
+              Faith Under Fire
             </h1>
             <p className="text-lg md:text-xl text-tm-body leading-relaxed mb-3 max-w-3xl">
               Pastors jailed for preaching. An 83-year-old religious leader detained without conviction.
