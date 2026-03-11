@@ -1,14 +1,16 @@
 import { NextResponse } from 'next/server';
 
-// Apify tweet scraper integration for @monarchreport25
-// Reads from the last Apify run's dataset (fast) instead of running the scraper on each request.
-// Kicks off a new background run if data is stale.
+// Two separate Apify tasks for @monarchreport25:
+// 1. "monarch-recent" — 50 tweets, fast, for the Latest section
+// 2. "monarch-articles" — 500 tweets, deep, catches all X articles
+//
+// Each task has its own run history, so reads are independent and fast.
 
 const APIFY_TOKEN = process.env.APIFY_API_TOKEN;
-const ACTOR_ID = 'apidojo~tweet-scraper';
+const TASK_RECENT = 'monarch-recent';
+const TASK_ARTICLES = 'monarch-articles';
 const HANDLE = 'monarchreport25';
 
-// X Articles have URLs matching this pattern: x.com/i/article/{id}
 const ARTICLE_URL_PATTERN = /x\.com\/i\/article\/(\d+)/;
 
 interface ApifyTweet {
@@ -104,37 +106,27 @@ function transformTweet(raw: ApifyTweet): TweetData {
   };
 }
 
-// Read results from the most recent Apify run (fast, no waiting for scraper)
-async function readLastRunDataset(): Promise<ApifyTweet[]> {
+async function readTaskDataset(taskName: string, limit: number): Promise<ApifyTweet[]> {
   const res = await fetch(
-    `https://api.apify.com/v2/acts/${ACTOR_ID}/runs/last/dataset/items?token=${APIFY_TOKEN}&limit=200`,
-    { next: { revalidate: 900 } } // cache for 15 min at CDN level
+    `https://api.apify.com/v2/actor-tasks/${taskName}/runs/last/dataset/items?token=${APIFY_TOKEN}&limit=${limit}`,
+    { next: { revalidate: taskName === TASK_RECENT ? 900 : 3600 } }
   );
-  if (!res.ok) {
-    throw new Error(`Failed to read last run dataset: ${res.status}`);
-  }
+  if (!res.ok) return [];
   return res.json();
 }
 
-// Fire-and-forget: trigger a new scraper run in the background
-function triggerNewRun() {
+// Fire-and-forget: trigger a task run
+function triggerTask(taskName: string) {
   fetch(
-    `https://api.apify.com/v2/acts/${ACTOR_ID}/runs?token=${APIFY_TOKEN}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        handles: [HANDLE],
-        tweetsDesired: 200,
-        addUserInfo: true,
-      }),
-    }
-  ).catch(() => {}); // fire and forget
+    `https://api.apify.com/v2/actor-tasks/${taskName}/runs?token=${APIFY_TOKEN}`,
+    { method: 'POST' }
+  ).catch(() => {});
 }
 
-// Track when we last triggered a run (in-memory, resets on cold start)
-let lastRunTriggered = 0;
-const RUN_INTERVAL = 30 * 60 * 1000; // 30 minutes
+// Track refresh times per task
+const lastTriggered: Record<string, number> = {};
+const RECENT_INTERVAL = 30 * 60 * 1000;  // 30 min
+const ARTICLES_INTERVAL = 6 * 60 * 60 * 1000; // 6 hours (articles don't change often)
 
 export async function GET() {
   if (!APIFY_TOKEN) {
@@ -145,23 +137,38 @@ export async function GET() {
   }
 
   try {
-    const rawTweets = await readLastRunDataset();
+    // Fetch both datasets in parallel — both are instant reads
+    const [recentRaw, deepRaw] = await Promise.all([
+      readTaskDataset(TASK_RECENT, 50),
+      readTaskDataset(TASK_ARTICLES, 500),
+    ]);
 
-    const allTweets = rawTweets
+    // Recent tweets (non-retweet, non-article)
+    const recentTweets = recentRaw
       .filter(t => t.type === 'tweet' && !t.isRetweet)
       .map(transformTweet)
+      .filter(t => !t.isArticle)
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-    const articles = allTweets.filter(t => t.isArticle);
-    const tweets = allTweets.filter(t => !t.isArticle);
+    // Articles from the deep scrape
+    const articles = deepRaw
+      .filter(t => t.type === 'tweet' && !t.isRetweet)
+      .map(transformTweet)
+      .filter(t => t.isArticle)
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-    // Trigger a background refresh if it's been a while
-    if (Date.now() - lastRunTriggered > RUN_INTERVAL) {
-      lastRunTriggered = Date.now();
-      triggerNewRun();
+    // Trigger background refreshes if stale
+    const now = Date.now();
+    if (now - (lastTriggered[TASK_RECENT] || 0) > RECENT_INTERVAL) {
+      lastTriggered[TASK_RECENT] = now;
+      triggerTask(TASK_RECENT);
+    }
+    if (now - (lastTriggered[TASK_ARTICLES] || 0) > ARTICLES_INTERVAL) {
+      lastTriggered[TASK_ARTICLES] = now;
+      triggerTask(TASK_ARTICLES);
     }
 
-    return NextResponse.json({ tweets, articles });
+    return NextResponse.json({ tweets: recentTweets, articles });
   } catch (error) {
     return NextResponse.json(
       { tweets: [], articles: [], error: error instanceof Error ? error.message : 'Failed to fetch tweets' },
