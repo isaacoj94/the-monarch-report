@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { siteConfig, newsletter, xHandle, instagramHandle } from '@/lib/content';
 import { walletMetrics, macroMetrics } from '@/lib/data';
 import {
@@ -12,6 +13,7 @@ import {
   threatColors,
   statusLabels,
 } from '@/lib/editorial';
+import { articles as storedArticles, articleSlug, articleCategory, articleLang } from '@/lib/articles';
 
 // === TYPES ===
 
@@ -31,9 +33,6 @@ interface TweetData {
   isArticle: boolean;
   articleId: string | null;
   articleUrl: string | null;
-  articleTitle: string | null;
-  articleSummary: string | null;
-  articleCategory: string | null;
   authorName: string;
   authorHandle: string;
   authorAvatar: string;
@@ -140,59 +139,16 @@ function TweetCard({ tweet }: { tweet: TweetData }) {
   );
 }
 
-const categoryColors: Record<string, string> = {
-  korea: '#ef4444',
-  japan: '#f59e0b',
-  democracy: '#3b82f6',
-  economy: '#06b6d4',
-  religion: '#a855f7',
-  opinion: '#ec4899',
+const articleCategoryColors: Record<string, { color: string; label: string }> = {
+  korea: { color: '#ef4444', label: 'KOREA' },
+  japan: { color: '#f59e0b', label: 'JAPAN' },
+  democracy: { color: '#3b82f6', label: 'DEMOCRACY' },
+  economy: { color: '#06b6d4', label: 'ECONOMY' },
+  religion: { color: '#a855f7', label: 'RELIGION' },
 };
 
-const categoryLabels: Record<string, string> = {
-  korea: 'KOREA',
-  japan: 'JAPAN',
-  democracy: 'DEMOCRACY',
-  economy: 'ECONOMY',
-  religion: 'RELIGION',
-  opinion: 'OPINION',
-};
-
-function ArticleCard({ tweet }: { tweet: TweetData }) {
-  const href = tweet.articleUrl || tweet.url;
-  const dateStr = new Date(tweet.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  const catColor = tweet.articleCategory ? categoryColors[tweet.articleCategory] || '#b8860b' : '#b8860b';
-  const catLabel = tweet.articleCategory ? categoryLabels[tweet.articleCategory] || 'ARTICLE' : 'ARTICLE';
-
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="block group">
-      <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-[#444] transition-all h-full flex flex-col">
-        {/* Category color bar */}
-        <div className="h-0.5" style={{ backgroundColor: catColor }} />
-        <div className="p-4 flex-1 flex flex-col">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-[8px] font-mono font-bold tracking-widest px-1.5 py-0.5 rounded" style={{ color: catColor, backgroundColor: catColor + '15', border: `1px solid ${catColor}30` }}>
-              {catLabel}
-            </span>
-            <span className="text-[#555] text-[10px] font-mono">{dateStr}</span>
-          </div>
-          <h3 className="text-white text-sm font-bold leading-snug group-hover:text-[#b8860b] transition-colors mb-2 flex-1">
-            {tweet.articleTitle || 'Long-form Article'}
-          </h3>
-          {tweet.articleSummary && (
-            <p className="text-[#888] text-[11px] font-mono leading-relaxed mb-3">
-              {tweet.articleSummary}
-            </p>
-          )}
-          <div className="flex items-center justify-between text-[#555] text-[10px] font-mono pt-2 border-t border-[#1a1a1a]">
-            <span>♥ {formatCount(tweet.likeCount)} · 👁 {formatCount(tweet.viewCount)}</span>
-            <span className="text-[#b8860b] group-hover:text-[#d4a017] transition-colors font-bold">Read on 𝕏 →</span>
-          </div>
-        </div>
-      </div>
-    </a>
-  );
-}
+// English articles only on homepage
+const homeArticles = storedArticles.filter(a => articleLang(a) === 'en').slice(0, 6);
 
 // === MAIN PAGE ===
 
@@ -204,7 +160,6 @@ export default function Home() {
   const [emailLoading, setEmailLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [tweets, setTweets] = useState<TweetData[]>([]);
-  const [articles, setArticles] = useState<TweetData[]>([]);
   const [tweetsLoading, setTweetsLoading] = useState(true);
 
   useEffect(() => {
@@ -212,9 +167,8 @@ export default function Home() {
     fetch('/api/kospi').then(r => r.json()).then((d: KospiData) => setKospi(d)).catch(() => {});
     fetch('/api/tweets')
       .then(r => r.json())
-      .then((data: { tweets: TweetData[]; articles: TweetData[] }) => {
+      .then((data: { tweets: TweetData[] }) => {
         setTweets(data.tweets || []);
-        setArticles(data.articles || []);
       })
       .catch(() => {})
       .finally(() => setTweetsLoading(false));
@@ -269,6 +223,7 @@ export default function Home() {
               <a href="#democracy" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Democracy</a>
               <a href="#economy" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Economy</a>
               <a href="#latest" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Latest</a>
+              <Link href="/articles" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Articles</Link>
               <a href="/dashboard" className="px-3 py-1.5 text-[#999] hover:text-white transition-colors">Dashboard</a>
               <a href="#newsletter" className="px-3 py-1.5 bg-[#b8860b] hover:bg-[#d4a017] text-black font-bold rounded transition-colors ml-2">Subscribe</a>
             </nav>
@@ -552,14 +507,47 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Articles row */}
-        {!tweetsLoading && articles.length > 0 && (
-          <div className="mb-8">
-            <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-4">Featured Articles</h3>
+        {/* Featured Articles — static from stored data */}
+        {homeArticles.length > 0 && (
+          <div className="mb-10">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider">Featured Articles</h3>
+              <Link href="/articles" className="text-xs font-mono text-[#b8860b] hover:text-[#d4a017] transition-colors">
+                All Articles →
+              </Link>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {articles.filter(a => a.articleTitle).slice(0, 6).map(a => (
-                <ArticleCard key={a.id} tweet={a} />
-              ))}
+              {homeArticles.map(a => {
+                const cat = articleCategory(a);
+                const catInfo = articleCategoryColors[cat] || articleCategoryColors.korea;
+                const dateStr = new Date(a.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                return (
+                  <Link key={a.id} href={`/articles/${articleSlug(a)}`} className="block group">
+                    <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-[#444] transition-all h-full flex flex-col">
+                      <div className="h-0.5" style={{ backgroundColor: catInfo.color }} />
+                      {a.coverImage && (
+                        <img src={a.coverImage} alt={a.title} className="w-full h-36 object-cover" />
+                      )}
+                      <div className="p-4 flex-1 flex flex-col">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-[8px] font-mono font-bold tracking-widest px-1.5 py-0.5 rounded" style={{ color: catInfo.color, backgroundColor: catInfo.color + '15', border: `1px solid ${catInfo.color}30` }}>
+                            {catInfo.label}
+                          </span>
+                          <span className="text-[#555] text-[10px] font-mono">{dateStr}</span>
+                        </div>
+                        <h3 className="text-white text-sm font-bold leading-snug group-hover:text-[#b8860b] transition-colors mb-2 flex-1">
+                          {a.title}
+                        </h3>
+                        <p className="text-[#777] text-[11px] font-mono leading-relaxed mb-3 line-clamp-2">{a.previewText}</p>
+                        <div className="flex items-center justify-between text-[#555] text-[10px] font-mono pt-2 border-t border-[#1a1a1a]">
+                          <span>{a.likes.toLocaleString()} likes · {a.views.toLocaleString()} views</span>
+                          <span className="text-[#b8860b] font-bold">Read →</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}

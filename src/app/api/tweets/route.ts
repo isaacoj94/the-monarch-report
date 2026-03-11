@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { articleMap } from '@/lib/articles';
 
 // Two separate Apify tasks for @monarchreport25:
 // 1. monarch-recent (7BwvW5gtNg1gkNleK) — 50 tweets, fast, for the Latest section
@@ -62,9 +61,6 @@ export interface TweetData {
   isArticle: boolean;
   articleId: string | null;
   articleUrl: string | null;
-  articleTitle: string | null;
-  articleSummary: string | null;
-  articleCategory: string | null;
   authorName: string;
   authorHandle: string;
   authorAvatar: string;
@@ -85,7 +81,6 @@ function detectArticle(raw: ApifyTweet): { isArticle: boolean; articleId: string
 
 function transformTweet(raw: ApifyTweet): TweetData {
   const { isArticle, articleId } = detectArticle(raw);
-  const stored = articleId ? articleMap.get(articleId) : undefined;
 
   const links = (raw.entities?.urls || [])
     .filter(u => !u.expanded_url.includes('pic.x.com') && !u.expanded_url.includes('pic.twitter.com'))
@@ -106,9 +101,6 @@ function transformTweet(raw: ApifyTweet): TweetData {
     isArticle,
     articleId,
     articleUrl: articleId ? `https://x.com/i/article/${articleId}` : null,
-    articleTitle: stored?.title || null,
-    articleSummary: stored?.summary || null,
-    articleCategory: stored?.category || null,
     authorName: raw.author?.name || 'The Monarch Report',
     authorHandle: raw.author?.userName || HANDLE,
     authorAvatar: raw.author?.profilePicture || '',
