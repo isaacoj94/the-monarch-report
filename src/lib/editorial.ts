@@ -23,7 +23,7 @@ export const politicalPrisoners: PoliticalPrisoner[] = [
     title: 'Leader, Family Federation for World Peace and Unification',
     status: 'detained',
     charges: 'Alleged bribery and embezzlement of church funds',
-    details: 'Arrested September 2025 with 1,000+ riot police. No direct evidence she personally instructed gift-giving. 83 years old with heart disease, arrhythmia, and glaucoma. Fell 3 times in detention in January 2026. Briefly released for glaucoma surgery in November 2025, returned to detention February 2026.',
+    details: 'Attended a court hearing September 22, 2025. Court approved detention — she was moved to Seoul Detention Center and never released. No direct evidence she personally instructed gift-giving. 82 years old with heart disease, arrhythmia, and glaucoma. Fell 3 times in detention in January 2026. Briefly released for glaucoma surgery in November 2025, returned to detention February 2026.',
     daysDetained: 170, // approximate as of March 2026
     date: '2025-09-22',
     source: 'CNN, Al Jazeera, Korea Herald',
@@ -255,12 +255,13 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
   // === CHURCH RAIDS BEGIN ===
   {
     date: 'Jul 18, 2025',
-    title: 'Coordinated raids: Yoido Full Gospel, Far East Broadcasting, and Unification Church',
-    description: 'Prosecutors raid 10+ locations simultaneously — Yoido Full Gospel Church (one of the world\'s largest congregations), Far East Broadcasting Company, and the Unification Church\'s Seoul HQ in Cheongpa-dong, Cheonjeonggung Palace, and multiple offices. Pastors Lee Young-hoon and Kim Jang-hwan targeted.',
+    title: 'Coordinated raids with 1,000+ police: churches and Unification Church',
+    description: 'Over 1,000 police deployed in coordinated raids on 10+ locations — Yoido Full Gospel Church (one of the world\'s largest congregations), Far East Broadcasting Company, and the Unification Church\'s Seoul HQ in Cheongpa-dong, Cheonjeonggung Palace, and multiple offices. Pastors Lee Young-hoon and Kim Jang-hwan targeted.',
     category: 'church-raid',
     source: 'UPI, Korea Times',
     sourceUrl: 'https://www.upi.com/Top_News/World-News/2025/07/18/Unification-Church-scandal-expands-with-raids-at-more-than-10-locations/9461752874293/',
     featured: true,
+    image: '/timeline/raid-police-buses.jpg',
   },
   // === FOREIGN POLICY SHIFTS ===
   {
@@ -301,13 +302,12 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
   },
   {
     date: 'Sep 22, 2025',
-    title: 'Dr. Hak Ja Han (83) arrested with 1,000+ riot police',
-    description: '83-year-old leader of the Family Federation arrested with massive police deployment. Charged with alleged bribery and embezzlement. Has heart disease, arrhythmia, and glaucoma. Detained without conviction.',
+    title: 'Dr. Hak Ja Han (82) detained after court hearing — never released',
+    description: 'The 82-year-old leader of the Family Federation attended a court hearing in Seoul. The court approved prosecutors\' detention request citing "risk of evidence destruction." She was moved to Seoul Detention Center and has never been released. Has heart disease, arrhythmia, and glaucoma.',
     category: 'church-raid',
-    source: 'CNN, Al Jazeera',
-    sourceUrl: 'https://www.cnn.com/2025/09/22/asia/south-korea-unification-church-arrest',
+    source: 'Al Jazeera',
+    sourceUrl: 'https://www.aljazeera.com/news/2025/9/22/south-korean-unification-church-leader-faces-arrest-in-bribery-case',
     featured: true,
-    image: '/timeline/raid-police-buses.jpg',
   },
   // === MILITARY PURGE ===
   {

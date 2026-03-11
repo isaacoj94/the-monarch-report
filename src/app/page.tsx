@@ -539,12 +539,11 @@ export default function Home() {
                           {/* Photo if available */}
                           {entry.image && (
                             <div className="relative h-44 md:h-56 overflow-hidden">
-                              <Image
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
                                 src={entry.image}
                                 alt={entry.title}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, 700px"
+                                className="absolute inset-0 w-full h-full object-cover"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-tm-card via-tm-card/40 to-transparent" />
                               {/* Category badge overlaid on photo */}
