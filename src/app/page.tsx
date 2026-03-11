@@ -31,6 +31,9 @@ interface TweetData {
   isArticle: boolean;
   articleId: string | null;
   articleUrl: string | null;
+  articleTitle: string | null;
+  articleSummary: string | null;
+  articleCategory: string | null;
   authorName: string;
   authorHandle: string;
   authorAvatar: string;
@@ -137,31 +140,53 @@ function TweetCard({ tweet }: { tweet: TweetData }) {
   );
 }
 
+const categoryColors: Record<string, string> = {
+  korea: '#ef4444',
+  japan: '#f59e0b',
+  democracy: '#3b82f6',
+  economy: '#06b6d4',
+  religion: '#a855f7',
+  opinion: '#ec4899',
+};
+
+const categoryLabels: Record<string, string> = {
+  korea: 'KOREA',
+  japan: 'JAPAN',
+  democracy: 'DEMOCRACY',
+  economy: 'ECONOMY',
+  religion: 'RELIGION',
+  opinion: 'OPINION',
+};
+
 function ArticleCard({ tweet }: { tweet: TweetData }) {
-  const cleanText = tweet.text.replace(/https?:\/\/t\.co\/\w+/g, '').trim();
-  const lines = cleanText.split('\n').filter(l => l.trim());
-  const headline = lines[0] || null;
   const href = tweet.articleUrl || tweet.url;
-  const dateStr = new Date(tweet.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  const hasImage = tweet.media.length > 0;
+  const dateStr = new Date(tweet.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const catColor = tweet.articleCategory ? categoryColors[tweet.articleCategory] || '#b8860b' : '#b8860b';
+  const catLabel = tweet.articleCategory ? categoryLabels[tweet.articleCategory] || 'ARTICLE' : 'ARTICLE';
 
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className="block group">
-      <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-[#333] transition-colors h-full flex flex-col">
-        {hasImage && (
-          <img src={tweet.media[0]} alt="" className="w-full h-32 object-cover border-b border-[#222]" />
-        )}
-        <div className="p-3 flex-1 flex flex-col">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#b8860b] bg-[#b8860b15] px-1.5 py-0.5 rounded border border-[#b8860b30]">ARTICLE</span>
+      <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-[#444] transition-all h-full flex flex-col">
+        {/* Category color bar */}
+        <div className="h-0.5" style={{ backgroundColor: catColor }} />
+        <div className="p-4 flex-1 flex flex-col">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[8px] font-mono font-bold tracking-widest px-1.5 py-0.5 rounded" style={{ color: catColor, backgroundColor: catColor + '15', border: `1px solid ${catColor}30` }}>
+              {catLabel}
+            </span>
             <span className="text-[#555] text-[10px] font-mono">{dateStr}</span>
           </div>
-          <p className="text-white text-sm font-bold leading-snug group-hover:text-[#b8860b] transition-colors flex-1">
-            {headline || 'Long-form article'}
-          </p>
-          <div className="flex items-center justify-between text-[#555] text-[10px] font-mono mt-2 pt-2 border-t border-[#1a1a1a]">
+          <h3 className="text-white text-sm font-bold leading-snug group-hover:text-[#b8860b] transition-colors mb-2 flex-1">
+            {tweet.articleTitle || 'Long-form Article'}
+          </h3>
+          {tweet.articleSummary && (
+            <p className="text-[#888] text-[11px] font-mono leading-relaxed mb-3">
+              {tweet.articleSummary}
+            </p>
+          )}
+          <div className="flex items-center justify-between text-[#555] text-[10px] font-mono pt-2 border-t border-[#1a1a1a]">
             <span>♥ {formatCount(tweet.likeCount)} · 👁 {formatCount(tweet.viewCount)}</span>
-            <span className="text-[#b8860b]">Read →</span>
+            <span className="text-[#b8860b] group-hover:text-[#d4a017] transition-colors font-bold">Read on 𝕏 →</span>
           </div>
         </div>
       </div>
@@ -529,10 +554,10 @@ export default function Home() {
 
         {/* Articles row */}
         {!tweetsLoading && articles.length > 0 && (
-          <div className="mb-6">
-            <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-3">Featured Articles</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {articles.slice(0, 4).map(a => (
+          <div className="mb-8">
+            <h3 className="text-xs font-mono text-[#888] uppercase tracking-wider mb-4">Featured Articles</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {articles.filter(a => a.articleTitle).slice(0, 6).map(a => (
                 <ArticleCard key={a.id} tweet={a} />
               ))}
             </div>
