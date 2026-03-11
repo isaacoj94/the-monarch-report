@@ -145,6 +145,7 @@ export interface KoreaTimelineEntry {
   source: string;
   sourceUrl: string;
   featured?: boolean; // hero treatment for key events
+  image?: string; // local path in /public/timeline/
 }
 
 export const koreaTimeline: KoreaTimelineEntry[] = [
@@ -182,6 +183,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     source: 'CNN',
     sourceUrl: 'https://www.cnn.com/2024/12/03/asia/south-korea-martial-law-yoon-intl-hnk',
     featured: true,
+    image: '/timeline/martial-law-assembly.jpg',
   },
   {
     date: 'Dec 4, 2024',
@@ -198,6 +200,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'court-case',
     source: 'Wikipedia — Impeachment of Yoon',
     sourceUrl: 'https://en.wikipedia.org/wiki/Impeachment_of_Yoon_Suk_Yeol',
+    image: '/timeline/impeachment-signing.jpg',
   },
   // === MEDIA FRAMING ===
   {
@@ -247,11 +250,12 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
   // === CHURCH RAIDS BEGIN ===
   {
     date: 'Jul 18, 2025',
-    title: 'Prosecutors raid Yoido Full Gospel Church & Far East Broadcasting',
-    description: 'Home and offices of Pastor Lee Young-hoon (one of the world\'s largest congregations) and Pastor Kim Jang-hwan (Far East Broadcasting chairman) raided simultaneously. ~10 locations searched.',
+    title: 'Coordinated raids: Yoido Full Gospel, Far East Broadcasting, and Unification Church',
+    description: 'Prosecutors raid 10+ locations simultaneously — Yoido Full Gospel Church (one of the world\'s largest congregations), Far East Broadcasting Company, and the Unification Church\'s Seoul HQ in Cheongpa-dong, Cheonjeonggung Palace, and multiple offices. Pastors Lee Young-hoon and Kim Jang-hwan targeted.',
     category: 'church-raid',
-    source: 'Korea Times',
-    sourceUrl: 'https://www.koreatimes.co.kr/opinion/20251203/raids-on-clergy-reveal-fragility-of-informal-diplomacy',
+    source: 'UPI, Korea Times',
+    sourceUrl: 'https://www.upi.com/Top_News/World-News/2025/07/18/Unification-Church-scandal-expands-with-raids-at-more-than-10-locations/9461752874293/',
+    featured: true,
   },
   // === FOREIGN POLICY SHIFTS ===
   {
@@ -270,6 +274,7 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'church-raid',
     source: 'Washington Times',
     sourceUrl: 'https://www.washingtontimes.com/news/2025/aug/25/trump-notes-purge-revolution-south-korea-ahead-meeting-president-lee/',
+    image: '/timeline/trump-lee.jpg',
   },
   // === MEDIA TAKEOVER ===
   {

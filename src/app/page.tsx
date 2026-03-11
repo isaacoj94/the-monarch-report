@@ -536,21 +536,48 @@ export default function Home() {
                           className="relative mb-5 rounded-lg border overflow-hidden"
                           style={{ borderColor: `${cat.color}33` }}
                         >
-                          {/* Gradient background */}
-                          <div
-                            className="absolute inset-0 opacity-[0.07]"
-                            style={{ background: `linear-gradient(135deg, ${cat.color}, transparent 70%)` }}
-                          />
-                          <div className="relative p-4">
-                            <div className="flex items-center gap-2 mb-2 flex-wrap">
-                              <span
-                                className="text-[10px] font-mono font-bold px-2 py-0.5 rounded"
-                                style={{ color: '#000', backgroundColor: cat.color }}
-                              >
-                                {cat.icon} {cat.label.toUpperCase()}
-                              </span>
-                              <span className="text-[10px] font-mono text-tm-muted">{entry.date}</span>
+                          {/* Photo if available */}
+                          {entry.image && (
+                            <div className="relative h-44 md:h-56 overflow-hidden">
+                              <Image
+                                src={entry.image}
+                                alt={entry.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 700px"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-tm-card via-tm-card/40 to-transparent" />
+                              {/* Category badge overlaid on photo */}
+                              <div className="absolute bottom-3 left-4 flex items-center gap-2">
+                                <span
+                                  className="text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow-lg"
+                                  style={{ color: '#000', backgroundColor: cat.color }}
+                                >
+                                  {cat.icon} {cat.label.toUpperCase()}
+                                </span>
+                                <span className="text-[10px] font-mono text-white/80 drop-shadow">{entry.date}</span>
+                              </div>
                             </div>
+                          )}
+                          {/* Gradient background (for cards without photos) */}
+                          {!entry.image && (
+                            <div
+                              className="absolute inset-0 opacity-[0.07]"
+                              style={{ background: `linear-gradient(135deg, ${cat.color}, transparent 70%)` }}
+                            />
+                          )}
+                          <div className="relative p-4">
+                            {!entry.image && (
+                              <div className="flex items-center gap-2 mb-2 flex-wrap">
+                                <span
+                                  className="text-[10px] font-mono font-bold px-2 py-0.5 rounded"
+                                  style={{ color: '#000', backgroundColor: cat.color }}
+                                >
+                                  {cat.icon} {cat.label.toUpperCase()}
+                                </span>
+                                <span className="text-[10px] font-mono text-tm-muted">{entry.date}</span>
+                              </div>
+                            )}
                             <h4 className="text-tm-heading text-base md:text-lg font-serif font-bold leading-snug mb-2">
                               {entry.title}
                             </h4>
