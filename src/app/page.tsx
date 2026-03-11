@@ -75,7 +75,7 @@ function SectionHeader({ color, title, subtitle }: { color: string; title: strin
       <div className="w-1 h-6 rounded-full" style={{ backgroundColor: color }} />
       <div>
         <h2 className="text-2xl font-serif font-bold text-tm-heading">{title}</h2>
-        <p className="text-tm-muted text-xs">{subtitle}</p>
+        <p className="text-tm-muted text-sm">{subtitle}</p>
       </div>
     </div>
   );
@@ -121,11 +121,11 @@ function TweetCard({ tweet }: { tweet: TweetData }) {
       <div className="bg-tm-card border border-tm-border rounded-lg p-3 hover:border-tm-border-hover transition-colors h-full">
         <div className="flex items-center gap-2 mb-1.5">
           {tweet.authorAvatar && <img src={tweet.authorAvatar} alt="" className="w-4 h-4 rounded-full" />}
-          <span className="text-[11px] font-mono text-tm-heading font-bold">@{tweet.authorHandle}</span>
+          <span className="text-xs font-mono text-tm-heading font-bold">@{tweet.authorHandle}</span>
           <span className="text-tm-dim text-[10px] font-mono ml-auto">{timeAgo(tweet.createdAt)}</span>
         </div>
         <div className={hasImage ? 'flex gap-3' : ''}>
-          <p className={`text-tm-body text-xs leading-relaxed whitespace-pre-line mb-2 ${hasImage ? 'flex-1' : ''}`}>{shownText}</p>
+          <p className={`text-tm-body text-sm leading-relaxed whitespace-pre-line mb-2 ${hasImage ? 'flex-1' : ''}`}>{shownText}</p>
           {hasImage && (
             <img src={tweet.media[0]} alt="" className="w-20 h-20 rounded-md object-cover border border-tm-border flex-shrink-0" />
           )}
@@ -293,8 +293,8 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <div className="w-1 h-8 bg-tm-gold rounded-full" />
               <div>
-                <p className="text-tm-heading text-sm font-bold">{siteConfig.tagline}</p>
-                <p className="text-tm-muted text-[11px]">Independent journalism · Trusted by U.S. legislators · Fact-based</p>
+                <p className="text-tm-heading text-base font-bold">{siteConfig.tagline}</p>
+                <p className="text-tm-muted text-xs">Independent journalism · Trusted by U.S. legislators · Fact-based</p>
               </div>
             </div>
             <div className="flex items-center gap-2 text-xs font-mono">
@@ -318,7 +318,7 @@ export default function Home() {
               <div className="flex items-center justify-between mb-2">
                 <div>
                   <h3 className="text-tm-heading font-serif font-bold text-sm">{p.name} <span className="text-tm-muted font-normal">({p.nameKo})</span></h3>
-                  <p className="text-tm-secondary text-[11px] font-mono">{p.title}</p>
+                  <p className="text-tm-secondary text-xs font-mono">{p.title}</p>
                 </div>
                 <span className={`text-[9px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-full border ${
                   p.status === 'detained' ? 'text-red-400 bg-red-400/10 border-red-400/20' :
@@ -329,10 +329,10 @@ export default function Home() {
                   {p.status.toUpperCase()}
                 </span>
               </div>
-              <p className="text-tm-muted text-[11px] mb-2"><strong className="text-tm-secondary">Charges:</strong> {p.charges}</p>
-              <p className="text-tm-secondary text-xs leading-relaxed">{p.details}</p>
+              <p className="text-tm-muted text-xs mb-2"><strong className="text-tm-secondary">Charges:</strong> {p.charges}</p>
+              <p className="text-tm-secondary text-sm leading-relaxed">{p.details}</p>
               {p.daysDetained && (
-                <p className="text-red-400 text-[11px] font-mono mt-2 font-bold">{p.daysDetained} days detained</p>
+                <p className="text-red-400 text-xs font-mono mt-2 font-bold">{p.daysDetained} days detained</p>
               )}
             </div>
           ))}
@@ -349,7 +349,7 @@ export default function Home() {
                 <span className="text-blue-400 text-xs font-mono font-bold whitespace-nowrap mt-0.5">{v.article}</span>
                 <div>
                   <p className="text-tm-heading text-xs font-bold">{v.title}</p>
-                  <p className="text-tm-secondary text-[11px] leading-relaxed">{v.description}</p>
+                  <p className="text-tm-secondary text-sm leading-relaxed">{v.description}</p>
                 </div>
               </div>
             ))}
@@ -375,8 +375,8 @@ export default function Home() {
                     {i < japanDissolution.timeline.length - 1 && <div className="w-px h-full bg-tm-border mt-1" />}
                   </div>
                   <div className="pb-2">
-                    <p className="text-[10px] font-mono text-tm-muted">{t.date}</p>
-                    <p className="text-tm-body text-xs leading-relaxed">{t.event}</p>
+                    <p className="text-xs font-mono text-tm-muted">{t.date}</p>
+                    <p className="text-tm-body text-sm leading-relaxed">{t.event}</p>
                   </div>
                 </div>
               ))}
@@ -386,14 +386,14 @@ export default function Home() {
           {/* Communist Connection */}
           <div className="bg-tm-card border border-tm-border rounded-lg p-4">
             <h3 className="text-xs font-mono text-tm-secondary uppercase tracking-wider mb-3">Communist Party Connection</h3>
-            <p className="text-tm-secondary text-xs leading-relaxed mb-3">
+            <p className="text-tm-secondary text-sm leading-relaxed mb-3">
               The lawyers behind the dissolution campaign were primarily affiliated with the <strong className="text-tm-heading">Japanese Communist Party</strong> and Socialist Party.
             </p>
             <div className="bg-tm-input border border-tm-border-subtle rounded p-3 mb-3">
               <p className="text-tm-body text-xs italic leading-relaxed">&ldquo;{japanDissolution.communistConnection.jcpQuote.text}&rdquo;</p>
-              <p className="text-tm-muted text-[10px] font-mono mt-1">— {japanDissolution.communistConnection.jcpQuote.speaker}</p>
+              <p className="text-tm-muted text-xs font-mono mt-1">— {japanDissolution.communistConnection.jcpQuote.speaker}</p>
             </div>
-            <div className="space-y-1.5 text-[11px] text-tm-secondary">
+            <div className="space-y-1.5 text-xs text-tm-secondary">
               <p><strong className="text-tm-secondary">Network:</strong> {japanDissolution.communistConnection.organization}</p>
               <p><strong className="text-tm-secondary">Members:</strong> {japanDissolution.communistConnection.members}</p>
               <p><strong className="text-tm-secondary">Founded:</strong> {japanDissolution.communistConnection.founded}</p>
@@ -405,18 +405,18 @@ export default function Home() {
             <h3 className="text-xs font-mono text-tm-secondary uppercase tracking-wider mb-3">Why the Church Was Targeted</h3>
             <ul className="space-y-2">
               {japanDissolution.antiCommunistHistory.map((fact, i) => (
-                <li key={i} className="flex items-start gap-2 text-tm-secondary text-xs leading-relaxed">
+                <li key={i} className="flex items-start gap-2 text-tm-secondary text-sm leading-relaxed">
                   <span className="text-[#f59e0b] mt-0.5">◆</span>
                   <span>{fact}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-4 pt-3 border-t border-tm-border-subtle">
-              <h4 className="text-[10px] font-mono text-tm-muted uppercase tracking-wider mb-2">International Response</h4>
+              <h4 className="text-xs font-mono text-tm-muted uppercase tracking-wider mb-2">International Response</h4>
               {japanDissolution.internationalReactions.map((r, i) => (
                 <div key={i} className="mb-2">
-                  <p className="text-tm-body text-[11px] italic">&ldquo;{r.quote}&rdquo;</p>
-                  <p className="text-tm-faint text-[10px] font-mono">— {r.who}, {r.date}</p>
+                  <p className="text-tm-body text-xs italic">&ldquo;{r.quote}&rdquo;</p>
+                  <p className="text-tm-faint text-xs font-mono">— {r.who}, {r.date}</p>
                 </div>
               ))}
             </div>
@@ -445,8 +445,8 @@ export default function Home() {
                   </span>
                 </div>
                 <h3 className="text-tm-heading text-sm font-serif font-bold mb-1">{bill.name}</h3>
-                <p className="text-tm-secondary text-[11px] leading-relaxed mb-2">{bill.summary}</p>
-                <p className="text-tm-faint text-[10px] font-mono">{bill.date}</p>
+                <p className="text-tm-secondary text-sm leading-relaxed mb-2">{bill.summary}</p>
+                <p className="text-tm-faint text-xs font-mono">{bill.date}</p>
               </div>
             );
           })}
@@ -492,7 +492,7 @@ export default function Home() {
             ))}
           </div>
 
-          <p className="text-tm-faint text-[11px] text-center mt-4">
+          <p className="text-tm-faint text-sm text-center mt-4">
             Korean media focuses on approval ratings. These numbers tell the real story. <a href="/dashboard" className="text-tm-gold hover:text-tm-gold-hover">See all metrics →</a>
           </p>
         </div>
@@ -540,7 +540,7 @@ export default function Home() {
                         <h3 className="text-tm-heading text-sm font-serif font-bold leading-snug group-hover:text-tm-gold transition-colors mb-2 flex-1">
                           {a.title}
                         </h3>
-                        <p className="text-tm-secondary text-[11px] leading-relaxed mb-3 line-clamp-2">{a.previewText}</p>
+                        <p className="text-tm-secondary text-sm leading-relaxed mb-3 line-clamp-2">{a.previewText}</p>
                         <div className="flex items-center justify-between text-tm-faint text-[10px] font-mono pt-2 border-t border-tm-border-subtle">
                           <span>{a.likes.toLocaleString()} likes · {a.views.toLocaleString()} views</span>
                           <span className="text-tm-gold font-bold">Read →</span>
@@ -601,7 +601,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto px-4 py-14 text-center">
           <Image src="/logos/icon-gold.png" alt="" width={48} height={48} className="w-10 h-10 mx-auto mb-5 opacity-60" />
           <h2 className="text-2xl font-serif font-bold text-tm-heading mb-2">{newsletter.title}</h2>
-          <p className="text-tm-secondary text-sm mb-5 max-w-md mx-auto">{newsletter.subtitle}</p>
+          <p className="text-tm-secondary text-base mb-5 max-w-md mx-auto">{newsletter.subtitle}</p>
           {emailSubmitted ? (
             <p className="text-tm-gold font-mono text-sm">Thank you for subscribing.</p>
           ) : (
@@ -626,7 +626,7 @@ export default function Home() {
             <div className="w-1 h-6 bg-tm-gold rounded-full" />
             <h2 className="text-xl font-serif font-bold text-tm-heading">About The Monarch Report</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 text-sm text-tm-secondary leading-relaxed">
+          <div className="grid md:grid-cols-2 gap-8 text-base text-tm-secondary leading-relaxed">
             <div>
               <h3 className="text-tm-heading font-serif font-bold mb-3">Our Mission</h3>
               <p className="mb-4">
