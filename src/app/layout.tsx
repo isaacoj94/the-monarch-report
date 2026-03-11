@@ -21,14 +21,20 @@ export const metadata: Metadata = {
   },
 };
 
+// Inline script to prevent FOUC — sets data-theme before first paint
+const themeScript = `(function(){var t=localStorage.getItem('tm-theme');if(t)document.documentElement.setAttribute('data-theme',t)})()`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistMono.variable} font-mono antialiased bg-[#0a0a0a] text-white`}>
+    <html lang="en" data-theme="dark">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className={`${geistMono.variable} font-mono antialiased`}>
         {children}
       </body>
     </html>

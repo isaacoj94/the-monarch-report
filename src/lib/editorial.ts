@@ -23,7 +23,7 @@ export const politicalPrisoners: PoliticalPrisoner[] = [
     title: 'Leader, Family Federation for World Peace and Unification',
     status: 'detained',
     charges: 'Alleged bribery and embezzlement of church funds',
-    details: 'Arrested September 2025 with 1,000+ riot police. No direct evidence she personally instructed gift-giving. 83 years old with heart disease, arrhythmia, and glaucoma. Fell 3 times in detention in January 2026. Briefly released for heart surgery in November 2025, returned to detention February 2026.',
+    details: 'Arrested September 2025 with 1,000+ riot police. No direct evidence she personally instructed gift-giving. 83 years old with heart disease, arrhythmia, and glaucoma. Fell 3 times in detention in January 2026. Briefly released for glaucoma surgery in November 2025, returned to detention February 2026.',
     daysDetained: 170, // approximate as of March 2026
     date: '2025-09-22',
     source: 'CNN, Al Jazeera, Korea Herald',
