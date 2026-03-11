@@ -150,6 +150,14 @@ export interface KoreaTimelineEntry {
 export const koreaTimeline: KoreaTimelineEntry[] = [
   // === PRE-MARTIAL LAW: Why it happened ===
   {
+    date: 'Jan 30, 2024',
+    title: 'Dior bag scandal breaks — opposition weaponizes it',
+    description: 'Secret footage surfaces of First Lady Kim Keon-hee accepting a Dior handbag from a pastor in 2022. The opposition uses the scandal to launch relentless special counsel investigations, setting the stage for two years of political war.',
+    category: 'court-case',
+    source: 'NPR',
+    sourceUrl: 'https://www.npr.org/2024/01/30/1227831327/luxury-dior-handbag-south-korea-politics',
+  },
+  {
     date: 'Apr 10, 2024',
     title: 'Opposition wins supermajority in National Assembly',
     description: 'The Democratic Party of Korea (DPK) wins 175 of 300 seats, gaining near two-thirds control. This begins an unprecedented legislative standoff with President Yoon.',
@@ -349,6 +357,14 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     category: 'court-case',
     source: 'Al Jazeera',
     sourceUrl: 'https://www.aljazeera.com/news/2026/1/16/south-koreas-former-president-yoon-sentenced-to-five-years-what-we-know',
+  },
+  {
+    date: 'Jan 28, 2026',
+    title: 'First Lady Kim Keon-hee sentenced to 20 months',
+    description: 'Convicted for corruption including receiving luxury gifts (Graff diamond necklace, Chanel bags) from the Unification Church in exchange for promises of business favors.',
+    category: 'court-case',
+    source: 'Al Jazeera',
+    sourceUrl: 'https://www.aljazeera.com/news/2026/1/28/south-koreas-former-first-lady-sentenced-to-jail-term-in-bribery-case',
   },
   {
     date: 'Feb 19, 2026',
