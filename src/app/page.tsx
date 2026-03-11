@@ -78,10 +78,40 @@ function SectionHeader({ color, title, subtitle }: { color: string; title: strin
   );
 }
 
+function HeroTweetCard({ tweet }: { tweet: TweetData }) {
+  const displayText = tweet.text.replace(/https?:\/\/t\.co\/\w+/g, '').trim();
+  const shownText = displayText.length > 400 ? displayText.slice(0, 400) + '...' : displayText;
+  const hasImage = tweet.media.length > 0;
+
+  return (
+    <a href={tweet.url} target="_blank" rel="noopener noreferrer" className="block group">
+      <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-[#333] transition-colors">
+        {hasImage && (
+          <img src={tweet.media[0]} alt="" className="w-full h-56 object-cover border-b border-[#222]" />
+        )}
+        <div className="p-4">
+          <div className="flex items-center gap-2 mb-2">
+            {tweet.authorAvatar && <img src={tweet.authorAvatar} alt="" className="w-5 h-5 rounded-full" />}
+            <span className="text-xs font-mono text-white font-bold">@{tweet.authorHandle}</span>
+            <span className="text-[#444] text-[10px] font-mono ml-auto">{timeAgo(tweet.createdAt)}</span>
+          </div>
+          <p className="text-[#ccc] text-sm font-mono leading-relaxed whitespace-pre-line mb-3">{shownText}</p>
+          <div className="flex items-center gap-4 text-[#555] text-[11px] font-mono">
+            <span>♥ {formatCount(tweet.likeCount)}</span>
+            <span>⟳ {formatCount(tweet.retweetCount)}</span>
+            <span>↩ {formatCount(tweet.replyCount)}</span>
+            <span className="ml-auto">👁 {formatCount(tweet.viewCount)}</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+}
+
 function TweetCard({ tweet }: { tweet: TweetData }) {
-  let displayText = tweet.text.replace(/https?:\/\/t\.co\/\w+/g, '').trim();
-  const truncated = displayText.length > 220;
-  const shownText = truncated ? displayText.slice(0, 220) + '...' : displayText;
+  const displayText = tweet.text.replace(/https?:\/\/t\.co\/\w+/g, '').trim();
+  const hasImage = tweet.media.length > 0;
+  const shownText = displayText.length > (hasImage ? 160 : 220) ? displayText.slice(0, hasImage ? 160 : 220) + '...' : displayText;
 
   return (
     <a href={tweet.url} target="_blank" rel="noopener noreferrer" className="block group">
@@ -91,7 +121,12 @@ function TweetCard({ tweet }: { tweet: TweetData }) {
           <span className="text-[11px] font-mono text-white font-bold">@{tweet.authorHandle}</span>
           <span className="text-[#444] text-[10px] font-mono ml-auto">{timeAgo(tweet.createdAt)}</span>
         </div>
-        <p className="text-[#bbb] text-xs font-mono leading-relaxed whitespace-pre-line mb-2">{shownText}</p>
+        <div className={hasImage ? 'flex gap-3' : ''}>
+          <p className={`text-[#bbb] text-xs font-mono leading-relaxed whitespace-pre-line mb-2 ${hasImage ? 'flex-1' : ''}`}>{shownText}</p>
+          {hasImage && (
+            <img src={tweet.media[0]} alt="" className="w-20 h-20 rounded-md object-cover border border-[#222] flex-shrink-0" />
+          )}
+        </div>
         <div className="flex items-center gap-3 text-[#555] text-[10px] font-mono">
           <span>♥ {formatCount(tweet.likeCount)}</span>
           <span>⟳ {formatCount(tweet.retweetCount)}</span>
@@ -108,20 +143,26 @@ function ArticleCard({ tweet }: { tweet: TweetData }) {
   const headline = lines[0] || null;
   const href = tweet.articleUrl || tweet.url;
   const dateStr = new Date(tweet.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const hasImage = tweet.media.length > 0;
 
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className="block group">
-      <div className="bg-[#111] border border-[#222] rounded-lg p-3 hover:border-[#333] transition-colors h-full flex flex-col">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-[9px] font-mono font-bold tracking-widest text-[#b8860b] bg-[#b8860b15] px-1.5 py-0.5 rounded border border-[#b8860b30]">ARTICLE</span>
-          <span className="text-[#555] text-[10px] font-mono">{dateStr}</span>
-        </div>
-        <p className="text-white text-sm font-bold leading-snug group-hover:text-[#b8860b] transition-colors flex-1">
-          {headline || 'Long-form article'}
-        </p>
-        <div className="flex items-center justify-between text-[#555] text-[10px] font-mono mt-2 pt-2 border-t border-[#1a1a1a]">
-          <span>♥ {formatCount(tweet.likeCount)} · 👁 {formatCount(tweet.viewCount)}</span>
-          <span className="text-[#b8860b]">Read →</span>
+      <div className="bg-[#111] border border-[#222] rounded-lg overflow-hidden hover:border-[#333] transition-colors h-full flex flex-col">
+        {hasImage && (
+          <img src={tweet.media[0]} alt="" className="w-full h-32 object-cover border-b border-[#222]" />
+        )}
+        <div className="p-3 flex-1 flex flex-col">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#b8860b] bg-[#b8860b15] px-1.5 py-0.5 rounded border border-[#b8860b30]">ARTICLE</span>
+            <span className="text-[#555] text-[10px] font-mono">{dateStr}</span>
+          </div>
+          <p className="text-white text-sm font-bold leading-snug group-hover:text-[#b8860b] transition-colors flex-1">
+            {headline || 'Long-form article'}
+          </p>
+          <div className="flex items-center justify-between text-[#555] text-[10px] font-mono mt-2 pt-2 border-t border-[#1a1a1a]">
+            <span>♥ {formatCount(tweet.likeCount)} · 👁 {formatCount(tweet.viewCount)}</span>
+            <span className="text-[#b8860b]">Read →</span>
+          </div>
         </div>
       </div>
     </a>
@@ -498,7 +539,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* Tweets grid */}
+        {/* Tweets: hero + grid */}
         {tweetsLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {[1, 2, 3, 4, 5, 6].map(i => (
@@ -511,11 +552,25 @@ export default function Home() {
             ))}
           </div>
         ) : tweets.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {tweets.slice(0, 9).map(tweet => (
-              <TweetCard key={tweet.id} tweet={tweet} />
-            ))}
-          </div>
+          <>
+            {/* Hero tweet — first post with full image */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
+              <div className="lg:col-span-2">
+                <HeroTweetCard tweet={tweets[0]} />
+              </div>
+              <div className="space-y-3">
+                {tweets.slice(1, 3).map(tweet => (
+                  <TweetCard key={tweet.id} tweet={tweet} />
+                ))}
+              </div>
+            </div>
+            {/* Remaining tweets */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {tweets.slice(3, 9).map(tweet => (
+                <TweetCard key={tweet.id} tweet={tweet} />
+              ))}
+            </div>
+          </>
         ) : (
           <div className="bg-[#111] border border-[#222] rounded-lg p-6 text-center">
             <p className="text-[#555] font-mono text-sm">Loading posts...</p>
