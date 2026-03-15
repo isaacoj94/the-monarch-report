@@ -141,14 +141,14 @@ export const presidencySnapshots: PresidencySnapshot[] = [
   },
 ];
 
-// Current values (March 2026)
+// Current values (updated 2026-03-15)
 export const currentSnapshot: Record<string, number> = {
-  gasPrice: 1958, ricePrice: 33800, eggsPrice: 9200, porkBellyPrice: 2450,
-  electricityBill: 72500, seoulRent: 920000, sojuPrice: 2200, coffeePrice: 5800,
+  gasPrice: 1907, ricePrice: 33000, eggsPrice: 7000, porkBellyPrice: 2637,
+  electricityBill: 50000, seoulRent: 950000, sojuPrice: 2200, coffeePrice: 5800,
   chickenPrice: 25500, subwayFare: 1400, ramenPrice: 1200,
-  seoulAptPrice: 1480000, jeonseDeposit: 47500, housingIncomeRatio: 20.4,
-  usdKrw: 1465, householdDebt: 105.1, nationalDebt: 56.8,
-  inflation: 3.4, youthUnemployment: 8.1, interestRate: 2.75,
+  seoulAptPrice: 1570000, jeonseDeposit: 67000, housingIncomeRatio: 13.9,
+  usdKrw: 1491.7, householdDebt: 105.8, nationalDebt: 51.6,
+  inflation: 2.0, youthUnemployment: 6.8, interestRate: 2.50,
 };
 
 // === HELPER ===
@@ -181,28 +181,28 @@ function generateMonthlyData(
 
 export const walletMetrics: Record<string, Metric> = {
   gasPrice: {
-    id: 'gasPrice', currentValue: 1958, unit: '₩', trend: 'rising', changePercent: 12.8,
-    presidencyStartValue: 1735, history: generateMonthlyData(PRESIDENCY_START, 1735, 1958, 0.04),
+    id: 'gasPrice', currentValue: 1907, unit: '₩', trend: 'rising', changePercent: 9.9,
+    presidencyStartValue: 1735, history: generateMonthlyData(PRESIDENCY_START, 1735, 1907, 0.04),
   },
   ricePrice: {
-    id: 'ricePrice', currentValue: 33800, unit: '₩', trend: 'rising', changePercent: 9.4,
-    presidencyStartValue: 30900, history: generateMonthlyData(PRESIDENCY_START, 30900, 33800, 0.03),
+    id: 'ricePrice', currentValue: 33000, unit: '₩', trend: 'rising', changePercent: 6.8,
+    presidencyStartValue: 30900, history: generateMonthlyData(PRESIDENCY_START, 30900, 33000, 0.03),
   },
   eggsPrice: {
-    id: 'eggsPrice', currentValue: 9200, unit: '₩', trend: 'rising', changePercent: 10.8,
-    presidencyStartValue: 8300, history: generateMonthlyData(PRESIDENCY_START, 8300, 9200, 0.05),
+    id: 'eggsPrice', currentValue: 7000, unit: '₩', trend: 'falling', changePercent: -15.7,
+    presidencyStartValue: 8300, history: generateMonthlyData(PRESIDENCY_START, 8300, 7000, 0.05),
   },
   porkBellyPrice: {
-    id: 'porkBellyPrice', currentValue: 2450, unit: '₩', trend: 'rising', changePercent: 8.4,
-    presidencyStartValue: 2260, history: generateMonthlyData(PRESIDENCY_START, 2260, 2450, 0.06),
+    id: 'porkBellyPrice', currentValue: 2637, unit: '₩', trend: 'rising', changePercent: 16.7,
+    presidencyStartValue: 2260, history: generateMonthlyData(PRESIDENCY_START, 2260, 2637, 0.06),
   },
   electricityBill: {
-    id: 'electricityBill', currentValue: 72500, unit: '₩', trend: 'rising', changePercent: 11.5,
-    presidencyStartValue: 65000, history: generateMonthlyData(PRESIDENCY_START, 65000, 72500, 0.03),
+    id: 'electricityBill', currentValue: 50000, unit: '₩', trend: 'falling', changePercent: -23.1,
+    presidencyStartValue: 65000, history: generateMonthlyData(PRESIDENCY_START, 65000, 50000, 0.03),
   },
   seoulRent: {
-    id: 'seoulRent', currentValue: 920000, unit: '₩', trend: 'rising', changePercent: 7.0,
-    presidencyStartValue: 860000, history: generateMonthlyData(PRESIDENCY_START, 860000, 920000, 0.02),
+    id: 'seoulRent', currentValue: 950000, unit: '₩', trend: 'rising', changePercent: 10.5,
+    presidencyStartValue: 860000, history: generateMonthlyData(PRESIDENCY_START, 860000, 950000, 0.02),
   },
   // New items
   sojuPrice: {
@@ -231,16 +231,16 @@ export const walletMetrics: Record<string, Metric> = {
 
 export const housingMetrics: Record<string, Metric> = {
   seoulAptPrice: {
-    id: 'seoulAptPrice', currentValue: 1480000, unit: '₩/평', trend: 'rising', changePercent: 4.2,
-    presidencyStartValue: 1420000, history: generateMonthlyData(PRESIDENCY_START, 1420000, 1480000, 0.02),
+    id: 'seoulAptPrice', currentValue: 1570000, unit: '₩/평', trend: 'rising', changePercent: 10.6,
+    presidencyStartValue: 1420000, history: generateMonthlyData(PRESIDENCY_START, 1420000, 1570000, 0.02),
   },
   jeonseDeposit: {
-    id: 'jeonseDeposit', currentValue: 47500, unit: '만₩', trend: 'rising', changePercent: 5.6,
-    presidencyStartValue: 45000, history: generateMonthlyData(PRESIDENCY_START, 45000, 47500, 0.02),
+    id: 'jeonseDeposit', currentValue: 67000, unit: '만₩', trend: 'rising', changePercent: 48.9,
+    presidencyStartValue: 45000, history: generateMonthlyData(PRESIDENCY_START, 45000, 67000, 0.02),
   },
   housingIncomeRatio: {
-    id: 'housingIncomeRatio', currentValue: 20.4, unit: '년', trend: 'rising', changePercent: 3.0,
-    presidencyStartValue: 19.8, history: generateMonthlyData(PRESIDENCY_START, 19.8, 20.4, 0.02),
+    id: 'housingIncomeRatio', currentValue: 13.9, unit: '년', trend: 'falling', changePercent: -29.8,
+    presidencyStartValue: 19.8, history: generateMonthlyData(PRESIDENCY_START, 19.8, 13.9, 0.02),
   },
 };
 
@@ -248,28 +248,28 @@ export const housingMetrics: Record<string, Metric> = {
 
 export const macroMetrics: Record<string, Metric> = {
   usdKrw: {
-    id: 'usdKrw', currentValue: 1465, unit: '₩', trend: 'rising', changePercent: 4.3,
-    presidencyStartValue: 1405, history: generateMonthlyData(PRESIDENCY_START, 1405, 1465, 0.03),
+    id: 'usdKrw', currentValue: 1491.7, unit: '₩', trend: 'rising', changePercent: 6.2,
+    presidencyStartValue: 1405, history: generateMonthlyData(PRESIDENCY_START, 1405, 1491.7, 0.03),
   },
   householdDebt: {
-    id: 'householdDebt', currentValue: 105.1, unit: '%', trend: 'rising', changePercent: 1.5,
-    presidencyStartValue: 103.5, history: generateMonthlyData(PRESIDENCY_START, 103.5, 105.1, 0.01),
+    id: 'householdDebt', currentValue: 105.8, unit: '%', trend: 'rising', changePercent: 2.2,
+    presidencyStartValue: 103.5, history: generateMonthlyData(PRESIDENCY_START, 103.5, 105.8, 0.01),
   },
   nationalDebt: {
-    id: 'nationalDebt', currentValue: 56.8, unit: '%', trend: 'rising', changePercent: 3.7,
-    presidencyStartValue: 54.8, history: generateMonthlyData(PRESIDENCY_START, 54.8, 56.8, 0.01),
+    id: 'nationalDebt', currentValue: 51.6, unit: '%', trend: 'falling', changePercent: -5.8,
+    presidencyStartValue: 54.8, history: generateMonthlyData(PRESIDENCY_START, 54.8, 51.6, 0.01),
   },
   inflation: {
-    id: 'inflation', currentValue: 3.4, unit: '%', trend: 'rising', changePercent: 21.4,
-    presidencyStartValue: 2.8, history: generateMonthlyData(PRESIDENCY_START, 2.8, 3.4, 0.1),
+    id: 'inflation', currentValue: 2.0, unit: '%', trend: 'falling', changePercent: -28.6,
+    presidencyStartValue: 2.8, history: generateMonthlyData(PRESIDENCY_START, 2.8, 2.0, 0.1),
   },
   youthUnemployment: {
-    id: 'youthUnemployment', currentValue: 8.1, unit: '%', trend: 'rising', changePercent: 5.2,
-    presidencyStartValue: 7.7, history: generateMonthlyData(PRESIDENCY_START, 7.7, 8.1, 0.08),
+    id: 'youthUnemployment', currentValue: 6.8, unit: '%', trend: 'falling', changePercent: -11.7,
+    presidencyStartValue: 7.7, history: generateMonthlyData(PRESIDENCY_START, 7.7, 6.8, 0.08),
   },
   interestRate: {
-    id: 'interestRate', currentValue: 2.75, unit: '%', trend: 'stable', changePercent: -8.3,
-    presidencyStartValue: 3.0, history: generateMonthlyData(PRESIDENCY_START, 3.0, 2.75, 0.05),
+    id: 'interestRate', currentValue: 2.50, unit: '%', trend: 'falling', changePercent: -16.7,
+    presidencyStartValue: 3.0, history: generateMonthlyData(PRESIDENCY_START, 3.0, 2.50, 0.05),
   },
 };
 
@@ -387,7 +387,7 @@ export const timelineEvents: TimelineEvent[] = [
     title: { en: 'Gas hits ₩2,000+/L in suburban areas', ko: '수도권 외곽 휘발유 2,000원 돌파', ja: '首都圏郊外でガソリン2,000ウォン突破' },
     impact: 'gasPrice', category: 'domestic' },
   { date: '2026-03-01', presidentId: 'ljm',
-    title: { en: 'CPI inflation rises to 3.4%', ko: '소비자물가 3.4% 상승', ja: 'CPI 3.4%上昇' },
+    title: { en: 'CPI inflation steady at 2.0%', ko: '소비자물가 2.0% 유지', ja: 'CPI 2.0%で安定' },
     impact: 'inflation', category: 'economic' },
 ];
 
