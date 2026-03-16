@@ -141,7 +141,7 @@ export const presidencySnapshots: PresidencySnapshot[] = [
   },
 ];
 
-// Current values (updated 2026-03-15)
+// Current values (updated 2026-03-16)
 export const currentSnapshot: Record<string, number> = {
   gasPrice: 1907, ricePrice: 33000, eggsPrice: 7000, porkBellyPrice: 2637,
   electricityBill: 50000, seoulRent: 950000, sojuPrice: 2200, coffeePrice: 5800,
