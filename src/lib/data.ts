@@ -141,13 +141,13 @@ export const presidencySnapshots: PresidencySnapshot[] = [
   },
 ];
 
-// Current values (updated 2026-04-22)
+// Current values (updated 2026-04-25)
 export const currentSnapshot: Record<string, number> = {
   gasPrice: 1907, ricePrice: 33000, eggsPrice: 7000, porkBellyPrice: 2637,
   electricityBill: 50000, seoulRent: 950000, sojuPrice: 2200, coffeePrice: 5800,
   chickenPrice: 25500, subwayFare: 1400, ramenPrice: 1200,
   seoulAptPrice: 1570000, jeonseDeposit: 67000, housingIncomeRatio: 13.9,
-  usdKrw: 1469.85, householdDebt: 105.8, nationalDebt: 51.6,
+  usdKrw: 1477.04, householdDebt: 105.8, nationalDebt: 51.6,
   inflation: 2.0, youthUnemployment: 6.8, interestRate: 2.50,
 };
 
@@ -248,8 +248,8 @@ export const housingMetrics: Record<string, Metric> = {
 
 export const macroMetrics: Record<string, Metric> = {
   usdKrw: {
-    id: 'usdKrw', currentValue: 1469.85, unit: '₩', trend: 'rising', changePercent: 4.6,
-    presidencyStartValue: 1405, history: generateMonthlyData(PRESIDENCY_START, 1405, 1469.85, 0.03),
+    id: 'usdKrw', currentValue: 1477.04, unit: '₩', trend: 'rising', changePercent: 5.1,
+    presidencyStartValue: 1405, history: generateMonthlyData(PRESIDENCY_START, 1405, 1477.04, 0.03),
   },
   householdDebt: {
     id: 'householdDebt', currentValue: 105.8, unit: '%', trend: 'rising', changePercent: 2.2,
