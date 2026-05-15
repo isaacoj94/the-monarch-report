@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-M73042P85G";
+const METRICOOL_HASH = "ecd2fe6cb3a5230d60699bfd6d5180a2";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -67,6 +68,9 @@ export default function RootLayout({
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
+        </Script>
+        <Script id="metricool" strategy="afterInteractive">
+          {`function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"${METRICOOL_HASH}"})});`}
         </Script>
         {children}
       </body>
