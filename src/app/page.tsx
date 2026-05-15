@@ -379,6 +379,12 @@ export default function Home() {
                   href="https://www.theprincipleproject.com/projects/youre-next"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent('documentary_support_click', {
+                    link_url: 'https://www.theprincipleproject.com/projects/youre-next',
+                    source_page: 'homepage',
+                    cta_id: 'support-doc-primary',
+                    ...utms,
+                  })}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-tm-gold hover:bg-tm-gold-hover text-tm-page font-bold text-sm rounded transition-colors"
                 >
                   Support This Series →
@@ -387,6 +393,12 @@ export default function Home() {
                   href="https://www.theprincipleproject.com/projects/youre-next"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent('documentary_support_click', {
+                    link_url: 'https://www.theprincipleproject.com/projects/youre-next',
+                    source_page: 'homepage',
+                    cta_id: 'doc-learn-more',
+                    ...utms,
+                  })}
                   className="inline-flex items-center gap-2 px-6 py-3 border border-tm-border-hover hover:border-tm-border-active text-tm-heading text-sm rounded transition-colors"
                 >
                   Learn More

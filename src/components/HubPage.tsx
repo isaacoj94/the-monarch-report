@@ -1,6 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { buildUtm, type UtmParams } from '@/lib/shortlinks';
+import { trackEvent } from '@/lib/utm-client';
 
 export type HubCta = {
   label: string;
@@ -21,6 +24,9 @@ type Props = {
   platform: HubPlatform;
   ctas: HubCta[];
 };
+
+const isDocSupport = (url: string): boolean =>
+  /theprincipleproject\.com\/projects\/youre-next/i.test(url);
 
 export function HubPage({ platform, ctas }: Props) {
   const sourceFor = (key: HubPlatform['key']): string =>
@@ -46,15 +52,30 @@ export function HubPage({ platform, ctas }: Props) {
         )}
       </>
     );
+    const onClick = () => {
+      const params: Record<string, unknown> = {
+        link_url: href,
+        source_page: `hub-${platform.key}`,
+        cta_id: cta.content,
+        utm_source: utm.source,
+        utm_medium: utm.medium,
+        utm_campaign: utm.campaign,
+        utm_content: utm.content,
+      };
+      if (isDocSupport(cta.base)) {
+        trackEvent('documentary_support_click', params);
+      }
+      trackEvent('hub_cta_click', params);
+    };
     if (isExternal) {
       return (
-        <a key={idx} href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        <a key={idx} href={href} target="_blank" rel="noopener noreferrer" onClick={onClick} className={className}>
           {inner}
         </a>
       );
     }
     return (
-      <Link key={idx} href={href} className={className}>
+      <Link key={idx} href={href} onClick={onClick} className={className}>
         {inner}
       </Link>
     );
