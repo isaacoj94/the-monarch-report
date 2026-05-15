@@ -18,6 +18,7 @@ import {
 } from '@/lib/editorial';
 import { articles as storedArticles, articleSlug, articleCategory, articleLang } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
+import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
 
 // === TYPES ===
 
@@ -178,7 +179,12 @@ export default function Home() {
   const [tweetsLoading, setTweetsLoading] = useState(true);
   const [timelineFilter, setTimelineFilter] = useState<string | null>(null);
   const [timelineProgress, setTimelineProgress] = useState(0);
+  const [utms, setUtms] = useState<UtmPayload>({});
   const timelineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setUtms(captureUtms());
+  }, []);
 
   const handleTimelineScroll = useCallback(() => {
     const el = timelineRef.current;
@@ -215,13 +221,20 @@ export default function Home() {
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, ...utms }),
       });
       if (!res.ok) {
         const data = await res.json();
         throw new Error(data.error || 'Failed to subscribe');
       }
       setEmailSubmitted(true);
+      trackEvent('newsletter_signup', {
+        method: 'site',
+        utm_source: utms.utm_source,
+        utm_medium: utms.utm_medium,
+        utm_campaign: utms.utm_campaign,
+        utm_content: utms.utm_content,
+      });
     } catch (err) {
       setEmailError(err instanceof Error ? err.message : 'Something went wrong.');
     } finally {

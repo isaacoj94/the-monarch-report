@@ -6,9 +6,24 @@ import { NextResponse } from 'next/server';
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
 
+type SignupBody = {
+  email?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_content?: string;
+};
+
+const cleanAttr = (v: unknown): string | undefined => {
+  if (typeof v !== 'string') return undefined;
+  const trimmed = v.trim().slice(0, 120);
+  return trimmed.length > 0 ? trimmed : undefined;
+};
+
 export async function POST(request: Request) {
   try {
-    const { email } = await request.json();
+    const body = (await request.json()) as SignupBody;
+    const { email } = body;
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 });
@@ -24,6 +39,21 @@ export async function POST(request: Request) {
       );
     }
 
+    // Pass UTM cohort onto the Brevo contact so the email tool knows where
+    // each subscriber came from. Attribute names follow Brevo's uppercase
+    // convention; create them once in the Brevo dashboard if your account
+    // doesn't auto-provision on-the-fly.
+    const attributes: Record<string, string> = {};
+    const utmSource = cleanAttr(body.utm_source);
+    const utmMedium = cleanAttr(body.utm_medium);
+    const utmCampaign = cleanAttr(body.utm_campaign);
+    const utmContent = cleanAttr(body.utm_content);
+    if (utmSource) attributes.UTM_SOURCE = utmSource;
+    if (utmMedium) attributes.UTM_MEDIUM = utmMedium;
+    if (utmCampaign) attributes.UTM_CAMPAIGN = utmCampaign;
+    if (utmContent) attributes.UTM_CONTENT = utmContent;
+    attributes.SIGNUP_AT = new Date().toISOString();
+
     const res = await fetch(BREVO_API_URL, {
       method: 'POST',
       headers: {
@@ -34,13 +64,13 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         email,
         listIds: [2], // Default list ID — change to match your Brevo list
+        attributes,
         updateEnabled: true,
       }),
     });
 
     if (!res.ok) {
       const data = await res.json();
-      // "Contact already exist" is not an error for us
       if (data.code === 'duplicate_parameter') {
         return NextResponse.json({ success: true, message: 'Already subscribed' });
       }

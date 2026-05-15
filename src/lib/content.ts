@@ -54,6 +54,9 @@ export const xArticles: XPost[] = [
 
 export const instagramHandle = 'monarchreport25';
 export const xHandle = 'monarchreport25';
+export const youtubeHandle = 'monarchreport25';
+export const tiktokHandle = 'monarchreport25';
+export const facebookProfileId = '61581485848456';
 
 // === SITE CONFIGURATION ===
 
@@ -63,6 +66,9 @@ export const siteConfig = {
   description: 'Independent journalism bringing the truth about Korea and Japan to the West. Trusted by U.S. legislators and policymakers as a resource for facts.',
   x: `https://x.com/${xHandle}`,
   instagram: `https://www.instagram.com/${instagramHandle}/`,
+  youtube: `https://www.youtube.com/@${youtubeHandle}`,
+  tiktok: `https://www.tiktok.com/@${tiktokHandle}`,
+  facebook: `https://www.facebook.com/profile.php?id=${facebookProfileId}`,
   email: '', // Add when ready
   // Social embed settings
   xTimelineHeight: 800,
