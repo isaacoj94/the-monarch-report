@@ -159,7 +159,7 @@ export const currentSnapshot: Record<string, number> = {
   chickenPrice: 25500, subwayFare: 1400, ramenPrice: 1200,
   seoulAptPrice: 1570000, jeonseDeposit: 67000, housingIncomeRatio: 13.9,
   usdKrw: 1499.62, householdDebt: 105.8, nationalDebt: 51.6,
-  inflation: 2.0, youthUnemployment: 6.8, interestRate: 2.50,
+  inflation: 2.0, youthUnemployment: 7.3, interestRate: 2.50,
   kospi: 7493.18,
 };
 
@@ -276,8 +276,8 @@ export const macroMetrics: Record<string, Metric> = {
     presidencyStartValue: 2.8, history: generateMonthlyData(PRESIDENCY_START, 2.8, 2.0, 0.1),
   },
   youthUnemployment: {
-    id: 'youthUnemployment', currentValue: 6.8, unit: '%', trend: 'falling', changePercent: -11.7,
-    presidencyStartValue: 7.7, history: generateMonthlyData(PRESIDENCY_START, 7.7, 6.8, 0.08),
+    id: 'youthUnemployment', currentValue: 7.3, unit: '%', trend: 'falling', changePercent: -5.2,
+    presidencyStartValue: 7.7, history: generateMonthlyData(PRESIDENCY_START, 7.7, 7.3, 0.08),
   },
   interestRate: {
     id: 'interestRate', currentValue: 2.50, unit: '%', trend: 'falling', changePercent: -16.7,

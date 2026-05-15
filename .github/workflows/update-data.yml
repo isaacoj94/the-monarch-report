@@ -25,6 +25,7 @@ jobs:
       - name: Run data updater
         env:
           OPINET_API_KEY: ${{ secrets.OPINET_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: npx tsx scripts/update-data.ts
 
       - name: Check for changes

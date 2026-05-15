@@ -10,7 +10,10 @@
  *  - USD/KRW: Frankfurter → Open Exchange Rates → fawazahmed0 CDN
  *  - Gas: Opinet (OPINET_API_KEY, falls back to sample key F231013281 when private key returns empty)
  *  - KOSPI: Yahoo Finance (unofficial, no key)
- *  - Inflation/interest rate: not implemented — needs KOSIS or BOK ECOS (API registration required)
+ *  - Youth unemployment: FRED OECD series LRHU24TTKRM156S (FRED_API_KEY)
+ *  - CPI / inflation: still manual (FRED's Korea CPI growth series ended 2023; KOSIS query syntax is too brittle)
+ *  - BOK base rate: still manual (no public free API; changes 4-6x/year — edit currentSnapshot.interestRate by hand)
+ *  - Household debt / GDP: still manual (BOK ECOS application failed; no clean free alternative)
  */
 
 import * as fs from 'fs';
@@ -25,6 +28,7 @@ interface UpdatedValues {
   kospi?: number;
   interestRate?: number;
   inflation?: number;
+  youthUnemployment?: number;
 }
 
 async function fetchUsdKrw(): Promise<number | null> {
@@ -98,6 +102,32 @@ async function fetchGasPrice(): Promise<number | null> {
   }
 
   return tryOpinet(OPINET_SAMPLE_KEY, 'sample key');
+}
+
+async function fetchFredSeries(seriesId: string): Promise<number | null> {
+  const apiKey = process.env.FRED_API_KEY;
+  if (!apiKey) {
+    console.log(`   ⚠ FRED_API_KEY not set (skipping ${seriesId})`);
+    return null;
+  }
+  try {
+    const url = `https://api.stlouisfed.org/fred/series/observations?series_id=${seriesId}&api_key=${apiKey}&file_type=json&sort_order=desc&limit=1`;
+    const res = await fetch(url);
+    if (!res.ok) {
+      console.log(`   ⚠ FRED HTTP ${res.status} for ${seriesId}`);
+      return null;
+    }
+    const data = await res.json();
+    const obs = data.observations?.[0];
+    if (!obs || obs.value === '.' || obs.value === undefined) {
+      console.log(`   ⚠ FRED returned no observation for ${seriesId}`);
+      return null;
+    }
+    return Math.round(parseFloat(obs.value) * 100) / 100;
+  } catch (err) {
+    console.log(`   ⚠ FRED ${seriesId} threw: ${err instanceof Error ? err.message : err}`);
+    return null;
+  }
 }
 
 async function fetchKospi(): Promise<number | null> {
@@ -238,6 +268,15 @@ async function main() {
     console.log(`   ✅ KOSPI: ${kospi}`);
   } else {
     console.log('   ❌ Failed to fetch KOSPI');
+  }
+
+  console.log('👥 Fetching youth (15-24) unemployment via FRED OECD...');
+  const youthUnemployment = await fetchFredSeries('LRHU24TTKRM156S');
+  if (youthUnemployment) {
+    updates.youthUnemployment = youthUnemployment;
+    console.log(`   ✅ Youth unemployment: ${youthUnemployment}%`);
+  } else {
+    console.log('   ❌ Failed to fetch youth unemployment');
   }
 
   console.log('\n📝 Updating data.ts...');
