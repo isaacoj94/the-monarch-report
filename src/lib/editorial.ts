@@ -148,6 +148,10 @@ export interface KoreaTimelineEntry {
   image?: string; // local path in /public/timeline/
 }
 
+// Inclusive month range of events present in koreaTimeline below.
+// Update this whenever you add events past the current end date.
+export const KOREA_TIMELINE_RANGE_LABEL = 'Jan 2024 – Mar 2026';
+
 export const koreaTimeline: KoreaTimelineEntry[] = [
   // === PRE-MARTIAL LAW: Why it happened ===
   {

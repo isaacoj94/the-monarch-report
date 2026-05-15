@@ -17,9 +17,11 @@ export async function POST(request: Request) {
     const apiKey = process.env.BREVO_API_KEY;
 
     if (!apiKey) {
-      // If no API key yet, still accept the email gracefully
-      console.log(`Newsletter signup (Brevo not configured): ${email}`);
-      return NextResponse.json({ success: true, message: 'Subscribed' });
+      console.error(`Newsletter signup attempted but BREVO_API_KEY is not configured: ${email}`);
+      return NextResponse.json(
+        { error: 'Newsletter is not yet available. Please check back soon.' },
+        { status: 503 }
+      );
     }
 
     const res = await fetch(BREVO_API_URL, {

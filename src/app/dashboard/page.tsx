@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Locale, t } from '@/lib/translations';
-import { walletMetrics, macroMetrics, housingMetrics, timelineEvents, PRESIDENCY_START_LABEL, regionalGasPrices } from '@/lib/data';
+import { walletMetrics, macroMetrics, housingMetrics, timelineEvents, PRESIDENCY_START_LABEL, regionalGasPrices, LAST_UPDATED_LABEL } from '@/lib/data';
 import Image from 'next/image';
 import MetricCard from '@/components/MetricCard';
 import CausalChain from '@/components/CausalChain';
@@ -111,7 +111,7 @@ export default function Dashboard() {
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">{t(locale, 'siteDescription')}</h2>
-            <p className="text-[#666666] text-sm">{t(locale, 'asOf')} 2026.03.10 · {t(locale, 'presidencyStart')}: {PRESIDENCY_START_LABEL}</p>
+            <p className="text-[#666666] text-sm">{t(locale, 'asOf')} {LAST_UPDATED_LABEL} · {t(locale, 'presidencyStart')}: {PRESIDENCY_START_LABEL}</p>
           </div>
           <LiveExchangeRate locale={locale} />
         </div>

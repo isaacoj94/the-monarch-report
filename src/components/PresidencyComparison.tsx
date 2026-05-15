@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Locale, t } from '@/lib/translations';
-import { presidents, presidencySnapshots, currentSnapshot, President } from '@/lib/data';
+import { presidents, presidencySnapshots, currentSnapshot, President, LAST_UPDATED_LABEL } from '@/lib/data';
 
 interface PresidencyComparisonProps {
   locale: Locale;
@@ -134,7 +134,7 @@ export default function PresidencyComparison({ locale }: PresidencyComparisonPro
                 <div className="flex flex-col items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-white" />
                   <span className="text-white text-[10px] font-bold">{t(locale, 'today')}</span>
-                  <span className="text-[#555] text-[9px]">2026.03</span>
+                  <span className="text-[#555] text-[9px]">{LAST_UPDATED_LABEL}</span>
                 </div>
               </th>
             </tr>

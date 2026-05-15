@@ -171,6 +171,10 @@ export async function GET() {
     // Update cache with fresh data
     if (recentTweets.length > 0 || articles.length > 0) {
       cache = { tweets: recentTweets, articles, updatedAt: Date.now() };
+    } else if (cache) {
+      // Apify returned empty but no error (e.g. dataset purged or in-progress).
+      // Serve last-good cached data so the homepage doesn't go blank.
+      return NextResponse.json({ tweets: cache.tweets, articles: cache.articles, cached: true });
     }
 
     // Trigger background refreshes if stale

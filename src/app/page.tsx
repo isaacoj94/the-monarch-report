@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig, newsletter, xHandle, instagramHandle } from '@/lib/content';
-import { walletMetrics, macroMetrics } from '@/lib/data';
+import { walletMetrics, macroMetrics, currentSnapshot } from '@/lib/data';
 import {
   politicalPrisoners,
   unLawViolations,
@@ -14,6 +14,7 @@ import {
   statusLabels,
   koreaTimeline,
   koreaTimelineCategories,
+  KOREA_TIMELINE_RANGE_LABEL,
 } from '@/lib/editorial';
 import { articles as storedArticles, articleSlug, articleCategory, articleLang } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -156,8 +157,19 @@ const homeArticles = storedArticles.filter(a => articleLang(a) === 'en').slice(0
 // === MAIN PAGE ===
 
 export default function Home() {
-  const [liveRate, setLiveRate] = useState<number | null>(null);
-  const [kospi, setKospi] = useState<KospiData | null>(null);
+  // Seed with the latest static snapshot so SSR + no-JS render real numbers, not "---".
+  // The useEffect below replaces these with live values from the API routes.
+  const [liveRate, setLiveRate] = useState<number | null>(currentSnapshot.usdKrw ?? null);
+  const [kospi, setKospi] = useState<KospiData | null>(
+    currentSnapshot.kospi
+      ? {
+          current: currentSnapshot.kospi,
+          previousClose: currentSnapshot.kospi,
+          change: 0,
+          changePercent: 0,
+        }
+      : null
+  );
   const [email, setEmail] = useState('');
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [emailLoading, setEmailLoading] = useState(false);
@@ -176,14 +188,22 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    fetch('/api/exchange-rate').then(r => r.json()).then((d: ExchangeData) => setLiveRate(d.rate)).catch(() => {});
-    fetch('/api/kospi').then(r => r.json()).then((d: KospiData) => setKospi(d)).catch(() => {});
+    fetch('/api/exchange-rate')
+      .then(r => r.json())
+      .then((d: ExchangeData) => { if (typeof d.rate === 'number') setLiveRate(d.rate); })
+      .catch(err => console.error('[ticker] /api/exchange-rate failed:', err));
+
+    fetch('/api/kospi')
+      .then(r => r.json())
+      .then((d: KospiData) => { if (typeof d.current === 'number') setKospi(d); })
+      .catch(err => console.error('[ticker] /api/kospi failed:', err));
+
     fetch('/api/tweets')
       .then(r => r.json())
       .then((data: { tweets: TweetData[] }) => {
         setTweets(data.tweets || []);
       })
-      .catch(() => {})
+      .catch(err => console.error('[ticker] /api/tweets failed:', err))
       .finally(() => setTweetsLoading(false));
   }, []);
 
@@ -445,7 +465,7 @@ export default function Home() {
               <span className="text-[9px] font-mono text-tm-muted">
                 {timelineFilter
                   ? `${koreaTimeline.filter(e => e.category === timelineFilter).length} of ${koreaTimeline.length} events`
-                  : `${koreaTimeline.length} events · Jan 2024 – Mar 2026`
+                  : `${koreaTimeline.length} events · ${KOREA_TIMELINE_RANGE_LABEL}`
                 }
               </span>
             </div>
