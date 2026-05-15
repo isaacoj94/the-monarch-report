@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { buildUtm, type UtmParams } from '@/lib/shortlinks';
 import { trackEvent } from '@/lib/utm-client';
+import { siteConfig } from '@/lib/content';
 
 export type HubCta = {
   label: string;
@@ -27,6 +28,14 @@ type Props = {
 
 const isDocSupport = (url: string): boolean =>
   /theprincipleproject\.com\/projects\/youre-next/i.test(url);
+
+const SOCIALS: { key: 'x' | 'ig' | 'yt' | 'tt' | 'fb'; label: string; url: string }[] = [
+  { key: 'x',  label: '𝕏',         url: siteConfig.x         },
+  { key: 'ig', label: 'Instagram', url: siteConfig.instagram },
+  { key: 'yt', label: 'YouTube',   url: siteConfig.youtube   },
+  { key: 'tt', label: 'TikTok',    url: siteConfig.tiktok    },
+  { key: 'fb', label: 'Facebook',  url: siteConfig.facebook  },
+];
 
 export function HubPage({ platform, ctas }: Props) {
   const sourceFor = (key: HubPlatform['key']): string =>
@@ -95,6 +104,37 @@ export function HubPage({ platform, ctas }: Props) {
         <div className="space-y-3">
           {ctas.map((cta, idx) => renderCta(cta, idx))}
         </div>
+        {platform.key !== 'policy' && (
+          <div className="mt-10 pt-6 border-t border-tm-border-subtle">
+            <p className="text-center text-[10px] font-mono uppercase tracking-widest text-tm-muted mb-3">Also follow us on</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {SOCIALS.filter(s => s.key !== platform.key).map(s => {
+                const utm: UtmParams = {
+                  source: sourceFor(platform.key),
+                  medium: 'bio',
+                  campaign: 'follow-2026',
+                  content: `bio-${platform.key}-follow-${s.key}`,
+                };
+                const href = buildUtm(s.url, utm);
+                const onClick = () => trackEvent('hub_cta_click', {
+                  link_url: href,
+                  source_page: `hub-${platform.key}`,
+                  cta_id: `follow-${s.key}`,
+                  utm_source: utm.source,
+                  utm_medium: utm.medium,
+                  utm_campaign: utm.campaign,
+                  utm_content: utm.content,
+                });
+                return (
+                  <a key={s.key} href={href} target="_blank" rel="noopener noreferrer" onClick={onClick}
+                     className="text-xs font-mono text-tm-secondary hover:text-tm-heading transition-colors px-3 py-1.5 border border-tm-border rounded hover:border-tm-border-active">
+                    {s.label}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
         <p className="text-center text-[10px] font-mono text-tm-dim mt-10">
           Defending Democracy, Faith &amp; Freedom · monarchreport.org
         </p>

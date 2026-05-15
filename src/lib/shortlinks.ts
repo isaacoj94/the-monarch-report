@@ -38,8 +38,8 @@ export type Shortlink = {
 // DM use: prefix with `dm/` in the URL — same destination, utm_medium=dm.
 export const SHORTLINKS: Record<string, Shortlink> = {
   newsletter: { base: '/#newsletter',                                                campaign: 'newsletter-2026',          medium: 'story' },
-  doc:        { base: 'https://www.theprincipleproject.com/projects/youre-next',     campaign: 'youre-next-doc-2026',      medium: 'story' },
-  trailer:    { base: '/#trailer',                                                   campaign: 'youre-next-doc-2026',      medium: 'story' },
+  doc:        { base: '/documentary',                                                campaign: 'youre-next-doc-2026',      medium: 'story' },
+  trailer:    { base: '/documentary',                                                campaign: 'youre-next-doc-2026',      medium: 'story' },
   faith:      { base: '/#faith',                                                     campaign: 'faith-under-fire-2026',    medium: 'story' },
   japan:      { base: '/#japan',                                                     campaign: 'japan-watch-2026',         medium: 'story' },
   democracy:  { base: '/#democracy',                                                 campaign: 'democracy-watch-2026',     medium: 'story' },
