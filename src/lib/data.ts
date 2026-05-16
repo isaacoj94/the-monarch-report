@@ -143,7 +143,7 @@ export const presidencySnapshots: PresidencySnapshot[] = [
 
 // Bumped automatically by scripts/update-data.ts on every successful run.
 // Displayed in the dashboard "as of" labels and used as the chart history end date.
-export const LAST_UPDATED = '2026-05-15';
+export const LAST_UPDATED = '2026-05-16';
 // "YYYY.MM" form for inline date labels
 export const LAST_UPDATED_LABEL = LAST_UPDATED.slice(0, 7).replace('-', '.');
 // "Month YYYY" form for prose-style range labels (e.g. "Jan 2024 – May 2026")
@@ -152,14 +152,14 @@ export const LAST_UPDATED_PROSE = (() => {
   return d.toLocaleString('en-US', { month: 'short', year: 'numeric' });
 })();
 
-// Current values (updated 2026-05-15)
+// Current values (updated 2026-05-16)
 export const currentSnapshot: Record<string, number> = {
   gasPrice: 2011, ricePrice: 33000, eggsPrice: 7000, porkBellyPrice: 2637,
   electricityBill: 50000, seoulRent: 950000, sojuPrice: 2200, coffeePrice: 5800,
   chickenPrice: 25500, subwayFare: 1400, ramenPrice: 1200,
   seoulAptPrice: 1570000, jeonseDeposit: 67000, housingIncomeRatio: 13.9,
   usdKrw: 1499.62, householdDebt: 105.8, nationalDebt: 51.6,
-  inflation: 2.0, youthUnemployment: 7.3, interestRate: 2.50,
+  inflation: 2.0, youthUnemployment: 6.81, interestRate: 2.50,
   kospi: 7493.18,
 };
 
@@ -276,8 +276,8 @@ export const macroMetrics: Record<string, Metric> = {
     presidencyStartValue: 2.8, history: generateMonthlyData(PRESIDENCY_START, 2.8, 2.0, 0.1),
   },
   youthUnemployment: {
-    id: 'youthUnemployment', currentValue: 7.3, unit: '%', trend: 'falling', changePercent: -5.2,
-    presidencyStartValue: 7.7, history: generateMonthlyData(PRESIDENCY_START, 7.7, 7.3, 0.08),
+    id: 'youthUnemployment', currentValue: 6.81, unit: '%', trend: 'falling', changePercent: -11.6,
+    presidencyStartValue: 7.7, history: generateMonthlyData(PRESIDENCY_START, 7.7, 6.81, 0.08),
   },
   interestRate: {
     id: 'interestRate', currentValue: 2.50, unit: '%', trend: 'falling', changePercent: -16.7,
