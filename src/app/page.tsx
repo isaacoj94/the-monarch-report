@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { siteConfig, newsletter, xHandle, instagramHandle } from '@/lib/content';
+import { siteConfig, newsletter } from '@/lib/content';
 import { walletMetrics, macroMetrics, currentSnapshot } from '@/lib/data';
 import {
   politicalPrisoners,
@@ -24,51 +24,11 @@ import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
 
 interface ExchangeData { rate: number }
 
-interface TweetData {
-  id: string;
-  url: string;
-  text: string;
-  createdAt: string;
-  likeCount: number;
-  retweetCount: number;
-  replyCount: number;
-  viewCount: number;
-  bookmarkCount: number;
-  media: string[];
-  isArticle: boolean;
-  articleId: string | null;
-  articleUrl: string | null;
-  authorName: string;
-  authorHandle: string;
-  authorAvatar: string;
-  authorVerified: boolean;
-  links: { display: string; url: string }[];
-}
-
 interface KospiData {
   current: number;
   previousClose: number;
   change: number;
   changePercent: number;
-}
-
-// === HELPERS ===
-
-function timeAgo(dateStr: string): string {
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const mins = Math.floor(diff / 60000);
-  if (mins < 60) return `${mins}m`;
-  const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs}h`;
-  const days = Math.floor(hrs / 24);
-  if (days < 30) return `${days}d`;
-  return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
-
-function formatCount(n: number): string {
-  if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
-  if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
-  return n.toString();
 }
 
 // === COMPONENTS ===
@@ -82,65 +42,6 @@ function SectionHeader({ color, title, subtitle }: { color: string; title: strin
         <p className="text-tm-muted text-sm">{subtitle}</p>
       </div>
     </div>
-  );
-}
-
-function HeroTweetCard({ tweet }: { tweet: TweetData }) {
-  const displayText = tweet.text.replace(/https?:\/\/t\.co\/\w+/g, '').trim();
-  const shownText = displayText.length > 400 ? displayText.slice(0, 400) + '...' : displayText;
-  const hasImage = tweet.media.length > 0;
-
-  return (
-    <a href={tweet.url} target="_blank" rel="noopener noreferrer" className="block group">
-      <div className="bg-tm-card border border-tm-border rounded-lg overflow-hidden hover:border-tm-border-hover transition-colors">
-        {hasImage && (
-          <img src={tweet.media[0]} alt="" className="w-full h-56 object-cover border-b border-tm-border" />
-        )}
-        <div className="p-4">
-          <div className="flex items-center gap-2 mb-2">
-            {tweet.authorAvatar && <img src={tweet.authorAvatar} alt="" className="w-5 h-5 rounded-full" />}
-            <span className="text-xs font-mono text-tm-heading font-bold">@{tweet.authorHandle}</span>
-            <span className="text-tm-dim text-[10px] font-mono ml-auto">{timeAgo(tweet.createdAt)}</span>
-          </div>
-          <p className="text-tm-body text-sm leading-relaxed whitespace-pre-line mb-3">{shownText}</p>
-          <div className="flex items-center gap-4 text-tm-faint text-[11px] font-mono">
-            <span>♥ {formatCount(tweet.likeCount)}</span>
-            <span>⟳ {formatCount(tweet.retweetCount)}</span>
-            <span>↩ {formatCount(tweet.replyCount)}</span>
-            <span className="ml-auto">👁 {formatCount(tweet.viewCount)}</span>
-          </div>
-        </div>
-      </div>
-    </a>
-  );
-}
-
-function TweetCard({ tweet }: { tweet: TweetData }) {
-  const displayText = tweet.text.replace(/https?:\/\/t\.co\/\w+/g, '').trim();
-  const hasImage = tweet.media.length > 0;
-  const shownText = displayText.length > (hasImage ? 160 : 220) ? displayText.slice(0, hasImage ? 160 : 220) + '...' : displayText;
-
-  return (
-    <a href={tweet.url} target="_blank" rel="noopener noreferrer" className="block group">
-      <div className="bg-tm-card border border-tm-border rounded-lg p-3 hover:border-tm-border-hover transition-colors h-full">
-        <div className="flex items-center gap-2 mb-1.5">
-          {tweet.authorAvatar && <img src={tweet.authorAvatar} alt="" className="w-4 h-4 rounded-full" />}
-          <span className="text-xs font-mono text-tm-heading font-bold">@{tweet.authorHandle}</span>
-          <span className="text-tm-dim text-[10px] font-mono ml-auto">{timeAgo(tweet.createdAt)}</span>
-        </div>
-        <div className={hasImage ? 'flex gap-3' : ''}>
-          <p className={`text-tm-body text-sm leading-relaxed whitespace-pre-line mb-2 ${hasImage ? 'flex-1' : ''}`}>{shownText}</p>
-          {hasImage && (
-            <img src={tweet.media[0]} alt="" className="w-20 h-20 rounded-md object-cover border border-tm-border flex-shrink-0" />
-          )}
-        </div>
-        <div className="flex items-center gap-3 text-tm-faint text-[10px] font-mono">
-          <span>♥ {formatCount(tweet.likeCount)}</span>
-          <span>⟳ {formatCount(tweet.retweetCount)}</span>
-          <span className="ml-auto">👁 {formatCount(tweet.viewCount)}</span>
-        </div>
-      </div>
-    </a>
   );
 }
 
@@ -175,8 +76,6 @@ export default function Home() {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [emailLoading, setEmailLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
-  const [tweets, setTweets] = useState<TweetData[]>([]);
-  const [tweetsLoading, setTweetsLoading] = useState(true);
   const [timelineFilter, setTimelineFilter] = useState<string | null>(null);
   const [timelineProgress, setTimelineProgress] = useState(0);
   const [utms, setUtms] = useState<UtmPayload>({});
@@ -204,13 +103,6 @@ export default function Home() {
       .then((d: KospiData) => { if (typeof d.current === 'number') setKospi(d); })
       .catch(err => console.error('[ticker] /api/kospi failed:', err));
 
-    fetch('/api/tweets')
-      .then(r => r.json())
-      .then((data: { tweets: TweetData[] }) => {
-        setTweets(data.tweets || []);
-      })
-      .catch(err => console.error('[ticker] /api/tweets failed:', err))
-      .finally(() => setTweetsLoading(false));
   }, []);
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
@@ -833,27 +725,19 @@ export default function Home() {
       </section>
 
       {/* ============================================ */}
-      {/* === LATEST FROM X + ARTICLES =============== */}
+      {/* === FEATURED ARTICLES ====================== */}
       {/* ============================================ */}
       <section id="latest" className="max-w-7xl mx-auto px-4 py-12">
         <div className="flex items-center justify-between mb-6">
-          <SectionHeader color="#b8860b" title="Latest from The Monarch Report" subtitle={`@${xHandle} on 𝕏`} />
-          <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-tm-secondary hover:text-tm-heading transition-colors">
-            View all →
-          </a>
+          <SectionHeader color="#b8860b" title="Featured Articles" subtitle="Long-form reporting from The Monarch Report" />
+          <Link href="/articles" className="text-xs font-mono text-tm-secondary hover:text-tm-heading transition-colors">
+            All articles →
+          </Link>
         </div>
 
-        {/* Featured Articles — static from stored data */}
         {homeArticles.length > 0 && (
-          <div className="mb-10">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xs font-mono text-tm-secondary uppercase tracking-wider">Featured Articles</h3>
-              <Link href="/articles" className="text-xs font-mono text-tm-gold hover:text-tm-gold-hover transition-colors">
-                All Articles →
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {homeArticles.map(a => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {homeArticles.map(a => {
                 const cat = articleCategory(a);
                 const catInfo = articleCategoryColors[cat] || articleCategoryColors.korea;
                 const dateStr = new Date(a.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -884,46 +768,6 @@ export default function Home() {
                   </Link>
                 );
               })}
-            </div>
-          </div>
-        )}
-
-        {/* Tweets: hero + grid */}
-        {tweetsLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {[1, 2, 3, 4, 5, 6].map(i => (
-              <div key={i} className="bg-tm-card border border-tm-border rounded-lg p-3 animate-pulse">
-                <div className="h-3 bg-tm-border rounded w-1/3 mb-2" />
-                <div className="h-2.5 bg-tm-border-subtle rounded w-full mb-1.5" />
-                <div className="h-2.5 bg-tm-border-subtle rounded w-4/5 mb-1.5" />
-                <div className="h-2.5 bg-tm-border-subtle rounded w-2/3" />
-              </div>
-            ))}
-          </div>
-        ) : tweets.length > 0 ? (
-          <>
-            {/* Hero tweet — first post with full image */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
-              <div className="lg:col-span-2">
-                <HeroTweetCard tweet={tweets[0]} />
-              </div>
-              <div className="space-y-3">
-                {tweets.slice(1, 3).map(tweet => (
-                  <TweetCard key={tweet.id} tweet={tweet} />
-                ))}
-              </div>
-            </div>
-            {/* Remaining tweets */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-              {tweets.slice(3, 9).map(tweet => (
-                <TweetCard key={tweet.id} tweet={tweet} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <div className="bg-tm-card border border-tm-border rounded-lg p-6 text-center">
-            <p className="text-tm-faint font-mono text-sm">Loading posts...</p>
-            <a href={siteConfig.x} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-xs font-mono text-tm-gold">View on 𝕏 →</a>
           </div>
         )}
       </section>
