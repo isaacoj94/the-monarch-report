@@ -5,6 +5,12 @@ import { NextResponse } from 'next/server';
 // 2. monarch-articles (Lj52A7qeMvb3gQEbZ) — 500 tweets, deep, catches all X articles
 //
 // IMPORTANT: Must use task IDs, not names — Apify returns 404 for name-based URLs.
+//
+// This route is READ-ONLY against `runs/last/dataset/items` (free). Triggering
+// task runs from here previously burned through the $300/mo Apify cap because
+// the in-memory `lastTriggered` dedupe reset on every Vercel cold start, so
+// each new lambda instance fired both tasks on its first request. Schedule the
+// actual task runs from Apify's built-in scheduler instead.
 
 const APIFY_TOKEN = process.env.APIFY_API_TOKEN;
 const TASK_RECENT = '7BwvW5gtNg1gkNleK';
@@ -118,14 +124,6 @@ async function readTaskDataset(taskId: string, limit: number): Promise<ApifyTwee
   return res.json();
 }
 
-// Fire-and-forget: trigger a task run
-function triggerTask(taskId: string) {
-  fetch(
-    `https://api.apify.com/v2/actor-tasks/${taskId}/runs?token=${APIFY_TOKEN}`,
-    { method: 'POST' }
-  ).catch(() => {});
-}
-
 // In-memory cache: always return last good data even if Apify is slow/down
 interface CachedData {
   tweets: TweetData[];
@@ -133,11 +131,6 @@ interface CachedData {
   updatedAt: number;
 }
 let cache: CachedData | null = null;
-
-// Track refresh times per task
-const lastTriggered: Record<string, number> = {};
-const RECENT_INTERVAL = 30 * 60 * 1000;  // 30 min
-const ARTICLES_INTERVAL = 6 * 60 * 60 * 1000; // 6 hours
 
 export async function GET() {
   if (!APIFY_TOKEN) {
@@ -175,17 +168,6 @@ export async function GET() {
       // Apify returned empty but no error (e.g. dataset purged or in-progress).
       // Serve last-good cached data so the homepage doesn't go blank.
       return NextResponse.json({ tweets: cache.tweets, articles: cache.articles, cached: true });
-    }
-
-    // Trigger background refreshes if stale
-    const now = Date.now();
-    if (now - (lastTriggered[TASK_RECENT] || 0) > RECENT_INTERVAL) {
-      lastTriggered[TASK_RECENT] = now;
-      triggerTask(TASK_RECENT);
-    }
-    if (now - (lastTriggered[TASK_ARTICLES] || 0) > ARTICLES_INTERVAL) {
-      lastTriggered[TASK_ARTICLES] = now;
-      triggerTask(TASK_ARTICLES);
     }
 
     return NextResponse.json({ tweets: recentTweets, articles });
