@@ -143,7 +143,7 @@ export const presidencySnapshots: PresidencySnapshot[] = [
 
 // Bumped automatically by scripts/update-data.ts on every successful run.
 // Displayed in the dashboard "as of" labels and used as the chart history end date.
-export const LAST_UPDATED = '2026-05-31';
+export const LAST_UPDATED = '2026-06-01';
 // "YYYY.MM" form for inline date labels
 export const LAST_UPDATED_LABEL = LAST_UPDATED.slice(0, 7).replace('-', '.');
 // "Month YYYY" form for prose-style range labels (e.g. "Jan 2024 – May 2026")
@@ -152,7 +152,7 @@ export const LAST_UPDATED_PROSE = (() => {
   return d.toLocaleString('en-US', { month: 'short', year: 'numeric' });
 })();
 
-// Current values (updated 2026-05-31)
+// Current values (updated 2026-06-01)
 export const currentSnapshot: Record<string, number> = {
   gasPrice: 2011, ricePrice: 33000, eggsPrice: 7000, porkBellyPrice: 2637,
   electricityBill: 50000, seoulRent: 950000, sojuPrice: 2200, coffeePrice: 5800,
@@ -160,7 +160,7 @@ export const currentSnapshot: Record<string, number> = {
   seoulAptPrice: 1570000, jeonseDeposit: 67000, housingIncomeRatio: 13.9,
   usdKrw: 1506.27, householdDebt: 105.8, nationalDebt: 51.6,
   inflation: 2.0, youthUnemployment: 6.81, interestRate: 2.50,
-  kospi: 8476.15,
+  kospi: 8788.38,
 };
 
 // === HELPER ===
