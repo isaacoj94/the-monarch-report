@@ -143,7 +143,7 @@ export const presidencySnapshots: PresidencySnapshot[] = [
 
 // Bumped automatically by scripts/update-data.ts on every successful run.
 // Displayed in the dashboard "as of" labels and used as the chart history end date.
-export const LAST_UPDATED = '2026-06-07';
+export const LAST_UPDATED = '2026-06-10';
 // "YYYY.MM" form for inline date labels
 export const LAST_UPDATED_LABEL = LAST_UPDATED.slice(0, 7).replace('-', '.');
 // "Month YYYY" form for prose-style range labels (e.g. "Jan 2024 – May 2026")
@@ -152,15 +152,15 @@ export const LAST_UPDATED_PROSE = (() => {
   return d.toLocaleString('en-US', { month: 'short', year: 'numeric' });
 })();
 
-// Current values (updated 2026-06-07)
+// Current values (updated 2026-06-10)
 export const currentSnapshot: Record<string, number> = {
   gasPrice: 2010, ricePrice: 33000, eggsPrice: 7000, porkBellyPrice: 2637,
   electricityBill: 50000, seoulRent: 950000, sojuPrice: 2200, coffeePrice: 5800,
   chickenPrice: 25500, subwayFare: 1400, ramenPrice: 1200,
   seoulAptPrice: 1570000, jeonseDeposit: 67000, housingIncomeRatio: 13.9,
-  usdKrw: 1540.93, householdDebt: 105.8, nationalDebt: 51.6,
+  usdKrw: 1525.48, householdDebt: 105.8, nationalDebt: 51.6,
   inflation: 2.0, youthUnemployment: 6.81, interestRate: 2.50,
-  kospi: 8160.59,
+  kospi: 7730.82,
 };
 
 // === HELPER ===
@@ -260,8 +260,8 @@ export const housingMetrics: Record<string, Metric> = {
 
 export const macroMetrics: Record<string, Metric> = {
   usdKrw: {
-    id: 'usdKrw', currentValue: 1540.93, unit: '₩', trend: 'rising', changePercent: 9.7,
-    presidencyStartValue: 1405, history: generateMonthlyData(PRESIDENCY_START, 1405, 1540.93, 0.03),
+    id: 'usdKrw', currentValue: 1525.48, unit: '₩', trend: 'rising', changePercent: 8.6,
+    presidencyStartValue: 1405, history: generateMonthlyData(PRESIDENCY_START, 1405, 1525.48, 0.03),
   },
   householdDebt: {
     id: 'householdDebt', currentValue: 105.8, unit: '%', trend: 'rising', changePercent: 2.2,
