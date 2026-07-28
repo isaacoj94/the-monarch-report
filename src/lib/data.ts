@@ -143,7 +143,7 @@ export const presidencySnapshots: PresidencySnapshot[] = [
 
 // Bumped automatically by scripts/update-data.ts on every successful run.
 // Displayed in the dashboard "as of" labels and used as the chart history end date.
-export const LAST_UPDATED = '2026-07-25';
+export const LAST_UPDATED = '2026-07-28';
 // "YYYY.MM" form for inline date labels
 export const LAST_UPDATED_LABEL = LAST_UPDATED.slice(0, 7).replace('-', '.');
 // "Month YYYY" form for prose-style range labels (e.g. "Jan 2024 – May 2026")
@@ -152,15 +152,15 @@ export const LAST_UPDATED_PROSE = (() => {
   return d.toLocaleString('en-US', { month: 'short', year: 'numeric' });
 })();
 
-// Current values (updated 2026-07-25)
+// Current values (updated 2026-07-28)
 export const currentSnapshot: Record<string, number> = {
-  gasPrice: 1871, ricePrice: 33000, eggsPrice: 7000, porkBellyPrice: 2637,
+  gasPrice: 1869, ricePrice: 33000, eggsPrice: 7000, porkBellyPrice: 2637,
   electricityBill: 50000, seoulRent: 950000, sojuPrice: 2200, coffeePrice: 5800,
   chickenPrice: 25500, subwayFare: 1400, ramenPrice: 1200,
   seoulAptPrice: 1570000, jeonseDeposit: 67000, housingIncomeRatio: 13.9,
-  usdKrw: 1461, householdDebt: 105.8, nationalDebt: 51.6,
+  usdKrw: 1470.11, householdDebt: 105.8, nationalDebt: 51.6,
   inflation: 2.0, youthUnemployment: 7.11, interestRate: 2.50,
-  kospi: 6690.62,
+  kospi: 6023.66,
 };
 
 // === HELPER ===
@@ -193,8 +193,8 @@ function generateMonthlyData(
 
 export const walletMetrics: Record<string, Metric> = {
   gasPrice: {
-    id: 'gasPrice', currentValue: 1871, unit: '₩', trend: 'rising', changePercent: 7.8,
-    presidencyStartValue: 1735, history: generateMonthlyData(PRESIDENCY_START, 1735, 1871, 0.04),
+    id: 'gasPrice', currentValue: 1869, unit: '₩', trend: 'rising', changePercent: 7.7,
+    presidencyStartValue: 1735, history: generateMonthlyData(PRESIDENCY_START, 1735, 1869, 0.04),
   },
   ricePrice: {
     id: 'ricePrice', currentValue: 33000, unit: '₩', trend: 'rising', changePercent: 6.8,
@@ -260,8 +260,8 @@ export const housingMetrics: Record<string, Metric> = {
 
 export const macroMetrics: Record<string, Metric> = {
   usdKrw: {
-    id: 'usdKrw', currentValue: 1461, unit: '₩', trend: 'rising', changePercent: 4,
-    presidencyStartValue: 1405, history: generateMonthlyData(PRESIDENCY_START, 1405, 1461, 0.03),
+    id: 'usdKrw', currentValue: 1470.11, unit: '₩', trend: 'rising', changePercent: 4.6,
+    presidencyStartValue: 1405, history: generateMonthlyData(PRESIDENCY_START, 1405, 1470.11, 0.03),
   },
   householdDebt: {
     id: 'householdDebt', currentValue: 105.8, unit: '%', trend: 'rising', changePercent: 2.2,
