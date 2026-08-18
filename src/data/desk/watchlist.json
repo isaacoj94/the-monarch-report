@@ -1,0 +1,39 @@
+{
+  "ownHandle": "monarchreport25",
+  "beats": [
+    {
+      "id": "korea-politics",
+      "title": "Korean politics and institutions",
+      "query": "New posts only about South Korean politics, the presidency, National Assembly, prosecutors, martial law aftermath, or major court cases. Skip opinion dunks and quote-tweet pile-ons. Prefer original reporting or official statements.",
+      "handles": [
+        "KoreaHerald",
+        "koreatimescokr",
+        "YonhapNews",
+        "NKNEWS_Official",
+        "DailyNK",
+        "38North"
+      ]
+    },
+    {
+      "id": "religious-freedom",
+      "title": "Religious freedom across Asia",
+      "query": "New posts only about religious freedom, church raids, Family Federation / Unification Church cases in Korea or Japan, detained clergy, or official religious-liberty statements. Skip fundraising and generic sermons.",
+      "handles": [
+        "BitterWinter",
+        "USCIRF",
+        "ADFIntl",
+        "monarchreport25"
+      ]
+    },
+    {
+      "id": "corporate-econ",
+      "title": "Corporate and economic consequences",
+      "query": "New posts only about Korea/Japan corporate, FX, supply-chain, sanctions, or investment fallout from political or religious-freedom events. Skip market memes.",
+      "handles": [
+        "KoreaHerald",
+        "koreatimescokr",
+        "YonhapNews"
+      ]
+    }
+  ]
+}

@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "update-data": "tsx scripts/update-data.ts"
+    "update-data": "tsx scripts/update-data.ts",
+    "collect-x": "tsx scripts/collect-x.ts",
+    "collect-x:dry": "tsx scripts/collect-x.ts --dry-run",
+    "desk-selfcheck": "tsx scripts/desk-selfcheck.ts"
   },
   "dependencies": {
     "date-fns": "^4.1.0",

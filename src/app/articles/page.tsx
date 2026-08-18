@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { articles, articleSlug, articleCategory, articleLang } from '@/lib/articles';
+import { articles, articleSlug, articleCategory, articleLang, articleDate, articleIsFresh, articleLangLabel } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
 
 export const metadata = {
@@ -31,6 +31,7 @@ export default function ArticlesPage() {
           </Link>
           <div className="flex items-center gap-3 text-xs font-mono">
             <Link href="/" className="text-tm-secondary hover:text-tm-heading transition-colors">Home</Link>
+            <Link href="/now" className="text-tm-secondary hover:text-tm-heading transition-colors">Now</Link>
             <Link href="/dashboard" className="text-tm-secondary hover:text-tm-heading transition-colors">Dashboard</Link>
             <ThemeToggle />
           </div>
@@ -45,7 +46,9 @@ export default function ArticlesPage() {
             <h1 className="text-3xl font-bold text-tm-heading">Articles</h1>
           </div>
           <p className="text-tm-secondary font-mono text-sm max-w-2xl">
-            In-depth investigative journalism on democracy, religious freedom, and human rights in Korea and Japan.
+            Site-native archive of Monarch X Articles. Dates are publication dates, not live social metrics.
+            Developing stories now live on the{' '}
+            <Link href="/now" className="text-tm-gold hover:text-tm-gold-hover">What&apos;s Happening Now</Link> desk after editorial review.
           </p>
         </div>
 
@@ -54,7 +57,7 @@ export default function ArticlesPage() {
           const a = enArticles[0];
           const cat = articleCategory(a);
           const catInfo = categoryColors[cat];
-          const dateStr = new Date(a.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+          const dateStr = articleDate(a).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
           return (
             <Link href={`/articles/${articleSlug(a)}`} className="block group mb-10">
               <div className="bg-tm-card border border-tm-border rounded-lg overflow-hidden hover:border-tm-border-active transition-all">
@@ -70,15 +73,15 @@ export default function ArticlesPage() {
                       {catInfo.label}
                     </span>
                     <span className="text-tm-faint text-xs font-mono">{dateStr}</span>
-                    <span className="text-[9px] font-mono text-tm-gold bg-[var(--tm-gold-bg)] px-2 py-0.5 rounded border border-[var(--tm-gold-border)]">LATEST</span>
+                    {articleIsFresh(a) && (
+                      <span className="text-[9px] font-mono text-tm-gold bg-[var(--tm-gold-bg)] px-2 py-0.5 rounded border border-[var(--tm-gold-border)]">LATEST</span>
+                    )}
                   </div>
                   <h2 className="text-2xl font-bold text-tm-heading group-hover:text-tm-gold transition-colors mb-2 leading-tight">
                     {a.title}
                   </h2>
                   <p className="text-tm-secondary text-sm font-mono leading-relaxed max-w-3xl">{a.previewText}</p>
                   <div className="flex items-center gap-4 mt-4 text-tm-faint text-xs font-mono">
-                    <span>{a.likes.toLocaleString()} likes</span>
-                    <span>{a.views.toLocaleString()} views</span>
                     <span className="ml-auto text-tm-gold group-hover:text-tm-gold-hover font-bold">Read Article →</span>
                   </div>
                 </div>
@@ -92,7 +95,7 @@ export default function ArticlesPage() {
           {enArticles.slice(1).map(a => {
             const cat = articleCategory(a);
             const catInfo = categoryColors[cat];
-            const dateStr = new Date(a.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const dateStr = articleDate(a).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
             return (
               <Link key={a.id} href={`/articles/${articleSlug(a)}`} className="block group">
@@ -118,7 +121,7 @@ export default function ArticlesPage() {
                       {a.previewText}
                     </p>
                     <div className="flex items-center justify-between text-tm-faint text-[10px] font-mono pt-2 border-t border-tm-border-subtle">
-                      <span>{a.likes.toLocaleString()} likes · {a.views.toLocaleString()} views</span>
+                      <span>Archive</span>
                       <span className="text-tm-gold font-bold">Read →</span>
                     </div>
                   </div>
@@ -135,13 +138,13 @@ export default function ArticlesPage() {
               <div className="w-1 h-6 bg-tm-muted rounded-full" />
               <div>
                 <h2 className="text-lg font-bold text-tm-heading">Translations</h2>
-                <p className="text-tm-muted text-xs font-mono">Articles available in Korean and Japanese</p>
+                <p className="text-tm-muted text-xs font-mono">Articles available in Korean, Japanese, and Chinese</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {translations.map(a => {
                 const lang = articleLang(a);
-                const dateStr = new Date(a.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                const dateStr = articleDate(a).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                 return (
                   <Link key={a.id} href={`/articles/${articleSlug(a)}`} className="block group">
                     <div className="bg-tm-card border border-tm-border rounded-lg p-4 hover:border-tm-border-active transition-all flex gap-4">
@@ -151,7 +154,7 @@ export default function ArticlesPage() {
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-[10px] font-mono text-tm-faint border border-tm-border-hover px-1.5 py-0.5 rounded">
-                            {lang === 'ko' ? '한국어' : '日本語'}
+                            {articleLangLabel(lang)}
                           </span>
                           <span className="text-tm-faint text-[10px] font-mono">{dateStr}</span>
                         </div>
