@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { articles, articleSlug, articleBySlug, articleCategory, articleLang } from '@/lib/articles';
+import { articles, articleSlug, articleBySlug, articleCategory, articleLang, articleDate, articleAuthor, articleLangLabel } from '@/lib/articles';
 import type { ArticleBlock } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -132,7 +132,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const cat = articleCategory(article);
   const catInfo = categoryColors[cat] || categoryColors.korea;
   const lang = articleLang(article);
-  const dateStr = new Date(article.createdAt).toLocaleDateString('en-US', {
+  const dateStr = articleDate(article).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -179,7 +179,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <span className="text-tm-faint text-xs font-mono">{dateStr}</span>
           {lang !== 'en' && (
             <span className="text-tm-faint text-[10px] font-mono border border-tm-border-hover px-1.5 py-0.5 rounded">
-              {lang === 'ko' ? '한국어' : '日本語'}
+              {articleLangLabel(lang)}
             </span>
           )}
         </div>
@@ -189,24 +189,21 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {article.title}
         </h1>
 
-        {/* Author + Stats */}
         <div className="flex items-center justify-between border-b border-tm-border-subtle pb-4 mb-8">
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-mono text-tm-secondary">The Monarch Report</span>
-            <span className="text-tm-ghost">·</span>
-            <a
-              href={`https://x.com/monarchreport25/status/${article.tweetId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-mono text-tm-gold hover:text-tm-gold-hover transition-colors"
-            >
-              View on 𝕏
-            </a>
+          <div className="flex flex-col gap-1">
+            <span className="text-sm font-mono text-tm-secondary">{articleAuthor(article)}</span>
+            {article.editor && (
+              <span className="text-[11px] font-mono text-tm-muted">Edited by {article.editor}</span>
+            )}
           </div>
-          <div className="flex items-center gap-3 text-tm-faint text-xs font-mono">
-            <span>{article.likes.toLocaleString()} likes</span>
-            <span>{article.views.toLocaleString()} views</span>
-          </div>
+          <a
+            href={`https://x.com/monarchreport25/status/${article.tweetId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-mono text-tm-gold hover:text-tm-gold-hover transition-colors"
+          >
+            Originally published on 𝕏
+          </a>
         </div>
 
         {/* Body */}

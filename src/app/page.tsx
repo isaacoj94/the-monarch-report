@@ -16,7 +16,7 @@ import {
   koreaTimelineCategories,
   KOREA_TIMELINE_RANGE_LABEL,
 } from '@/lib/editorial';
-import { articles as storedArticles, articleSlug, articleCategory, articleLang } from '@/lib/articles';
+import { articles as storedArticles, articleSlug, articleCategory, articleLang, articleDate } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
 import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
 
@@ -161,6 +161,7 @@ export default function Home() {
               <a href="#democracy" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Democracy</a>
               <a href="#economy" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Economy</a>
               <a href="#latest" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Latest</a>
+              <Link href="/now" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Now</Link>
               <Link href="/articles" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Articles</Link>
               <a href="/dashboard" className="px-3 py-1.5 text-tm-secondary hover:text-tm-heading transition-colors">Dashboard</a>
               <a href="#newsletter" className="px-3 py-1.5 bg-tm-gold hover:bg-tm-gold-hover text-tm-page font-bold rounded transition-colors ml-2">Subscribe</a>
@@ -740,7 +741,7 @@ export default function Home() {
             {homeArticles.map(a => {
                 const cat = articleCategory(a);
                 const catInfo = articleCategoryColors[cat] || articleCategoryColors.korea;
-                const dateStr = new Date(a.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                const dateStr = articleDate(a).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
                 return (
                   <Link key={a.id} href={`/articles/${articleSlug(a)}`} className="block group">
                     <div className="bg-tm-card border border-tm-border rounded-lg overflow-hidden hover:border-tm-border-active transition-all h-full flex flex-col">
@@ -760,7 +761,7 @@ export default function Home() {
                         </h3>
                         <p className="text-tm-secondary text-sm leading-relaxed mb-3 line-clamp-2">{a.previewText}</p>
                         <div className="flex items-center justify-between text-tm-faint text-[10px] font-mono pt-2 border-t border-tm-border-subtle">
-                          <span>{a.likes.toLocaleString()} likes · {a.views.toLocaleString()} views</span>
+                          <span>Archive</span>
                           <span className="text-tm-gold font-bold">Read →</span>
                         </div>
                       </div>

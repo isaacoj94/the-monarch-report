@@ -1,0 +1,97 @@
+[
+  {
+    "id": "monarchreport25",
+    "handle": "monarchreport25",
+    "name": "The Monarch Report",
+    "url": "https://x.com/monarchreport25",
+    "country": "US",
+    "language": "en",
+    "kind": "owned",
+    "ownership": "The Monarch Report",
+    "notes": "Canonical owned account. Store as raw source; do not auto-publish."
+  },
+  {
+    "id": "koreaherald",
+    "handle": "KoreaHerald",
+    "name": "The Korea Herald",
+    "url": "https://www.koreaherald.com",
+    "country": "KR",
+    "language": "en",
+    "kind": "mainstream",
+    "ownership": "Herald Corporation"
+  },
+  {
+    "id": "koreatimes",
+    "handle": "koreatimescokr",
+    "name": "The Korea Times",
+    "url": "https://www.koreatimes.co.kr",
+    "country": "KR",
+    "language": "en",
+    "kind": "mainstream",
+    "ownership": "Hankook Ilbo"
+  },
+  {
+    "id": "yonhap",
+    "handle": "YonhapNews",
+    "name": "Yonhap News",
+    "url": "https://en.yna.co.kr",
+    "country": "KR",
+    "language": "en",
+    "kind": "mainstream",
+    "ownership": "Yonhap News Agency (public wire)"
+  },
+  {
+    "id": "nknews",
+    "handle": "NKNEWS_Official",
+    "name": "NK News",
+    "url": "https://www.nknews.org",
+    "country": "US",
+    "language": "en",
+    "kind": "specialist"
+  },
+  {
+    "id": "dailynk",
+    "handle": "DailyNK",
+    "name": "Daily NK",
+    "url": "https://www.dailynk.com",
+    "country": "KR",
+    "language": "en",
+    "kind": "specialist"
+  },
+  {
+    "id": "38north",
+    "handle": "38North",
+    "name": "38 North",
+    "url": "https://www.38north.org",
+    "country": "US",
+    "language": "en",
+    "kind": "specialist"
+  },
+  {
+    "id": "bitterwinter",
+    "handle": "BitterWinter",
+    "name": "Bitter Winter",
+    "url": "https://bitterwinter.org",
+    "country": "IT",
+    "language": "en",
+    "kind": "specialist",
+    "notes": "Religious-liberty specialist. Advocacy-adjacent; do not treat as sole corroboration."
+  },
+  {
+    "id": "uscirf",
+    "handle": "USCIRF",
+    "name": "USCIRF",
+    "url": "https://www.uscirf.gov",
+    "country": "US",
+    "language": "en",
+    "kind": "government"
+  },
+  {
+    "id": "state-irf",
+    "handle": "State_IRF",
+    "name": "U.S. Office of International Religious Freedom",
+    "country": "US",
+    "language": "en",
+    "kind": "government"
+  }
+]
