@@ -23,6 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.monarchreport.org"),
   title: "The Monarch Report — Defending Democracy, Faith & Freedom",
   description: "Independent journalism bringing the truth about Korea and Japan to the West. Trusted by U.S. legislators and policymakers as a resource for facts.",
   icons: {
@@ -36,10 +37,19 @@ export const metadata: Metadata = {
     description: "Defending Democracy, Faith & Freedom — Independent journalism on Korea and Japan.",
     type: "website",
     siteName: "The Monarch Report",
+    images: [
+      {
+        url: "/og-monarch.png",
+        width: 1200,
+        height: 630,
+        alt: "The Monarch Report — The right to be heard.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     site: "@monarchreport25",
+    images: ["/og-monarch.png"],
   },
 };
 

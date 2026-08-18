@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Locale, t } from '@/lib/translations';
 import { walletMetrics, macroMetrics, housingMetrics, timelineEvents, PRESIDENCY_START_LABEL, regionalGasPrices, LAST_UPDATED_LABEL } from '@/lib/data';
 import Image from 'next/image';
+import Link from 'next/link';
 import MetricCard from '@/components/MetricCard';
 import CausalChain from '@/components/CausalChain';
 import CompareTable from '@/components/CompareTable';
@@ -71,15 +72,15 @@ export default function Dashboard() {
       <header className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-sm border-b border-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
               <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} className="h-7 w-auto" />
-            </a>
+            </Link>
             <span className="text-[#333] text-xs">|</span>
             <span className="text-[10px] text-[#888] font-mono uppercase tracking-wider">{t(locale, 'siteSubtitle')}</span>
           </div>
           <div className="flex items-center gap-4">
             <nav className="hidden lg:flex items-center gap-1 text-xs">
-              <a href="/" className="px-2 py-1 text-[#b8860b] hover:text-[#d4a017] transition-colors font-bold">← Home</a>
+              <Link href="/" className="px-2 py-1 text-[#b8860b] hover:text-[#d4a017] transition-colors font-bold">← Home</Link>
               <a href="#wallet" className="px-2 py-1 text-[#888] hover:text-white transition-colors">{t(locale, 'nav_wallet')}</a>
               <a href="#housing" className="px-2 py-1 text-[#888] hover:text-white transition-colors">{t(locale, 'housing')}</a>
               <a href="#gas-map" className="px-2 py-1 text-[#888] hover:text-white transition-colors">

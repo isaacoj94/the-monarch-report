@@ -1,171 +1,111 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
+import styles from './documentary.module.css';
 
 const SUPPORT_URL = 'https://www.theprincipleproject.com/projects/youre-next';
 
-const COUNTRIES = [
-  { code: 'CN', label: 'China',       blurb: 'State surveillance and persecution of underground faith communities.' },
-  { code: 'JP', label: 'Japan',       blurb: 'The dissolution order against the Family Federation and what it means for religious freedom.' },
-  { code: 'KR', label: 'South Korea', blurb: 'The erosion of democratic norms and the targeting of minority faiths.' },
-  { code: 'KP', label: 'North Korea', blurb: 'The most extreme religious persecution on earth — what we can document, and what we can\'t.' },
+const CHAPTERS = [
+  { number: '01', country: 'South Korea', title: 'Silence', logline: 'When private power meets public consequence, testimony becomes an act of resistance.' },
+  { number: '02', country: 'Japan', title: 'Dissolution', logline: 'A legal precedent that reaches far beyond one organization and one courtroom.' },
+  { number: '03', country: 'China', title: 'Surveillance', logline: 'Faith survives beneath a system built to watch, identify and erase dissent.' },
+  { number: '04', country: 'North Korea', title: 'Witness', logline: 'In the world’s most closed society, fragments of evidence carry extraordinary weight.' },
 ];
 
 export default function DocumentaryPage() {
-  const [utms, setUtms] = useState<UtmPayload>({});
+  const [chapter, setChapter] = useState(0);
+  const [trailerOpen, setTrailerOpen] = useState(false);
+  const [reconstruction, setReconstruction] = useState(false);
+  const utms = useRef<UtmPayload>({});
 
-  useEffect(() => {
-    setUtms(captureUtms());
-  }, []);
+  useEffect(() => { utms.current = captureUtms(); }, []);
 
-  const fireSupportClick = (ctaId: string) => () => {
-    trackEvent('documentary_support_click', {
-      link_url: SUPPORT_URL,
-      source_page: 'documentary',
-      cta_id: ctaId,
-      ...utms,
-    });
+  const supportClick = (ctaId: string) => () => {
+    trackEvent('documentary_support_click', { link_url: SUPPORT_URL, source_page: 'documentary', cta_id: ctaId, ...utms.current });
+  };
+
+  const openTrailer = () => {
+    setTrailerOpen(true);
+    trackEvent('documentary_trailer_play', { source_page: 'documentary', ...utms.current });
   };
 
   return (
-    <main className="min-h-screen bg-tm-page text-tm-body">
-      <header className="border-b border-tm-border-subtle">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Image src="/logos/icon-gold.png" alt="" width={32} height={32} className="w-8 h-8 opacity-80" />
-            <span className="font-serif text-sm text-tm-heading">The Monarch Report</span>
-          </Link>
-          <Link href="/#newsletter" className="text-xs font-mono text-tm-secondary hover:text-tm-heading">Subscribe →</Link>
-        </div>
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <Link href="/" className={styles.brand}>
+          <Image src="/logos/icon-gold.png" alt="" width={38} height={38} />
+          <span>MONARCH <b>FILMS</b></span>
+        </Link>
+        <nav aria-label="Film navigation"><a href="#film">The film</a><a href="#chapters">Chapters</a><a href="#production">VFX lab</a></nav>
+        <span className={styles.pictureLock}>PICTURE LOCK / 02:14</span>
       </header>
 
-      <section className="relative overflow-hidden bg-tm-section">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,var(--tm-hero-glow),transparent_70%)]" />
-        <div className="relative max-w-5xl mx-auto px-4 py-14 md:py-20 text-center">
-          <span className="text-[10px] font-mono font-bold tracking-widest text-tm-gold bg-[var(--tm-gold-bg)] px-3 py-1 rounded-full border border-[var(--tm-gold-border)] inline-block mb-6">
-            NOW RAISING FUNDS
-          </span>
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-tm-heading leading-tight mb-4">
-            You&apos;re Next: Do Nothing
-          </h1>
-          <p className="text-lg text-tm-secondary leading-relaxed max-w-2xl mx-auto mb-2">
-            A 5-part documentary series on religious persecution across China, Japan, South Korea, and North Korea.
-          </p>
-          <p className="text-sm text-tm-muted italic max-w-xl mx-auto">
-            &ldquo;The only thing necessary for the triumph of evil is for good men to do nothing.&rdquo;
-          </p>
-        </div>
-      </section>
-
-      <section className="max-w-5xl mx-auto px-4 py-12">
-        <div className="aspect-video rounded-lg overflow-hidden border border-tm-border bg-tm-card">
-          <iframe
-            src="https://www.youtube.com/embed/S2oRBd0spEo"
-            title="You're Next: Do Nothing — Official Trailer"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full"
-          />
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
-          {[
-            { label: 'Episodes', value: '5' },
-            { label: 'Countries', value: '4' },
-            { label: 'Target Release', value: 'Q2 2026' },
-            { label: 'Format', value: '22 min each' },
-          ].map(stat => (
-            <div key={stat.label} className="bg-tm-card/60 border border-tm-border rounded-md px-3 py-3 text-center">
-              <p className="text-xl font-serif font-bold text-tm-gold">{stat.value}</p>
-              <p className="text-[10px] text-tm-muted tracking-wide uppercase mt-1">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="max-w-5xl mx-auto px-4 py-12">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-1 h-6 bg-tm-gold rounded-full" />
-          <h2 className="text-2xl font-serif font-bold text-tm-heading">The Series</h2>
-        </div>
-        <div className="grid md:grid-cols-2 gap-4">
-          {COUNTRIES.map(c => (
-            <div key={c.code} className="bg-tm-card/60 border border-tm-border rounded-lg p-5">
-              <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-[10px] font-mono text-tm-gold tracking-widest">{c.code}</span>
-                <h3 className="text-lg font-serif font-bold text-tm-heading">{c.label}</h3>
-              </div>
-              <p className="text-sm text-tm-secondary leading-relaxed">{c.blurb}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-tm-border-subtle bg-tm-section">
-        <div className="max-w-3xl mx-auto px-4 py-14 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-tm-heading mb-4">Support the Documentary</h2>
-          <p className="text-base text-tm-secondary leading-relaxed max-w-xl mx-auto mb-8">
-            We&apos;re raising funds through The Principle Project to take this film into legislators&apos; offices and onto the global stage. Every dollar pushes us closer to release.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={SUPPORT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={fireSupportClick('doc-page-primary')}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-tm-gold hover:bg-tm-gold-hover text-tm-page font-bold text-base rounded-lg transition-colors"
-            >
-              Donate via Principle Project →
-            </a>
-            <Link
-              href="/#newsletter"
-              className="inline-flex items-center gap-2 px-8 py-4 border border-tm-border-hover hover:border-tm-border-active text-tm-heading text-sm rounded-lg transition-colors"
-            >
-              Get release updates by email
-            </Link>
+      <section id="film" className={`${styles.hero} ${reconstruction ? styles.reconstruction : ''}`}>
+        <div className={styles.heroArt} aria-hidden="true" />
+        <div className={styles.heroGrade} aria-hidden="true" />
+        <div className={styles.scopeBarTop} aria-hidden="true" />
+        <div className={styles.scopeBarBottom} aria-hidden="true" />
+        <div className={styles.frameData}><span>MR–YN–002 / FRAME 0184</span><span>2.39:1 · 8K MASTER · SEOUL</span></div>
+        {reconstruction && (
+          <div className={styles.vfxOverlay} aria-hidden="true">
+            <span>SUBJECT / TRACK 03</span><span>ENVIRONMENT RECONSTRUCTION</span><span>VFX VIEW · 184 NODES</span>
+          </div>
+        )}
+        <div className={styles.heroCopy}>
+          <span className={styles.eyebrow}>What happens behind closed doors reaches everyone</span>
+          <h1>You’re Next:<br /><em>Do Nothing.</em></h1>
+          <p>Power meets in private. Citizens live with the consequences. Enter a five-part investigation built from testimony, court records and cinematic reconstruction.</p>
+          <div className={styles.heroActions}>
+            <button type="button" className={styles.play} onClick={openTrailer}><span>▶</span> Watch the first 90 seconds</button>
+            <button type="button" className={styles.vfxToggle} aria-pressed={reconstruction} onClick={() => setReconstruction((value) => !value)}>{reconstruction ? 'Return to final grade' : 'Reveal the reconstruction'}</button>
           </div>
         </div>
+        <div className={styles.playback}><span>00:00</span><div><i /></div><span>02:14</span></div>
       </section>
 
-      <section className="max-w-3xl mx-auto px-4 py-14">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-1 h-6 bg-tm-gold rounded-full" />
-          <h2 className="text-2xl font-serif font-bold text-tm-heading">Why now</h2>
+      <section id="chapters" className={styles.chapters}>
+        <header><span>Series architecture</span><h2>Four countries. One warning.</h2><p>Each chapter follows a distinct system of pressure, then traces the pattern connecting them.</p></header>
+        <div className={styles.chapterTabs} role="tablist" aria-label="Documentary chapters">
+          {CHAPTERS.map((item, index) => (
+            <button key={item.number} role="tab" aria-selected={chapter === index} onClick={() => setChapter(index)}>
+              <small>{item.number} / {item.country}</small><strong>{item.title}</strong>
+            </button>
+          ))}
         </div>
-        <div className="space-y-4 text-base text-tm-secondary leading-relaxed">
-          <p>
-            Religious persecution in East Asia is intensifying — and most Western audiences don&apos;t see it. State actors target minority faiths, dissolve organizations under regulatory pretext, and detain leaders under emergency powers, while mainstream coverage stays focused elsewhere.
-          </p>
-          <p>
-            This series brings the evidence into a single film designed for legislators, policymakers, and the public. We can&apos;t change what we don&apos;t see.
-          </p>
-        </div>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href={SUPPORT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={fireSupportClick('doc-page-bottom')}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-tm-gold hover:bg-tm-gold-hover text-tm-page font-bold text-sm rounded transition-colors"
-          >
-            Donate via Principle Project →
-          </a>
-          <Link
-            href="/articles"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-tm-border-hover hover:border-tm-border-active text-tm-heading text-sm rounded transition-colors"
-          >
-            Read our reporting
-          </Link>
+        <article className={styles.chapterDetail}>
+          <div className={styles.chapterNumber}>{CHAPTERS[chapter].number}</div>
+          <div><span>{CHAPTERS[chapter].country}</span><h3>{CHAPTERS[chapter].title}</h3><p>{CHAPTERS[chapter].logline}</p></div>
+          <div className={styles.chapterMeta}><small>FORMAT</small><strong>22 MINUTES</strong><small>STATUS</small><strong>IN PRODUCTION</strong></div>
+        </article>
+      </section>
+
+      <section id="production" className={styles.production}>
+        <div className={styles.productionIntro}><span className={styles.eyebrow}>A Monarch Films production</span><h2>Journalism, scaled to cinema.</h2><p>Our reconstructions do not replace the record. They make complex timelines visible while every dramatic element remains labeled and paired with the reporting behind it.</p></div>
+        <div className={styles.productionGrid}>
+          <article><small>01 / THE RECORD</small><h3>Source-led reporting</h3><p>Court filings, public documents, interviews and original-language reporting form the base layer.</p></article>
+          <article><small>02 / THE FRAME</small><h3>High-end production</h3><p>Premium cinematography and editorial 2D sequences bring clarity without turning suffering into spectacle.</p></article>
+          <article><small>03 / THE BUILD</small><h3>AAA VFX reconstruction</h3><p>Environments and events are reconstructed only where the evidence supports what the audience sees.</p></article>
         </div>
       </section>
 
-      <footer className="border-t border-tm-border-subtle">
-        <div className="max-w-7xl mx-auto px-4 py-8 text-center text-[10px] font-mono text-tm-dim">
-          The Monarch Report · Defending Democracy, Faith &amp; Freedom · monarchreport.org
+      <section className={styles.support}>
+        <span className={styles.eyebrow}>The investigation is in production</span>
+        <h2>Help bring the record to the screen.</h2>
+        <p>Support the five-part series and help place these stories before legislators, institutions and audiences around the world.</p>
+        <div><a href={SUPPORT_URL} target="_blank" rel="noopener noreferrer" onClick={supportClick('cinema-primary')}>Support the production →</a><Link href="/articles">Read the reporting</Link></div>
+      </section>
+
+      <footer className={styles.footer}><Link href="/">The Monarch Report</Link><span>A Monarch Films Production · Seoul / New York</span><span>© 2026</span></footer>
+
+      {trailerOpen && (
+        <div className={styles.modal} role="dialog" aria-modal="true" aria-label="Official trailer">
+          <button type="button" onClick={() => setTrailerOpen(false)} aria-label="Close trailer">Close ×</button>
+          <div><iframe src="https://www.youtube.com/embed/S2oRBd0spEo?autoplay=1" title="You're Next: Do Nothing — Official Trailer" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div>
         </div>
-      </footer>
+      )}
     </main>
   );
 }

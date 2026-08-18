@@ -1,16 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('light');
-
-  useEffect(() => {
-    const stored = localStorage.getItem('tm-theme') as 'dark' | 'light' | null;
-    const initial = stored || 'light';
-    setTheme(initial);
-    document.documentElement.setAttribute('data-theme', initial);
-  }, []);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof document === 'undefined') return 'light';
+    return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  });
 
   const toggle = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
@@ -22,6 +18,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
+      suppressHydrationWarning
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
       className="w-8 h-8 flex items-center justify-center rounded-md border border-tm-border hover:border-tm-border-hover text-tm-muted hover:text-tm-heading transition-colors text-sm"
     >
