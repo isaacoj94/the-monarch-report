@@ -26,8 +26,8 @@ export default async function ScreeningPage() {
           <Image src="/logos/monarch-films-butterfly.png" alt="" width={38} height={38} priority />
           <span>MONARCH <b>FILMS</b></span>
         </Link>
-        <span className={styles.privateLabel}><i /> <LocalizedText en="PRIVATE SCREENING" ko="비공개 시사회" ja="限定試写" /></span>
-        <span className={styles.securityStatus}><LocalizedText en="SESSION / ENCRYPTED" ko="암호화 세션" ja="暗号化セッション" /></span>
+        <span className={styles.privateLabel}><i /> <LocalizedText en="PRIVATE SCREENING" ko="비공개 시사회" ja="非公開試写" /></span>
+        <span className={styles.securityStatus}><LocalizedText en="SESSION / ENCRYPTED" ko="보안 세션" ja="保護されたセッション" /></span>
       </header>
 
       {access ? (
@@ -36,7 +36,7 @@ export default async function ScreeningPage() {
         <ScreeningLogin configurationError={configurationError} />
       )}
 
-      <footer className={styles.footer}><span>© 2026 MONARCH FILMS</span><span><LocalizedText en="UNAUTHORIZED DISTRIBUTION IS PROHIBITED" ko="무단 배포를 금지합니다" ja="無断配布を禁じます" /></span><Link href="/films"><LocalizedText en="Return to the film" ko="작품 페이지로" ja="作品ページへ" /></Link></footer>
+      <footer className={styles.footer}><span>© 2026 MONARCH FILMS</span><span><LocalizedText en="UNAUTHORIZED DISTRIBUTION IS PROHIBITED" ko="무단 배포를 금합니다" ja="無断配布を禁ず" /></span><Link href="/films"><LocalizedText en="Return to the film" ko="작품으로" ja="作品へ" /></Link></footer>
     </main>
   );
 }

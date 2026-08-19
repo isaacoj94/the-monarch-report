@@ -201,7 +201,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               rel="noopener noreferrer"
               className="text-xs font-sans text-tm-gold hover:text-tm-gold-hover transition-colors"
             >
-              <LocalizedText en="View on 𝕏" ko="𝕏에서 원문 보기" ja="𝕏で原文を見る" />
+              <LocalizedText en="View on 𝕏" ko="𝕏 원문" ja="𝕏の原文" />
             </a>
           </div>
           <div className="flex items-center gap-3 text-tm-faint text-xs font-sans">
@@ -222,7 +222,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         {/* Sources */}
         {article.links.length > 0 && (
           <div className="mt-10 pt-6 border-t border-tm-border-subtle">
-            <h3 className="text-lg font-serif font-semibold text-tm-heading mb-3"><LocalizedText en="Sources and further reading" ko="출처와 더 읽을 자료" ja="出典・参考資料" /></h3>
+            <h3 className="text-lg font-serif font-semibold text-tm-heading mb-3"><LocalizedText en="Sources and further reading" ko="출처" ja="出典" /></h3>
             <ul className="space-y-1.5">
               {article.links.map((link, i) => (
                 <li key={i}>
@@ -242,8 +242,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         {/* Footer CTA */}
         <div className="mt-12 bg-tm-card border border-tm-border rounded-lg p-6 text-center">
-          <p className="text-tm-heading font-serif text-2xl font-semibold mb-2"><LocalizedText en="Stay informed." ko="맥락까지 확인하세요." ja="背景まで確かめる。" /></p>
-          <p className="text-tm-secondary text-sm font-sans mb-4"><LocalizedText en="Independent context for people, families, and organizations connected to Korea and Asia." ko="한국과 아시아에 가족·생활·사업 기반을 둔 분들을 위한 독립적인 맥락과 정보입니다." ja="韓国やアジアに家族・生活・事業とのつながりを持つ方のための、独立した背景情報です。" /></p>
+          <p className="text-tm-heading font-serif text-2xl font-semibold mb-2"><LocalizedText en="Stay informed." ko="맥락을 놓치지 마십시오." ja="文脈を逃さない。" /></p>
+          <p className="text-tm-secondary text-sm font-sans mb-4"><LocalizedText en="Independent context for people, families, and organizations connected to Korea and Asia." ko="한국과 아시아에 뿌리 둔 가계와 기업을 위한 독립 보도." ja="韓国とアジアに根を置く家計と企業のための、独立した報道。" /></p>
           <div className="flex items-center justify-center gap-3">
             <a
               href="https://x.com/monarchreport25"

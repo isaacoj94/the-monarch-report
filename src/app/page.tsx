@@ -46,8 +46,8 @@ const categoryLabels = {
 const sourceType = (source: string, locale: keyof typeof homeCopy) => {
   const labels = {
     en: { reference: 'Reference source', primary: 'Primary record', reporting: 'Published reporting' },
-    ko: { reference: '참고 자료', primary: '1차 자료', reporting: '보도 자료' },
-    ja: { reference: '参考資料', primary: '一次資料', reporting: '報道資料' },
+    ko: { reference: '참고', primary: '1차 자료', reporting: '보도' },
+    ja: { reference: '参考', primary: '一次資料', reporting: '報道' },
   }[locale];
   if (/wikipedia/i.test(source)) return labels.reference;
   if (/court|assembly|ministry|un\b/i.test(source)) return labels.primary;
@@ -65,22 +65,22 @@ const homeCopy = {
     newsletter: 'Email newsletter', newsletterTitle: 'Korea, with the missing context restored.', newsletterDek: 'A concise dispatch for readers, policymakers and organizations that need more than the headline.', thanks: 'You’re subscribed. Thank you.', subscribing: 'Subscribing…', subscribeButton: 'Subscribe free', email: 'Email address', error: 'We couldn’t complete the signup. Please try again.',
   },
   ko: {
-    edition: '서울 · 한국어 안내', now: '지금', articles: '기사', data: '데이터', films: '모나크 필름', subscribe: '무료 구독',
-    desk: '편집국 브리핑', happening: '지금 한국에서 벌어지는 일', happeningDek: '주요 현안을 선별해 사실관계와 생활·사업상의 파장을 짚습니다.', verified: '최종 확인',
-    people: '개인·가족', companies: '기업', mattersPeople: '개인과 가족에게 중요한 이유', mattersCompanies: '기업에 중요한 이유',
-    closeProgression: '진행 경과 닫기', viewProgression: '진행 경과 보기',
-    original: '취재·분석', monarchArticles: '모나크 리포트 기사', articleDek: '한국과 아시아의 변화가 개인·가족·기업에 미치는 영향을 깊이 있게 전합니다.', archive: '기사 전체보기 →', read: '기사 보기 →',
-    fromFilms: '모나크 필름', filmTitle: '헤드라인만으로는 부족한 이야기.', filmDek: '《You’re Next: Do Nothing》을 시작으로 현재와 향후 다큐멘터리 작업을 소개합니다.', enterFilms: '모나크 필름 보기',
-    newsletter: '이메일 뉴스레터', newsletterTitle: '헤드라인 너머, 한국의 맥락까지.', newsletterDek: '한국에 가족이나 사업 기반을 둔 독자를 위해 꼭 필요한 변화와 영향을 간결하게 정리합니다.', thanks: '구독 신청이 완료됐습니다.', subscribing: '등록 중…', subscribeButton: '무료 구독', email: '이메일 주소', error: '등록하지 못했습니다. 잠시 뒤 다시 시도해 주세요.',
+    edition: '서울 · 한국어판', now: '오늘', articles: '기사', data: '데이터', films: '모나크 필름스', subscribe: '무료 구독',
+    desk: '편집국', happening: '오늘의 주요 뉴스', happeningDek: '숫자와 맥락으로 정리한 한국 현안.', verified: '확인',
+    people: '가계', companies: '기업', mattersPeople: '가계에 미치는 영향', mattersCompanies: '기업에 미치는 영향',
+    closeProgression: '경과 닫기', viewProgression: '경과 보기',
+    original: '심층 취재', monarchArticles: '모나크 리포트', articleDek: '한국과 아시아의 변화가 가계와 기업에 남기는 흔적.', archive: '기사 더 보기 →', read: '기사 읽기 →',
+    fromFilms: '모나크 필름스', filmTitle: '기사 한 줄로는 담기지 않는 이야기', filmDek: '장편 다큐멘터리 《You’re Next: Do Nothing》을 시작으로, 지금 만들고 있는 작품들.', enterFilms: '모나크 필름스 입장',
+    newsletter: '뉴스레터', newsletterTitle: '헤드라인 뒤에 있는 한국', newsletterDek: '정책과 현안이 가계와 사업에 미치는 변화를 짧게 전합니다.', thanks: '구독 신청이 완료됐습니다.', subscribing: '등록 중', subscribeButton: '무료 구독', email: '이메일', error: '등록에 실패했습니다. 잠시 후 다시 시도해 주십시오.',
   },
   ja: {
-    edition: 'ソウル · 日本語案内', now: '最新', articles: '記事', data: 'データ', films: 'モナーク・フィルムズ', subscribe: '無料購読',
-    desk: '編集部ブリーフィング', happening: '韓国でいま起きていること', happeningDek: '重要な動きを選び、事実関係と暮らし・事業への影響を読み解く。', verified: '最終確認',
-    people: '個人・家族', companies: '企業', mattersPeople: '個人と家族にとって重要な理由', mattersCompanies: '企業にとって重要な理由',
+    edition: 'ソウル · 日本語版', now: '今日', articles: '記事', data: 'データ', films: 'モナーク・フィルムズ', subscribe: '無料購読',
+    desk: '編集局', happening: 'きょうの主要ニュース', happeningDek: '数字と文脈で読む、韓国のいま。', verified: '確認済み',
+    people: '家計', companies: '企業', mattersPeople: '家計への影響', mattersCompanies: '企業への影響',
     closeProgression: '経緯を閉じる', viewProgression: '経緯を見る',
-    original: '取材・分析', monarchArticles: 'モナーク・レポートの記事', articleDek: '韓国とアジアの変化が、個人、家族、企業に及ぼす影響を掘り下げる。', archive: '記事一覧へ →', read: '記事を読む →',
-    fromFilms: 'モナーク・フィルムズ', filmTitle: '見出しだけでは伝わらない物語。', filmDek: '『You’re Next: Do Nothing』を皮切りに、現在および今後のドキュメンタリー作品を紹介します。', enterFilms: 'モナーク・フィルムズへ',
-    newsletter: 'メールニュースレター', newsletterTitle: '見出しの先にある、韓国の文脈。', newsletterDek: '韓国に家族や事業基盤を持つ読者へ、押さえるべき変化と影響を簡潔に届ける。', thanks: '購読登録が完了しました。', subscribing: '登録中…', subscribeButton: '無料購読', email: 'メールアドレス', error: '登録できませんでした。時間をおいてお試しください。',
+    original: '深掘り取材', monarchArticles: 'モナーク・レポート', articleDek: '韓国とアジアの変化が、家計と企業に残す痕跡。', archive: '記事をもっと見る →', read: '記事を読む →',
+    fromFilms: 'モナーク・フィルムズ', filmTitle: '見出し一行では収まらない話', filmDek: '長編ドキュメンタリー『You’re Next: Do Nothing』を皮切りに、いま制作中の作品。', enterFilms: 'モナーク・フィルムズへ',
+    newsletter: 'ニュースレター', newsletterTitle: '見出しの向こうにある韓国', newsletterDek: '政策と懸案が家計と事業に及ぼす変化を、短く届ける。', thanks: '購読の登録が完了しました。', subscribing: '登録中', subscribeButton: '無料購読', email: 'メールアドレス', error: '登録できませんでした。しばらくしてからお試しください。',
   },
 } as const;
 

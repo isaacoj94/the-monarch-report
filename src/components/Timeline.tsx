@@ -49,10 +49,10 @@ export default function Timeline({ events, locale, activeImpact, onEventClick }:
   return (
     <div className="bg-[#111111] border border-[#222222] rounded-lg p-5">
       <h3 className="text-white font-sans text-sm font-bold mb-2">
-        {locale === 'ko' ? '주요 사건 타임라인' : locale === 'ja' ? '主要イベントタイムライン' : 'Key Events Timeline'}
+        {locale === 'ko' ? '주요 사건' : locale === 'ja' ? '主な出来事' : 'Key Events Timeline'}
       </h3>
       <p className="text-[#555] text-[10px] font-sans mb-3">
-        {locale === 'ko' ? '대통령별 필터링 가능 · 클릭하면 관련 지표 확인' : locale === 'ja' ? '大統領別フィルタリング可能 · クリックで関連指標表示' : 'Filter by president · Click to see related metrics'}
+        {locale === 'ko' ? '대통령별로 고르거나, 사건을 누르면 관련 지표가 뜹니다' : locale === 'ja' ? '大統領別に絞り、出来事を押すと関連指標が出ます' : 'Filter by president · Click to see related metrics'}
       </p>
 
       {/* President filter */}
