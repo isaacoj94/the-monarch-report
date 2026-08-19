@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'pbs.twimg.com' },
     ],
   },
+  async redirects() {
+    return [
+      { source: '/documentary', destination: '/films', permanent: true },
+      { source: '/documentary/:path*', destination: '/films/:path*', permanent: true },
+    ];
+  },
   async rewrites() {
     if (hasScreeningEnvironment) return [];
 

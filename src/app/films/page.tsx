@@ -69,13 +69,13 @@ export default function DocumentaryPage() {
 
   const openTrailer = () => {
     setTrailerOpen(true);
-    trackEvent('documentary_trailer_play', { source_page: 'documentary', ...utms.current });
+    trackEvent('documentary_trailer_play', { source_page: 'films', ...utms.current });
   };
 
   return (
     <main className={styles.page}>
       <header className={styles.header}>
-        <Link href="/documentary" className={styles.brand}>
+        <Link href="/films" className={styles.brand}>
           <Image src="/logos/monarch-films-butterfly.png" alt="" width={42} height={42} />
           <span>MONARCH <b>FILMS</b></span>
         </Link>

@@ -1,0 +1,162 @@
+- generic [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: 서울 · 한국어 안내
+        - generic [ref=e6]: USD/KRW ₩1,410.07 · KOSPI 6,442.49
+      - generic [ref=e7]:
+        - link "The Monarch Report home" [ref=e8] [cursor=pointer]:
+          - /url: /
+          - img "The Monarch Report" [ref=e9]
+        - navigation "Primary navigation" [ref=e10]:
+          - link "지금" [ref=e153] [cursor=pointer]:
+            - /url: "#now"
+          - link "기사" [ref=e154] [cursor=pointer]:
+            - /url: /articles
+          - link "데이터" [ref=e155] [cursor=pointer]:
+            - /url: /dashboard
+          - link "모나크 필름" [ref=e156] [cursor=pointer]:
+            - /url: /documentary
+        - link "무료 구독" [ref=e157] [cursor=pointer]:
+          - /url: "#newsletter"
+    - region [ref=e158]:
+      - generic [ref=e19]:
+        - generic [ref=e20]: 서울 · 시민의 자유 · 국제 독자를 위한 브리핑
+        - heading [level=1] [ref=e159]:
+          - text: 목소리를 낼
+          - emphasis [ref=e22]: 권리.
+        - paragraph [ref=e23]: 한국인들은 신앙과 공동체, 그리고 미래를 위해 말합니다. 그 목소리와 반드시 알아야 할 맥락을 세계 독자에게 전합니다.
+        - generic [ref=e24]:
+          - link "지금 무슨 일이 일어나는지 보기 →" [ref=e160] [cursor=pointer]:
+            - /url: "#now"
+          - link "모나크 필름 보기" [ref=e161] [cursor=pointer]:
+            - /url: /documentary
+      - generic [ref=e27]:
+        - generic [ref=e28]: 출처가 명시된 보도 · 1차 자료 연결
+        - generic [ref=e29]: 한국어 안내 · 서울
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - generic [ref=e33]: 편집국 브리핑
+          - heading "지금 한국에서 벌어지는 일" [level=2] [ref=e162]
+          - paragraph [ref=e35]: 주요 현안을 선별해 사실관계와 생활·사업상의 파장을 짚습니다.
+          - generic [ref=e36]: 최종 확인 · Jan 2024 – Aug 2026 · checked Aug 19
+        - group "Choose impact perspective" [ref=e37]:
+          - button "개인·가족" [pressed] [ref=e163] [cursor=pointer]
+          - button "기업" [ref=e164] [cursor=pointer]
+      - generic [ref=e40]:
+        - article [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]: 미디어
+            - time [ref=e44]: Aug 17, 2026
+          - heading "다시 고개 든 공산주의 담론…신앙·가정에 미칠 영향" [level=3] [ref=e165]
+          - paragraph [ref=e46]: 공산주의가 내세운 약속과 역사적 기록을 비교하고, 신앙·가정·재산권·언론 자유가 사회의 안전장치로 작동하는 이유를 분석했다.
+          - generic [ref=e47]:
+            - strong [ref=e48]: 개인과 가족에게 중요한 이유
+            - text: 이 사안은 한국에서 생활하거나 가족을 둔 사람들의 권리, 비용, 공공기관 이용에 직접 영향을 줄 수 있습니다.
+          - button "진행 경과 보기 →" [ref=e166] [cursor=pointer]
+          - link "보도 자료 · The Monarch Report on X ↗" [ref=e167] [cursor=pointer]:
+            - /url: https://x.com/monarchreport25/status/2089327475226775667
+        - article [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: 재판
+            - time [ref=e55]: Aug 14, 2026
+          - heading "한학자 총재 사건…변호인단 “진술 기록 불일치”" [level=3] [ref=e168]
+          - paragraph [ref=e57]: 변호인단은 사건 기록에 상충하는 진술이 있다고 주장했다. 재판이 진행 중인 만큼 변호인 측 주장과 확인된 사실을 구분했다.
+          - generic [ref=e58]:
+            - strong [ref=e59]: 개인과 가족에게 중요한 이유
+            - text: 이 사안은 한국에서 생활하거나 가족을 둔 사람들의 권리, 비용, 공공기관 이용에 직접 영향을 줄 수 있습니다.
+          - button "진행 경과 보기 →" [ref=e169] [cursor=pointer]
+          - link "보도 자료 · The Monarch Report on X ↗" [ref=e170] [cursor=pointer]:
+            - /url: https://x.com/monarchreport25/status/2088228544606519789
+        - article [ref=e63]:
+          - generic [ref=e64]:
+            - generic [ref=e65]: 종교의 자유
+            - time [ref=e66]: Aug 8, 2026
+          - heading "해외 선교 지원금 과세 논란…종교활동 경계는" [level=3] [ref=e171]
+          - paragraph [ref=e68]: 지원금의 과세 방식이 교회·선교사에게 미칠 영향과 종교활동·과세 대상 보수의 경계를 분석했다.
+          - generic [ref=e69]:
+            - strong [ref=e70]: 개인과 가족에게 중요한 이유
+            - text: 이 사안은 한국에서 생활하거나 가족을 둔 사람들의 권리, 비용, 공공기관 이용에 직접 영향을 줄 수 있습니다.
+          - link "보도 자료 · The Monarch Report on X ↗" [ref=e172] [cursor=pointer]:
+            - /url: https://x.com/monarchreport25/status/2085917079509877041
+        - article [ref=e72]:
+          - generic [ref=e73]:
+            - generic [ref=e74]: 입법
+            - time [ref=e75]: Aug 1, 2026
+          - heading "수사 체계 개편…경찰 사건 최종 견제 장치 바뀐다" [level=3] [ref=e173]
+          - paragraph [ref=e77]: 경찰 수사의 비중을 키운 법 개편을 분석하고, 부실·분쟁 수사에 대응할 구제 절차가 무엇인지 확인했다.
+          - generic [ref=e78]:
+            - strong [ref=e79]: 개인과 가족에게 중요한 이유
+            - text: 이 사안은 한국에서 생활하거나 가족을 둔 사람들의 권리, 비용, 공공기관 이용에 직접 영향을 줄 수 있습니다.
+          - button "진행 경과 보기 →" [ref=e174] [cursor=pointer]
+          - link "보도 자료 · The Monarch Report on X ↗" [ref=e175] [cursor=pointer]:
+            - /url: https://x.com/monarchreport25/status/2083538660138614813
+    - generic [ref=e83]:
+      - generic [ref=e84]:
+        - generic [ref=e85]:
+          - generic [ref=e86]: 취재·분석
+          - heading "모나크 리포트 기사" [level=2] [ref=e176]
+          - paragraph [ref=e88]: 한국과 아시아의 변화가 개인·가족·기업에 미치는 영향을 깊이 있게 전합니다.
+        - link "기사 전체보기 →" [ref=e177] [cursor=pointer]:
+          - /url: /articles
+      - generic [ref=e90]:
+        - 'link "korea · 5월 5일 한국의 좌파적 배신: 친북 세력이 미국의 핵심 동맹을 위협하다 원문: Trevor Loudon 저 / America Out Loud News 게재 (팟캐스트 〈Trevor Loudon Reports〉 기반) / 2026년 5월 4일 한때 굳건한 반공 보루이자 미국의 핵심 동맹이었던 한국이 이제 위험한 좌파 변혁의 기로에 서 기사 보기 →" [ref=e178] [cursor=pointer]':
+          - /url: /articles/article-2051676005845389312
+          - generic [ref=e179]:
+            - generic [ref=e180]: korea · 5월 5일
+            - 'heading "한국의 좌파적 배신: 친북 세력이 미국의 핵심 동맹을 위협하다" [level=3] [ref=e181]'
+            - paragraph [ref=e182]: "원문: Trevor Loudon 저 / America Out Loud News 게재 (팟캐스트 〈Trevor Loudon Reports〉 기반) / 2026년 5월 4일 한때 굳건한 반공 보루이자 미국의 핵심 동맹이었던 한국이 이제 위험한 좌파 변혁의 기로에 서"
+            - strong [ref=e183]: 기사 보기 →
+        - 'link "korea · 5월 4일 국경을 넘는 신앙: 미국 기독교 주교 일본 방문 — 가정연합과 함께 하다 국가가 한 종교 단체의 교회를 봉쇄할 때, 바다 건너편에 있는 신도들은 무엇을 말하는가. 2026년 3월 4일, 도쿄 고등재판소는 일본의 세계평화통일가정연합에 대해 해산명령 판결을 내렸다. 그로부터 몇 주 후인 기사 보기 →" [ref=e184] [cursor=pointer]':
+          - /url: /articles/article-2047914611786289153
+          - generic [ref=e185]:
+            - generic [ref=e186]: korea · 5월 4일
+            - 'heading "국경을 넘는 신앙: 미국 기독교 주교 일본 방문 — 가정연합과 함께 하다" [level=3] [ref=e187]'
+            - paragraph [ref=e188]: 국가가 한 종교 단체의 교회를 봉쇄할 때, 바다 건너편에 있는 신도들은 무엇을 말하는가. 2026년 3월 4일, 도쿄 고등재판소는 일본의 세계평화통일가정연합에 대해 해산명령 판결을 내렸다. 그로부터 몇 주 후인
+            - strong [ref=e189]: 기사 보기 →
+        - link "korea · 4월 29일 미국 신자 100여 명 일본 방문 ー가정연합 해산 사태 속, 국경 넘은 결속 미국 전역에서 100명이 넘는 가정연합 2세 멤버와 목회자들이 약 2주 만에 기획하고 도쿄로 모였다. 세계평화통일가정연합(가정연합) 멤버 100여 명이 미국 각지에서 도쿄로 건너와, 해산 명령의 여파를 마주하고 기사 보기 →" [ref=e190] [cursor=pointer]:
+          - /url: /articles/article-2049531388366643200
+          - generic [ref=e191]:
+            - generic [ref=e192]: korea · 4월 29일
+            - heading "미국 신자 100여 명 일본 방문 ー가정연합 해산 사태 속, 국경 넘은 결속" [level=3] [ref=e193]
+            - paragraph [ref=e194]: 미국 전역에서 100명이 넘는 가정연합 2세 멤버와 목회자들이 약 2주 만에 기획하고 도쿄로 모였다. 세계평화통일가정연합(가정연합) 멤버 100여 명이 미국 각지에서 도쿄로 건너와, 해산 명령의 여파를 마주하고
+            - strong [ref=e195]: 기사 보기 →
+        - 'link "korea · 3월 2일 3월 4일: 일본 가정연합 판결이 아시아 종교 자유의 미래를 결정한다 70년에 걸친 공산주의 박해가 도쿄 고등법원 판결로 수렴된다——일본은 헌법이 보장하는 ''종교의 자유''를 지킬 것인가? 아니면 공산주의에 승리를 내줄 것인가? 도쿄 — 2026년 3월 4일, 도쿄 고등법원은 기사 보기 →" [ref=e196] [cursor=pointer]':
+          - /url: /articles/article-2028664214643159040
+          - generic [ref=e197]:
+            - generic [ref=e198]: korea · 3월 2일
+            - 'heading "3월 4일: 일본 가정연합 판결이 아시아 종교 자유의 미래를 결정한다" [level=3] [ref=e199]'
+            - paragraph [ref=e200]: 70년에 걸친 공산주의 박해가 도쿄 고등법원 판결로 수렴된다——일본은 헌법이 보장하는 '종교의 자유'를 지킬 것인가? 아니면 공산주의에 승리를 내줄 것인가? 도쿄 — 2026년 3월 4일, 도쿄 고등법원은
+            - strong [ref=e201]: 기사 보기 →
+    - generic [ref=e127]:
+      - generic [ref=e128]:
+        - generic [ref=e129]: 모나크 필름
+        - heading "헤드라인만으로는 부족한 이야기." [level=2] [ref=e202]
+        - paragraph [ref=e131]: "《You’re Next: Do Nothing》을 시작으로 현재와 향후 다큐멘터리 작업을 소개합니다."
+      - link "모나크 필름 보기 ↗" [ref=e203] [cursor=pointer]:
+        - /url: /documentary
+    - generic [ref=e133]:
+      - generic [ref=e134]: 이메일 뉴스레터
+      - heading "헤드라인 너머, 한국의 맥락까지." [level=2] [ref=e204]
+      - paragraph [ref=e136]: 한국에 가족이나 사업 기반을 둔 독자를 위해 꼭 필요한 변화와 영향을 간결하게 정리합니다.
+      - generic [ref=e137]:
+        - generic [ref=e138]: 이메일 주소
+        - textbox "이메일 주소" [ref=e205]:
+          - /placeholder: your@email.com
+        - button "무료 구독" [ref=e206]
+    - generic [ref=e141]:
+      - img "The Monarch Report" [ref=e142]
+      - paragraph [ref=e143]: Independent reporting on Korea, democracy and freedom of belief across Asia.
+      - generic [ref=e144]:
+        - link "𝕏" [ref=e145] [cursor=pointer]:
+          - /url: https://x.com/monarchreport25
+        - link "Articles" [ref=e146] [cursor=pointer]:
+          - /url: /articles
+        - link "Films" [ref=e147] [cursor=pointer]:
+          - /url: /documentary
+  - group "Site language" [ref=e148]:
+    - button "EN" [ref=e149] [cursor=pointer]
+    - button "한국어" [active] [pressed] [ref=e150] [cursor=pointer]
+    - button "日本語" [ref=e151] [cursor=pointer]
+  - alert [ref=e152]

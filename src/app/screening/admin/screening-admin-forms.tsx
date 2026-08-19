@@ -13,7 +13,7 @@ export function AdminLogin({ configured }: { configured: boolean }) {
   const [state, action, pending] = useActionState(adminLoginAction, loginInitial);
   return (
     <main className={styles.loginPage}>
-      <Link href="/documentary" className={styles.loginBrand}>
+      <Link href="/films" className={styles.loginBrand}>
         <Image src="/logos/monarch-films-butterfly.png" alt="" width={42} height={42} />
         <span>MONARCH <b>FILMS</b></span>
       </Link>
