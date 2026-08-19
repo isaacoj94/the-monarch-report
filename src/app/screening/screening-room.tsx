@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import type { ScreeningEpisode, ViewerAccess } from '@/lib/screening';
+import { displayEpisodeTitle } from '@/lib/film-episodes';
 import { useLocale } from '@/components/LocaleProvider';
 import { SecureVimeoPlayer } from './secure-vimeo-player';
 import { clearViewerSession, ViewerSessionGuard } from './viewer-session-guard';
@@ -88,7 +89,7 @@ export function ScreeningRoom({
           <div className={styles.watermark}>{access.viewerCode} · PRIVATE SCREENER</div>
           <div className={styles.playerTitle}>
             <span>EPISODE {String(episode.episodeNumber).padStart(2, '0')} / {episode.country}</span>
-            <h2>{episode.title}</h2>
+            <h2>{displayEpisodeTitle(episode.episodeNumber, episode.title)}</h2>
           </div>
           {!isPlayable && <div className={styles.demoNotice}>{episodeStatus(episode, copy)}</div>}
         </div>
@@ -114,7 +115,7 @@ export function ScreeningRoom({
             onClick={() => setEpisodeIndex(index)}
           >
             <span>{String(item.episodeNumber).padStart(2, '0')}</span>
-            <div><small>{item.country} · {episodeStatus(item, copy)}</small><strong>{item.title}</strong></div>
+            <div><small>{item.country} · {episodeStatus(item, copy)}</small><strong>{displayEpisodeTitle(item.episodeNumber, item.title)}</strong></div>
             <b>{item.runtimeMinutes} {copy.min}</b>
           </button>
         ))}
