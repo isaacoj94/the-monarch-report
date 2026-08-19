@@ -1,0 +1,198 @@
+'use server';
+
+import { randomInt } from 'node:crypto';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { getAuthenticatedUser, isScreeningAdministrator } from '@/lib/screening';
+
+export type LoginState = { error: string | null };
+export type InvitationState = {
+  error: string | null;
+  credentials: { viewerCode: string; password: string } | null;
+};
+
+const INVALID_CREDENTIALS = 'The viewer ID or access key is incorrect.';
+const VIEWER_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const PASSWORD_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%';
+
+function randomString(alphabet: string, length: number) {
+  return Array.from({ length }, () => alphabet[randomInt(0, alphabet.length)]).join('');
+}
+
+async function requireAdministrator() {
+  const user = await getAuthenticatedUser();
+  if (!user || !(await isScreeningAdministrator(user.id))) {
+    throw new Error('Administrator access is required.');
+  }
+  return user;
+}
+
+export async function viewerLoginAction(_state: LoginState, formData: FormData): Promise<LoginState> {
+  const viewerCode = String(formData.get('viewerCode') ?? '').trim().toUpperCase();
+  const password = String(formData.get('password') ?? '');
+
+  if (!/^MR-[A-Z0-9]{6,12}$/.test(viewerCode) || password.length < 8) {
+    return { error: INVALID_CREDENTIALS };
+  }
+
+  try {
+    const admin = createSupabaseAdminClient();
+    const { data: viewer } = await admin
+      .from('screening_viewers')
+      .select('auth_user_id, status')
+      .eq('viewer_code', viewerCode)
+      .maybeSingle();
+
+    if (!viewer || viewer.status !== 'active') return { error: INVALID_CREDENTIALS };
+
+    const { data: authData } = await admin.auth.admin.getUserById(viewer.auth_user_id);
+    if (!authData.user?.email) return { error: INVALID_CREDENTIALS };
+
+    const supabase = await createSupabaseServerClient();
+    const { error } = await supabase.auth.signInWithPassword({
+      email: authData.user.email,
+      password,
+    });
+
+    if (error) return { error: INVALID_CREDENTIALS };
+  } catch {
+    return { error: 'The screening service is temporarily unavailable. Please try again.' };
+  }
+
+  redirect('/screening');
+}
+
+export async function adminLoginAction(_state: LoginState, formData: FormData): Promise<LoginState> {
+  const email = String(formData.get('email') ?? '').trim().toLowerCase();
+  const password = String(formData.get('password') ?? '');
+
+  if (!email || !password) return { error: 'Enter your administrator email and password.' };
+
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error || !data.user || !(await isScreeningAdministrator(data.user.id))) {
+      await supabase.auth.signOut();
+      return { error: 'This account does not have screening administrator access.' };
+    }
+  } catch {
+    return { error: 'Administrator sign-in is temporarily unavailable.' };
+  }
+
+  redirect('/screening/admin');
+}
+
+export async function signOutAction() {
+  const supabase = await createSupabaseServerClient();
+  await supabase.auth.signOut();
+  redirect('/screening');
+}
+
+export async function createInvitationAction(
+  _state: InvitationState,
+  formData: FormData,
+): Promise<InvitationState> {
+  try {
+    await requireAdministrator();
+  } catch {
+    return { error: 'Your administrator session has expired.', credentials: null };
+  }
+
+  const displayName = String(formData.get('displayName') ?? '').trim().slice(0, 100) || null;
+  const episodeId = String(formData.get('episodeId') ?? '');
+  const expiresHours = Number(formData.get('expiresHours'));
+  const viewLimit = Number(formData.get('viewLimit'));
+  const deviceLimit = Number(formData.get('deviceLimit'));
+
+  if (!episodeId || ![24, 48, 72, 168].includes(expiresHours)) {
+    return { error: 'Choose a valid episode and access period.', credentials: null };
+  }
+  if (!Number.isInteger(viewLimit) || viewLimit < 1 || viewLimit > 20) {
+    return { error: 'View limit must be between 1 and 20.', credentials: null };
+  }
+  if (!Number.isInteger(deviceLimit) || deviceLimit < 1 || deviceLimit > 3) {
+    return { error: 'Device limit must be between 1 and 3.', credentials: null };
+  }
+
+  const admin = createSupabaseAdminClient();
+  const { data: episode } = await admin
+    .from('screening_episodes')
+    .select('id')
+    .eq('id', episodeId)
+    .maybeSingle();
+  if (!episode) return { error: 'The selected episode is unavailable.', credentials: null };
+
+  let viewerCode = '';
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    const candidate = `MR-${randomString(VIEWER_CODE_ALPHABET, 8)}`;
+    const { data } = await admin
+      .from('screening_viewers')
+      .select('id')
+      .eq('viewer_code', candidate)
+      .maybeSingle();
+    if (!data) {
+      viewerCode = candidate;
+      break;
+    }
+  }
+
+  if (!viewerCode) return { error: 'Could not generate a unique viewer ID.', credentials: null };
+
+  const password = randomString(PASSWORD_ALPHABET, 18);
+  const email = `${viewerCode.toLowerCase()}@screening.monarchreport.org`;
+  const { data: authData, error: authError } = await admin.auth.admin.createUser({
+    email,
+    password,
+    email_confirm: true,
+    user_metadata: { viewer_code: viewerCode, display_name: displayName },
+  });
+
+  if (authError || !authData.user) {
+    return { error: 'Could not create the private viewer account.', credentials: null };
+  }
+
+  const { data: viewer, error: viewerError } = await admin
+    .from('screening_viewers')
+    .insert({ auth_user_id: authData.user.id, viewer_code: viewerCode, display_name: displayName })
+    .select('id')
+    .single();
+
+  if (viewerError || !viewer) {
+    await admin.auth.admin.deleteUser(authData.user.id);
+    return { error: 'Could not save the private viewer account.', credentials: null };
+  }
+
+  const expiresAt = new Date(Date.now() + expiresHours * 60 * 60 * 1000).toISOString();
+  const { error: grantError } = await admin.from('screening_access_grants').insert({
+    viewer_id: viewer.id,
+    episode_id: episodeId,
+    expires_at: expiresAt,
+    view_limit: viewLimit,
+    device_limit: deviceLimit,
+  });
+
+  if (grantError) {
+    await admin.from('screening_viewers').delete().eq('id', viewer.id);
+    await admin.auth.admin.deleteUser(authData.user.id);
+    return { error: 'Could not issue episode access.', credentials: null };
+  }
+
+  revalidatePath('/screening/admin');
+  return { error: null, credentials: { viewerCode, password } };
+}
+
+export async function revokeViewerAction(formData: FormData) {
+  await requireAdministrator();
+  const viewerId = String(formData.get('viewerId') ?? '');
+  if (!viewerId) return;
+
+  const admin = createSupabaseAdminClient();
+  await Promise.all([
+    admin.from('screening_viewers').update({ status: 'revoked', revoked_at: new Date().toISOString() }).eq('id', viewerId),
+    admin.from('screening_access_grants').update({ status: 'revoked' }).eq('viewer_id', viewerId),
+    admin.from('screening_sessions').update({ ended_at: new Date().toISOString() }).eq('viewer_id', viewerId).is('ended_at', null),
+  ]);
+  revalidatePath('/screening/admin');
+}
