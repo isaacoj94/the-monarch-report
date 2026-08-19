@@ -41,6 +41,7 @@ export function InvitationForm({ episodes }: { episodes: Array<{ id: string; epi
       <div className={styles.issueHeading}><span>NEW INVITATION</span><b>GENERATED SECURELY</b></div>
       <form action={action}>
         <label>Viewer name <small>Optional, for your records</small><input name="displayName" maxLength={100} placeholder="Jane Smith / Publication" /></label>
+        <label>Viewer email <small>Optional, recorded only — not used to sign in</small><input name="contactEmail" type="email" autoComplete="off" placeholder="name@publication.com" /></label>
         <label>Episode<select name="episodeId" required defaultValue={episodes[0]?.id}>{episodes.map((episode) => <option value={episode.id} key={episode.id}>E{episode.episode_number} · {episode.country} — {episode.title}</option>)}</select></label>
         <div className={styles.formGrid}>
           <label>Access period<select name="expiresHours" defaultValue="48"><option value="24">24 hours</option><option value="48">48 hours</option><option value="72">72 hours</option><option value="168">7 days</option></select></label>
@@ -55,6 +56,9 @@ export function InvitationForm({ episodes }: { episodes: Array<{ id: string; epi
           <span>ONE-TIME CREDENTIALS — COPY NOW</span>
           <div><small>Viewer ID</small><strong>{state.credentials.viewerCode}</strong></div>
           <div><small>Private access key</small><strong>{state.credentials.password}</strong></div>
+          {state.credentials.contactEmail && (
+            <div><small>Recorded email</small><strong>{state.credentials.contactEmail}</strong></div>
+          )}
           <p>The access key cannot be recovered later. Send the ID and password through separate channels when possible.</p>
         </div>
       )}

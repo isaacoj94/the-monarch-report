@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import type { ScreeningEpisode, ViewerAccess } from '@/lib/screening';
 import { SecureVimeoPlayer } from './secure-vimeo-player';
+import { clearViewerSession, ViewerSessionGuard } from './viewer-session-guard';
 import styles from './screening.module.css';
 
 function expiryLabel(value: string | null) {
@@ -37,12 +38,13 @@ export function ScreeningRoom({
 
   return (
     <section className={styles.screeningRoom}>
+      <ViewerSessionGuard endSession={signOutAction} />
       <div className={styles.roomHeading}>
         <div>
           <span className={styles.eyebrow}>Private screener / {access.viewerCode}</span>
           <h1>You’re Next: <em>Do Nothing.</em></h1>
         </div>
-        <form action={signOutAction}><button type="submit">End secure session</button></form>
+        <form action={signOutAction} onSubmit={clearViewerSession}><button type="submit">End secure session</button></form>
       </div>
 
       <div className={styles.viewerLayout}>
