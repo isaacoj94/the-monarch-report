@@ -81,7 +81,7 @@ export default function Dashboard() {
           </div>
           <div className="flex items-center gap-4">
             <nav className="hidden lg:flex items-center gap-1 text-xs">
-              <Link href="/" className="px-2 py-1 text-[#b8860b] hover:text-[#d4a017] transition-colors font-bold">← Home</Link>
+              <Link href="/" className="px-2 py-1 text-[#b8860b] hover:text-[#d4a017] transition-colors font-bold">{locale === 'ko' ? '← 홈' : locale === 'ja' ? '← ホーム' : '← Home'}</Link>
               <a href="#wallet" className="px-2 py-1 text-[#888] hover:text-white transition-colors">{t(locale, 'nav_wallet')}</a>
               <a href="#housing" className="px-2 py-1 text-[#888] hover:text-white transition-colors">{t(locale, 'housing')}</a>
               <a href="#gas-map" className="px-2 py-1 text-[#888] hover:text-white transition-colors">

@@ -132,11 +132,11 @@ export default function DocumentaryPage() {
         <div><Link href="/">{copy.visit}</Link></div>
       </section>
 
-      <footer className={styles.footer}><Link href="/">The Monarch Report</Link><span>A Monarch Films Production · Seoul / New York</span><span>© 2026</span></footer>
+      <footer className={styles.footer}><Link href="/">{locale === 'ko' ? '모나크 리포트' : locale === 'ja' ? 'モナーク・レポート' : 'The Monarch Report'}</Link><span>{locale === 'ko' ? '모나크 필름스 제작 · 서울 / 뉴욕' : locale === 'ja' ? 'モナーク・フィルムズ製作 · ソウル / ニューヨーク' : 'A Monarch Films Production · Seoul / New York'}</span><span>© 2026</span></footer>
 
       {trailerOpen && (
-        <div className={styles.modal} role="dialog" aria-modal="true" aria-label="Official trailer">
-          <button type="button" onClick={() => setTrailerOpen(false)} aria-label="Close trailer">Close ×</button>
+        <div className={styles.modal} role="dialog" aria-modal="true" aria-label={copy.trailer}>
+          <button type="button" onClick={() => setTrailerOpen(false)} aria-label={copy.trailer}>{locale === 'ko' ? '닫기 ×' : locale === 'ja' ? '閉じる ×' : 'Close ×'}</button>
           <div><iframe src="https://www.youtube.com/embed/S2oRBd0spEo?autoplay=1" title="You're Next: Do Nothing — Official Trailer" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div>
         </div>
       )}

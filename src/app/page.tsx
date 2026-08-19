@@ -14,33 +14,97 @@ import styles from './home.module.css';
 
 type BriefImpact = { people: string; companies: string };
 
-const impactByCategory: Record<string, BriefImpact> = {
+const impactByCategory: Record<string, Record<'en' | 'ko' | 'ja', BriefImpact>> = {
   legislation: {
-    people: 'Changes to law can alter speech, court access and the protections available to ordinary citizens.',
-    companies: 'New enforcement powers can change compliance exposure, litigation risk and investor confidence.',
+    en: {
+      people: 'Changes to law can alter speech, court access and the protections available to ordinary citizens.',
+      companies: 'New enforcement powers can change compliance exposure, litigation risk and investor confidence.',
+    },
+    ko: {
+      people: '법이 바뀌면 발언과 재판, 시민이 기대하는 보호가 달라진다.',
+      companies: '집행 권한이 커지면 준법 부담과 소송, 투자 심리가 흔들린다.',
+    },
+    ja: {
+      people: '法が変われば、発言と裁判、市民が頼る保護が変わる。',
+      companies: '執行権限が広がれば、コンプライアンスと訴訟、投資心理が揺れる。',
+    },
   },
   'religious-freedom': {
-    people: 'The precedent affects how freely communities can organize, worship and participate in public life.',
-    companies: 'Institutional targeting can signal wider rule-of-law and reputation risks for organizations operating in Korea.',
+    en: {
+      people: 'The precedent affects how freely communities can organize, worship and participate in public life.',
+      companies: 'Institutional targeting can signal wider rule-of-law and reputation risks for organizations operating in Korea.',
+    },
+    ko: {
+      people: '선례가 남으면 모여 예배하고 공론장에 서는 일이 좁아진다.',
+      companies: '특정 단체를 겨냥하면 한국에서 활동하는 조직의 법치와 평판 위험이 커진다.',
+    },
+    ja: {
+      people: '先例が残れば、集い、礼拝し、公の場に出ることが狭まる。',
+      companies: '特定の団体を狙えば、韓国で活動する組織の法治と評判のリスクが膨らむ。',
+    },
   },
   'court-case': {
-    people: 'The ruling tests due process and the balance between state power and individual liberty.',
-    companies: 'Court independence and predictable enforcement are core conditions for long-term investment.',
+    en: {
+      people: 'The ruling tests due process and the balance between state power and individual liberty.',
+      companies: 'Court independence and predictable enforcement are core conditions for long-term investment.',
+    },
+    ko: {
+      people: '판결은 적법절차와, 국가권력과 개인의 자유 사이 균형을 시험한다.',
+      companies: '법원의 독립과 예측 가능한 집행이 장기 투자의 전제다.',
+    },
+    ja: {
+      people: '判決は適正手続と、国家権力と個人の自由の均衡を試す。',
+      companies: '裁判所の独立と予測可能な執行が、長期投資の前提だ。',
+    },
   },
   corporate: {
-    people: 'Regulatory actions can affect jobs, services, privacy and household costs.',
-    companies: 'The case may influence foreign investment, governance expectations and operational risk.',
+    en: {
+      people: 'Regulatory actions can affect jobs, services, privacy and household costs.',
+      companies: 'The case may influence foreign investment, governance expectations and operational risk.',
+    },
+    ko: {
+      people: '규제 조치는 일자리와 서비스, 개인정보, 가계 부담으로 번진다.',
+      companies: '사건은 외국인 투자와 지배구조, 운영 위험에 파문을 남긴다.',
+    },
+    ja: {
+      people: '規制は雇用、サービス、個人情報、家計負担へと広がる。',
+      companies: '事件は海外投資、ガバナンス、事業リスクに波紋を残す。',
+    },
   },
   'foreign-policy': {
-    people: 'Security and alliance choices shape daily safety, public trust and Korea’s place in the region.',
-    companies: 'Geopolitical shifts affect trade, sanctions, supply chains and market access.',
+    en: {
+      people: 'Security and alliance choices shape daily safety, public trust and Korea’s place in the region.',
+      companies: 'Geopolitical shifts affect trade, sanctions, supply chains and market access.',
+    },
+    ko: {
+      people: '안보와 동맹의 선택이 일상의 안전과 신뢰, 한국의 자리를 가른다.',
+      companies: '지정학의 이동은 무역과 제재, 공급망, 시장 접근을 흔든다.',
+    },
+    ja: {
+      people: '安保と同盟の選択が、日常の安全と信頼、韓国の位置を分ける。',
+      companies: '地政学の揺れは貿易、制裁、供給網、市場アクセスを揺さぶる。',
+    },
+  },
+  media: {
+    en: {
+      people: 'Who controls the public square shapes what citizens can hear and say.',
+      companies: 'Media-rule changes alter reputation risk, advertising markets and political exposure.',
+    },
+    ko: {
+      people: '공론장을 누가 쥐느냐가, 시민이 듣고 말할 수 있는 범위를 정한다.',
+      companies: '미디어 규칙이 바뀌면 평판과 광고, 정치 노출이 달라진다.',
+    },
+    ja: {
+      people: '言論の場を誰が握るかが、市民が聞き、話せる範囲を決める。',
+      companies: 'メディアのルールが変われば、評判と広告、政治的露出が変わる。',
+    },
   },
 };
 
 const categoryLabels = {
-  en: { legislation: 'Legislation', 'religious-freedom': 'Religious freedom', 'court-case': 'Court case', corporate: 'Business', 'foreign-policy': 'Foreign policy', media: 'Media', korea: 'Korea', japan: 'Japan', democracy: 'Democracy', economy: 'Economy', religion: 'Religion' },
-  ko: { legislation: '입법', 'religious-freedom': '종교의 자유', 'court-case': '재판', corporate: '기업', 'foreign-policy': '외교·안보', media: '미디어', korea: '한국', japan: '일본', democracy: '민주주의', economy: '경제', religion: '종교' },
-  ja: { legislation: '立法', 'religious-freedom': '信教の自由', 'court-case': '裁判', corporate: '企業', 'foreign-policy': '外交・安保', media: 'メディア', korea: '韓国', japan: '日本', democracy: '民主主義', economy: '経済', religion: '宗教' },
+  en: { legislation: 'Legislation', 'religious-freedom': 'Religious freedom', 'court-case': 'Court case', corporate: 'Business', 'foreign-policy': 'Foreign policy', media: 'Media', korea: 'Korea', japan: 'Japan', democracy: 'Democracy', economy: 'Economy', religion: 'Religion', 'martial-law': 'Martial law', 'church-raid': 'Religious freedom', military: 'Military' },
+  ko: { legislation: '입법', 'religious-freedom': '종교의 자유', 'court-case': '재판', corporate: '기업', 'foreign-policy': '외교·안보', media: '미디어', korea: '한국', japan: '일본', democracy: '민주주의', economy: '경제', religion: '종교', 'martial-law': '계엄', 'church-raid': '종교의 자유', military: '군' },
+  ja: { legislation: '立法', 'religious-freedom': '信教の自由', 'court-case': '裁判', corporate: '企業', 'foreign-policy': '外交・安保', media: 'メディア', korea: '韓国', japan: '日本', democracy: '民主主義', economy: '経済', religion: '宗教', 'martial-law': '戒厳', 'church-raid': '信教の自由', military: '軍' },
 } as const;
 
 const sourceType = (source: string, locale: keyof typeof homeCopy) => {
@@ -158,14 +222,9 @@ export default function Home() {
 
         <div className={styles.briefGrid}>
           {latestBriefs.map((brief, index) => {
-            const impact = impactByCategory[brief.category] ?? impactByCategory.legislation;
             const briefTitle = locale === 'ko' ? brief.titleKo ?? brief.title : locale === 'ja' ? brief.titleJa ?? brief.title : brief.title;
             const briefDescription = locale === 'ko' ? brief.descriptionKo ?? brief.description : locale === 'ja' ? brief.descriptionJa ?? brief.description : brief.description;
-            const localizedImpact = locale === 'ko'
-              ? (impactView === 'people' ? '한국에 거주하거나 가족을 둔 사람의 권리·생활비·공공서비스 이용에 직접 영향을 미칠 수 있다.' : '법 집행과 규제 변화는 기업의 준법 부담·투자 위험·인력 및 운영 계획에 영향을 미칠 수 있다.')
-              : locale === 'ja'
-                ? (impactView === 'people' ? '韓国で暮らす人や家族を持つ人の権利、生活費、公共サービスの利用に直接影響する可能性がある。' : '法執行や規制の変化は、企業のコンプライアンス負担、投資リスク、人員・事業計画に影響する可能性がある。')
-                : impact[impactView];
+            const localizedImpact = (impactByCategory[brief.category] ?? impactByCategory.legislation)[locale][impactView];
             const briefKey = `${brief.date}-${brief.title}`;
             const briefIndex = koreaTimeline.findIndex((item) => item.date === brief.date && item.title === brief.title);
             const progression = koreaTimeline
