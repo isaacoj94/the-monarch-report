@@ -6,7 +6,7 @@ import Link from 'next/link';
 import MonarchNewsHero from '@/components/MonarchNewsHero';
 import { siteConfig } from '@/lib/content';
 import { currentSnapshot } from '@/lib/data';
-import { koreaTimeline, politicalPrisoners, unLawViolations } from '@/lib/editorial';
+import { koreaTimeline, KOREA_TIMELINE_RANGE_LABEL } from '@/lib/editorial';
 import { articles, articleCategory, articleLang, articleSlug } from '@/lib/articles';
 import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
 import styles from './home.module.css';
@@ -43,8 +43,8 @@ const sourceType = (source: string) => {
 };
 
 export default function Home() {
-  const [ledgerOpen, setLedgerOpen] = useState(false);
   const [impactView, setImpactView] = useState<'people' | 'companies'>('people');
+  const [openTimeline, setOpenTimeline] = useState<string | null>(null);
   const [email, setEmail] = useState('');
   const [emailStatus, setEmailStatus] = useState<'idle' | 'loading' | 'sent' | 'error'>('idle');
   const utms = useRef<UtmPayload>({});
@@ -84,7 +84,6 @@ export default function Home() {
           </Link>
           <nav aria-label="Primary navigation">
             <a href="#now">Now</a>
-            <a href="#record">The Record</a>
             <Link href="/articles">Articles</Link>
             <Link href="/dashboard">Data</Link>
             <Link href="/documentary">Monarch Films</Link>
@@ -98,9 +97,10 @@ export default function Home() {
       <section id="now" className={styles.newsDesk}>
         <div className={styles.sectionHeading}>
           <div>
-            <span className={styles.kicker}>Live editorial desk</span>
+            <span className={styles.kicker}>The editorial briefing</span>
             <h2>What’s happening now</h2>
             <p>Important developments, translated into consequence—not copied from a social feed.</p>
+            <small className={styles.freshnessNote}>Verified briefing range · {KOREA_TIMELINE_RANGE_LABEL}</small>
           </div>
           <div className={styles.impactSwitch} role="group" aria-label="Choose impact perspective">
             <button aria-pressed={impactView === 'people'} onClick={() => setImpactView('people')}>For people</button>
@@ -111,8 +111,14 @@ export default function Home() {
         <div className={styles.briefGrid}>
           {latestBriefs.map((brief, index) => {
             const impact = impactByCategory[brief.category] ?? impactByCategory.legislation;
+            const briefKey = `${brief.date}-${brief.title}`;
+            const briefIndex = koreaTimeline.findIndex((item) => item.date === brief.date && item.title === brief.title);
+            const progression = koreaTimeline
+              .slice(0, briefIndex + 1)
+              .filter((item) => item.category === brief.category)
+              .slice(-4);
             return (
-              <article className={index === 0 ? styles.leadBrief : styles.brief} key={`${brief.date}-${brief.title}`}>
+              <article className={index === 0 ? styles.leadBrief : styles.brief} key={briefKey}>
                 <div className={styles.briefMeta}>
                   <span>{brief.category.replace('-', ' ')}</span>
                   <time>{brief.date}</time>
@@ -123,6 +129,23 @@ export default function Home() {
                   <strong>{impactView === 'people' ? 'Why it matters to people' : 'Why it matters to companies'}</strong>
                   <span>{impact[impactView]}</span>
                 </div>
+                {progression.length > 1 && (
+                  <div className={styles.contextTimeline}>
+                    <button type="button" onClick={() => setOpenTimeline(openTimeline === briefKey ? null : briefKey)} aria-expanded={openTimeline === briefKey}>
+                      {openTimeline === briefKey ? 'Close case progression' : 'View case progression'} <span>→</span>
+                    </button>
+                    {openTimeline === briefKey && (
+                      <ol>
+                        {progression.map((event) => (
+                          <li key={`${event.date}-${event.title}`}>
+                            <time>{event.date}</time>
+                            <div><strong>{event.title}</strong><a href={event.sourceUrl} target="_blank" rel="noopener noreferrer">{event.source} ↗</a></div>
+                          </li>
+                        ))}
+                      </ol>
+                    )}
+                  </div>
+                )}
                 <a href={brief.sourceUrl} target="_blank" rel="noopener noreferrer" className={styles.sourceLink}>
                   {sourceType(brief.source)} · {brief.source} ↗
                 </a>
@@ -130,34 +153,6 @@ export default function Home() {
             );
           })}
         </div>
-      </section>
-
-      <section id="record" className={styles.recordSection}>
-        <div className={styles.recordIntro}>
-          <span className={styles.kicker}>Evidence dossier · MR-018</span>
-          <h2>Freedom on record.</h2>
-          <p>The claims, legal standards and reporting trail behind our coverage—kept visible so readers can inspect the case for themselves.</p>
-          <button type="button" onClick={() => setLedgerOpen((open) => !open)} aria-expanded={ledgerOpen}>
-            {ledgerOpen ? 'Close evidence ledger' : 'Open evidence ledger'} <span>→</span>
-          </button>
-        </div>
-        <div className={styles.recordStats}>
-          <div><small>STATUS</small><strong>Ongoing investigation</strong></div>
-          <div><small>ON THE RECORD</small><strong>{politicalPrisoners.length} documented cases</strong></div>
-          <div><small>LEGAL FRAMEWORK</small><strong>{unLawViolations.length} ICCPR protections</strong></div>
-          <div><small>LANGUAGES</small><strong>Korean · Japanese · English</strong></div>
-        </div>
-        {ledgerOpen && (
-          <div className={styles.ledger}>
-            {unLawViolations.map((item) => (
-              <article key={item.article}>
-                <span>{item.article}</span>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </article>
-            ))}
-          </div>
-        )}
       </section>
 
       <section className={styles.articleSection}>
@@ -189,9 +184,9 @@ export default function Home() {
 
       <section className={styles.filmBridge}>
         <div>
-          <span className={styles.kicker}>A Monarch Films production</span>
-          <h2>When reporting reaches the edge of the frame.</h2>
-          <p>Enter the cinematic investigation behind <em>You’re Next: Do Nothing</em>.</p>
+          <span className={styles.kicker}>From Monarch Films</span>
+          <h2>Stories that demand more than a headline.</h2>
+          <p>Discover current and upcoming documentary work, beginning with <em>You’re Next: Do Nothing</em>.</p>
         </div>
         <Link href="/documentary">Enter Monarch Films <span>↗</span></Link>
       </section>

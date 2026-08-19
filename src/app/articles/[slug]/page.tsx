@@ -77,9 +77,9 @@ function ArticleBlock({ block, index }: { block: ArticleBlock; index: number }) 
   switch (block.type) {
     case 'heading':
       if (block.level === 1) {
-        return <h2 className="text-2xl font-bold text-tm-heading mt-10 mb-4 leading-tight">{block.text}</h2>;
+        return <h2 className="text-3xl font-serif font-semibold text-tm-heading mt-12 mb-4 leading-tight">{block.text}</h2>;
       }
-      return <h3 className="text-xl font-bold text-tm-heading mt-8 mb-3 leading-tight">{block.text}</h3>;
+      return <h3 className="text-2xl font-serif font-semibold text-tm-heading mt-10 mb-3 leading-tight">{block.text}</h3>;
 
     case 'paragraph':
       if (!block.text.trim()) return <div className="h-4" />;
@@ -139,14 +139,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   });
 
   return (
-    <div className="min-h-screen bg-tm-page">
+    <div data-theme="light" className="min-h-screen bg-tm-page text-tm-body">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-tm-page/95 backdrop-blur-sm border-b border-tm-border-subtle">
-        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} className="h-7 w-auto" priority />
           </Link>
-          <div className="flex items-center gap-3 text-xs font-mono">
+          <div className="flex items-center gap-5 text-xs font-sans font-semibold tracking-wide uppercase">
             <Link href="/articles" className="text-tm-secondary hover:text-tm-heading transition-colors">All Articles</Link>
             <Link href="/" className="text-tm-secondary hover:text-tm-heading transition-colors">Home</Link>
             <ThemeToggle />
@@ -167,43 +167,43 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       )}
 
       {/* Article Content */}
-      <article className="max-w-3xl mx-auto px-4 -mt-20 relative z-10 pb-16">
+      <article className="max-w-3xl mx-auto px-6 -mt-20 relative z-10 pb-20">
         {/* Meta */}
         <div className="flex items-center gap-3 mb-4">
           <span
-            className="text-[9px] font-mono font-bold tracking-widest px-2 py-0.5 rounded"
+            className="text-[9px] font-sans font-bold tracking-widest px-2 py-0.5 rounded"
             style={{ color: catInfo.color, backgroundColor: catInfo.color + '15', border: `1px solid ${catInfo.color}30` }}
           >
             {catInfo.label}
           </span>
-          <span className="text-tm-faint text-xs font-mono">{dateStr}</span>
+          <span className="text-tm-faint text-xs font-sans">{dateStr}</span>
           {lang !== 'en' && (
-            <span className="text-tm-faint text-[10px] font-mono border border-tm-border-hover px-1.5 py-0.5 rounded">
+            <span className="text-tm-faint text-[10px] font-sans border border-tm-border-hover px-1.5 py-0.5 rounded">
               {lang === 'ko' ? '한국어' : '日本語'}
             </span>
           )}
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-bold text-tm-heading leading-tight mb-4">
+        <h1 className="text-4xl md:text-6xl font-serif font-semibold text-tm-heading leading-[1.02] tracking-tight mb-6">
           {article.title}
         </h1>
 
         {/* Author + Stats */}
         <div className="flex items-center justify-between border-b border-tm-border-subtle pb-4 mb-8">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-mono text-tm-secondary">The Monarch Report</span>
+            <span className="text-sm font-sans font-semibold text-tm-secondary">The Monarch Report</span>
             <span className="text-tm-ghost">·</span>
             <a
               href={`https://x.com/monarchreport25/status/${article.tweetId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-mono text-tm-gold hover:text-tm-gold-hover transition-colors"
+              className="text-xs font-sans text-tm-gold hover:text-tm-gold-hover transition-colors"
             >
               View on 𝕏
             </a>
           </div>
-          <div className="flex items-center gap-3 text-tm-faint text-xs font-mono">
+          <div className="flex items-center gap-3 text-tm-faint text-xs font-sans">
             <span>{article.likes.toLocaleString()} likes</span>
             <span>{article.views.toLocaleString()} views</span>
           </div>
@@ -219,7 +219,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         {/* Sources */}
         {article.links.length > 0 && (
           <div className="mt-10 pt-6 border-t border-tm-border-subtle">
-            <h3 className="text-sm font-mono font-bold text-tm-secondary uppercase tracking-wider mb-3">Sources</h3>
+            <h3 className="text-lg font-serif font-semibold text-tm-heading mb-3">Sources and further reading</h3>
             <ul className="space-y-1.5">
               {article.links.map((link, i) => (
                 <li key={i}>
@@ -227,7 +227,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-mono text-tm-gold hover:text-tm-gold-hover transition-colors break-all"
+                    className="text-xs font-sans text-tm-gold hover:text-tm-gold-hover transition-colors break-all"
                   >
                     {link.url}
                   </a>
@@ -239,20 +239,20 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         {/* Footer CTA */}
         <div className="mt-12 bg-tm-card border border-tm-border rounded-lg p-6 text-center">
-          <p className="text-tm-heading font-bold mb-2">Stay informed.</p>
-          <p className="text-tm-secondary text-sm font-mono mb-4">Follow The Monarch Report for investigative journalism on Korea and Japan.</p>
+          <p className="text-tm-heading font-serif text-2xl font-semibold mb-2">Stay informed.</p>
+          <p className="text-tm-secondary text-sm font-sans mb-4">Independent context for people, families, and organizations connected to Korea and Asia.</p>
           <div className="flex items-center justify-center gap-3">
             <a
               href="https://x.com/monarchreport25"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2 bg-tm-gold hover:bg-tm-gold-hover text-tm-page font-mono font-bold text-sm rounded transition-colors"
+              className="px-5 py-2 bg-tm-gold hover:bg-tm-gold-hover text-tm-page font-sans font-bold text-sm rounded transition-colors"
             >
               Follow on 𝕏
             </a>
             <Link
               href="/articles"
-              className="px-5 py-2 border border-tm-border-hover hover:border-tm-border-active text-tm-heading font-mono text-sm rounded transition-colors"
+              className="px-5 py-2 border border-tm-border-hover hover:border-tm-border-active text-tm-heading font-sans text-sm rounded transition-colors"
             >
               More Articles
             </Link>

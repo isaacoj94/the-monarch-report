@@ -22,7 +22,7 @@ function formatVal(value: number, unit: string): string {
 export default function CompareTable({ rows, locale }: CompareTableProps) {
   return (
     <div className="bg-[#111111] border border-[#222222] rounded-lg overflow-hidden">
-      <table className="w-full text-sm font-mono">
+      <table className="w-full text-sm font-sans">
         <thead>
           <tr className="border-b border-[#222222]">
             <th className="text-left text-[#666666] p-3 text-xs uppercase tracking-wider"></th>

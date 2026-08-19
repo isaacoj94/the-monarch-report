@@ -117,13 +117,13 @@ export default function GasMap({ locale }: GasMapProps) {
     <div className="bg-[#111111] border border-[#222222] rounded-lg p-5">
       <div className="flex justify-between items-start mb-4">
         <div>
-          <h3 className="text-white font-mono text-sm font-bold">{l.title}</h3>
-          <p className="text-[#666] text-xs font-mono">{l.subtitle}</p>
+          <h3 className="text-white font-sans text-sm font-bold">{l.title}</h3>
+          <p className="text-[#666] text-xs font-sans">{l.subtitle}</p>
         </div>
         <div className="text-right">
-          <p className="text-[#888] text-[10px] font-mono uppercase">{l.nationalAvg}</p>
-          <p className="text-white text-xl font-mono font-bold">₩{nationalAvg.toLocaleString()}</p>
-          <p className="text-[10px] font-mono" style={{ color: getPriceColor(nationalAvg) }}>
+          <p className="text-[#888] text-[10px] font-sans uppercase">{l.nationalAvg}</p>
+          <p className="text-white text-xl font-sans font-bold">₩{nationalAvg.toLocaleString()}</p>
+          <p className="text-[10px] font-sans" style={{ color: getPriceColor(nationalAvg) }}>
             {l.avg} / {locale === 'ko' ? '리터' : locale === 'ja' ? 'リットル' : 'liter'}
           </p>
         </div>
@@ -204,23 +204,23 @@ export default function GasMap({ locale }: GasMapProps) {
         {/* Hover detail panel */}
         {hoveredRegion && (
           <div className="absolute top-2 right-2 bg-[#0a0a0a] border border-[#333] rounded-lg p-3 min-w-[180px]">
-            <p className="text-white font-mono text-sm font-bold">
+            <p className="text-white font-sans text-sm font-bold">
               {getRegionName(hoveredRegion, locale)}
             </p>
             <div className="mt-2 space-y-1">
-              <div className="flex justify-between text-xs font-mono">
+              <div className="flex justify-between text-xs font-sans">
                 <span className="text-[#888]">{l.avg}</span>
                 <span className="text-white font-bold">₩{hoveredRegion.avgPrice.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between text-xs font-mono">
+              <div className="flex justify-between text-xs font-sans">
                 <span className="text-[#888]">{l.min}</span>
                 <span className="text-[#22c55e]">₩{hoveredRegion.minPrice.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between text-xs font-mono">
+              <div className="flex justify-between text-xs font-sans">
                 <span className="text-[#888]">{l.max}</span>
                 <span className="text-[#ef4444]">₩{hoveredRegion.maxPrice.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between text-xs font-mono pt-1 border-t border-[#222]">
+              <div className="flex justify-between text-xs font-sans pt-1 border-t border-[#222]">
                 <span className="text-[#888]">{l.stations}</span>
                 <span className="text-[#888]">{hoveredRegion.stationCount}</span>
               </div>
@@ -230,7 +230,7 @@ export default function GasMap({ locale }: GasMapProps) {
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap gap-4 mt-4 text-[10px] font-mono">
+      <div className="flex flex-wrap gap-4 mt-4 text-[10px] font-sans">
         <div className="flex items-center gap-1.5">
           <div className="w-2.5 h-2.5 rounded-full bg-[#ef4444]" />
           <span className="text-[#888]">{l.legend2000}</span>
@@ -250,7 +250,7 @@ export default function GasMap({ locale }: GasMapProps) {
       </div>
 
       {/* Source */}
-      <p className="text-[#444] text-[10px] font-mono mt-3">
+      <p className="text-[#444] text-[10px] font-sans mt-3">
         {l.source}: {source === 'opinet' ? l.opinet : l.seed}
       </p>
     </div>

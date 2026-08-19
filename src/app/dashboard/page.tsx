@@ -67,16 +67,16 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div data-theme="light" className="min-h-screen bg-[#f5f2ec] text-[#241c24]">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-[#0a0a0a]/90 backdrop-blur-sm border-b border-[#1a1a1a]">
+      <header className="sticky top-0 z-50 bg-[#f5f2ec]/95 backdrop-blur-sm border-b border-[#d9d2ca]">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
               <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} className="h-7 w-auto" />
             </Link>
-            <span className="text-[#333] text-xs">|</span>
-            <span className="text-[10px] text-[#888] font-mono uppercase tracking-wider">{t(locale, 'siteSubtitle')}</span>
+            <span className="text-[#b4aaa2] text-xs">|</span>
+            <span className="text-[10px] text-[#6f666d] font-sans font-semibold uppercase tracking-wider">{t(locale, 'siteSubtitle')}</span>
           </div>
           <div className="flex items-center gap-4">
             <nav className="hidden lg:flex items-center gap-1 text-xs">
@@ -111,8 +111,9 @@ export default function Dashboard() {
       <section className="max-w-7xl mx-auto px-4 py-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">{t(locale, 'siteDescription')}</h2>
-            <p className="text-[#666666] text-sm">{t(locale, 'asOf')} {LAST_UPDATED_LABEL} · {t(locale, 'presidencyStart')}: {PRESIDENCY_START_LABEL}</p>
+            <span className="block text-[#7b4d82] text-[10px] font-sans font-bold uppercase tracking-[.16em] mb-4">Korea data desk</span>
+            <h2 className="text-4xl md:text-6xl font-serif font-semibold mb-4 leading-[.98] tracking-tight">{t(locale, 'siteDescription')}</h2>
+            <p className="text-[#756c73] text-sm leading-relaxed">{t(locale, 'asOf')} {LAST_UPDATED_LABEL} · {t(locale, 'presidencyStart')}: {PRESIDENCY_START_LABEL}</p>
           </div>
           <LiveExchangeRate locale={locale} />
         </div>
@@ -137,17 +138,17 @@ export default function Dashboard() {
           <div className="bg-[#111] border border-[#222] rounded-lg p-5">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">📊</span>
-              <h3 className="text-white font-mono text-sm font-bold">
+              <h3 className="text-white font-sans text-sm font-bold">
                 {locale === 'ko' ? '소비자물가지수 (CPI)' : locale === 'ja' ? '消費者物価指数 (CPI)' : 'Consumer Price Index (CPI)'}
               </h3>
             </div>
             <div className="flex items-baseline gap-2 mb-3">
               <span className="text-2xl font-bold text-[#eab308]">{macroMetrics.inflation.currentValue}%</span>
-              <span className="text-xs text-[#666] font-mono">
+              <span className="text-xs text-[#666] font-sans">
                 {locale === 'ko' ? '전년 대비' : locale === 'ja' ? '前年比' : 'year-over-year'}
               </span>
             </div>
-            <p className="text-[#999] text-xs font-mono leading-relaxed mb-3">
+            <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
                 ? `CPI ${macroMetrics.inflation.currentValue}%는 지난해 대비 물가가 그만큼 올랐다는 뜻입니다. 내가 작년에 10만 원어치 장을 봤다면, 올해 같은 물건을 사려면 ${(100000 * (1 + macroMetrics.inflation.currentValue / 100)).toLocaleString()}원이 필요합니다.`
                 : locale === 'ja'
@@ -155,7 +156,7 @@ export default function Dashboard() {
                 : `CPI at ${macroMetrics.inflation.currentValue}% means everyday goods cost that much more than last year. If your grocery bill was ₩100,000, you now need ₩${(100000 * (1 + macroMetrics.inflation.currentValue / 100)).toLocaleString()} for the exact same items.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
-              <p className="text-[#b8860b] text-[11px] font-mono leading-relaxed">
+              <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
                   ? '⚠ 공식 CPI는 체감 물가보다 낮게 나옵니다. 외식비·교육비·전세값 상승은 CPI에 제대로 반영되지 않아 실제 생활비 부담은 훨씬 큽니다.'
                   : locale === 'ja'
@@ -169,15 +170,15 @@ export default function Dashboard() {
           <div className="bg-[#111] border border-[#222] rounded-lg p-5">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">💱</span>
-              <h3 className="text-white font-mono text-sm font-bold">
+              <h3 className="text-white font-sans text-sm font-bold">
                 {locale === 'ko' ? '원/달러 환율' : locale === 'ja' ? 'ウォン/ドル為替' : 'Won-Dollar Exchange Rate'}
               </h3>
             </div>
             <div className="flex items-baseline gap-2 mb-3">
               <span className="text-2xl font-bold text-[#3b82f6]">₩{macroMetrics.usdKrw.currentValue.toLocaleString()}</span>
-              <span className="text-xs text-[#666] font-mono">/ $1 USD</span>
+              <span className="text-xs text-[#666] font-sans">/ $1 USD</span>
             </div>
-            <p className="text-[#999] text-xs font-mono leading-relaxed mb-3">
+            <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
                 ? `환율이 높을수록 수입품이 비싸집니다. 원유·밀·반도체 원자재를 달러로 사야 하므로, ₩${macroMetrics.usdKrw.currentValue}은 모든 수입 물가를 끌어올립니다. 이명박 정부 시절 ₩1,100대였던 환율과 비교하면 ${Math.round((macroMetrics.usdKrw.currentValue - 1100) / 1100 * 100)}% 상승입니다.`
                 : locale === 'ja'
@@ -185,7 +186,7 @@ export default function Dashboard() {
                 : `A weaker won makes everything imported more expensive — oil, wheat, semiconductors, raw materials are all priced in dollars. At ₩${macroMetrics.usdKrw.currentValue}, import costs are ${Math.round((macroMetrics.usdKrw.currentValue - 1100) / 1100 * 100)}% higher than the ₩1,100 level seen under Lee Myung-bak.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
-              <p className="text-[#b8860b] text-[11px] font-mono leading-relaxed">
+              <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
                   ? '⚠ 원화 약세가 지속되면 외국인 투자 이탈 → 주가 하락 → 연기금 수익 악화의 악순환이 올 수 있습니다. 수출 기업에 유리하다는 주장도 있으나, 내수 의존도가 높은 한국 경제에서는 서민 물가 직격탄입니다.'
                   : locale === 'ja'
@@ -199,17 +200,17 @@ export default function Dashboard() {
           <div className="bg-[#111] border border-[#222] rounded-lg p-5">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">🏦</span>
-              <h3 className="text-white font-mono text-sm font-bold">
+              <h3 className="text-white font-sans text-sm font-bold">
                 {locale === 'ko' ? '가계부채 / GDP' : locale === 'ja' ? '家計負債 / GDP' : 'Household Debt / GDP'}
               </h3>
             </div>
             <div className="flex items-baseline gap-2 mb-3">
               <span className="text-2xl font-bold text-[#ef4444]">{macroMetrics.householdDebt.currentValue}%</span>
-              <span className="text-xs text-[#666] font-mono">
+              <span className="text-xs text-[#666] font-sans">
                 {locale === 'ko' ? 'GDP 대비' : locale === 'ja' ? 'GDP比' : 'of GDP'}
               </span>
             </div>
-            <p className="text-[#999] text-xs font-mono leading-relaxed mb-3">
+            <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
                 ? `한국의 가계부채는 GDP의 ${macroMetrics.householdDebt.currentValue}%로 세계 최고 수준입니다. 쉽게 말해, 나라 전체가 1년간 버는 돈보다 가계가 진 빚이 더 많다는 뜻입니다. OECD 평균은 약 60%입니다.`
                 : locale === 'ja'
@@ -217,7 +218,7 @@ export default function Dashboard() {
                 : `Korea's household debt is ${macroMetrics.householdDebt.currentValue}% of GDP — among the highest in the world. This means Korean families collectively owe more than the entire country earns in a year. The OECD average is around 60%.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
-              <p className="text-[#b8860b] text-[11px] font-mono leading-relaxed">
+              <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
                   ? '⚠ 금리가 오르면 이자 부담 폭증, 소비 위축, 부동산 가격 하락의 트리플 충격이 옵니다. 가계부채 비율이 이 수준이면 금리를 올리기도, 내리기도 어려운 정책의 딜레마에 빠집니다.'
                   : locale === 'ja'
@@ -231,17 +232,17 @@ export default function Dashboard() {
           <div className="bg-[#111] border border-[#222] rounded-lg p-5">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">🏠</span>
-              <h3 className="text-white font-mono text-sm font-bold">
+              <h3 className="text-white font-sans text-sm font-bold">
                 {locale === 'ko' ? '소득 대비 집값 (PIR)' : locale === 'ja' ? '所得対住宅価格比 (PIR)' : 'Price-to-Income Ratio (PIR)'}
               </h3>
             </div>
             <div className="flex items-baseline gap-2 mb-3">
               <span className="text-2xl font-bold text-[#dc2626]">{housingMetrics.housingIncomeRatio.currentValue}</span>
-              <span className="text-xs text-[#666] font-mono">
+              <span className="text-xs text-[#666] font-sans">
                 {locale === 'ko' ? '년 소득' : locale === 'ja' ? '年の所得' : 'years of income'}
               </span>
             </div>
-            <p className="text-[#999] text-xs font-mono leading-relaxed mb-3">
+            <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
                 ? `서울에서 평균 아파트를 사려면 한 푼도 안 쓰고 ${housingMetrics.housingIncomeRatio.currentValue}년을 모아야 합니다. 뉴욕은 약 8년, 도쿄는 약 10년입니다. 2008년에는 8.2년이었습니다.`
                 : locale === 'ja'
@@ -249,7 +250,7 @@ export default function Dashboard() {
                 : `To buy an average Seoul apartment, you'd need to save every penny of your income for ${housingMetrics.housingIncomeRatio.currentValue} years. New York is ~8 years, Tokyo ~10 years. In 2008, Seoul was 8.2 years.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
-              <p className="text-[#b8860b] text-[11px] font-mono leading-relaxed">
+              <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
                   ? '⚠ 청년층 내 집 마련이 사실상 불가능해졌습니다. 전세 보증금도 급등해 주거 사다리가 무너지고 있으며, 이는 출산율 급락의 핵심 원인 중 하나입니다.'
                   : locale === 'ja'
@@ -263,17 +264,17 @@ export default function Dashboard() {
           <div className="bg-[#111] border border-[#222] rounded-lg p-5">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">👤</span>
-              <h3 className="text-white font-mono text-sm font-bold">
+              <h3 className="text-white font-sans text-sm font-bold">
                 {locale === 'ko' ? '청년실업률' : locale === 'ja' ? '若年失業率' : 'Youth Unemployment'}
               </h3>
             </div>
             <div className="flex items-baseline gap-2 mb-3">
               <span className="text-2xl font-bold text-[#a855f7]">{macroMetrics.youthUnemployment.currentValue}%</span>
-              <span className="text-xs text-[#666] font-mono">
+              <span className="text-xs text-[#666] font-sans">
                 {locale === 'ko' ? '15-29세' : locale === 'ja' ? '15-29歳' : 'ages 15-29'}
               </span>
             </div>
-            <p className="text-[#999] text-xs font-mono leading-relaxed mb-3">
+            <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
                 ? `공식 수치는 ${macroMetrics.youthUnemployment.currentValue}%이지만, 알바·단기직·취업 포기자를 포함한 체감실업률은 20%를 넘는다는 분석이 있습니다. "쉬었음" 인구가 역대 최고치를 기록 중입니다.`
                 : locale === 'ja'
@@ -281,7 +282,7 @@ export default function Dashboard() {
                 : `The official ${macroMetrics.youthUnemployment.currentValue}% understates the problem. Including part-timers, gig workers, and those who've given up job searching, the effective rate is estimated above 20%. The "resting" (not seeking work) population is at an all-time high.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
-              <p className="text-[#b8860b] text-[11px] font-mono leading-relaxed">
+              <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
                   ? '⚠ 양질의 일자리 부족 + 높은 집값 + 교육비 부담 = 결혼·출산 기피로 이어지며, 한국의 합계출산율 0.72는 OECD 최저입니다.'
                   : locale === 'ja'
@@ -295,17 +296,17 @@ export default function Dashboard() {
           <div className="bg-[#111] border border-[#222] rounded-lg p-5">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">🏛️</span>
-              <h3 className="text-white font-mono text-sm font-bold">
+              <h3 className="text-white font-sans text-sm font-bold">
                 {locale === 'ko' ? '국가부채 / GDP' : locale === 'ja' ? '国家負債 / GDP' : 'National Debt / GDP'}
               </h3>
             </div>
             <div className="flex items-baseline gap-2 mb-3">
               <span className="text-2xl font-bold text-[#f97316]">{macroMetrics.nationalDebt.currentValue}%</span>
-              <span className="text-xs text-[#666] font-mono">
+              <span className="text-xs text-[#666] font-sans">
                 {locale === 'ko' ? 'GDP 대비' : locale === 'ja' ? 'GDP比' : 'of GDP'}
               </span>
             </div>
-            <p className="text-[#999] text-xs font-mono leading-relaxed mb-3">
+            <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
                 ? `국가부채가 GDP의 ${macroMetrics.nationalDebt.currentValue}%입니다. 2008년 28%에서 2배 가까이 늘었습니다. 정부가 경기 부양을 위해 빚을 내면, 결국 세금으로 갚아야 하는 건 국민입니다.`
                 : locale === 'ja'
@@ -313,7 +314,7 @@ export default function Dashboard() {
                 : `National debt has hit ${macroMetrics.nationalDebt.currentValue}% of GDP, nearly doubling from 28% in 2008. When the government borrows to stimulate the economy, taxpayers ultimately foot the bill through future tax hikes or reduced services.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
-              <p className="text-[#b8860b] text-[11px] font-mono leading-relaxed">
+              <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
                   ? '⚠ 고령화 + 저출산으로 복지 지출이 급증하는 상황에서 국가부채 확대는 미래 세대에 더 큰 부담을 지웁니다. 재정 건전성 악화 시 국가신용등급 하락 → 외채 이자 상승 리스크도 있습니다.'
                   : locale === 'ja'
@@ -326,10 +327,10 @@ export default function Dashboard() {
 
         {/* Bottom line callout */}
         <div className="mt-6 bg-[#111] border border-[#b8860b30] rounded-lg p-5">
-          <h3 className="text-[#b8860b] font-mono text-sm font-bold mb-2">
+          <h3 className="text-[#b8860b] font-sans text-sm font-bold mb-2">
             {locale === 'ko' ? '📌 한눈에 보는 핵심' : locale === 'ja' ? '📌 一目でわかるポイント' : '📌 The Bottom Line'}
           </h3>
-          <p className="text-[#ccc] text-sm font-mono leading-relaxed">
+          <p className="text-[#ccc] text-sm font-sans leading-relaxed">
             {locale === 'ko'
               ? '물가는 오르고, 월급은 제자리이고, 집은 더 비싸졌고, 빚은 역대 최고입니다. 한국 뉴스에서는 대통령 지지율만 보도하지만, 이 숫자들이 국민이 실제로 느끼는 현실입니다. 아래 대시보드에서 각 지표를 직접 확인해 보세요.'
               : locale === 'ja'
@@ -387,7 +388,7 @@ export default function Dashboard() {
         </div>
         {/* Housing context callout */}
         <div className="mt-4 bg-[#111] border border-[#2a1515] rounded-lg p-4">
-          <p className="text-sm font-mono text-[#cc6666]">
+          <p className="text-sm font-sans text-[#cc6666]">
             {locale === 'ko'
               ? `서울 평균 아파트 구매까지 소득 대비 ${housingMetrics.housingIncomeRatio.currentValue}년 — 2008년 ${8.2}년에서 2.5배 증가. 전세 보증금은 같은 기간 ₩1.85억에서 ₩4.75억으로 상승.`
               : locale === 'ja'
@@ -413,7 +414,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <GasMap locale={locale} />
           <div className="bg-[#111111] border border-[#222222] rounded-lg p-5">
-            <h3 className="text-white font-mono text-sm font-bold mb-4">
+            <h3 className="text-white font-sans text-sm font-bold mb-4">
               {locale === 'ko' ? '지역별 가격 순위 (비싼 순)' : locale === 'ja' ? '地域別価格ランキング（高い順）' : 'Price Ranking (Highest First)'}
             </h3>
             <div className="space-y-2">
@@ -423,12 +424,12 @@ export default function Dashboard() {
                 const barWidth = ((r.avgPrice - 1800) / (2150 - 1800)) * 100;
                 return (
                   <div key={r.region} className="flex items-center gap-3">
-                    <span className="text-[#555] text-xs font-mono w-5 text-right">{i + 1}</span>
-                    <span className="text-[#ccc] text-xs font-mono w-20 truncate">{name}</span>
+                    <span className="text-[#555] text-xs font-sans w-5 text-right">{i + 1}</span>
+                    <span className="text-[#ccc] text-xs font-sans w-20 truncate">{name}</span>
                     <div className="flex-1 h-4 bg-[#1a1a1a] rounded-sm overflow-hidden">
                       <div className="h-full rounded-sm transition-all duration-500" style={{ width: `${Math.min(barWidth, 100)}%`, backgroundColor: color }} />
                     </div>
-                    <span className="text-xs font-mono font-bold w-16 text-right" style={{ color }}>₩{r.avgPrice.toLocaleString()}</span>
+                    <span className="text-xs font-sans font-bold w-16 text-right" style={{ color }}>₩{r.avgPrice.toLocaleString()}</span>
                   </div>
                 );
               })}
@@ -474,29 +475,29 @@ export default function Dashboard() {
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: impactColor }} />
                 <div>
-                  <p className="text-[#888] text-[10px] font-mono uppercase">{locale === 'ko' ? '영향받는 지표' : locale === 'ja' ? '影響を受ける指標' : 'Impacted Metric'}</p>
-                  <p className="text-white font-mono text-sm font-bold">{impactLabel}</p>
+                  <p className="text-[#888] text-[10px] font-sans uppercase">{locale === 'ko' ? '영향받는 지표' : locale === 'ja' ? '影響を受ける指標' : 'Impacted Metric'}</p>
+                  <p className="text-white font-sans text-sm font-bold">{impactLabel}</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <div className="text-right">
-                  <p className="text-[#888] text-[10px] font-mono">{t(locale, 'presidencyStart')}</p>
-                  <p className="text-[#666] font-mono text-sm">
+                  <p className="text-[#888] text-[10px] font-sans">{t(locale, 'presidencyStart')}</p>
+                  <p className="text-[#666] font-sans text-sm">
                     {impactMetric.unit === '₩' ? `₩${impactMetric.presidencyStartValue.toLocaleString()}` : `${impactMetric.presidencyStartValue}${impactMetric.unit}`}
                   </p>
                 </div>
                 <div className="text-xl text-[#555]">→</div>
                 <div className="text-right">
-                  <p className="text-[#888] text-[10px] font-mono">{t(locale, 'today')}</p>
-                  <p className="font-mono text-sm font-bold" style={{ color: impactColor }}>
+                  <p className="text-[#888] text-[10px] font-sans">{t(locale, 'today')}</p>
+                  <p className="font-sans text-sm font-bold" style={{ color: impactColor }}>
                     {impactMetric.unit === '₩' ? `₩${impactMetric.currentValue.toLocaleString()}` : `${impactMetric.currentValue}${impactMetric.unit}`}
                   </p>
                 </div>
-                <span className="font-mono text-sm font-bold px-2 py-1 rounded" style={{ color: impactColor, backgroundColor: `${impactColor}15` }}>
+                <span className="font-sans text-sm font-bold px-2 py-1 rounded" style={{ color: impactColor, backgroundColor: `${impactColor}15` }}>
                   {impactMetric.changePercent > 0 ? '↑' : '↓'} {Math.abs(impactMetric.changePercent)}%
                 </span>
               </div>
-              <button onClick={() => setActiveImpact(null)} className="text-[#555] hover:text-white text-xs font-mono transition-colors">✕</button>
+              <button onClick={() => setActiveImpact(null)} className="text-[#555] hover:text-white text-xs font-sans transition-colors">✕</button>
             </div>
           );
         })()}

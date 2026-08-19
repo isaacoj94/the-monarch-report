@@ -57,8 +57,8 @@
   gap: 12px;
   margin-bottom: 26px;
   color: #ead69f;
-  font: 600 10px/1 var(--font-geist-mono), monospace;
-  letter-spacing: .17em;
+  font: 650 11px/1 var(--font-inter), sans-serif;
+  letter-spacing: .12em;
   text-transform: uppercase;
 }
 
@@ -104,8 +104,8 @@
   min-height: 48px;
   padding: 0 20px;
   border: 1px solid transparent;
-  font: 700 11px/1 var(--font-geist-mono), monospace;
-  letter-spacing: .08em;
+  font: 700 11px/1 var(--font-inter), sans-serif;
+  letter-spacing: .06em;
   text-transform: uppercase;
   transition: .2s ease;
 }
@@ -124,8 +124,8 @@
   justify-content: space-between;
   gap: 20px;
   color: rgba(255, 255, 255, .52);
-  font: 500 9px/1.4 var(--font-geist-mono), monospace;
-  letter-spacing: .08em;
+  font: 550 10px/1.4 var(--font-inter), sans-serif;
+  letter-spacing: .05em;
   text-transform: uppercase;
 }
 

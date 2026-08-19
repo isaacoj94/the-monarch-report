@@ -29,10 +29,10 @@ export default function CausalChain({ titleKey, stepKeys, locale, color, related
       onClick={() => onChainClick?.(relatedMetric)}
     >
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-white font-mono text-sm font-bold">{t(locale, titleKey)}</h3>
+        <h3 className="text-white font-sans text-sm font-bold">{t(locale, titleKey)}</h3>
         {isActive && (
           <span
-            className="text-[10px] font-mono px-2 py-0.5 rounded-full animate-pulse"
+            className="text-[10px] font-sans px-2 py-0.5 rounded-full animate-pulse"
             style={{ color, backgroundColor: `${color}20` }}
           >
             {locale === 'ko' ? '활성' : locale === 'ja' ? 'アクティブ' : 'ACTIVE'}
@@ -54,7 +54,7 @@ export default function CausalChain({ titleKey, stepKeys, locale, color, related
             >
               <div className="flex flex-col items-center">
                 <div
-                  className={`rounded-full flex items-center justify-center text-xs font-mono font-bold shrink-0 transition-all duration-300 ${
+                  className={`rounded-full flex items-center justify-center text-xs font-sans font-bold shrink-0 transition-all duration-300 ${
                     isActive ? 'w-8 h-8' : 'w-7 h-7'
                   }`}
                   style={{
@@ -73,7 +73,7 @@ export default function CausalChain({ titleKey, stepKeys, locale, color, related
                 )}
               </div>
               <p
-                className={`text-sm font-mono pt-1 transition-all duration-300 ${isLastStep ? 'font-bold' : ''}`}
+                className={`text-sm font-sans pt-1 transition-all duration-300 ${isLastStep ? 'font-bold' : ''}`}
                 style={{
                   color: isLastStep ? color : isActive ? '#dddddd' : '#aaaaaa',
                   textShadow: isActive && isLastStep ? `0 0 10px ${color}30` : 'none',

@@ -8,7 +8,7 @@ export default function MonarchNewsHero() {
       <div className={styles.grade} aria-hidden="true" />
       <div className={styles.frame} aria-hidden="true" />
       <div className={styles.inner}>
-        <div className={styles.eyebrow}>Visual briefing · Seoul · Civil liberties</div>
+        <div className={styles.eyebrow}>The English briefing · Seoul · Civil liberties</div>
         <h1 id="lead-story-title" className={styles.title}>
           The right <em>to be heard.</em>
         </h1>
@@ -21,7 +21,7 @@ export default function MonarchNewsHero() {
         </div>
       </div>
       <div className={styles.sourceLine}>
-        <span>18 verified sources · 04 primary documents</span>
+        <span>Sourced reporting · Primary documents linked</span>
         <span>English edition · Seoul / 서울</span>
       </div>
     </section>

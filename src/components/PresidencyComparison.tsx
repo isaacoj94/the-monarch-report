@@ -78,7 +78,7 @@ export default function PresidencyComparison({ locale }: PresidencyComparisonPro
           <button
             key={p.id}
             onClick={() => setHighlightedPresident(prev => prev === p.id ? null : p.id)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-mono transition-all ${
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-sans transition-all ${
               highlightedPresident === p.id
                 ? 'bg-[#1a1a1a] border-2'
                 : highlightedPresident && highlightedPresident !== p.id
@@ -100,7 +100,7 @@ export default function PresidencyComparison({ locale }: PresidencyComparisonPro
           <button
             key={g.labelKey}
             onClick={() => setSelectedGroup(i)}
-            className={`px-3 py-1.5 text-xs font-mono rounded-t transition-colors ${
+            className={`px-3 py-1.5 text-xs font-sans rounded-t transition-colors ${
               selectedGroup === i ? 'bg-[#1a1a1a] text-white border-b-2 border-red-500' : 'text-[#666] hover:text-white'
             }`}
           >
@@ -111,7 +111,7 @@ export default function PresidencyComparison({ locale }: PresidencyComparisonPro
 
       {/* Comparison table */}
       <div className="bg-[#111] border border-[#222] rounded-lg overflow-x-auto">
-        <table className="w-full text-xs font-mono">
+        <table className="w-full text-xs font-sans">
           <thead>
             <tr className="border-b border-[#222]">
               <th className="text-left text-[#666] p-3 sticky left-0 bg-[#111] z-10 min-w-[120px]"></th>
