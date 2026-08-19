@@ -11,8 +11,10 @@ export const dynamic = 'force-dynamic';
 type EpisodeOption = { id: string; episode_number: number; country: string; title: string };
 type ViewerRow = {
   id: string;
+  auth_user_id: string;
   viewer_code: string;
   display_name: string | null;
+  contact_email?: string | null;
   status: string;
   created_at: string;
   screening_access_grants: Array<{
@@ -51,12 +53,18 @@ export default async function ScreeningAdminPage() {
       .order('episode_number'),
     admin
       .from('screening_viewers')
-      .select('id, viewer_code, display_name, status, created_at, screening_access_grants(expires_at, views_started, view_limit, screening_episodes(title))')
+      .select('id, auth_user_id, viewer_code, display_name, status, created_at, screening_access_grants(expires_at, views_started, view_limit, screening_episodes(title))')
       .order('created_at', { ascending: false })
       .limit(30),
   ]);
   const episodes = (episodeData ?? []) as EpisodeOption[];
-  const viewers = (viewerData ?? []) as unknown as ViewerRow[];
+  const viewers = await Promise.all(((viewerData ?? []) as unknown as ViewerRow[]).map(async (viewer) => {
+    const { data } = await admin.auth.admin.getUserById(viewer.auth_user_id);
+    const contactEmail = typeof data.user?.user_metadata?.contact_email === 'string'
+      ? data.user.user_metadata.contact_email
+      : viewer.contact_email ?? null;
+    return { ...viewer, contact_email: contactEmail };
+  }));
 
   return (
     <main className={styles.page}>
@@ -94,7 +102,7 @@ export default async function ScreeningAdminPage() {
                     const grant = viewer.screening_access_grants?.[0];
                     return (
                       <tr key={viewer.id}>
-                        <td><strong>{viewer.viewer_code}</strong><small>{viewer.display_name || 'Unnamed viewer'}</small></td>
+                        <td><strong>{viewer.viewer_code}</strong><small>{viewer.display_name || 'Unnamed viewer'}</small>{viewer.contact_email ? <small>{viewer.contact_email}</small> : null}</td>
                         <td>{grant?.screening_episodes?.title || '—'}</td>
                         <td>{grant ? `${grant.views_started} / ${grant.view_limit ?? '∞'}` : '—'}</td>
                         <td>{utcDate(grant?.expires_at ?? null)}</td>

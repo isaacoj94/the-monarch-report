@@ -2,6 +2,7 @@
 
 import { useActionState } from 'react';
 import { viewerLoginAction, type LoginState } from './actions';
+import { markViewerSession } from './viewer-session-guard';
 import styles from './screening.module.css';
 import { useLocale } from '@/components/LocaleProvider';
 
@@ -28,7 +29,7 @@ export function ScreeningLogin({ configurationError }: { configurationError: boo
         <div className={styles.seriesLine}><span>{copy.series}</span><span>{copy.countries}</span><span>4K MASTER</span></div>
       </div>
 
-      <form className={styles.accessCard} action={action}>
+      <form className={styles.accessCard} action={action} onSubmit={markViewerSession}>
         <div className={styles.cardTop}><span>{copy.access}</span><span>01 / 01</span></div>
         <h2>{copy.enter}</h2>
         <p>{copy.notice}</p>

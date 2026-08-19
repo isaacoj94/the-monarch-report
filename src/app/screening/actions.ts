@@ -10,7 +10,7 @@ import { getAuthenticatedUser, isScreeningAdministrator } from '@/lib/screening'
 export type LoginState = { error: string | null };
 export type InvitationState = {
   error: string | null;
-  credentials: { viewerCode: string; password: string } | null;
+  credentials: { viewerCode: string; password: string; contactEmail: string | null } | null;
 };
 
 const INVALID_CREDENTIALS = 'The viewer ID or access key is incorrect.';
@@ -101,6 +101,11 @@ export async function createInvitationAction(
   }
 
   const displayName = String(formData.get('displayName') ?? '').trim().slice(0, 100) || null;
+  const contactEmailRaw = String(formData.get('contactEmail') ?? '').trim().toLowerCase();
+  const contactEmail = contactEmailRaw || null;
+  if (contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) {
+    return { error: 'Enter a valid email address, or leave it blank.', credentials: null };
+  }
   const episodeId = String(formData.get('episodeId') ?? '');
   const expiresHours = Number(formData.get('expiresHours'));
   const viewLimit = Number(formData.get('viewLimit'));
@@ -146,20 +151,34 @@ export async function createInvitationAction(
     email,
     password,
     email_confirm: true,
-    user_metadata: { viewer_code: viewerCode, display_name: displayName },
+    user_metadata: { viewer_code: viewerCode, display_name: displayName, contact_email: contactEmail },
   });
 
   if (authError || !authData.user) {
     return { error: 'Could not create the private viewer account.', credentials: null };
   }
 
-  const { data: viewer, error: viewerError } = await admin
+  let viewerInsert = await admin
     .from('screening_viewers')
-    .insert({ auth_user_id: authData.user.id, viewer_code: viewerCode, display_name: displayName })
+    .insert({
+      auth_user_id: authData.user.id,
+      viewer_code: viewerCode,
+      display_name: displayName,
+      contact_email: contactEmail,
+    })
     .select('id')
     .single();
 
-  if (viewerError || !viewer) {
+  if (viewerInsert.error) {
+    viewerInsert = await admin
+      .from('screening_viewers')
+      .insert({ auth_user_id: authData.user.id, viewer_code: viewerCode, display_name: displayName })
+      .select('id')
+      .single();
+  }
+
+  const viewer = viewerInsert.data;
+  if (viewerInsert.error || !viewer) {
     await admin.auth.admin.deleteUser(authData.user.id);
     return { error: 'Could not save the private viewer account.', credentials: null };
   }
@@ -180,7 +199,7 @@ export async function createInvitationAction(
   }
 
   revalidatePath('/screening/admin');
-  return { error: null, credentials: { viewerCode, password } };
+  return { error: null, credentials: { viewerCode, password, contactEmail } };
 }
 
 export async function revokeViewerAction(formData: FormData) {
