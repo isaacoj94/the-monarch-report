@@ -138,7 +138,7 @@ export async function POST(request: NextRequest) {
       httpOnly: true,
       sameSite: 'lax',
       secure: process.env.NODE_ENV === 'production',
-      path: '/screening',
+      path: '/',
       maxAge: 60 * 60 * 24 * 365,
     });
   }

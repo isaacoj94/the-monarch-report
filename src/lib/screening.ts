@@ -96,8 +96,7 @@ export async function getViewerAccess(): Promise<ViewerAccess | null> {
       const active = Boolean(
         grant &&
           grant.status === 'active' &&
-          (!grant.expires_at || new Date(grant.expires_at).getTime() > now) &&
-          (grant.view_limit === null || grant.views_started < grant.view_limit),
+          (!grant.expires_at || new Date(grant.expires_at).getTime() > now),
       );
 
       return {
