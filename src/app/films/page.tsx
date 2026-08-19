@@ -4,20 +4,21 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
+import { FILM_EPISODES } from '@/lib/film-episodes';
 import { useLocale } from '@/components/LocaleProvider';
 import styles from './documentary.module.css';
 
 const CHAPTERS = [
   {
-    number: '01', title: 'Inside the Machine', country: { en: 'China', ko: '중국', ja: '中国' },
+    number: '01', title: FILM_EPISODES[0].title, country: { en: 'China', ko: '중국', ja: '中国' },
     logline: { en: 'Coordinated raids on churches, mosques and spiritual communities reveal a system built to erase independent faith in the name of state control.', ko: '교회와 모스크, 신앙 공동체를 덮친 조직적 단속. 국가라는 이름의 기계가 독립된 신앙을 지우는 방식을 추적한다.', ja: '教会、モスク、信仰共同体を襲った組織的な摘発。国家という名の機械が、独立した信仰を消していく。' },
   },
   {
-    number: '02', title: 'The Precedent', country: { en: 'Japan', ko: '일본', ja: '日本' },
+    number: '02', title: FILM_EPISODES[1].title, country: { en: 'Japan', ko: '일본', ja: '日本' },
     logline: { en: 'The dissolution of a religious organization establishes a legal precedent whose consequences extend far beyond one group or one courtroom.', ko: '한 종교법인의 해산. 법정 하나가 남긴 선례는, 그 단체와 그 나라만의 이야기가 아니다.', ja: '一つの宗教法人の解散。法廷が残した先例は、その団体、その国だけの話ではない。' },
   },
   {
-    number: '03', title: 'The Democratic Test', country: { en: 'Korea', ko: '한국', ja: '韓国' },
+    number: '03', title: FILM_EPISODES[2].title, country: { en: 'Korea', ko: '한국', ja: '韓国' },
     logline: { en: 'Surveillance, detention and institutional pressure test whether democratic protections still apply when religious leaders refuse to be silenced.', ko: '감시와 구금, 제도의 압박. 침묵을 거부한 종교 지도자들 앞에서, 민주주의는 시험대에 오른다.', ja: '監視、拘禁、制度の圧力。沈黙を拒んだ宗教指導者の前で、民主主義は試される。' },
   },
 ];

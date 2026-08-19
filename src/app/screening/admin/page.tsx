@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { displayEpisodeTitle } from '@/lib/film-episodes';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { getAuthenticatedUser, isScreeningAdministrator } from '@/lib/screening';
 import { revokeViewerAction, signOutAction } from '../actions';
@@ -21,7 +22,7 @@ type ViewerRow = {
     expires_at: string | null;
     views_started: number;
     view_limit: number | null;
-    screening_episodes: { title: string } | null;
+    screening_episodes: { title: string; episode_number: number } | null;
   }>;
 };
 
@@ -53,7 +54,7 @@ export default async function ScreeningAdminPage() {
       .order('episode_number'),
     admin
       .from('screening_viewers')
-      .select('id, auth_user_id, viewer_code, display_name, status, created_at, screening_access_grants(expires_at, views_started, view_limit, screening_episodes(title))')
+      .select('id, auth_user_id, viewer_code, display_name, status, created_at, screening_access_grants(expires_at, views_started, view_limit, screening_episodes(title, episode_number))')
       .order('created_at', { ascending: false })
       .limit(30),
   ]);
@@ -103,7 +104,7 @@ export default async function ScreeningAdminPage() {
                     return (
                       <tr key={viewer.id}>
                         <td><strong>{viewer.viewer_code}</strong><small>{viewer.display_name || 'Unnamed viewer'}</small>{viewer.contact_email ? <small>{viewer.contact_email}</small> : null}</td>
-                        <td>{grant?.screening_episodes?.title || '—'}</td>
+                        <td>{grant?.screening_episodes ? displayEpisodeTitle(grant.screening_episodes.episode_number, grant.screening_episodes.title) : '—'}</td>
                         <td>{grant ? `${grant.views_started} / ${grant.view_limit ?? '∞'}` : '—'}</td>
                         <td>{utcDate(grant?.expires_at ?? null)}</td>
                         <td><span className={viewer.status === 'active' ? styles.active : styles.revoked}>{viewer.status}</span></td>
