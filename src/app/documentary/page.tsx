@@ -10,15 +10,15 @@ import styles from './documentary.module.css';
 const CHAPTERS = [
   {
     number: '01', title: 'Inside the Machine', country: { en: 'China', ko: '중국', ja: '中国' },
-    logline: { en: 'Coordinated raids on churches, mosques and spiritual communities reveal a system built to erase independent faith in the name of state control.', ko: '교회와 모스크, 신앙 공동체를 겨냥한 조직적 단속을 통해 국가 통제 아래 독립적인 신앙을 지우려는 체계를 들여다봅니다.', ja: '教会、モスク、信仰共同体への組織的な取り締まりを通じ、国家統制の名の下に独立した信仰を消そうとする仕組みを追います。' },
+    logline: { en: 'Coordinated raids on churches, mosques and spiritual communities reveal a system built to erase independent faith in the name of state control.', ko: '교회와 모스크, 신앙 공동체를 겨냥한 조직적 단속. 국가 통제 아래 독립적인 신앙을 지우려는 체계의 내부를 추적한다.', ja: '教会、モスク、信仰共同体への組織的な取り締まり。国家統制の名の下に、独立した信仰を消そうとする仕組みを追う。' },
   },
   {
     number: '02', title: 'The Precedent', country: { en: 'Japan', ko: '일본', ja: '日本' },
-    logline: { en: 'The dissolution of a religious organization establishes a legal precedent whose consequences extend far beyond one group or one courtroom.', ko: '종교단체 해산이 하나의 단체나 법정을 넘어 어떤 법적 선례와 파장을 남기는지 살펴봅니다.', ja: '宗教法人の解散が、一つの団体や法廷を超えてどのような法的先例と影響を残すのかを検証します。' },
+    logline: { en: 'The dissolution of a religious organization establishes a legal precedent whose consequences extend far beyond one group or one courtroom.', ko: '종교단체 해산이 남긴 법적 선례. 하나의 단체와 법정을 넘어 확산될 파장을 짚는다.', ja: '宗教法人の解散が残す法的先例。一つの団体や法廷を超えて広がる影響を検証する。' },
   },
   {
     number: '03', title: 'The Democratic Test', country: { en: 'Korea', ko: '한국', ja: '韓国' },
-    logline: { en: 'Surveillance, detention and institutional pressure test whether democratic protections still apply when religious leaders refuse to be silenced.', ko: '감시와 구금, 제도적 압박 속에서도 종교 지도자가 침묵을 거부할 때 민주주의의 보호 장치가 제대로 작동하는지 묻습니다.', ja: '監視、拘禁、制度的圧力の中で宗教指導者が沈黙を拒むとき、民主主義の保護が機能するのかを問います。' },
+    logline: { en: 'Surveillance, detention and institutional pressure test whether democratic protections still apply when religious leaders refuse to be silenced.', ko: '감시와 구금, 제도적 압박 속에서 침묵을 거부한 종교 지도자. 민주주의의 보호 장치가 작동하는지 묻는다.', ja: '監視、拘禁、制度的圧力の中で沈黙を拒んだ宗教指導者。民主主義の歯止めが機能するのかを問う。' },
   },
 ];
 
@@ -28,18 +28,33 @@ const filmCopy = {
     dek: 'Three nations. One blueprint of persecution. A documentary series built from testimony, rare footage, public records and cinematic storytelling.', trailer: 'Watch the trailer', series: 'The series', warning: 'Three nations. One warning.', seriesDek: 'China, Japan and Korea reveal different methods of pressure—and a shared threat to freedom of belief.',
     format: 'FORMAT', status: 'STATUS', documentary: 'DOCUMENTARY', inProduction: 'IN PRODUCTION', productionLabel: 'A Monarch Films production', productionTitle: 'Truth, scaled to cinema.',
     productionDek: 'Exclusive interviews, rare footage, original reporting and high-end filmmaking bring clarity to stories too often hidden by distance, language or institutional power.', continue: 'Continue with the reporting', follow: 'Follow the record behind the film.', followDek: 'Return to The Monarch Report for independent coverage of Korea, religious freedom and the public consequences behind the series.', visit: 'Visit The Monarch Report →',
+    productionCards: [
+      ['01 / THE REPORTING', 'Documented from the source', 'Court filings, public records, interviews and original-language reporting establish the factual record.'],
+      ['02 / THE IMAGE', 'Built for the cinema', 'Premium cinematography and restrained 2D sequences clarify complex events without turning suffering into spectacle.'],
+      ['03 / THE NARRATIVE', 'Evidence, shaped with purpose', 'VFX, sound and visual storytelling serve the documented record without replacing or sensationalizing it.'],
+    ],
   },
   ko: {
-    film: '작품', episodes: '에피소드', production: '프로덕션', eyebrow: '닫힌 문 뒤의 일은 결국 모두에게 영향을 미칩니다', title: 'You’re Next:', emphasis: 'Do Nothing.',
-    dek: '세 나라, 하나의 박해 구조. 증언과 희귀 영상, 공공 기록, 영화적 스토리텔링으로 완성하는 다큐멘터리 시리즈입니다.', trailer: '예고편 보기', series: '시리즈', warning: '세 나라, 하나의 경고.', seriesDek: '중국·일본·한국에서 서로 다른 압박 방식과 신앙의 자유를 위협하는 공통된 흐름을 추적합니다.',
-    format: '형식', status: '상태', documentary: '다큐멘터리', inProduction: '제작 중', productionLabel: '모나크 필름 제작', productionTitle: '사실을 영화의 규모로.',
-    productionDek: '독점 인터뷰와 희귀 영상, 자체 취재, 고품질 영상 제작을 통해 거리와 언어, 제도 권력에 가려진 이야기를 분명하게 전합니다.', continue: '관련 보도 이어보기', follow: '영화의 근거가 된 기록을 확인하세요.', followDek: '한국과 종교의 자유, 시리즈가 다루는 공적 영향을 독립적으로 보도하는 더 모나크 리포트로 돌아갑니다.', visit: '더 모나크 리포트 방문 →',
+    film: '작품', episodes: '에피소드', production: '제작', eyebrow: '닫힌 문 뒤에서 시작된 일, 다음은 우리일 수 있다', title: 'You’re Next:', emphasis: 'Do Nothing.',
+    dek: '중국·일본·한국, 서로 다른 세 나라에서 반복된 하나의 박해 구조. 증언과 희귀 영상, 공공 기록을 바탕으로 추적한 다큐멘터리 시리즈.', trailer: '공식 예고편', series: '시리즈', warning: '세 나라에서 확인된 하나의 경고', seriesDek: '서로 다른 압박의 방식, 그리고 신앙의 자유를 겨냥한 공통의 흐름을 추적한다.',
+    format: '장르', status: '제작 현황', documentary: '다큐멘터리', inProduction: '제작 중', productionLabel: 'MONARCH FILMS 제작', productionTitle: '기록을 스크린 위에 세우다',
+    productionDek: '독점 인터뷰와 희귀 영상, 자체 취재를 영화적 영상과 사운드로 구현해 언어와 거리, 제도 권력에 가려진 사건의 실체를 드러낸다.', continue: '관련 보도', follow: '작품의 바탕이 된 기록', followDek: '한국과 종교의 자유, 시리즈가 다루는 사회적 파장을 취재한 더 모나크 리포트 기사로 이어진다.', visit: '더 모나크 리포트로 이동 →',
+    productionCards: [
+      ['01 / 취재와 기록', '원자료에서 출발한 취재', '재판 기록과 공공 문서, 인터뷰, 현지어 보도를 교차 검증해 사실관계를 세운다.'],
+      ['02 / 영상 구현', '영화를 위한 화면', '고급 촬영과 절제된 2D 시퀀스로 복잡한 사건을 풀어내되 고통을 볼거리로 소비하지 않는다.'],
+      ['03 / 서사', '증거를 중심에 둔 이야기', 'VFX와 사운드, 시각적 서사는 기록을 대체하거나 과장하지 않고 이해를 돕는 데 쓰인다.'],
+    ],
   },
   ja: {
-    film: '作品', episodes: 'エピソード', production: '制作', eyebrow: '閉ざされた場所で起きることは、やがて誰にでも及ぶ', title: 'You’re Next:', emphasis: 'Do Nothing.',
-    dek: '三つの国、一つの迫害構造。証言、希少映像、公的記録、映画的な物語表現で描くドキュメンタリーシリーズです。', trailer: '予告編を見る', series: 'シリーズ', warning: '三つの国、一つの警告。', seriesDek: '中国・日本・韓国における異なる圧力の手法と、信教の自由への共通した脅威を追います。',
-    format: '形式', status: '状況', documentary: 'ドキュメンタリー', inProduction: '制作中', productionLabel: 'モナーク・フィルムズ制作', productionTitle: '事実を、映画のスケールで。',
-    productionDek: '独占インタビュー、希少映像、独自取材、高品質な映像制作によって、距離・言語・制度的権力に隠れた物語を明確に伝えます。', continue: '関連報道を読む', follow: '作品の背景にある記録をたどる。', followDek: '韓国、信教の自由、シリーズが扱う社会的影響を独立して報じる「ザ・モナーク・レポート」へ戻ります。', visit: 'ザ・モナーク・レポートへ →',
+    film: '作品', episodes: 'エピソード', production: '制作', eyebrow: '閉ざされた場所で始まったことは、やがて私たちにも及ぶ', title: 'You’re Next:', emphasis: 'Do Nothing.',
+    dek: '中国、日本、韓国。異なる三つの国で繰り返された一つの迫害構造を、証言、希少映像、公的記録から追うドキュメンタリーシリーズ。', trailer: '公式予告編', series: 'シリーズ', warning: '三つの国が映し出す、一つの警告', seriesDek: '異なる圧力の手法、その背後にある信教の自由への共通した脅威を追う。',
+    format: 'ジャンル', status: '制作状況', documentary: 'ドキュメンタリー', inProduction: '制作中', productionLabel: 'MONARCH FILMS 制作', productionTitle: '記録を、スクリーンへ',
+    productionDek: '独占インタビュー、希少映像、独自取材を映像と音で構成し、距離や言語、制度の力に隠された出来事の輪郭を浮かび上がらせる。', continue: '関連報道', follow: '作品の土台となった記録', followDek: '韓国、信教の自由、シリーズが扱う社会的影響を追った「ザ・モナーク・レポート」の記事へ。', visit: 'ザ・モナーク・レポートへ移動 →',
+    productionCards: [
+      ['01 / 取材と記録', '一次資料から組み立てる', '裁判記録、公文書、インタビュー、現地語報道を照合し、事実関係を積み上げる。'],
+      ['02 / 映像表現', '映画として描く', '上質な撮影と抑制の効いた2Dシークエンスで、苦しみを見世物にせず複雑な出来事を伝える。'],
+      ['03 / 物語', '証拠を中心に据える', 'VFX、音響、映像演出は、記録を置き換えたり誇張したりせず、理解を深めるために用いる。'],
+    ],
   },
 } as const;
 
@@ -104,9 +119,9 @@ export default function DocumentaryPage() {
       <section id="production" className={styles.production}>
         <div className={styles.productionIntro}><span className={styles.eyebrow}>{copy.productionLabel}</span><h2>{copy.productionTitle}</h2><p>{copy.productionDek}</p></div>
         <div className={styles.productionGrid}>
-          <article><small>01 / THE RECORD</small><h3>Source-led reporting</h3><p>Court filings, public documents, interviews and original-language reporting form the base layer.</p></article>
-          <article><small>02 / THE FRAME</small><h3>High-end production</h3><p>Premium cinematography and editorial 2D sequences bring clarity without turning suffering into spectacle.</p></article>
-          <article><small>03 / THE STORY</small><h3>Cinematic clarity</h3><p>VFX, sound and visual storytelling support the documented record without replacing or sensationalizing it.</p></article>
+          {copy.productionCards.map(([label, title, description]) => (
+            <article key={label}><small>{label}</small><h3>{title}</h3><p>{description}</p></article>
+          ))}
         </div>
       </section>
 

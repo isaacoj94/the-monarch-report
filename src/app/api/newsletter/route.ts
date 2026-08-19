@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server';
 // Get your API key from: https://app.brevo.com/settings/keys/api
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
+const BREVO_ACCOUNT_URL = 'https://api.brevo.com/v3/account';
 
 type SignupBody = {
   email?: string;
@@ -14,11 +15,27 @@ type SignupBody = {
   utm_content?: string;
 };
 
-const cleanAttr = (v: unknown): string | undefined => {
-  if (typeof v !== 'string') return undefined;
-  const trimmed = v.trim().slice(0, 120);
-  return trimmed.length > 0 ? trimmed : undefined;
-};
+function newsletterListId() {
+  const value = Number(process.env.BREVO_LIST_ID ?? '2');
+  return Number.isSafeInteger(value) && value > 0 ? value : 2;
+}
+
+export async function GET() {
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) return NextResponse.json({ connected: false }, { status: 503 });
+
+  try {
+    const response = await fetch(BREVO_ACCOUNT_URL, {
+      headers: { accept: 'application/json', 'api-key': apiKey },
+      cache: 'no-store',
+    });
+    return response.ok
+      ? NextResponse.json({ connected: true })
+      : NextResponse.json({ connected: false }, { status: 503 });
+  } catch {
+    return NextResponse.json({ connected: false }, { status: 503 });
+  }
+}
 
 export async function POST(request: Request) {
   try {
@@ -39,21 +56,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Pass UTM cohort onto the Brevo contact so the email tool knows where
-    // each subscriber came from. Attribute names follow Brevo's uppercase
-    // convention; create them once in the Brevo dashboard if your account
-    // doesn't auto-provision on-the-fly.
-    const attributes: Record<string, string> = {};
-    const utmSource = cleanAttr(body.utm_source);
-    const utmMedium = cleanAttr(body.utm_medium);
-    const utmCampaign = cleanAttr(body.utm_campaign);
-    const utmContent = cleanAttr(body.utm_content);
-    if (utmSource) attributes.UTM_SOURCE = utmSource;
-    if (utmMedium) attributes.UTM_MEDIUM = utmMedium;
-    if (utmCampaign) attributes.UTM_CAMPAIGN = utmCampaign;
-    if (utmContent) attributes.UTM_CONTENT = utmContent;
-    attributes.SIGNUP_AT = new Date().toISOString();
-
     const res = await fetch(BREVO_API_URL, {
       method: 'POST',
       headers: {
@@ -63,14 +65,13 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         email,
-        listIds: [2], // Default list ID — change to match your Brevo list
-        attributes,
+        listIds: [newsletterListId()],
         updateEnabled: true,
       }),
     });
 
     if (!res.ok) {
-      const data = await res.json();
+      const data = await res.json().catch(() => ({})) as { code?: string };
       if (data.code === 'duplicate_parameter') {
         return NextResponse.json({ success: true, message: 'Already subscribed' });
       }

@@ -14,10 +14,16 @@ const categoryColors: Record<string, { color: string; label: string }> = {
   religion: { color: '#a855f7', label: 'RELIGION' },
 };
 
+const categoryLabels = {
+  en: { korea: 'KOREA', japan: 'JAPAN', democracy: 'DEMOCRACY', economy: 'ECONOMY', religion: 'RELIGION' },
+  ko: { korea: '한국', japan: '일본', democracy: '민주주의', economy: '경제', religion: '종교' },
+  ja: { korea: '韓国', japan: '日本', democracy: '民主主義', economy: '経済', religion: '宗教' },
+} as const;
+
 const pageCopy = {
-  en: { home: 'Home', dashboard: 'Data', title: 'Articles', description: 'Independent English-language reporting for people, families, and organizations that need to understand what developments in Korea and across Asia mean in practice.', latest: 'LATEST', read: 'Read Article →', empty: 'No English-language Articles are available yet.' },
-  ko: { home: '홈', dashboard: '데이터', title: '한국어 기사', description: '한국과 아시아의 변화가 개인과 가족, 기업에 실제로 어떤 의미인지 이해하는 데 도움이 되는 한국어 기사입니다.', latest: '최신', read: '기사 읽기 →', empty: '현재 등록된 한국어 기사가 없습니다.' },
-  ja: { home: 'ホーム', dashboard: 'データ', title: '日本語記事', description: '韓国とアジアの動きが、個人、家族、企業にとって実際に何を意味するのかを理解するための日本語記事です。', latest: '最新', read: '記事を読む →', empty: '現在、日本語の記事はありません。' },
+  en: { home: 'Home', dashboard: 'Data', title: 'Articles', description: 'Independent English-language reporting for people, families, and organizations that need to understand what developments in Korea and across Asia mean in practice.', latest: 'LATEST', read: 'Read Article →', empty: 'No English-language articles are available yet.', likes: 'likes', views: 'views' },
+  ko: { home: '홈', dashboard: '데이터', title: '한국어 기사', description: '한국과 아시아의 주요 현안을 선별해 개인·가족·기업에 미칠 영향을 짚습니다.', latest: '최신', read: '기사 보기 →', empty: '현재 등록된 한국어 기사가 없습니다.', likes: '공감', views: '조회' },
+  ja: { home: 'ホーム', dashboard: 'データ', title: '日本語記事', description: '韓国とアジアの主要な動きを選び、個人、家族、企業への影響を読み解く。', latest: '最新', read: '記事を読む →', empty: '現在、日本語の記事はありません。', likes: '反応', views: '閲覧' },
 } as const;
 
 export default function ArticlesPage() {
@@ -72,7 +78,7 @@ export default function ArticlesPage() {
                       className="text-[9px] font-sans font-bold tracking-widest px-2 py-0.5 rounded"
                       style={{ color: catInfo.color, backgroundColor: catInfo.color + '15', border: `1px solid ${catInfo.color}30` }}
                     >
-                      {catInfo.label}
+                      {categoryLabels[locale][cat as keyof typeof categoryLabels.en] ?? catInfo.label}
                     </span>
                     <span className="text-tm-faint text-xs font-sans">{dateStr}</span>
                     <span className="text-[9px] font-sans text-tm-gold bg-[var(--tm-gold-bg)] px-2 py-0.5 rounded border border-[var(--tm-gold-border)]">{copy.latest}</span>
@@ -82,8 +88,8 @@ export default function ArticlesPage() {
                   </h2>
                   <p className="text-tm-secondary text-base font-sans leading-relaxed max-w-3xl">{a.previewText}</p>
                   <div className="flex items-center gap-4 mt-4 text-tm-faint text-xs font-sans">
-                    <span>{a.likes.toLocaleString()} likes</span>
-                    <span>{a.views.toLocaleString()} views</span>
+                    <span>{a.likes.toLocaleString(dateLocale)} {copy.likes}</span>
+                    <span>{a.views.toLocaleString(dateLocale)} {copy.views}</span>
                     <span className="ml-auto text-tm-gold group-hover:text-tm-gold-hover font-bold">{copy.read}</span>
                   </div>
                 </div>
@@ -112,7 +118,7 @@ export default function ArticlesPage() {
                         className="text-[8px] font-sans font-bold tracking-widest px-1.5 py-0.5 rounded"
                         style={{ color: catInfo.color, backgroundColor: catInfo.color + '15', border: `1px solid ${catInfo.color}30` }}
                       >
-                        {catInfo.label}
+                        {categoryLabels[locale][cat as keyof typeof categoryLabels.en] ?? catInfo.label}
                       </span>
                       <span className="text-tm-faint text-[10px] font-sans">{dateStr}</span>
                     </div>
@@ -123,7 +129,7 @@ export default function ArticlesPage() {
                       {a.previewText}
                     </p>
                     <div className="flex items-center justify-between text-tm-faint text-[10px] font-sans pt-2 border-t border-tm-border-subtle">
-                      <span>{a.likes.toLocaleString()} likes · {a.views.toLocaleString()} views</span>
+                      <span>{a.likes.toLocaleString(dateLocale)} {copy.likes} · {a.views.toLocaleString(dateLocale)} {copy.views}</span>
                       <span className="text-tm-gold font-bold">{copy.read}</span>
                     </div>
                   </div>
@@ -141,7 +147,7 @@ export default function ArticlesPage() {
         <div className="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
           <p className="text-[10px] font-sans text-tm-ghost">© 2026 The Monarch Report</p>
           <div className="flex gap-4 text-[11px] font-sans">
-            <Link href="/" className="text-tm-muted hover:text-tm-heading transition-colors">Home</Link>
+            <Link href="/" className="text-tm-muted hover:text-tm-heading transition-colors">{copy.home}</Link>
             <a href="https://x.com/monarchreport25" target="_blank" rel="noopener noreferrer" className="text-tm-muted hover:text-tm-heading transition-colors">𝕏</a>
           </div>
         </div>
