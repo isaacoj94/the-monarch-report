@@ -19,12 +19,16 @@ const nextConfig: NextConfig = {
     return {
       beforeFiles: [
         {
-          source: '/screening/:path*',
-          destination: `${screeningBackend}/screening/:path*`,
+          source: '/screening',
+          destination: `${screeningBackend}/screening`,
         },
         {
-          source: '/api/screening/:path*',
-          destination: `${screeningBackend}/api/screening/:path*`,
+          source: '/screening/:path+',
+          destination: `${screeningBackend}/screening/:path+`,
+        },
+        {
+          source: '/api/screening/:path+',
+          destination: `${screeningBackend}/api/screening/:path+`,
         },
       ],
       afterFiles: [],
