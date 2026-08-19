@@ -4,6 +4,25 @@ import { useMemo, useState } from 'react';
 import type { ScreeningEpisode, ViewerAccess } from '@/lib/screening';
 import styles from './screening.module.css';
 
+const VIMEO_PLAYER_PARAMETERS = new URLSearchParams({
+  autoplay: '0',
+  controls: '1',
+  title: '0',
+  byline: '0',
+  portrait: '0',
+  badge: '0',
+  vimeo_logo: '0',
+  pip: '0',
+  chromecast: '0',
+  chapters: '0',
+  transcript: '0',
+  watch_full_video: '0',
+  speed: '1',
+  cc: '1',
+  quality_selector: '1',
+  dnt: '1',
+}).toString();
+
 function expiryLabel(value: string | null) {
   if (!value) return 'NO EXPIRY';
   return new Intl.DateTimeFormat('en-US', {
@@ -49,9 +68,9 @@ export function ScreeningRoom({
           {isPlayable ? (
             <iframe
               className={styles.vimeoFrame}
-              src={`https://player.vimeo.com/video/${encodeURIComponent(episode.vimeoVideoId!)}?autoplay=0&controls=1&title=0&byline=0&portrait=0&dnt=1`}
+              src={`https://player.vimeo.com/video/${encodeURIComponent(episode.vimeoVideoId!)}?${VIMEO_PLAYER_PARAMETERS}`}
               title={`${episode.title} private screener`}
-              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+              allow="autoplay; fullscreen; encrypted-media"
               allowFullScreen
             />
           ) : (
