@@ -22,8 +22,8 @@ const categoryLabels = {
 
 const pageCopy = {
   en: { home: 'Home', dashboard: 'Data', title: 'Articles', description: 'Independent English-language reporting for people, families, and organizations that need to understand what developments in Korea and across Asia mean in practice.', latest: 'LATEST', read: 'Read Article →', empty: 'No English-language articles are available yet.', likes: 'likes', views: 'views' },
-  ko: { home: '홈', dashboard: '데이터', title: '한국어 기사', description: '한국과 아시아의 주요 현안을 선별해 개인·가족·기업에 미칠 영향을 짚습니다.', latest: '최신', read: '기사 보기 →', empty: '현재 등록된 한국어 기사가 없습니다.', likes: '공감', views: '조회' },
-  ja: { home: 'ホーム', dashboard: 'データ', title: '日本語記事', description: '韓国とアジアの主要な動きを選び、個人、家族、企業への影響を読み解く。', latest: '最新', read: '記事を読む →', empty: '現在、日本語の記事はありません。', likes: '反応', views: '閲覧' },
+  ko: { home: '홈', dashboard: '데이터', title: '한국어 기사', description: '한국과 아시아 현안이 가계와 기업에 남기는 흔적.', latest: '최신', read: '기사 읽기 →', empty: '아직 실린 한국어 기사가 없습니다.', likes: '공감', views: '조회' },
+  ja: { home: 'ホーム', dashboard: 'データ', title: '日本語記事', description: '韓国とアジアの懸案が、家計と企業に残す痕跡。', latest: '最新', read: '記事を読む →', empty: '日本語の記事はまだありません。', likes: '反応', views: '閲覧' },
 } as const;
 
 export default function ArticlesPage() {

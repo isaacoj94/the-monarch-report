@@ -13,18 +13,18 @@ const copy = {
     sourcing: 'Sourced reporting · Primary documents linked', edition: 'English edition · Seoul / 서울',
   },
   ko: {
-    eyebrow: '서울 · 시민의 자유 · 국제 독자를 위한 브리핑',
-    title: '목소리를 낼', emphasis: '권리.',
-    dek: '신앙과 공동체, 미래를 지키려는 한국 시민의 목소리. 그 발언의 배경과 파장을 세계 독자에게 전한다.',
-    briefing: '주요 현안 보기', films: '모나크 필름 보기',
-    sourcing: '출처가 명시된 보도 · 1차 자료 연결', edition: '한국어 안내 · 서울',
+    eyebrow: '서울 편집국 · 시민의 자유',
+    title: '침묵하지 않을', emphasis: '권리',
+    dek: '믿음과 공동체를 지키려는 시민들의 목소리. 그 배경을 세계에 전한다.',
+    briefing: '오늘의 뉴스', films: '모나크 필름스',
+    sourcing: '취재 근거 공개 · 1차 자료', edition: '한국어판 · 서울',
   },
   ja: {
-    eyebrow: 'ソウル · 市民の自由 · 海外読者向けブリーフィング',
-    title: '声を上げる', emphasis: '権利。',
-    dek: '信仰、地域社会、未来を守ろうとする韓国市民の声。その背景と波紋を世界へ伝える。',
-    briefing: '主要ニュースを見る', films: 'モナーク・フィルムズを見る',
-    sourcing: '出典を明記した報道 · 一次資料へのリンク', edition: '日本語案内 · ソウル',
+    eyebrow: 'ソウル編集局 · 市民の自由',
+    title: '沈黙しない', emphasis: '権利',
+    dek: '信仰と共同体を守ろうとする市民の声。その背景を世界に伝える。',
+    briefing: '今日のニュース', films: 'モナーク・フィルムズ',
+    sourcing: '出典を明示 · 一次資料', edition: '日本語版 · ソウル',
   },
 } as const;
 

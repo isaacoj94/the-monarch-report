@@ -35,7 +35,7 @@ export default function CausalChain({ titleKey, stepKeys, locale, color, related
             className="text-[10px] font-sans px-2 py-0.5 rounded-full animate-pulse"
             style={{ color, backgroundColor: `${color}20` }}
           >
-            {locale === 'ko' ? '활성' : locale === 'ja' ? 'アクティブ' : 'ACTIVE'}
+            {locale === 'ko' ? '선택' : locale === 'ja' ? '選択中' : 'ACTIVE'}
           </span>
         )}
       </div>

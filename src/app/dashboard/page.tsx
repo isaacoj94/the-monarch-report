@@ -85,7 +85,7 @@ export default function Dashboard() {
               <a href="#wallet" className="px-2 py-1 text-[#888] hover:text-white transition-colors">{t(locale, 'nav_wallet')}</a>
               <a href="#housing" className="px-2 py-1 text-[#888] hover:text-white transition-colors">{t(locale, 'housing')}</a>
               <a href="#gas-map" className="px-2 py-1 text-[#888] hover:text-white transition-colors">
-                {locale === 'ko' ? '주유소' : locale === 'ja' ? 'ガソリン' : 'Gas'}
+                {locale === 'ko' ? '유가' : locale === 'ja' ? 'ガソリン' : 'Gas'}
               </a>
               <a href="#macro" className="px-2 py-1 text-[#888] hover:text-white transition-colors">{t(locale, 'nav_macro')}</a>
               <a href="#why" className="px-2 py-1 text-[#888] hover:text-white transition-colors">{t(locale, 'nav_why')}</a>
@@ -126,10 +126,10 @@ export default function Dashboard() {
           <div className="w-1 h-6 bg-[#b8860b] rounded-full" />
           <div>
             <h2 className="text-xl font-bold">
-              {locale === 'ko' ? '경제 현실 요약' : locale === 'ja' ? '経済の現実' : 'The Real Picture'}
+              {locale === 'ko' ? '숫자로 본 현실' : locale === 'ja' ? '数字で見る現実' : 'The Real Picture'}
             </h2>
             <p className="text-[#666666] text-xs">
-              {locale === 'ko' ? '숫자 뒤에 숨겨진 의미 — 전문가 시각으로 쉽게 풀어드립니다' : locale === 'ja' ? '数字の裏にある真実 — 専門家の視点でわかりやすく解説' : 'What these numbers actually mean for everyday Koreans'}
+              {locale === 'ko' ? '지표가 가계에 의미하는 바' : locale === 'ja' ? '指標が家計に意味すること' : 'What these numbers actually mean for everyday Koreans'}
             </p>
           </div>
         </div>
@@ -151,17 +151,17 @@ export default function Dashboard() {
             </div>
             <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
-                ? `CPI ${macroMetrics.inflation.currentValue}%는 지난해 대비 물가가 그만큼 올랐다는 뜻입니다. 내가 작년에 10만 원어치 장을 봤다면, 올해 같은 물건을 사려면 ${(100000 * (1 + macroMetrics.inflation.currentValue / 100)).toLocaleString()}원이 필요합니다.`
+                ? `소비자물가(CPI) ${macroMetrics.inflation.currentValue}%는 지난해 같은 장바구니를 올해 ${(100000 * (1 + macroMetrics.inflation.currentValue / 100)).toLocaleString()}원에 사야 한다는 뜻이다.`
                 : locale === 'ja'
-                ? `CPI ${macroMetrics.inflation.currentValue}%は、昨年比で物価がそれだけ上がったことを意味します。昨年10万ウォンで買えた物は、今年${(100000 * (1 + macroMetrics.inflation.currentValue / 100)).toLocaleString()}ウォン必要です。`
+                ? `消費者物価（CPI）${macroMetrics.inflation.currentValue}%は、昨年10万ウォンで揃えた買い物かごが、今年は${(100000 * (1 + macroMetrics.inflation.currentValue / 100)).toLocaleString()}ウォンになる、ということだ。`
                 : `CPI at ${macroMetrics.inflation.currentValue}% means everyday goods cost that much more than last year. If your grocery bill was ₩100,000, you now need ₩${(100000 * (1 + macroMetrics.inflation.currentValue / 100)).toLocaleString()} for the exact same items.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
               <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
-                  ? '⚠ 공식 CPI는 체감 물가보다 낮게 나옵니다. 외식비·교육비·전세값 상승은 CPI에 제대로 반영되지 않아 실제 생활비 부담은 훨씬 큽니다.'
+                  ? '⚠ 공식 물가는 체감보다 낮다. 외식·교육·전세 부담은 지수에 다 잡히지 않는다.'
                   : locale === 'ja'
-                  ? '⚠ 公式CPIは実感より低く出ます。外食費・教育費・住居費の上昇はCPIに十分反映されず、実際の生活費負担はさらに大きいです。'
+                  ? '⚠ 公式の物価は実感より低い。外食、教育、伝貰の負担は指数に乗り切れない。'
                   : '⚠ Official CPI understates real pain. Dining out, education, and housing costs rise faster than headline CPI captures — actual cost-of-living burden for families is significantly higher.'}
               </p>
             </div>
@@ -181,17 +181,17 @@ export default function Dashboard() {
             </div>
             <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
-                ? `환율이 높을수록 수입품이 비싸집니다. 원유·밀·반도체 원자재를 달러로 사야 하므로, ₩${macroMetrics.usdKrw.currentValue}은 모든 수입 물가를 끌어올립니다. 이명박 정부 시절 ₩1,100대였던 환율과 비교하면 ${Math.round((macroMetrics.usdKrw.currentValue - 1100) / 1100 * 100)}% 상승입니다.`
+                ? `원화가 약하면 수입품이 비싸다. 원유·밀·반도체 원자재는 달러로 산다. ₩${macroMetrics.usdKrw.currentValue}은 수입 물가 전반을 끌어올린다. 이명박 정부 때 ₩1,100대와 견주면 ${Math.round((macroMetrics.usdKrw.currentValue - 1100) / 1100 * 100)}% 올랐다.`
                 : locale === 'ja'
-                ? `為替が高いほど輸入品が高くなります。原油・小麦・半導体原材料をドルで購入するため、₩${macroMetrics.usdKrw.currentValue}は全輸入物価を押し上げます。`
+                ? `ウォンが弱いと輸入品は高い。原油、小麦、半導体の原料はドルで買う。₩${macroMetrics.usdKrw.currentValue}は輸入物価全体を押し上げる。`
                 : `A weaker won makes everything imported more expensive — oil, wheat, semiconductors, raw materials are all priced in dollars. At ₩${macroMetrics.usdKrw.currentValue}, import costs are ${Math.round((macroMetrics.usdKrw.currentValue - 1100) / 1100 * 100)}% higher than the ₩1,100 level seen under Lee Myung-bak.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
               <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
-                  ? '⚠ 원화 약세가 지속되면 외국인 투자 이탈 → 주가 하락 → 연기금 수익 악화의 악순환이 올 수 있습니다. 수출 기업에 유리하다는 주장도 있으나, 내수 의존도가 높은 한국 경제에서는 서민 물가 직격탄입니다.'
+                  ? '⚠ 약세가 이어지면 외국인 자금 이탈, 주가 하락, 연기금 수익 악화로 번질 수 있다. 수출에는 이롭다는 말이 있으나, 내수 비중이 큰 한국에서는 서민 물가가 먼저 맞는다.'
                   : locale === 'ja'
-                  ? '⚠ ウォン安が続くと、外国人投資撤退→株価下落→年金収益悪化の悪循環の恐れがあります。'
+                  ? '⚠ 安値が続けば、海外資金の流出、株安、年金運用の悪化へと広がりうる。輸出には追い風だという声もあるが、内需の大きい韓国では家計の物価が先に直撃する。'
                   : '⚠ Sustained won weakness risks a vicious cycle: foreign capital flight → stock market decline → pension fund losses. While exporters benefit from a cheap won, Korea\'s domestic-heavy economy means ordinary citizens bear the brunt through higher prices on everything.'}
               </p>
             </div>
@@ -213,17 +213,17 @@ export default function Dashboard() {
             </div>
             <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
-                ? `한국의 가계부채는 GDP의 ${macroMetrics.householdDebt.currentValue}%로 세계 최고 수준입니다. 쉽게 말해, 나라 전체가 1년간 버는 돈보다 가계가 진 빚이 더 많다는 뜻입니다. OECD 평균은 약 60%입니다.`
+                ? `가계부채는 GDP의 ${macroMetrics.householdDebt.currentValue}%로 세계 최고 수준이다. 나라 전체가 1년 버는 돈보다, 가계가 진 빚이 많다. OECD 평균은 60% 안팎이다.`
                 : locale === 'ja'
-                ? `韓国の家計負債はGDPの${macroMetrics.householdDebt.currentValue}%で世界最高水準です。国全体の1年の収入より家計の借金が多いことを意味します。OECD平均は約60%です。`
+                ? `家計負債はGDP比${macroMetrics.householdDebt.currentValue}%で世界最高水準。国が1年で稼ぐ額より、家計の借金のほうが多い。OECD平均はおよそ60%。`
                 : `Korea's household debt is ${macroMetrics.householdDebt.currentValue}% of GDP — among the highest in the world. This means Korean families collectively owe more than the entire country earns in a year. The OECD average is around 60%.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
               <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
-                  ? '⚠ 금리가 오르면 이자 부담 폭증, 소비 위축, 부동산 가격 하락의 트리플 충격이 옵니다. 가계부채 비율이 이 수준이면 금리를 올리기도, 내리기도 어려운 정책의 딜레마에 빠집니다.'
+                  ? '⚠ 금리가 오르면 이자, 소비, 집값이 한꺼번에 맞는다. 이 부채 수준에서는 올려도 내려도 운신의 폭이 좁다.'
                   : locale === 'ja'
-                  ? '⚠ 金利が上がれば利子負担急増、消費萎縮、不動産価格下落のトリプルショックが来ます。この負債水準では金利を上げることも下げることも難しい政策のジレンマに陥ります。'
+                  ? '⚠ 金利が上がれば利子、消費、住宅価格が同時にやられる。この負債水準では、上げても下げても余地が狭い。'
                   : '⚠ If rates rise, families face a triple shock: surging interest payments, consumption collapse, and falling home prices. At this debt level, the central bank is trapped — raising rates crushes households, cutting rates fuels more borrowing.'}
               </p>
             </div>
@@ -245,17 +245,17 @@ export default function Dashboard() {
             </div>
             <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
-                ? `서울에서 평균 아파트를 사려면 한 푼도 안 쓰고 ${housingMetrics.housingIncomeRatio.currentValue}년을 모아야 합니다. 뉴욕은 약 8년, 도쿄는 약 10년입니다. 2008년에는 8.2년이었습니다.`
+                ? `서울 평균 아파트를 사려면 소득을 한 푼도 안 쓰고 ${housingMetrics.housingIncomeRatio.currentValue}년을 모아야 한다. 뉴욕은 8년, 도쿄는 10년 안팎. 2008년 서울은 8.2년이었다.`
                 : locale === 'ja'
-                ? `ソウルで平均的なマンションを買うには、一銭も使わず${housingMetrics.housingIncomeRatio.currentValue}年貯金する必要があります。ニューヨークは約8年、東京は約10年です。`
+                ? `ソウルの平均マンションを買うには、所得を一切使わず${housingMetrics.housingIncomeRatio.currentValue}年貯める必要がある。ニューヨークは約8年、東京は約10年。`
                 : `To buy an average Seoul apartment, you'd need to save every penny of your income for ${housingMetrics.housingIncomeRatio.currentValue} years. New York is ~8 years, Tokyo ~10 years. In 2008, Seoul was 8.2 years.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
               <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
-                  ? '⚠ 청년층 내 집 마련이 사실상 불가능해졌습니다. 전세 보증금도 급등해 주거 사다리가 무너지고 있으며, 이는 출산율 급락의 핵심 원인 중 하나입니다.'
+                  ? '⚠ 청년의 내 집 마련은 사실상 막혔다. 전세 보증금도 뛰어 주거 사다리가 부러졌다. 출산율 급락의 한 축이다.'
                   : locale === 'ja'
-                  ? '⚠ 若者の持ち家取得が事実上不可能になっています。伝貰保証金も急騰し住居の梯子が崩壊、出生率急落の主因の一つです。'
+                  ? '⚠ 若者の持ち家は事実上、閉ざされた。伝貰保証金も跳ね、住まいの梯子は折れた。出生率急落の一因だ。'
                   : '⚠ Homeownership has become virtually impossible for young Koreans. Jeonse deposits have also skyrocketed, destroying the housing ladder. This is a key driver of Korea\'s record-low birth rate.'}
               </p>
             </div>
@@ -277,17 +277,17 @@ export default function Dashboard() {
             </div>
             <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
-                ? `공식 수치는 ${macroMetrics.youthUnemployment.currentValue}%이지만, 알바·단기직·취업 포기자를 포함한 체감실업률은 20%를 넘는다는 분석이 있습니다. "쉬었음" 인구가 역대 최고치를 기록 중입니다.`
+                ? `공식 수치는 ${macroMetrics.youthUnemployment.currentValue}%다. 아르바이트·단기직·구직 포기를 넣으면 체감 실업은 20%를 넘는다는 분석이 있다. ‘쉬었음’ 인구는 사상 최대다.`
                 : locale === 'ja'
-                ? `公式数値は${macroMetrics.youthUnemployment.currentValue}%ですが、アルバイト・短期職・就職断念者を含めた体感失業率は20%を超えるという分析があります。`
+                ? `公式は${macroMetrics.youthUnemployment.currentValue}%。バイト、短期、就職を諦めた人を含めれば、実感の失業は20%を超えるという分析がある。`
                 : `The official ${macroMetrics.youthUnemployment.currentValue}% understates the problem. Including part-timers, gig workers, and those who've given up job searching, the effective rate is estimated above 20%. The "resting" (not seeking work) population is at an all-time high.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
               <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
-                  ? '⚠ 양질의 일자리 부족 + 높은 집값 + 교육비 부담 = 결혼·출산 기피로 이어지며, 한국의 합계출산율 0.72는 OECD 최저입니다.'
+                  ? '⚠ 괜찮은 일자리 부족, 집값, 교육비가 겹치면 결혼과 출산이 밀린다. 합계출산율 0.72는 OECD 최저.'
                   : locale === 'ja'
-                  ? '⚠ 良質な雇用不足+高い住宅価格+教育費負担=結婚・出産忌避につながり、韓国の合計出生率0.72はOECD最低です。'
+                  ? '⚠ まともな仕事不足、住宅価格、教育費が重なれば、結婚も出産も後回しになる。合計出生率0.72はOECD最低。'
                   : '⚠ No good jobs + unaffordable housing + crushing education costs = young people not marrying or having children. Korea\'s fertility rate of 0.72 is the lowest in the OECD by far.'}
               </p>
             </div>
@@ -309,17 +309,17 @@ export default function Dashboard() {
             </div>
             <p className="text-[#999] text-xs font-sans leading-relaxed mb-3">
               {locale === 'ko'
-                ? `국가부채가 GDP의 ${macroMetrics.nationalDebt.currentValue}%입니다. 2008년 28%에서 2배 가까이 늘었습니다. 정부가 경기 부양을 위해 빚을 내면, 결국 세금으로 갚아야 하는 건 국민입니다.`
+                ? `국가부채는 GDP의 ${macroMetrics.nationalDebt.currentValue}%다. 2008년 28%에서 두 배 가까이 늘었다. 정부가 경기를 살리려 빚을 지면, 세금으로 갚는 쪽은 국민이다.`
                 : locale === 'ja'
-                ? `国家負債がGDPの${macroMetrics.nationalDebt.currentValue}%です。2008年の28%から倍近く増えました。政府が景気刺激のために借金すれば、結局税金で返すのは国民です。`
+                ? `国家負債はGDP比${macroMetrics.nationalDebt.currentValue}%。2008年の28%からほぼ倍増した。政府が景気を支えるために借りれば、税で返すのは国民だ。`
                 : `National debt has hit ${macroMetrics.nationalDebt.currentValue}% of GDP, nearly doubling from 28% in 2008. When the government borrows to stimulate the economy, taxpayers ultimately foot the bill through future tax hikes or reduced services.`}
             </p>
             <div className="border-t border-[#1a1a1a] pt-3">
               <p className="text-[#b8860b] text-[11px] font-sans leading-relaxed">
                 {locale === 'ko'
-                  ? '⚠ 고령화 + 저출산으로 복지 지출이 급증하는 상황에서 국가부채 확대는 미래 세대에 더 큰 부담을 지웁니다. 재정 건전성 악화 시 국가신용등급 하락 → 외채 이자 상승 리스크도 있습니다.'
+                  ? '⚠ 고령화와 저출산으로 복지지출은 늘고 있다. 그 위에 국가부채가 커지면 다음 세대가 진다. 신용등급이 떨어지면 외채 이자까지 오른다.'
                   : locale === 'ja'
-                  ? '⚠ 高齢化+少子化で福祉支出が急増する状況で国家負債拡大は将来世代にさらなる負担を課します。'
+                  ? '⚠ 高齢化と少子化で福祉支出は増えている。その上に国家負債が膨らめば、次の世代が担う。格付けが落ちれば、対外債務の利子まで上がる。'
                   : '⚠ With an aging population and rock-bottom birth rate, welfare spending is ballooning. Rising national debt on top of this means future generations face higher taxes and fewer services. A credit downgrade would raise borrowing costs across the entire economy.'}
               </p>
             </div>
@@ -329,13 +329,13 @@ export default function Dashboard() {
         {/* Bottom line callout */}
         <div className="mt-6 bg-[#111] border border-[#b8860b30] rounded-lg p-5">
           <h3 className="text-[#b8860b] font-sans text-sm font-bold mb-2">
-            {locale === 'ko' ? '📌 한눈에 보는 핵심' : locale === 'ja' ? '📌 一目でわかるポイント' : '📌 The Bottom Line'}
+            {locale === 'ko' ? '한 줄로' : locale === 'ja' ? '要するに' : '📌 The Bottom Line'}
           </h3>
           <p className="text-[#ccc] text-sm font-sans leading-relaxed">
             {locale === 'ko'
-              ? '물가는 오르고, 월급은 제자리이고, 집은 더 비싸졌고, 빚은 역대 최고입니다. 한국 뉴스에서는 대통령 지지율만 보도하지만, 이 숫자들이 국민이 실제로 느끼는 현실입니다. 아래 대시보드에서 각 지표를 직접 확인해 보세요.'
+              ? '물가는 오르고 임금은 제자리다. 집은 더 멀어졌고 빚은 사상 최대다. 지지율 뉴스가 가리지 못하는 현실이다. 아래 지표에서 직접 확인하면 된다.'
               : locale === 'ja'
-              ? '物価は上がり、給料は横ばい、住宅はさらに高くなり、借金は過去最高です。韓国ニュースでは大統領支持率だけ報道されますが、これらの数字が国民が実際に感じている現実です。'
+              ? '物価は上がり、賃金は横ばい。住まいは遠のき、借金は過去最高だ。支持率ニュースが覆い隠す現実である。下の指標で直接当たればよい。'
               : 'Prices are rising, wages are stagnant, homes are more unaffordable than ever, and debt is at record highs. Korean media focuses on presidential approval ratings, but these are the numbers that reflect what people actually experience. Explore the full dashboard below.'}
           </p>
         </div>
@@ -391,9 +391,9 @@ export default function Dashboard() {
         <div className="mt-4 bg-[#111] border border-[#2a1515] rounded-lg p-4">
           <p className="text-sm font-sans text-[#cc6666]">
             {locale === 'ko'
-              ? `서울 평균 아파트 구매까지 소득 대비 ${housingMetrics.housingIncomeRatio.currentValue}년 — 2008년 ${8.2}년에서 2.5배 증가. 전세 보증금은 같은 기간 ₩1.85억에서 ₩4.75억으로 상승.`
+              ? `서울 아파트, 소득 대비 ${housingMetrics.housingIncomeRatio.currentValue}년. 2008년 8.2년에서 2.5배로 늘었다. 전세 보증금은 같은 기간 1억 8500만 원에서 4억 7500만 원.`
               : locale === 'ja'
-              ? `ソウルの平均マンション購入まで所得比${housingMetrics.housingIncomeRatio.currentValue}年 — 2008年の${8.2}年から2.5倍増加。伝貰保証金は同期間1.85億ウォンから4.75億ウォンに上昇。`
+              ? `ソウルのマンションは所得比${housingMetrics.housingIncomeRatio.currentValue}年。2008年の8.2年から2.5倍。伝貰保証金は同期間、1億8500万ウォンから4億7500万ウォン。`
               : `It takes ${housingMetrics.housingIncomeRatio.currentValue} years of income to buy a Seoul apartment — up 2.5x from ${8.2} years in 2008. Average jeonse deposit went from ₩185M to ₩475M in the same period.`}
           </p>
         </div>
@@ -405,10 +405,10 @@ export default function Dashboard() {
           <div className="w-1 h-6 bg-orange-500 rounded-full" />
           <div>
             <h2 className="text-xl font-bold">
-              {locale === 'ko' ? '전국 주유소 가격' : locale === 'ja' ? '全国ガソリン価格' : 'Gas Prices Nationwide'}
+              {locale === 'ko' ? '전국 휘발유 가격' : locale === 'ja' ? '全国のガソリン価格' : 'Gas Prices Nationwide'}
             </h2>
             <p className="text-[#666666] text-xs">
-              {locale === 'ko' ? '지역별 휘발유 가격 현황' : locale === 'ja' ? '地域別ガソリン価格状況' : 'Regional gasoline price overview'}
+              {locale === 'ko' ? '지역별 보통휘발유' : locale === 'ja' ? '地域別レギュラー' : 'Regional gasoline price overview'}
             </p>
           </div>
         </div>
@@ -416,7 +416,7 @@ export default function Dashboard() {
           <GasMap locale={locale} />
           <div className="bg-[#111111] border border-[#222222] rounded-lg p-5">
             <h3 className="text-white font-sans text-sm font-bold mb-4">
-              {locale === 'ko' ? '지역별 가격 순위 (비싼 순)' : locale === 'ja' ? '地域別価格ランキング（高い順）' : 'Price Ranking (Highest First)'}
+              {locale === 'ko' ? '지역별 가격 (높은 순)' : locale === 'ja' ? '地域別価格（高い順）' : 'Price Ranking (Highest First)'}
             </h3>
             <div className="space-y-2">
               {[...regionalGasPrices].sort((a, b) => b.avgPrice - a.avgPrice).map((r, i) => {
@@ -476,7 +476,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: impactColor }} />
                 <div>
-                  <p className="text-[#888] text-[10px] font-sans uppercase">{locale === 'ko' ? '영향받는 지표' : locale === 'ja' ? '影響を受ける指標' : 'Impacted Metric'}</p>
+                  <p className="text-[#888] text-[10px] font-sans uppercase">{locale === 'ko' ? '관련 지표' : locale === 'ja' ? '関連指標' : 'Impacted Metric'}</p>
                   <p className="text-white font-sans text-sm font-bold">{impactLabel}</p>
                 </div>
               </div>

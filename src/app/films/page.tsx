@@ -10,15 +10,15 @@ import styles from './documentary.module.css';
 const CHAPTERS = [
   {
     number: '01', title: 'Inside the Machine', country: { en: 'China', ko: '중국', ja: '中国' },
-    logline: { en: 'Coordinated raids on churches, mosques and spiritual communities reveal a system built to erase independent faith in the name of state control.', ko: '교회와 모스크, 신앙 공동체를 겨냥한 조직적 단속. 국가 통제 아래 독립적인 신앙을 지우려는 체계의 내부를 추적한다.', ja: '教会、モスク、信仰共同体への組織的な取り締まり。国家統制の名の下に、独立した信仰を消そうとする仕組みを追う。' },
+    logline: { en: 'Coordinated raids on churches, mosques and spiritual communities reveal a system built to erase independent faith in the name of state control.', ko: '교회와 모스크, 신앙 공동체를 덮친 조직적 단속. 국가라는 이름의 기계가 독립된 신앙을 지우는 방식을 추적한다.', ja: '教会、モスク、信仰共同体を襲った組織的な摘発。国家という名の機械が、独立した信仰を消していく。' },
   },
   {
     number: '02', title: 'The Precedent', country: { en: 'Japan', ko: '일본', ja: '日本' },
-    logline: { en: 'The dissolution of a religious organization establishes a legal precedent whose consequences extend far beyond one group or one courtroom.', ko: '종교단체 해산이 남긴 법적 선례. 하나의 단체와 법정을 넘어 확산될 파장을 짚는다.', ja: '宗教法人の解散が残す法的先例。一つの団体や法廷を超えて広がる影響を検証する。' },
+    logline: { en: 'The dissolution of a religious organization establishes a legal precedent whose consequences extend far beyond one group or one courtroom.', ko: '한 종교법인의 해산. 법정 하나가 남긴 선례는, 그 단체와 그 나라만의 이야기가 아니다.', ja: '一つの宗教法人の解散。法廷が残した先例は、その団体、その国だけの話ではない。' },
   },
   {
     number: '03', title: 'The Democratic Test', country: { en: 'Korea', ko: '한국', ja: '韓国' },
-    logline: { en: 'Surveillance, detention and institutional pressure test whether democratic protections still apply when religious leaders refuse to be silenced.', ko: '감시와 구금, 제도적 압박 속에서 침묵을 거부한 종교 지도자. 민주주의의 보호 장치가 작동하는지 묻는다.', ja: '監視、拘禁、制度的圧力の中で沈黙を拒んだ宗教指導者。民主主義の歯止めが機能するのかを問う。' },
+    logline: { en: 'Surveillance, detention and institutional pressure test whether democratic protections still apply when religious leaders refuse to be silenced.', ko: '감시와 구금, 제도의 압박. 침묵을 거부한 종교 지도자들 앞에서, 민주주의는 시험대에 오른다.', ja: '監視、拘禁、制度の圧力。沈黙を拒んだ宗教指導者の前で、民主主義は試される。' },
   },
 ];
 
@@ -35,25 +35,25 @@ const filmCopy = {
     ],
   },
   ko: {
-    film: '작품', episodes: '에피소드', production: '제작', eyebrow: '닫힌 문 뒤에서 시작된 일, 다음은 우리일 수 있다', title: 'You’re Next:', emphasis: 'Do Nothing.',
-    dek: '중국·일본·한국, 서로 다른 세 나라에서 반복된 하나의 박해 구조. 증언과 희귀 영상, 공공 기록을 바탕으로 추적한 다큐멘터리 시리즈.', trailer: '공식 예고편', series: '시리즈', warning: '세 나라에서 확인된 하나의 경고', seriesDek: '서로 다른 압박의 방식, 그리고 신앙의 자유를 겨냥한 공통의 흐름을 추적한다.',
-    format: '장르', status: '제작 현황', documentary: '다큐멘터리', inProduction: '제작 중', productionLabel: 'MONARCH FILMS 제작', productionTitle: '기록을 스크린 위에 세우다',
-    productionDek: '독점 인터뷰와 희귀 영상, 자체 취재를 영화적 영상과 사운드로 구현해 언어와 거리, 제도 권력에 가려진 사건의 실체를 드러낸다.', continue: '관련 보도', follow: '작품의 바탕이 된 기록', followDek: '한국과 종교의 자유, 시리즈가 다루는 사회적 파장을 취재한 더 모나크 리포트 기사로 이어진다.', visit: '더 모나크 리포트로 이동 →',
+    film: '작품', episodes: '에피소드', production: '제작', eyebrow: '닫힌 문 뒤에서 시작된 일. 다음은 당신이다', title: 'You’re Next:', emphasis: 'Do Nothing.',
+    dek: '중국, 일본, 한국. 세 나라에서 같은 수법이 반복된다. 증언과 기록으로 추적하는 장편 다큐멘터리.', trailer: '예고편 보기', series: '시리즈', warning: '세 나라, 하나의 경고', seriesDek: '압박의 방식은 달라도, 노리는 것은 같다. 믿을 자유.',
+    format: '형식', status: '제작', documentary: '다큐멘터리', inProduction: '제작 중', productionLabel: '모나크 필름스', productionTitle: '진실은, 영화가 되어야 한다',
+    productionDek: '독점 인터뷰, 희귀 영상, 현장 취재. 거리와 언어, 권력이 가린 이야기를 스크린에 올린다.', continue: '보도로 이어집니다', follow: '작품 뒤에 있는 기록', followDek: '시리즈가 다루는 한국과 종교의 자유를, 모나크 리포트에서 계속 읽으십시오.', visit: '모나크 리포트로 →',
     productionCards: [
-      ['01 / 취재와 기록', '원자료에서 출발한 취재', '재판 기록과 공공 문서, 인터뷰, 현지어 보도를 교차 검증해 사실관계를 세운다.'],
-      ['02 / 영상 구현', '영화를 위한 화면', '고급 촬영과 절제된 2D 시퀀스로 복잡한 사건을 풀어내되 고통을 볼거리로 소비하지 않는다.'],
-      ['03 / 서사', '증거를 중심에 둔 이야기', 'VFX와 사운드, 시각적 서사는 기록을 대체하거나 과장하지 않고 이해를 돕는 데 쓰인다.'],
+      ['01 / 취재', '현장에서 쌓은 기록', '재판 기록, 공문서, 인터뷰, 현지어 보도를 맞춰 사실관계를 세운다.'],
+      ['02 / 화면', '극장을 위한 영상', '촬영과 절제된 2D로 복잡한 사건을 보여 주되, 고통을 구경거리로 만들지 않는다.'],
+      ['03 / 이야기', '증거가 이끄는 서사', '영상과 사운드는 기록을 대신하지 않는다. 이해를 도울 뿐이다.'],
     ],
   },
   ja: {
-    film: '作品', episodes: 'エピソード', production: '制作', eyebrow: '閉ざされた場所で始まったことは、やがて私たちにも及ぶ', title: 'You’re Next:', emphasis: 'Do Nothing.',
-    dek: '中国、日本、韓国。異なる三つの国で繰り返された一つの迫害構造を、証言、希少映像、公的記録から追うドキュメンタリーシリーズ。', trailer: '公式予告編', series: 'シリーズ', warning: '三つの国が映し出す、一つの警告', seriesDek: '異なる圧力の手法、その背後にある信教の自由への共通した脅威を追う。',
-    format: 'ジャンル', status: '制作状況', documentary: 'ドキュメンタリー', inProduction: '制作中', productionLabel: 'MONARCH FILMS 制作', productionTitle: '記録を、スクリーンへ',
-    productionDek: '独占インタビュー、希少映像、独自取材を映像と音で構成し、距離や言語、制度の力に隠された出来事の輪郭を浮かび上がらせる。', continue: '関連報道', follow: '作品の土台となった記録', followDek: '韓国、信教の自由、シリーズが扱う社会的影響を追った「ザ・モナーク・レポート」の記事へ。', visit: 'ザ・モナーク・レポートへ移動 →',
+    film: '作品', episodes: 'エピソード', production: '制作', eyebrow: '閉ざされた扉の向こうで始まったこと。次は、あなただ', title: 'You’re Next:', emphasis: 'Do Nothing.',
+    dek: '中国、日本、韓国。三つの国で、同じ手法が繰り返される。証言と記録で追う長編ドキュメンタリー。', trailer: '予告編を見る', series: 'シリーズ', warning: '三つの国、ひとつの警告', seriesDek: '圧力のかたちは違っても、狙いは同じだ。信じる自由。',
+    format: '形式', status: '制作', documentary: 'ドキュメンタリー', inProduction: '制作中', productionLabel: 'モナーク・フィルムズ', productionTitle: '真実は、映画にならなければならない',
+    productionDek: '独占インタビュー、希少な映像、現場取材。距離とことば、権力が覆い隠した話をスクリーンに上げる。', continue: '報道へ続く', follow: '作品の背後にある記録', followDek: 'シリーズが扱う韓国と信教の自由を、モナーク・レポートで読み継ぐ。', visit: 'モナーク・レポートへ →',
     productionCards: [
-      ['01 / 取材と記録', '一次資料から組み立てる', '裁判記録、公文書、インタビュー、現地語報道を照合し、事実関係を積み上げる。'],
-      ['02 / 映像表現', '映画として描く', '上質な撮影と抑制の効いた2Dシークエンスで、苦しみを見世物にせず複雑な出来事を伝える。'],
-      ['03 / 物語', '証拠を中心に据える', 'VFX、音響、映像演出は、記録を置き換えたり誇張したりせず、理解を深めるために用いる。'],
+      ['01 / 取材', '現場で積んだ記録', '裁判記録、公文書、インタビュー、現地語報道を突き合わせ、事実を立てる。'],
+      ['02 / 画面', '劇場のための映像', '撮影と抑制の効いた2Dで複雑な出来事を見せる。苦しみを見世物にはしない。'],
+      ['03 / 物語', '証拠が導く叙事', '映像と音は記録の代わりにはならない。理解を助けるだけだ。'],
     ],
   },
 } as const;
