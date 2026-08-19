@@ -1,12 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { articles, articleSlug, articleCategory, articleLang } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
-
-export const metadata = {
-  title: 'Articles | The Monarch Report',
-  description: 'In-depth investigative articles on democracy, religious freedom, and human rights in Korea and Japan.',
-};
+import { useLocale } from '@/components/LocaleProvider';
 
 const categoryColors: Record<string, { color: string; label: string }> = {
   korea: { color: '#ef4444', label: 'KOREA' },
@@ -16,10 +14,17 @@ const categoryColors: Record<string, { color: string; label: string }> = {
   religion: { color: '#a855f7', label: 'RELIGION' },
 };
 
+const pageCopy = {
+  en: { home: 'Home', dashboard: 'Data', title: 'Articles', description: 'Independent English-language reporting for people, families, and organizations that need to understand what developments in Korea and across Asia mean in practice.', latest: 'LATEST', read: 'Read Article →', empty: 'No English-language Articles are available yet.' },
+  ko: { home: '홈', dashboard: '데이터', title: '한국어 기사', description: '한국과 아시아의 변화가 개인과 가족, 기업에 실제로 어떤 의미인지 이해하는 데 도움이 되는 한국어 기사입니다.', latest: '최신', read: '기사 읽기 →', empty: '현재 등록된 한국어 기사가 없습니다.' },
+  ja: { home: 'ホーム', dashboard: 'データ', title: '日本語記事', description: '韓国とアジアの動きが、個人、家族、企業にとって実際に何を意味するのかを理解するための日本語記事です。', latest: '最新', read: '記事を読む →', empty: '現在、日本語の記事はありません。' },
+} as const;
+
 export default function ArticlesPage() {
-  // Separate English articles from translations
-  const enArticles = articles.filter(a => articleLang(a) === 'en');
-  const translations = articles.filter(a => articleLang(a) !== 'en');
+  const { locale } = useLocale();
+  const copy = pageCopy[locale];
+  const selectedArticles = articles.filter(a => articleLang(a) === locale);
+  const dateLocale = locale === 'ko' ? 'ko-KR' : locale === 'ja' ? 'ja-JP' : 'en-US';
 
   return (
     <div data-theme="light" className="min-h-screen bg-tm-page text-tm-body">
@@ -30,8 +35,8 @@ export default function ArticlesPage() {
             <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} className="h-7 w-auto" priority />
           </Link>
           <div className="flex items-center gap-5 text-xs font-sans font-semibold tracking-wide uppercase">
-            <Link href="/" className="text-tm-secondary hover:text-tm-heading transition-colors">Home</Link>
-            <Link href="/dashboard" className="text-tm-secondary hover:text-tm-heading transition-colors">Dashboard</Link>
+            <Link href="/" className="text-tm-secondary hover:text-tm-heading transition-colors">{copy.home}</Link>
+            <Link href="/dashboard" className="text-tm-secondary hover:text-tm-heading transition-colors">{copy.dashboard}</Link>
             <ThemeToggle />
           </div>
         </div>
@@ -42,19 +47,19 @@ export default function ArticlesPage() {
         <div className="mb-14 border-b border-tm-border pb-8">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-px bg-tm-gold" />
-            <h1 className="text-5xl md:text-6xl font-serif font-semibold text-tm-heading tracking-tight">Articles</h1>
+            <h1 className="text-5xl md:text-6xl font-serif font-semibold text-tm-heading tracking-tight">{copy.title}</h1>
           </div>
           <p className="text-tm-secondary font-sans text-base leading-relaxed max-w-2xl">
-            Independent English-language reporting for people, families, and organizations that need to understand what developments in Korea and across Asia mean in practice.
+            {copy.description}
           </p>
         </div>
 
         {/* Featured (latest) article */}
-        {enArticles[0] && (() => {
-          const a = enArticles[0];
+        {selectedArticles[0] && (() => {
+          const a = selectedArticles[0];
           const cat = articleCategory(a);
           const catInfo = categoryColors[cat];
-          const dateStr = new Date(a.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+          const dateStr = new Date(a.createdAt).toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' });
           return (
             <Link href={`/articles/${articleSlug(a)}`} className="block group mb-10">
               <div className="bg-tm-card border border-tm-border overflow-hidden hover:border-tm-border-active transition-all">
@@ -70,7 +75,7 @@ export default function ArticlesPage() {
                       {catInfo.label}
                     </span>
                     <span className="text-tm-faint text-xs font-sans">{dateStr}</span>
-                    <span className="text-[9px] font-sans text-tm-gold bg-[var(--tm-gold-bg)] px-2 py-0.5 rounded border border-[var(--tm-gold-border)]">LATEST</span>
+                    <span className="text-[9px] font-sans text-tm-gold bg-[var(--tm-gold-bg)] px-2 py-0.5 rounded border border-[var(--tm-gold-border)]">{copy.latest}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-serif font-semibold text-tm-heading group-hover:text-tm-gold transition-colors mb-3 leading-tight tracking-tight">
                     {a.title}
@@ -79,7 +84,7 @@ export default function ArticlesPage() {
                   <div className="flex items-center gap-4 mt-4 text-tm-faint text-xs font-sans">
                     <span>{a.likes.toLocaleString()} likes</span>
                     <span>{a.views.toLocaleString()} views</span>
-                    <span className="ml-auto text-tm-gold group-hover:text-tm-gold-hover font-bold">Read Article →</span>
+                    <span className="ml-auto text-tm-gold group-hover:text-tm-gold-hover font-bold">{copy.read}</span>
                   </div>
                 </div>
               </div>
@@ -89,10 +94,10 @@ export default function ArticlesPage() {
 
         {/* Article grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {enArticles.slice(1).map(a => {
+          {selectedArticles.slice(1).map(a => {
             const cat = articleCategory(a);
             const catInfo = categoryColors[cat];
-            const dateStr = new Date(a.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            const dateStr = new Date(a.createdAt).toLocaleDateString(dateLocale, { month: 'short', day: 'numeric', year: 'numeric' });
 
             return (
               <Link key={a.id} href={`/articles/${articleSlug(a)}`} className="block group">
@@ -119,7 +124,7 @@ export default function ArticlesPage() {
                     </p>
                     <div className="flex items-center justify-between text-tm-faint text-[10px] font-sans pt-2 border-t border-tm-border-subtle">
                       <span>{a.likes.toLocaleString()} likes · {a.views.toLocaleString()} views</span>
-                      <span className="text-tm-gold font-bold">Read →</span>
+                      <span className="text-tm-gold font-bold">{copy.read}</span>
                     </div>
                   </div>
                 </div>
@@ -128,44 +133,7 @@ export default function ArticlesPage() {
           })}
         </div>
 
-        {/* Translations section */}
-        {translations.length > 0 && (
-          <div className="mt-12">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-1 h-6 bg-tm-muted rounded-full" />
-              <div>
-                <h2 className="text-3xl font-serif font-semibold text-tm-heading">Translations</h2>
-                <p className="text-tm-muted text-sm font-sans">Reporting available in Korean and Japanese</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {translations.map(a => {
-                const lang = articleLang(a);
-                const dateStr = new Date(a.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                return (
-                  <Link key={a.id} href={`/articles/${articleSlug(a)}`} className="block group">
-                    <div className="bg-tm-card border border-tm-border p-4 hover:border-tm-border-active transition-all flex gap-4">
-                      {a.coverImage && (
-                        <img src={a.coverImage} alt={a.title} className="w-24 h-24 object-cover rounded border border-tm-border flex-shrink-0" />
-                      )}
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-[10px] font-sans text-tm-faint border border-tm-border-hover px-1.5 py-0.5 rounded">
-                            {lang === 'ko' ? '한국어' : '日本語'}
-                          </span>
-                          <span className="text-tm-faint text-[10px] font-sans">{dateStr}</span>
-                        </div>
-                        <h3 className="text-tm-heading text-lg font-serif font-semibold leading-snug group-hover:text-tm-gold transition-colors">
-                          {a.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        )}
+        {selectedArticles.length === 0 && <p className="text-tm-secondary py-12">{copy.empty}</p>}
       </div>
 
       {/* Footer */}

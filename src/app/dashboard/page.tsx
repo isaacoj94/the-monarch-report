@@ -12,11 +12,12 @@ import Timeline from '@/components/Timeline';
 import GasMap from '@/components/GasMap';
 import LiveExchangeRate from '@/components/LiveExchangeRate';
 import PresidencyComparison from '@/components/PresidencyComparison';
+import { useLocale } from '@/components/LocaleProvider';
 
 const localeLabels: Record<Locale, string> = { en: 'EN', ko: '한국어', ja: '日本語' };
 
 export default function Dashboard() {
-  const [locale, setLocale] = useState<Locale>('en');
+  const { locale, setLocale } = useLocale();
   const [activeImpact, setActiveImpact] = useState<string | null>(null);
 
   const handleImpactClick = (impact: string) => {

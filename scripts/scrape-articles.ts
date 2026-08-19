@@ -17,6 +17,7 @@ const APIFY_ACTOR_ID = 'apidojo~tweet-scraper';
 const HANDLE = 'monarchreport25';
 const ARTICLE_PATTERN = /(?:x|twitter)\.com\/i\/article\/(\d+)/;
 const DATA_PATH = path.resolve(process.cwd(), 'src/data/articles.json');
+const REFRESH_EXISTING = process.argv.includes('--refresh-existing');
 
 type JsonRecord = Record<string, unknown>;
 
@@ -132,6 +133,24 @@ function asNumber(value: unknown): number {
   return typeof value === 'number' ? value : Number(value) || 0;
 }
 
+function mediaDetails(media: JsonRecord): { url: string; width: number; height: number } {
+  const info = asRecord(media.media_info);
+  const original = asRecord(media.original_info);
+  return {
+    url: String(media.media_url_https ?? media.media_url ?? info.original_img_url ?? ''),
+    width: asNumber(media.width ?? original.width ?? info.original_img_width),
+    height: asNumber(media.height ?? original.height ?? info.original_img_height),
+  };
+}
+
+function normalizeEntityMap(value: unknown): JsonRecord {
+  if (!Array.isArray(value)) return asRecord(value);
+  return Object.fromEntries(value.map((entryValue) => {
+    const entry = asRecord(entryValue);
+    return [String(entry.key), asRecord(entry.value)];
+  }));
+}
+
 function mapBlockType(type: string): string {
   if (type.startsWith('header')) return 'heading';
   if (type === 'blockquote') return 'blockquote';
@@ -150,9 +169,13 @@ async function fetchArticle(tweetId: string): Promise<ExtractedArticle | null> {
 
   const content = asRecord(article.content);
   const rawBlocks = Array.isArray(content.blocks) ? content.blocks.map(asRecord) : [];
-  const entityMap = asRecord(content.entityMap);
+  const entityMap = normalizeEntityMap(content.entityMap);
   const rawMedia = Array.isArray(article.media_entities) ? article.media_entities.map(asRecord) : [];
-  const mediaByKey = new Map(rawMedia.map((media) => [String(media.media_key), media]));
+  const mediaByKey = new Map<string, JsonRecord>();
+  for (const media of rawMedia) {
+    mediaByKey.set(String(media.media_key), media);
+    mediaByKey.set(String(media.media_id), media);
+  }
 
   const blocks: ArticleBlock[] = rawBlocks.map((block) => {
     const type = String(block.type ?? 'unstyled');
@@ -161,9 +184,11 @@ async function fetchArticle(tweetId: string): Promise<ExtractedArticle | null> {
       for (const range of ranges) {
         const entity = asRecord(entityMap[String(range.key)]);
         const data = asRecord(entity.data);
-        const media = mediaByKey.get(String(data.mediaKey));
-        if (entity.type === 'IMAGE' && media) {
-          return { type: 'image', text: '', imageUrl: String(media.media_url_https ?? '') };
+        const mediaItems = Array.isArray(data.mediaItems) ? data.mediaItems.map(asRecord) : [];
+        const media = mediaByKey.get(String(data.mediaKey))
+          ?? mediaItems.map((item) => mediaByKey.get(String(item.mediaId))).find(Boolean);
+        if ((entity.type === 'IMAGE' || entity.type === 'MEDIA') && media) {
+          return { type: 'image', text: '', imageUrl: mediaDetails(media).url };
         }
       }
       return { type: 'image', text: '' };
@@ -187,21 +212,22 @@ async function fetchArticle(tweetId: string): Promise<ExtractedArticle | null> {
 
   const cover = asRecord(article.cover_media);
   const images: ArticleImage[] = [];
-  if (cover.media_url) {
+  const coverDetails = mediaDetails(cover);
+  if (coverDetails.url) {
     images.push({
-      url: String(cover.media_url),
-      width: asNumber(cover.width),
-      height: asNumber(cover.height),
+      url: coverDetails.url,
+      width: coverDetails.width,
+      height: coverDetails.height,
       type: 'cover',
     });
   }
   for (const media of rawMedia) {
-    const info = asRecord(media.original_info);
-    if (media.media_url_https) {
+    const details = mediaDetails(media);
+    if (details.url) {
       images.push({
-        url: String(media.media_url_https),
-        width: asNumber(info.width),
-        height: asNumber(info.height),
+        url: details.url,
+        width: details.width,
+        height: details.height,
         type: 'inline',
       });
     }
@@ -222,7 +248,7 @@ async function fetchArticle(tweetId: string): Promise<ExtractedArticle | null> {
     title: String(article.title),
     previewText: String(article.preview_text ?? ''),
     createdAt: String(article.created_at),
-    coverImage: cover.media_url ? String(cover.media_url) : null,
+    coverImage: coverDetails.url || null,
     likes: asNumber(tweet.likes),
     views: asNumber(tweet.views),
     retweets: asNumber(tweet.retweets),
@@ -234,9 +260,26 @@ async function fetchArticle(tweetId: string): Promise<ExtractedArticle | null> {
 }
 
 async function main(): Promise<void> {
-  if (!APIFY_TOKEN) throw new Error('APIFY_API_TOKEN is required');
-
   const existing = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8')) as ExtractedArticle[];
+  if (REFRESH_EXISTING) {
+    console.log(`Refreshing images and article structure for ${existing.length} stored X Articles...`);
+    const refreshed: ExtractedArticle[] = [];
+    for (const current of existing) {
+      try {
+        refreshed.push((await fetchArticle(current.tweetId)) ?? current);
+      } catch (error) {
+        console.warn(`Keeping stored copy of ${current.tweetId}: ${error instanceof Error ? error.message : error}`);
+        refreshed.push(current);
+      }
+      await new Promise((resolve) => setTimeout(resolve, 400));
+    }
+    refreshed.sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt));
+    fs.writeFileSync(DATA_PATH, `${JSON.stringify(refreshed, null, 2)}\n`);
+    console.log(`Refreshed ${refreshed.length} stored articles.`);
+    return;
+  }
+
+  if (!APIFY_TOKEN) throw new Error('APIFY_API_TOKEN is required');
   const existingIds = new Set(existing.map((article) => article.id));
   const datasetId = await runApifyScan();
   const candidates = (await getArticleTweets(datasetId)).filter(({ articleId }) => !existingIds.has(articleId));

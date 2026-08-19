@@ -140,8 +140,12 @@ export const japanDissolution = {
 export interface KoreaTimelineEntry {
   date: string;
   title: string;
+  titleKo?: string;
+  titleJa?: string;
   description: string;
-  category: 'martial-law' | 'church-raid' | 'legislation' | 'military' | 'foreign-policy' | 'court-case' | 'media' | 'corporate';
+  descriptionKo?: string;
+  descriptionJa?: string;
+  category: 'martial-law' | 'church-raid' | 'religious-freedom' | 'legislation' | 'military' | 'foreign-policy' | 'court-case' | 'media' | 'corporate';
   source: string;
   sourceUrl: string;
   featured?: boolean; // hero treatment for key events
@@ -150,7 +154,7 @@ export interface KoreaTimelineEntry {
 
 // Inclusive month range of events present in koreaTimeline below.
 // Update this whenever you add events past the current end date.
-export const KOREA_TIMELINE_RANGE_LABEL = 'Jan 2024 – Mar 2026';
+export const KOREA_TIMELINE_RANGE_LABEL = 'Jan 2024 – Aug 2026 · checked Aug 19';
 
 export const koreaTimeline: KoreaTimelineEntry[] = [
   // === PRE-MARTIAL LAW: Why it happened ===
@@ -447,12 +451,74 @@ export const koreaTimeline: KoreaTimelineEntry[] = [
     source: 'Korea Herald',
     sourceUrl: 'https://www.koreaherald.com/article/10632927',
   },
+  // === CURRENT EDITORIAL DESK ===
+  {
+    date: 'Jul 24, 2026',
+    title: 'Who investigates North Korean espionage after the August transfer?',
+    titleKo: '8월 수사권 이관 이후 대북 간첩 수사는 누가 맡나',
+    titleJa: '8月の権限移管後、北朝鮮のスパイ事件を誰が捜査するのか',
+    description: 'The Monarch Report examines how an August 1 transfer of investigative responsibility may affect counterespionage cases, inter-agency coordination and public accountability.',
+    descriptionKo: '더 모나크 리포트는 8월 1일 수사 책임 이관이 방첩 사건과 기관 간 공조, 공적 책임에 어떤 영향을 줄 수 있는지 살펴봅니다.',
+    descriptionJa: 'ザ・モナーク・レポートは、8月1日の捜査権限移管が防諜事件、機関間の連携、公的説明責任に及ぼし得る影響を検証します。',
+    category: 'foreign-policy',
+    source: 'The Monarch Report on X',
+    sourceUrl: 'https://x.com/monarchreport25/status/2080653052923551820',
+  },
+  {
+    date: 'Aug 1, 2026',
+    title: 'New investigative structure shifts the final check on police cases',
+    titleKo: '새 수사 체계, 경찰 수사에 대한 최종 견제 장치를 바꾸다',
+    titleJa: '新たな捜査制度、警察捜査に対する最終的なチェックを変更',
+    description: 'Original reporting reviews a legal restructuring that gives police investigations a more decisive role and asks what recourse remains when an investigation is incomplete or disputed.',
+    descriptionKo: '경찰 수사의 비중을 크게 높인 법적 개편을 검토하고, 수사가 미진하거나 다툼이 있을 때 어떤 구제 절차가 남는지 묻습니다.',
+    descriptionJa: '警察捜査の比重を大きく高める制度改編を検証し、捜査が不十分または争われる場合にどのような救済手段が残るのかを問います。',
+    category: 'legislation',
+    source: 'The Monarch Report on X',
+    sourceUrl: 'https://x.com/monarchreport25/status/2083538660138614813',
+  },
+  {
+    date: 'Aug 8, 2026',
+    title: 'Missionary support payments face new tax questions',
+    titleKo: '해외 선교 지원금에 제기된 새로운 과세 쟁점',
+    titleJa: '海外宣教師への支援金をめぐる新たな課税問題',
+    description: 'A Monarch Report analysis examines how tax treatment of overseas missionary support could affect churches, missionaries and the boundary between religious activity and taxable compensation.',
+    descriptionKo: '해외 선교 지원금의 과세 방식이 교회와 선교사, 그리고 종교 활동과 과세 대상 보수의 경계에 어떤 영향을 미칠 수 있는지 분석합니다.',
+    descriptionJa: '海外宣教師への支援金の税務上の扱いが、教会、宣教師、宗教活動と課税対象となる報酬の境界に及ぼし得る影響を分析します。',
+    category: 'religious-freedom',
+    source: 'The Monarch Report on X',
+    sourceUrl: 'https://x.com/monarchreport25/status/2085917079509877041',
+  },
+  {
+    date: 'Aug 14, 2026',
+    title: 'Defense challenges inconsistencies in testimony in Dr. Hak Ja Han case',
+    titleKo: '한학자 총재 사건 변호인단, 진술 기록의 불일치 지적',
+    titleJa: '韓鶴子総裁事件の弁護側、供述記録の不一致を指摘',
+    description: 'The defense account identifies statements it says do not align across the record. The article separates the defense argument from established findings while the proceeding remains ongoing.',
+    descriptionKo: '변호인단은 사건 기록상 서로 맞지 않는 진술이 있다고 주장합니다. 재판이 진행 중인 만큼, 기사에서는 변호인단의 주장과 확정된 사실을 구분해 다룹니다.',
+    descriptionJa: '弁護側は、事件記録の中に整合しない供述があると主張しています。審理が続いているため、記事では弁護側の主張と確定した事実を区別して扱います。',
+    category: 'court-case',
+    source: 'The Monarch Report on X',
+    sourceUrl: 'https://x.com/monarchreport25/status/2088228544606519789',
+  },
+  {
+    date: 'Aug 17, 2026',
+    title: 'Why renewed interest in communism matters for faith and family',
+    titleKo: '공산주의에 대한 새로운 관심이 신앙과 가정에 중요한 이유',
+    titleJa: '共産主義への関心の再燃が、信仰と家族にとって重要な理由',
+    description: 'A new long-form analysis compares communism’s stated promises with its historical record and examines why independent faith, family life, property rights and a free press remain central safeguards.',
+    descriptionKo: '공산주의가 내세운 약속과 역사적 기록을 비교하고, 독립적인 신앙과 가정생활, 재산권, 언론의 자유가 왜 핵심적인 안전장치인지 살펴봅니다.',
+    descriptionJa: '共産主義が掲げた約束と歴史的記録を比較し、独立した信仰、家庭生活、財産権、報道の自由がなぜ重要な歯止めとなるのかを考察します。',
+    category: 'media',
+    source: 'The Monarch Report on X',
+    sourceUrl: 'https://x.com/monarchreport25/status/2089327475226775667',
+  },
 ];
 
 // Category labels and colors for Korea timeline
 export const koreaTimelineCategories: Record<string, { label: string; color: string; icon: string }> = {
   'martial-law': { label: 'Martial Law', color: '#ef4444', icon: '⚠' },
   'church-raid': { label: 'Religious Freedom', color: '#a855f7', icon: '⛪' },
+  'religious-freedom': { label: 'Religious Freedom', color: '#8b5cf6', icon: '◈' },
   'legislation': { label: 'Legislation', color: '#f59e0b', icon: '📜' },
   'military': { label: 'Military', color: '#6b7280', icon: '🎖' },
   'foreign-policy': { label: 'Foreign Policy', color: '#3b82f6', icon: '🌐' },

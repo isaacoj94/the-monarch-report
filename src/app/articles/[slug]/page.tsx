@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { articles, articleSlug, articleBySlug, articleCategory, articleLang } from '@/lib/articles';
 import type { ArticleBlock } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
+import { ArticleLanguageNotice, LocalizedText } from '@/components/LocalizedText';
 
 const categoryColors: Record<string, { color: string; label: string }> = {
   korea: { color: '#ef4444', label: 'KOREA' },
@@ -147,8 +148,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} className="h-7 w-auto" priority />
           </Link>
           <div className="flex items-center gap-5 text-xs font-sans font-semibold tracking-wide uppercase">
-            <Link href="/articles" className="text-tm-secondary hover:text-tm-heading transition-colors">All Articles</Link>
-            <Link href="/" className="text-tm-secondary hover:text-tm-heading transition-colors">Home</Link>
+            <Link href="/articles" className="text-tm-secondary hover:text-tm-heading transition-colors"><LocalizedText en="All Articles" ko="전체 기사" ja="全記事" /></Link>
+            <Link href="/" className="text-tm-secondary hover:text-tm-heading transition-colors"><LocalizedText en="Home" ko="홈" ja="ホーム" /></Link>
             <ThemeToggle />
           </div>
         </div>
@@ -167,7 +168,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       )}
 
       {/* Article Content */}
-      <article className="max-w-3xl mx-auto px-6 -mt-20 relative z-10 pb-20">
+      <article className={`max-w-3xl mx-auto px-6 relative z-10 pb-20 ${article.coverImage ? '-mt-20' : 'pt-16'}`}>
         {/* Meta */}
         <div className="flex items-center gap-3 mb-4">
           <span
@@ -200,7 +201,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               rel="noopener noreferrer"
               className="text-xs font-sans text-tm-gold hover:text-tm-gold-hover transition-colors"
             >
-              View on 𝕏
+              <LocalizedText en="View on 𝕏" ko="𝕏에서 원문 보기" ja="𝕏で原文を見る" />
             </a>
           </div>
           <div className="flex items-center gap-3 text-tm-faint text-xs font-sans">
@@ -208,6 +209,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <span>{article.views.toLocaleString()} views</span>
           </div>
         </div>
+
+        <ArticleLanguageNotice articleLocale={lang} />
 
         {/* Body */}
         <div className="article-body">
@@ -219,7 +222,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         {/* Sources */}
         {article.links.length > 0 && (
           <div className="mt-10 pt-6 border-t border-tm-border-subtle">
-            <h3 className="text-lg font-serif font-semibold text-tm-heading mb-3">Sources and further reading</h3>
+            <h3 className="text-lg font-serif font-semibold text-tm-heading mb-3"><LocalizedText en="Sources and further reading" ko="출처와 더 읽을 자료" ja="出典・参考資料" /></h3>
             <ul className="space-y-1.5">
               {article.links.map((link, i) => (
                 <li key={i}>
@@ -239,8 +242,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         {/* Footer CTA */}
         <div className="mt-12 bg-tm-card border border-tm-border rounded-lg p-6 text-center">
-          <p className="text-tm-heading font-serif text-2xl font-semibold mb-2">Stay informed.</p>
-          <p className="text-tm-secondary text-sm font-sans mb-4">Independent context for people, families, and organizations connected to Korea and Asia.</p>
+          <p className="text-tm-heading font-serif text-2xl font-semibold mb-2"><LocalizedText en="Stay informed." ko="맥락까지 확인하세요." ja="背景まで確かめる。" /></p>
+          <p className="text-tm-secondary text-sm font-sans mb-4"><LocalizedText en="Independent context for people, families, and organizations connected to Korea and Asia." ko="한국과 아시아에 가족·생활·사업 기반을 둔 분들을 위한 독립적인 맥락과 정보입니다." ja="韓国やアジアに家族・生活・事業とのつながりを持つ方のための、独立した背景情報です。" /></p>
           <div className="flex items-center justify-center gap-3">
             <a
               href="https://x.com/monarchreport25"
@@ -248,13 +251,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               rel="noopener noreferrer"
               className="px-5 py-2 bg-tm-gold hover:bg-tm-gold-hover text-tm-page font-sans font-bold text-sm rounded transition-colors"
             >
-              Follow on 𝕏
+              <LocalizedText en="Follow on 𝕏" ko="𝕏 팔로우" ja="𝕏をフォロー" />
             </a>
             <Link
               href="/articles"
               className="px-5 py-2 border border-tm-border-hover hover:border-tm-border-active text-tm-heading font-sans text-sm rounded transition-colors"
             >
-              More Articles
+              <LocalizedText en="More Articles" ko="다른 기사" ja="ほかの記事" />
             </Link>
           </div>
         </div>
