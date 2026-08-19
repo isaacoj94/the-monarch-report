@@ -1,9 +1,11 @@
 'use client';
 
+import type { PointerEvent } from 'react';
 import styles from './screening.module.css';
 
-// Mirror the Vimeo Appearance > Embed preset applied to the screening masters.
-// Share / Like / Watch Later / Embed / custom logo are video-level only.
+// Mirror the Vimeo Appearance > Embed preset. Share / Like / Watch Later /
+// screenshot still render on this player even when those boxes are unchecked,
+// so a transparent shield blocks that cluster without covering the film.
 const PLAYER_PARAMETERS = new URLSearchParams({
   autoplay: '0',
   autopause: '0',
@@ -32,15 +34,29 @@ const PLAYER_PARAMETERS = new URLSearchParams({
   dnt: '1',
 }).toString();
 
+function absorb(event: PointerEvent<HTMLDivElement>) {
+  event.preventDefault();
+  event.stopPropagation();
+}
+
 export function SecureVimeoPlayer({ videoId, title }: { videoId: string; title: string }) {
   return (
-    <iframe
-      key={videoId}
-      className={styles.vimeoFrame}
-      src={`https://player.vimeo.com/video/${encodeURIComponent(videoId)}?${PLAYER_PARAMETERS}`}
-      title={`${title} private screener`}
-      allow="autoplay; encrypted-media"
-      referrerPolicy="strict-origin-when-cross-origin"
-    />
+    <>
+      <iframe
+        key={videoId}
+        className={styles.vimeoFrame}
+        src={`https://player.vimeo.com/video/${encodeURIComponent(videoId)}?${PLAYER_PARAMETERS}`}
+        title={`${title} private screener`}
+        allow="autoplay; encrypted-media"
+        referrerPolicy="strict-origin-when-cross-origin"
+      />
+      <div
+        className={styles.nativeActionGuard}
+        aria-hidden="true"
+        onPointerDown={absorb}
+        onClick={absorb}
+        onContextMenu={absorb}
+      />
+    </>
   );
 }
