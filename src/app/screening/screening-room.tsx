@@ -4,12 +4,6 @@ import { useMemo, useState } from 'react';
 import type { ScreeningEpisode, ViewerAccess } from '@/lib/screening';
 import styles from './screening.module.css';
 
-type PlaybackState = {
-  episodeId: string;
-  vimeoVideoId: string;
-  watermark: string;
-} | null;
-
 function expiryLabel(value: string | null) {
   if (!value) return 'NO EXPIRY';
   return new Intl.DateTimeFormat('en-US', {
@@ -32,36 +26,13 @@ export function ScreeningRoom({
 }) {
   const firstAccessible = Math.max(0, access.episodes.findIndex((episode) => episode.grantId));
   const [episodeIndex, setEpisodeIndex] = useState(firstAccessible);
-  const [playback, setPlayback] = useState<PlaybackState>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const episode = access.episodes[episodeIndex];
-  const isPlaying = playback?.episodeId === episode.id;
+  const isPlayable = Boolean(episode.grantId && episode.hasVideo && episode.vimeoVideoId);
 
   const viewsLabel = useMemo(() => {
     if (episode.viewLimit === null) return `${episode.viewsStarted} STARTED`;
     return `${episode.viewsStarted} OF ${episode.viewLimit} USED`;
   }, [episode]);
-
-  async function startPlayback() {
-    if (!episode.grantId || !episode.hasVideo) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch('/api/screening/start', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ episodeId: episode.id }),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Playback could not begin.');
-      setPlayback({ episodeId: episode.id, vimeoVideoId: data.vimeoVideoId, watermark: data.watermark });
-    } catch (playbackError) {
-      setError(playbackError instanceof Error ? playbackError.message : 'Playback could not begin.');
-    } finally {
-      setLoading(false);
-    }
-  }
 
   return (
     <section className={styles.screeningRoom}>
@@ -74,11 +45,11 @@ export function ScreeningRoom({
       </div>
 
       <div className={styles.viewerLayout}>
-        <div className={`${styles.player} ${isPlaying ? styles.playing : ''}`}>
-          {isPlaying ? (
+        <div className={`${styles.player} ${isPlayable ? styles.playing : ''}`}>
+          {isPlayable ? (
             <iframe
               className={styles.vimeoFrame}
-              src={`https://player.vimeo.com/video/${encodeURIComponent(playback.vimeoVideoId)}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`}
+              src={`https://player.vimeo.com/video/${encodeURIComponent(episode.vimeoVideoId!)}?autoplay=0&controls=1&title=0&byline=0&portrait=0&dnt=1`}
               title={`${episode.title} private screener`}
               allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
               allowFullScreen
@@ -90,24 +61,12 @@ export function ScreeningRoom({
             </>
           )}
           <div className={styles.frameCode}>MR–YN–E{String(episode.episodeNumber).padStart(2, '0')} / SECURE MASTER</div>
-          <div className={styles.watermark}>{playback?.watermark ?? `${access.viewerCode} · PRIVATE SCREENER`}</div>
-          {!isPlaying && (
-            <button
-              className={styles.playControl}
-              type="button"
-              onClick={startPlayback}
-              disabled={loading || !episode.grantId || !episode.hasVideo}
-              aria-label="Begin protected playback"
-            >
-              {loading ? '…' : episode.hasVideo ? '▶' : '—'}
-            </button>
-          )}
+          <div className={styles.watermark}>{access.viewerCode} · PRIVATE SCREENER</div>
           <div className={styles.playerTitle}>
             <span>EPISODE {String(episode.episodeNumber).padStart(2, '0')} / {episode.country}</span>
             <h2>{episode.title}</h2>
           </div>
-          {!isPlaying && <div className={styles.demoNotice}>{episodeStatus(episode)}</div>}
-          {error && <div className={styles.playbackError} role="alert">{error}</div>}
+          {!isPlayable && <div className={styles.demoNotice}>{episodeStatus(episode)}</div>}
         </div>
 
         <aside className={styles.accessPanel}>
@@ -128,7 +87,7 @@ export function ScreeningRoom({
             type="button"
             key={item.id}
             className={episodeIndex === index ? styles.activeEpisode : ''}
-            onClick={() => { setEpisodeIndex(index); setPlayback(null); setError(null); }}
+            onClick={() => setEpisodeIndex(index)}
           >
             <span>{String(item.episodeNumber).padStart(2, '0')}</span>
             <div><small>{item.country} · {episodeStatus(item)}</small><strong>{item.title}</strong></div>

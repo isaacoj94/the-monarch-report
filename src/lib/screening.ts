@@ -10,6 +10,7 @@ export type ScreeningEpisode = {
   runtimeMinutes: number;
   status: 'available' | 'coming_soon' | 'unavailable';
   hasVideo: boolean;
+  vimeoVideoId: string | null;
   grantId: string | null;
   expiresAt: string | null;
   viewLimit: number | null;
@@ -108,6 +109,7 @@ export async function getViewerAccess(): Promise<ViewerAccess | null> {
         runtimeMinutes: episode.runtime_minutes,
         status: episode.status,
         hasVideo: active && Boolean(episode.vimeo_video_id),
+        vimeoVideoId: active ? episode.vimeo_video_id : null,
         grantId: active && grant ? grant.id : null,
         expiresAt: active && grant ? grant.expires_at : null,
         viewLimit: active && grant ? grant.view_limit : null,
