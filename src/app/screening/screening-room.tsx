@@ -7,6 +7,8 @@ import styles from './screening.module.css';
 const VIMEO_PLAYER_PARAMETERS = new URLSearchParams({
   autoplay: '0',
   controls: '1',
+  fullscreen: '0',
+  keyboard: '0',
   title: '0',
   byline: '0',
   portrait: '0',
@@ -70,8 +72,7 @@ export function ScreeningRoom({
               className={styles.vimeoFrame}
               src={`https://player.vimeo.com/video/${encodeURIComponent(episode.vimeoVideoId!)}?${VIMEO_PLAYER_PARAMETERS}`}
               title={`${episode.title} private screener`}
-              allow="autoplay; fullscreen; encrypted-media"
-              allowFullScreen
+              allow="autoplay; encrypted-media"
             />
           ) : (
             <>
@@ -81,6 +82,7 @@ export function ScreeningRoom({
           )}
           <div className={styles.frameCode}>MR–YN–E{String(episode.episodeNumber).padStart(2, '0')} / SECURE MASTER</div>
           <div className={styles.watermark}>{access.viewerCode} · PRIVATE SCREENER</div>
+          {isPlayable && <div className={styles.playerSecurityGuard} aria-hidden="true" />}
           <div className={styles.playerTitle}>
             <span>EPISODE {String(episode.episodeNumber).padStart(2, '0')} / {episode.country}</span>
             <h2>{episode.title}</h2>
