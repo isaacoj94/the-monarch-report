@@ -48,10 +48,10 @@ export default function Timeline({ events, locale, activeImpact, onEventClick }:
 
   return (
     <div className="bg-[#111111] border border-[#222222] rounded-lg p-5">
-      <h3 className="text-white font-mono text-sm font-bold mb-2">
+      <h3 className="text-white font-sans text-sm font-bold mb-2">
         {locale === 'ko' ? '주요 사건 타임라인' : locale === 'ja' ? '主要イベントタイムライン' : 'Key Events Timeline'}
       </h3>
-      <p className="text-[#555] text-[10px] font-mono mb-3">
+      <p className="text-[#555] text-[10px] font-sans mb-3">
         {locale === 'ko' ? '대통령별 필터링 가능 · 클릭하면 관련 지표 확인' : locale === 'ja' ? '大統領別フィルタリング可能 · クリックで関連指標表示' : 'Filter by president · Click to see related metrics'}
       </p>
 
@@ -59,7 +59,7 @@ export default function Timeline({ events, locale, activeImpact, onEventClick }:
       <div className="flex flex-wrap gap-1 mb-4">
         <button
           onClick={() => setFilterPresident(null)}
-          className={`px-2 py-1 text-[10px] font-mono rounded transition-colors ${
+          className={`px-2 py-1 text-[10px] font-sans rounded transition-colors ${
             !filterPresident ? 'bg-[#222] text-white' : 'text-[#666] hover:text-white'
           }`}
         >
@@ -69,7 +69,7 @@ export default function Timeline({ events, locale, activeImpact, onEventClick }:
           <button
             key={p.id}
             onClick={() => setFilterPresident(prev => prev === p.id ? null : p.id)}
-            className={`flex items-center gap-1 px-2 py-1 text-[10px] font-mono rounded transition-colors ${
+            className={`flex items-center gap-1 px-2 py-1 text-[10px] font-sans rounded transition-colors ${
               filterPresident === p.id ? 'bg-[#222] text-white' : 'text-[#666] hover:text-white'
             }`}
           >
@@ -109,28 +109,28 @@ export default function Timeline({ events, locale, activeImpact, onEventClick }:
               </div>
               <div className="flex-1 pb-1">
                 <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                  <span className="text-[#555555] text-[10px] font-mono">{event.date}</span>
+                  <span className="text-[#555555] text-[10px] font-sans">{event.date}</span>
                   <span
-                    className="text-[10px] font-mono px-1.5 py-0.5 rounded"
+                    className="text-[10px] font-sans px-1.5 py-0.5 rounded"
                     style={{ color: catColor, backgroundColor: `${catColor}15` }}
                   >
                     {categoryLabels[event.category]?.[locale] || categoryLabels[event.category]?.['en']}
                   </span>
                   {president && (
                     <span
-                      className="text-[9px] font-mono px-1 py-0.5 rounded"
+                      className="text-[9px] font-sans px-1 py-0.5 rounded"
                       style={{ color: president.color, backgroundColor: `${president.color}15` }}
                     >
                       {(president.name[locale] || president.name['en']).split(' ').pop()}
                     </span>
                   )}
                   {impactLabel && (
-                    <span className={`text-[10px] font-mono ${isActive ? 'opacity-100' : 'opacity-40'}`} style={{ color: catColor }}>
+                    <span className={`text-[10px] font-sans ${isActive ? 'opacity-100' : 'opacity-40'}`} style={{ color: catColor }}>
                       {impactLabel}
                     </span>
                   )}
                 </div>
-                <p className={`text-sm font-mono transition-colors duration-200 ${isActive ? 'text-white' : 'text-[#cccccc]'}`}>
+                <p className={`text-sm font-sans transition-colors duration-200 ${isActive ? 'text-white' : 'text-[#cccccc]'}`}>
                   {event.title[locale] || event.title['en']}
                 </p>
               </div>

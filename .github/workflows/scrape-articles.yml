@@ -1,0 +1,50 @@
+name: Import X Articles
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_apify:
+        description: Start one paid article-only Apify scan
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-x-articles-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  import:
+    if: ${{ inputs.run_apify }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Scan and import only long-form X Articles
+        env:
+          APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
+        run: npm run scrape-articles
+
+      - name: Commit new articles
+        run: |
+          if git diff --quiet src/data/articles.json; then
+            echo "No new X Articles found."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/articles.json
+          git commit -m "content: import latest Monarch Report X articles"
+          git push origin "HEAD:${{ github.ref_name }}"

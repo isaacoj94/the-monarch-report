@@ -38,7 +38,7 @@ export default function LiveExchangeRate({ locale }: LiveExchangeRateProps) {
     return (
       <div className="flex items-center gap-2 animate-pulse">
         <div className="w-2 h-2 rounded-full bg-[#333]" />
-        <span className="text-[#444] text-xs font-mono">USD/KRW ---</span>
+        <span className="text-[#444] text-xs font-sans">USD/KRW ---</span>
       </div>
     );
   }
@@ -60,15 +60,15 @@ export default function LiveExchangeRate({ locale }: LiveExchangeRateProps) {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
         </span>
-        <span className="text-[10px] text-red-400 font-mono font-bold uppercase">{labels[locale].live}</span>
+        <span className="text-[10px] text-red-400 font-sans font-bold uppercase">{labels[locale].live}</span>
       </div>
       <div>
-        <p className="text-[#888] text-[10px] font-mono">USD / KRW</p>
-        <p className={`text-lg font-mono font-bold transition-colors duration-500 ${flash}`}>
+        <p className="text-[#888] text-[10px] font-sans">USD / KRW</p>
+        <p className={`text-lg font-sans font-bold transition-colors duration-500 ${flash}`}>
           ₩{data.rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         </p>
       </div>
-      <div className="text-[10px] text-[#555] font-mono">
+      <div className="text-[10px] text-[#555] font-sans">
         {labels[locale].source}
         <br />
         {data.date}

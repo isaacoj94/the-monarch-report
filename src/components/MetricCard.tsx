@@ -31,20 +31,20 @@ export default function MetricCard({ metric, label, unitLabel, locale, accentCol
     <div className="bg-[#111111] border border-[#222222] rounded-lg p-4 hover:border-[#333333] transition-colors group">
       <div className="flex justify-between items-start mb-2">
         <div>
-          <p className="text-[#888888] text-xs font-mono uppercase tracking-wider">{label}</p>
-          <p className="text-white text-2xl font-mono font-bold mt-1">
+          <p className="text-[#888888] text-xs font-sans uppercase tracking-wider">{label}</p>
+          <p className="text-white text-2xl font-sans font-bold mt-1">
             {formatValue(metric.currentValue, metric.unit)}
           </p>
-          <p className="text-[#666666] text-xs font-mono">{unitLabel}</p>
+          <p className="text-[#666666] text-xs font-sans">{unitLabel}</p>
         </div>
         <div className="text-right">
           <span
-            className="text-xs font-mono px-2 py-1 rounded"
+            className="text-xs font-sans px-2 py-1 rounded"
             style={{ color: trendColor, backgroundColor: `${trendColor}15` }}
           >
             {arrow} {Math.abs(metric.changePercent)}%
           </span>
-          <p className="text-[#555555] text-[10px] font-mono mt-1">
+          <p className="text-[#555555] text-[10px] font-sans mt-1">
             {trendLabel} {t(locale, 'since')} {PRESIDENCY_START_LABEL}
           </p>
         </div>

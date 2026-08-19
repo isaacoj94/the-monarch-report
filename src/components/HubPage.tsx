@@ -57,7 +57,7 @@ export function HubPage({ platform, ctas }: Props) {
       <>
         <span className="block text-base font-serif">{cta.label}</span>
         {cta.sublabel && (
-          <span className="block text-xs font-mono text-tm-secondary mt-1">{cta.sublabel}</span>
+          <span className="block text-xs font-sans text-tm-secondary mt-1">{cta.sublabel}</span>
         )}
       </>
     );
@@ -98,7 +98,7 @@ export function HubPage({ platform, ctas }: Props) {
             <Image src="/logos/icon-gold.png" alt="The Monarch Report" width={64} height={64} className="w-14 h-14 mx-auto opacity-80" />
           </Link>
           <h1 className="text-2xl font-serif font-bold text-tm-heading mb-1">The Monarch Report</h1>
-          <p className="text-[10px] font-mono uppercase tracking-widest text-tm-gold mb-3">{platform.label}</p>
+          <p className="text-[10px] font-sans uppercase tracking-widest text-tm-gold mb-3">{platform.label}</p>
           <p className="text-sm text-tm-secondary leading-relaxed max-w-xs mx-auto">{platform.tagline}</p>
         </div>
         <div className="space-y-3">
@@ -106,7 +106,7 @@ export function HubPage({ platform, ctas }: Props) {
         </div>
         {platform.key !== 'policy' && (
           <div className="mt-10 pt-6 border-t border-tm-border-subtle">
-            <p className="text-center text-[10px] font-mono uppercase tracking-widest text-tm-muted mb-3">Also follow us on</p>
+            <p className="text-center text-[10px] font-sans uppercase tracking-widest text-tm-muted mb-3">Also follow us on</p>
             <div className="flex flex-wrap justify-center gap-2">
               {SOCIALS.filter(s => s.key !== platform.key).map(s => {
                 const utm: UtmParams = {
@@ -127,7 +127,7 @@ export function HubPage({ platform, ctas }: Props) {
                 });
                 return (
                   <a key={s.key} href={href} target="_blank" rel="noopener noreferrer" onClick={onClick}
-                     className="text-xs font-mono text-tm-secondary hover:text-tm-heading transition-colors px-3 py-1.5 border border-tm-border rounded hover:border-tm-border-active">
+                     className="text-xs font-sans text-tm-secondary hover:text-tm-heading transition-colors px-3 py-1.5 border border-tm-border rounded hover:border-tm-border-active">
                     {s.label}
                   </a>
                 );
@@ -135,7 +135,7 @@ export function HubPage({ platform, ctas }: Props) {
             </div>
           </div>
         )}
-        <p className="text-center text-[10px] font-mono text-tm-dim mt-10">
+        <p className="text-center text-[10px] font-sans text-tm-dim mt-10">
           Defending Democracy, Faith &amp; Freedom · monarchreport.org
         </p>
       </div>
