@@ -7,6 +7,10 @@ import { getAuthenticatedUser } from '@/lib/screening';
 export const dynamic = 'force-dynamic';
 
 const DEVICE_COOKIE = 'mr_screening_device';
+const TRUSTED_SCREENING_ORIGINS = new Set([
+  'https://monarchreport.org',
+  'https://www.monarchreport.org',
+]);
 
 function json(body: Record<string, unknown>, status: number) {
   const response = NextResponse.json(body, { status });
@@ -14,9 +18,20 @@ function json(body: Record<string, unknown>, status: number) {
   return response;
 }
 
-export async function POST(request: NextRequest) {
+function hasTrustedOrigin(request: NextRequest) {
   const origin = request.headers.get('origin');
-  if (origin && origin !== request.nextUrl.origin) return json({ error: 'Invalid request origin.' }, 403);
+  if (!origin) return true;
+
+  try {
+    const normalizedOrigin = new URL(origin).origin;
+    return normalizedOrigin === request.nextUrl.origin || TRUSTED_SCREENING_ORIGINS.has(normalizedOrigin);
+  } catch {
+    return false;
+  }
+}
+
+export async function POST(request: NextRequest) {
+  if (!hasTrustedOrigin(request)) return json({ error: 'Invalid request origin.' }, 403);
 
   const user = await getAuthenticatedUser();
   if (!user) return json({ error: 'Your screening session has expired. Sign in again.' }, 401);
