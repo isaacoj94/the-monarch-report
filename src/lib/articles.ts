@@ -49,13 +49,17 @@ export const articleById = new Map(articles.map(a => [a.id, a]));
 
 // Slug from title (for URL-friendly paths)
 export function articleSlug(a: Article): string {
-  return a.title
+  if (articleLang(a) !== 'en') return `article-${a.id}`;
+
+  const readable = a.title
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
     .slice(0, 80)
     .replace(/-$/, '');
+
+  return readable || `article-${a.id}`;
 }
 
 // Reverse lookup: slug → article

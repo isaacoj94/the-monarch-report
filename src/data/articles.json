@@ -5,7 +5,7 @@
     "title": "Communism Is Not Complete Until God and Family Are Gone",
     "previewText": "Why Young People Are Drawn to Communism Today\nA generation that never lived through the Cold War now votes.\nIn a March 2025 Cato Institute/YouGov survey, 62 percent of Americans aged 18 to 29 viewed",
     "createdAt": "2026-08-17T12:24:22.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HP7IL34agAA-3pe.jpg",
     "likes": 8,
     "views": 849,
     "retweets": 4,
@@ -22,7 +22,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HP7FQRAaQAAJYWJ.jpg"
       },
       {
         "type": "paragraph",
@@ -60,7 +61,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HP7FWPTbcAAlR9k.png"
       },
       {
         "type": "paragraph",
@@ -111,7 +113,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HP7Fcd_bMAAm3KT.jpg"
       },
       {
         "type": "paragraph",
@@ -140,7 +143,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HP7Fh1JaQAAfwQl.jpg"
       },
       {
         "type": "paragraph",
@@ -344,8 +348,168 @@
         "listType": "ordered"
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HP7IL34agAA-3pe.jpg",
+        "width": 1915,
+        "height": 766,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HP7FQRAaQAAJYWJ.jpg",
+        "width": 971,
+        "height": 1500,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HP7FWPTbcAAlR9k.png",
+        "width": 500,
+        "height": 306,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HP7Fcd_bMAAm3KT.jpg",
+        "width": 1672,
+        "height": 941,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HP7Fh1JaQAAfwQl.jpg",
+        "width": 1690,
+        "height": 931,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://www.cato.org/blog/young-americans-socialism-too-much-thats-problem-libertarians-must-fix",
+        "text": "https://www.cato.org/blog/young-americans-socialism-too-much-thats-problem-libertarians-must-fix"
+      },
+      {
+        "url": "https://www.independent.org/tir/2025-spring/millennials-gen-zs-capitalism-socialism-and-confusion/",
+        "text": "https://www.independent.org/tir/2025-spring/millennials-gen-zs-capitalism-socialism-and-confusion/"
+      },
+      {
+        "url": "https://victimsofcommunism.org/annual-survey-shows-rise-in-support-for-socialism-communism/",
+        "text": "https://victimsofcommunism.org/annual-survey-shows-rise-in-support-for-socialism-communism/"
+      },
+      {
+        "url": "https://victimsofcommunism.org/about/",
+        "text": "https://victimsofcommunism.org/about/"
+      },
+      {
+        "url": "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/ch02.htm",
+        "text": "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/ch02.htm"
+      },
+      {
+        "url": "https://www.marxists.org/archive/marx/works/1884/origin-family/",
+        "text": "https://www.marxists.org/archive/marx/works/1884/origin-family/"
+      },
+      {
+        "url": "https://mises.org/library/book/economic-calculation-socialist-commonwealth",
+        "text": "https://mises.org/library/book/economic-calculation-socialist-commonwealth"
+      },
+      {
+        "url": "https://www.econlib.org/the-collapse-of-the-soviet-union-and-the-continued-relevance-of-ludwig-von-mises/",
+        "text": "https://www.econlib.org/the-collapse-of-the-soviet-union-and-the-continued-relevance-of-ludwig-von-mises/"
+      },
+      {
+        "url": "https://globalrightscompliance.org/new-report-reveals-testimonies-of-north-koreans-exploited-across-russia-in-100000-strong-global-state-sponsored-forced-labour-programme/",
+        "text": "https://globalrightscompliance.org/new-report-reveals-testimonies-of-north-koreans-exploited-across-russia-in-100000-strong-global-state-sponsored-forced-labour-programme/"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10702475",
+        "text": "https://www.koreaherald.com/article/10702475"
+      },
+      {
+        "url": "https://www.nbcnews.com/world/asia/cockroaches-surveillance-16-hour-days-life-north-korean-worker-russia-rcna264849",
+        "text": "https://www.nbcnews.com/world/asia/cockroaches-surveillance-16-hour-days-life-north-korean-worker-russia-rcna264849"
+      },
+      {
+        "url": "https://www.38north.org/2025/10/beyond-the-blanket-ban-reframing-the-international-response-to-north-koreas-overseas-labor/",
+        "text": "https://www.38north.org/2025/10/beyond-the-blanket-ban-reframing-the-international-response-to-north-koreas-overseas-labor/"
+      },
+      {
+        "url": "http://globalsecurity.org/",
+        "text": "http://globalsecurity.org/"
+      },
+      {
+        "url": "https://www.globalsecurity.org/wmd/library/news/dprk/2021/dprk-210607-rfa01.htm",
+        "text": "https://www.globalsecurity.org/wmd/library/news/dprk/2021/dprk-210607-rfa01.htm"
+      },
+      {
+        "url": "https://www.dailynk.com/english/north-korea-market-economy-wages-trade-side-jobs/",
+        "text": "https://www.dailynk.com/english/north-korea-market-economy-wages-trade-side-jobs/"
+      },
+      {
+        "url": "https://www.38north.org/2025/05/assessing-north-koreas-wage-reform-18-months-later-has-it-improved-lives-or-reinforced-state-control/",
+        "text": "https://www.38north.org/2025/05/assessing-north-koreas-wage-reform-18-months-later-has-it-improved-lives-or-reinforced-state-control/"
+      },
+      {
+        "url": "https://beyondparallel.csis.org/paradise-evaporated-escaping-no-income-trap-north-korea/",
+        "text": "https://beyondparallel.csis.org/paradise-evaporated-escaping-no-income-trap-north-korea/"
+      },
+      {
+        "url": "https://www.loc.gov/exhibits/archives/anti.html",
+        "text": "https://www.loc.gov/exhibits/archives/anti.html"
+      },
+      {
+        "url": "https://soviethistory.msu.edu/1961/fight-against-superstition/",
+        "text": "https://soviethistory.msu.edu/1961/fight-against-superstition/"
+      },
+      {
+        "url": "https://soviethistory.msu.edu/1924/antireligious-propaganda/",
+        "text": "https://soviethistory.msu.edu/1924/antireligious-propaganda/"
+      },
+      {
+        "url": "https://www.uscirf.gov/news-room/releases-statements/uscirf-releases-new-report-chinas-sinicization-religion-policy",
+        "text": "https://www.uscirf.gov/news-room/releases-statements/uscirf-releases-new-report-chinas-sinicization-religion-policy"
+      },
+      {
+        "url": "https://www.uscirf.gov/news-room/releases-statements/china-codifies-and-escalates-its-policy-sinicization-religion",
+        "text": "https://www.uscirf.gov/news-room/releases-statements/china-codifies-and-escalates-its-policy-sinicization-religion"
+      },
+      {
+        "url": "https://www.state.gov/reports/2023-report-on-international-religious-freedom/china",
+        "text": "https://www.state.gov/reports/2023-report-on-international-religious-freedom/china"
+      },
+      {
+        "url": "https://www.hrw.org/news/2022/12/14/testimony-us-commission-international-religious-freedom-hearing",
+        "text": "https://www.hrw.org/news/2022/12/14/testimony-us-commission-international-religious-freedom-hearing"
+      },
+      {
+        "url": "https://bitterwinter.org/uscirf-exposes-sinicization-of-religion/",
+        "text": "https://bitterwinter.org/uscirf-exposes-sinicization-of-religion/"
+      },
+      {
+        "url": "https://barr.house.gov/2025/11/senate-passes-resolution-led-by-sen-cruz-rep-barr-demanding-china-release-pastor-ezra-jin-and-other-leaders-of-zion-church",
+        "text": "https://barr.house.gov/2025/11/senate-passes-resolution-led-by-sen-cruz-rep-barr-demanding-china-release-pastor-ezra-jin-and-other-leaders-of-zion-church"
+      },
+      {
+        "url": "https://www.ohchr.org/en/press-releases/2014/02/north-korea-un-commission-documents-wide-ranging-and-ongoing-crimes-against",
+        "text": "https://www.ohchr.org/en/press-releases/2014/02/north-korea-un-commission-documents-wide-ranging-and-ongoing-crimes-against"
+      },
+      {
+        "url": "https://www.hrw.org/news/2025/09/16/north-korea-lost-decade-of-rights-abuses",
+        "text": "https://www.hrw.org/news/2025/09/16/north-korea-lost-decade-of-rights-abuses"
+      },
+      {
+        "url": "https://www.britannica.com/biography/Pavlik-Morozov",
+        "text": "https://www.britannica.com/biography/Pavlik-Morozov"
+      },
+      {
+        "url": "https://www.routledge.com/Informer-001-The-Myth-of-Pavlik-Morozov/Druzhnikov/p/book/9781412849616",
+        "text": "https://www.routledge.com/Informer-001-The-Myth-of-Pavlik-Morozov/Druzhnikov/p/book/9781412849616"
+      },
+      {
+        "url": "https://www.asianstudies.org/publications/eaa/archives/chinas-great-leap-forward/",
+        "text": "https://www.asianstudies.org/publications/eaa/archives/chinas-great-leap-forward/"
+      },
+      {
+        "url": "https://www.lrb.co.uk/the-paper/v34/n23/james-c.-scott/tyranny-of-the-ladle",
+        "text": "https://www.lrb.co.uk/the-paper/v34/n23/james-c.-scott/tyranny-of-the-ladle"
+      }
+    ]
   },
   {
     "id": "2088217998062682112",
@@ -353,7 +517,7 @@
     "title": "\"Their Testimony Did Not Agree\": The Gaps Dr. Hak Ja Han's Defense Found in the Records",
     "previewText": "The special counsel's demand for 13 years made headlines. The defense's answer at the same hearing, that the case rests on one witness whose account does not match the records, did not.\n \nAt the final",
     "createdAt": "2026-08-14T11:37:37.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HPrgpFfb0AETtP1.jpg",
     "likes": 22,
     "views": 2467,
     "retweets": 13,
@@ -365,7 +529,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPrXUL4bIAAGPXB.png"
       },
       {
         "type": "paragraph",
@@ -397,7 +562,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPrXiGqa8AEQGMS.jpg"
       },
       {
         "type": "paragraph",
@@ -413,7 +579,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPrXnYTbEAAfg6z.jpg"
       },
       {
         "type": "paragraph",
@@ -461,7 +628,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPrYRA7aEAAhfYM.jpg"
       },
       {
         "type": "paragraph",
@@ -480,7 +648,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPrYbILbIAM5d6F.jpg"
       },
       {
         "type": "paragraph",
@@ -499,7 +668,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPrYihxboAADsQg.jpg"
       },
       {
         "type": "paragraph",
@@ -621,7 +791,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPrYzlwbEAAT6mj.png"
       },
       {
         "type": "paragraph",
@@ -637,7 +808,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPrY65uaIAEjOy-.png"
       },
       {
         "type": "heading",
@@ -654,7 +826,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPrZEQma4AA313W.jpg"
       },
       {
         "type": "paragraph",
@@ -735,8 +908,110 @@
         "listType": "ordered"
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HPrgpFfb0AETtP1.jpg",
+        "width": 1296,
+        "height": 519,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPrXiGqa8AEQGMS.jpg",
+        "width": 1295,
+        "height": 715,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPrZEQma4AA313W.jpg",
+        "width": 1537,
+        "height": 1023,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPrYihxboAADsQg.jpg",
+        "width": 1417,
+        "height": 1045,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPrYRA7aEAAhfYM.jpg",
+        "width": 1528,
+        "height": 1029,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPrYzlwbEAAT6mj.png",
+        "width": 640,
+        "height": 470,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPrY65uaIAEjOy-.png",
+        "width": 634,
+        "height": 663,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPrXnYTbEAAfg6z.jpg",
+        "width": 1536,
+        "height": 1024,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPrXUL4bIAAGPXB.png",
+        "width": 900,
+        "height": 616,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPrYbILbIAM5d6F.jpg",
+        "width": 1459,
+        "height": 968,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://youtu.be/QZxQNhtQjAg?si=oGF5SYSwY5dR9fwl",
+        "text": "https://youtu.be/QZxQNhtQjAg?si=oGF5SYSwY5dR9fwl"
+      },
+      {
+        "url": "https://youtu.be/CBZCyyEFBQM?si=-68xWuaLQuJ0kZuC",
+        "text": "https://youtu.be/CBZCyyEFBQM?si=-68xWuaLQuJ0kZuC"
+      },
+      {
+        "url": "https://www.khan.co.kr/article/202607101842011",
+        "text": "https://www.khan.co.kr/article/202607101842011"
+      },
+      {
+        "url": "https://www.mt.co.kr/society/2026/07/10/2026071016130773087",
+        "text": "https://www.mt.co.kr/society/2026/07/10/2026071016130773087"
+      },
+      {
+        "url": "https://www.amennews.com/news/articleView.html?idxno=32399",
+        "text": "https://www.amennews.com/news/articleView.html?idxno=32399"
+      },
+      {
+        "url": "https://www.munhwa.com/article/11607465",
+        "text": "https://www.munhwa.com/article/11607465"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=QZxQNhtQjAg",
+        "text": "https://www.youtube.com/watch?v=QZxQNhtQjAg"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=CBZCyyEFBQM",
+        "text": "https://www.youtube.com/watch?v=CBZCyyEFBQM"
+      },
+      {
+        "url": "https://segye.com/newsView/20260812507980",
+        "text": "https://segye.com/newsView/20260812507980"
+      },
+      {
+        "url": "https://www.kmib.co.kr/article/view.asp?arcid=0029506335",
+        "text": "https://www.kmib.co.kr/article/view.asp?arcid=0029506335"
+      }
+    ]
   },
   {
     "id": "2087548465605996544",
@@ -744,7 +1019,7 @@
     "title": "日本の統一教会問題:もはや耳を傾けなくなった社会に向き合う一人の学者",
     "previewText": "仲正昌樹が、宗教法人が実質的な公的議論のないまま解散されうる地点に日本がどう到達したのかを語る。\n\n原文：Bitter Winter マッシモ・イントロヴィニエ 著 | 2026年8月11日 | Testimonies Global",
     "createdAt": "2026-08-12T14:47:16.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HPh41NLaAAE7EFi.jpg",
     "likes": 83,
     "views": 7930,
     "retweets": 39,
@@ -756,7 +1031,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPh4F-taoAAwwHh.jpg"
       },
       {
         "type": "paragraph",
@@ -800,7 +1076,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPh4PvXawAAnItW.jpg"
       },
       {
         "type": "paragraph",
@@ -839,7 +1116,26 @@
         "text": "本記事はBitter Winterに掲載された記事の日本語訳です。  クレジットはBitter Winterに帰属します。     \n \n原題: \"The Unification Church Case in Japan: A Scholar Confronts a Society That No Longer Listens\"\n\nhttps://bitterwinter.org/the-unification-church-case-in-japan-a-scholar-confronts-a-society-that-no-longer-listens/"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HPh41NLaAAE7EFi.jpg",
+        "width": 781,
+        "height": 312,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPh4F-taoAAwwHh.jpg",
+        "width": 1023,
+        "height": 687,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPh4PvXawAAnItW.jpg",
+        "width": 1024,
+        "height": 732,
+        "type": "inline"
+      }
+    ],
     "links": []
   },
   {
@@ -848,7 +1144,7 @@
     "title": "South Korea Taxing its own Churches for Sending Missionaries - Have They Lost Faith?",
     "previewText": "A court told the Korean government the law did not let it tax charitable money sent abroad. Nine months later, regardless of that ruling, the government wrote the limit into two decrees itself.",
     "createdAt": "2026-08-08T02:32:40.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HPKq9a4bQAASucF.jpg",
     "likes": 21,
     "views": 1236,
     "retweets": 9,
@@ -880,7 +1176,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPKhWzSagAAmznq.jpg"
       },
       {
         "type": "paragraph",
@@ -967,7 +1264,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPKhh3obMAAk8nl.png"
       },
       {
         "type": "paragraph",
@@ -991,7 +1289,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPKhnyBbsAAipMw.jpg"
       },
       {
         "type": "paragraph",
@@ -1023,7 +1322,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPKhv9AbEAAhGPv.png"
       },
       {
         "type": "heading",
@@ -1054,7 +1354,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPKh2ldbYAAyuKD.png"
       },
       {
         "type": "paragraph",
@@ -1067,7 +1368,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPKh899asAA0bSs.jpg"
       },
       {
         "type": "paragraph",
@@ -1197,8 +1499,76 @@
         "text": ""
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HPKq9a4bQAASucF.jpg",
+        "width": 1915,
+        "height": 766,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPKh899asAA0bSs.jpg",
+        "width": 1280,
+        "height": 799,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPKhh3obMAAk8nl.png",
+        "width": 769,
+        "height": 511,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPKh2ldbYAAyuKD.png",
+        "width": 567,
+        "height": 378,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPKhWzSagAAmznq.jpg",
+        "width": 1402,
+        "height": 1122,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPKhnyBbsAAipMw.jpg",
+        "width": 1536,
+        "height": 1024,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPKhv9AbEAAhGPv.png",
+        "width": 393,
+        "height": 310,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://www.christiantoday.co.kr/news/376614",
+        "text": "https://www.christiantoday.co.kr/news/376614"
+      },
+      {
+        "url": "https://www.igoodnews.net/news/articleView.html?idxno=84219",
+        "text": "https://www.igoodnews.net/news/articleView.html?idxno=84219"
+      },
+      {
+        "url": "https://scourt.go.kr/portal/news/NewsViewAction.work?gubun=4&searchOption=&searchWord=&seqnum=10433",
+        "text": "https://scourt.go.kr/portal/news/NewsViewAction.work?gubun=4&searchOption=&searchWord=&seqnum=10433"
+      },
+      {
+        "url": "https://lbox.kr/statute/%EC%83%81%EC%86%8D%EC%84%B8%EB%B0%8F%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EB%A0%B9",
+        "text": "https://lbox.kr/statute/%EC%83%81%EC%86%8D%EC%84%B8%EB%B0%8F%EC%A6%9D%EC%97%AC%EC%84%B8%EB%B2%95%EC%8B%9C%ED%96%89%EB%A0%B9"
+      },
+      {
+        "url": "https://www.law.go.kr/LSW/lsRvsRsnListP.do?lsId=003814&chrClsCd=010102",
+        "text": "https://www.law.go.kr/LSW/lsRvsRsnListP.do?lsId=003814&chrClsCd=010102"
+      },
+      {
+        "url": "https://www.christiandaily.co.kr/news/162831",
+        "text": "https://www.christiandaily.co.kr/news/162831"
+      }
+    ]
   },
   {
     "id": "2085252029514141696",
@@ -1206,7 +1576,7 @@
     "title": "Dr. Hak Ja Han Defense: Prosecution’s Key Evidence Relies on False Statements",
     "previewText": "On August 31, the Seoul Central District Court, under Judge Woo In-seong, will deliver the first-instance verdict against Dr. Hak Ja Han, 83. Widely known among world leaders as Holy Mother Han and",
     "createdAt": "2026-08-06T14:53:24.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HPDAqW6bUAApkWc.jpg",
     "likes": 31,
     "views": 6255,
     "retweets": 17,
@@ -1234,7 +1604,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPC6nVHaUAAM5e7.png"
       },
       {
         "type": "paragraph",
@@ -1275,7 +1646,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPC6r7paIAA5ETX.png"
       },
       {
         "type": "heading",
@@ -1327,7 +1699,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPC67qIawAAvp7c.png"
       },
       {
         "type": "paragraph",
@@ -1344,7 +1717,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HPC7DAWaIAACQVA.jpg"
       },
       {
         "type": "paragraph",
@@ -1417,8 +1791,84 @@
         "listType": "ordered"
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HPDAqW6bUAApkWc.jpg",
+        "width": 1587,
+        "height": 635,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPC6nVHaUAAM5e7.png",
+        "width": 800,
+        "height": 533,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPC6r7paIAA5ETX.png",
+        "width": 500,
+        "height": 346,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPC67qIawAAvp7c.png",
+        "width": 600,
+        "height": 400,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HPC7DAWaIAACQVA.jpg",
+        "width": 1080,
+        "height": 752,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://www.chosun.com/english/national-en/2026/07/10/4QMCSEFM75CIVA7JACCAZWWTA4/",
+        "text": "https://www.chosun.com/english/national-en/2026/07/10/4QMCSEFM75CIVA7JACCAZWWTA4/"
+      },
+      {
+        "url": "https://www.newsis.com/view/NISX20260710_0003704830",
+        "text": "https://www.newsis.com/view/NISX20260710_0003704830"
+      },
+      {
+        "url": "https://en.yna.co.kr/view/AEN20260710006300315",
+        "text": "https://en.yna.co.kr/view/AEN20260710006300315"
+      },
+      {
+        "url": "https://www.munhwa.com/article/11607465",
+        "text": "https://www.munhwa.com/article/11607465"
+      },
+      {
+        "url": "https://www.hankookilbo.com/news/article/A2026070912090002715",
+        "text": "https://www.hankookilbo.com/news/article/A2026070912090002715"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=BFboJUV7ySY",
+        "text": "https://www.youtube.com/watch?v=BFboJUV7ySY"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/southkorea/20260710/special-counsel-seeks-13-year-prison-term-for-unification-church-leader-in-bribery-case",
+        "text": "https://www.koreatimes.co.kr/southkorea/20260710/special-counsel-seeks-13-year-prison-term-for-unification-church-leader-in-bribery-case"
+      },
+      {
+        "url": "https://en.yna.co.kr/view/AEN20251105000800315",
+        "text": "https://en.yna.co.kr/view/AEN20251105000800315"
+      },
+      {
+        "url": "https://en.yna.co.kr/view/AEN20251107009800315",
+        "text": "https://en.yna.co.kr/view/AEN20251107009800315"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10766120",
+        "text": "https://www.koreaherald.com/article/10766120"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2026/jul/10/americas-leading-asian-allies-japan-south-korea-pummel-freedom/",
+        "text": "https://www.washingtontimes.com/news/2026/jul/10/americas-leading-asian-allies-japan-south-korea-pummel-freedom/"
+      }
+    ]
   },
   {
     "id": "2083895250414891009",
@@ -1426,7 +1876,7 @@
     "title": "中国人クリスチャンから見たジン牧師の釈放：喜びと、なお続く懸念",
     "previewText": "勝利は安堵をもたらすが、宗教弾圧が残した広い傷はまだ癒えていない。\n原文：Bitter Winter ビビアン・レン 著 | 2026年7月31日 | Op-eds China",
     "createdAt": "2026-08-02T13:08:16.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HOuCWTka0AA8DMz.jpg",
     "likes": 12,
     "views": 1390,
     "retweets": 6,
@@ -1442,7 +1892,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOt8Dhoa0AAEu4G.png"
       },
       {
         "type": "paragraph",
@@ -1505,8 +1956,26 @@
         "text": "本記事はBitter Winterに掲載された記事の日本語訳です。  クレジットはBitter Winterに帰属します。  \n\n原題: \"A Chinese Christian’s View of Pastor Jin’s Release: Joy Tempered by Ongoing Concern\"\n\nhttps://bitterwinter.org/a-chinese-christians-view-of-pastor-jins-release-joy-tempered-by-ongoing-concern/"
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HOuCWTka0AA8DMz.jpg",
+        "width": 1600,
+        "height": 640,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOt8Dhoa0AAEu4G.png",
+        "width": 770,
+        "height": 429,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://bitterwinter.org/a-chinese-christians-view-of-pastor-jins-release-joy-tempered-by-ongoing-concern/",
+        "text": "https://bitterwinter.org/a-chinese-christians-view-of-pastor-jins-release-joy-tempered-by-ongoing-concern/"
+      }
+    ]
   },
   {
     "id": "2083192772300095489",
@@ -1514,7 +1983,7 @@
     "title": "South Korea Passes Law Removing the Final Check on Police Investigations",
     "previewText": "Police initially treated it as a simple assault.\nThe attacker’s DNA was found inside the victim’s jeans only after prosecutors conducted a supplementary investigation. The charge was upgraded to",
     "createdAt": "2026-08-01T13:01:41.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HOj9VqAbUAAJPj9.jpg",
     "likes": 1,
     "views": 918,
     "retweets": 1,
@@ -1534,7 +2003,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOo2zGeaQAARF9j.jpg"
       },
       {
         "type": "paragraph",
@@ -1566,7 +2036,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOo27p5aIAASz9N.jpg"
       },
       {
         "type": "paragraph",
@@ -1602,7 +2073,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOo2_dhbYAAy-ZO.png"
       },
       {
         "type": "paragraph",
@@ -1610,7 +2082,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOo3JnZbsAAEeMT.png"
       },
       {
         "type": "paragraph",
@@ -1618,7 +2091,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOo3Pceb0AAcA6_.jpg"
       },
       {
         "type": "paragraph",
@@ -1748,8 +2222,90 @@
         "listType": "ordered"
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HOj9VqAbUAAJPj9.jpg",
+        "width": 1200,
+        "height": 480,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOo2zGeaQAARF9j.jpg",
+        "width": 1280,
+        "height": 720,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOo27p5aIAASz9N.jpg",
+        "width": 1248,
+        "height": 832,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOo2_dhbYAAy-ZO.png",
+        "width": 608,
+        "height": 362,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOo3JnZbsAAEeMT.png",
+        "width": 519,
+        "height": 591,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOo3Pceb0AAcA6_.jpg",
+        "width": 1280,
+        "height": 720,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008684850&plink=RSSLINK&cooper=GSTAND",
+        "text": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008684850&plink=RSSLINK&cooper=GSTAND"
+      },
+      {
+        "url": "https://www.fnnews.com/news/202607311432062612",
+        "text": "https://www.fnnews.com/news/202607311432062612"
+      },
+      {
+        "url": "https://view.asiae.co.kr/article/2026073118032203477",
+        "text": "https://view.asiae.co.kr/article/2026073118032203477"
+      },
+      {
+        "url": "https://www.khan.co.kr/article/202607300600051",
+        "text": "https://www.khan.co.kr/article/202607300600051"
+      },
+      {
+        "url": "https://v.daum.net/v/20260710231711810",
+        "text": "https://v.daum.net/v/20260710231711810"
+      },
+      {
+        "url": "https://www.hankookilbo.com/news/article/A2026072315030005047",
+        "text": "https://www.hankookilbo.com/news/article/A2026072315030005047"
+      },
+      {
+        "url": "https://www.fnnews.com/news/202607311658531791",
+        "text": "https://www.fnnews.com/news/202607311658531791"
+      },
+      {
+        "url": "https://www.dt.co.kr/article/12073294",
+        "text": "https://www.dt.co.kr/article/12073294"
+      },
+      {
+        "url": "https://www.newdaily.co.kr/site/data/html/2026/07/23/2026072300084.html",
+        "text": "https://www.newdaily.co.kr/site/data/html/2026/07/23/2026072300084.html"
+      },
+      {
+        "url": "https://www.busan.com/view/busan/view.php?code=2026071218192241562",
+        "text": "https://www.busan.com/view/busan/view.php?code=2026071218192241562"
+      },
+      {
+        "url": "https://www.sedaily.com/article/20071665",
+        "text": "https://www.sedaily.com/article/20071665"
+      }
+    ]
   },
   {
     "id": "2082429262892822528",
@@ -1757,7 +2313,7 @@
     "title": "Morse Tan: “Lee Jae-myung Administration Is Destroying the ROK-U.S. Alliance, Lee Must Resign”",
     "previewText": "On July 25, 2026, Morse H. Tan, former U.S. Ambassador-at-Large for Global Criminal Justice and professor at Liberty University, delivered his first speech in South Korea at the “10 Million National",
     "createdAt": "2026-07-29T13:34:44.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HOZiGJnaEAAzYbw.jpg",
     "likes": 7,
     "views": 969,
     "retweets": 2,
@@ -1765,7 +2321,8 @@
     "blocks": [
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOZYupYbYAAqm6N.jpg"
       },
       {
         "type": "paragraph",
@@ -1782,7 +2339,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOZZOUwacAAtfNV.png"
       },
       {
         "type": "paragraph",
@@ -1803,7 +2361,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOZZRorbAAAN38I.png"
       },
       {
         "type": "paragraph",
@@ -1844,7 +2403,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOZZU4abkAAGbOr.png"
       },
       {
         "type": "paragraph",
@@ -1865,7 +2425,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOZZch6bQAAzhtm.jpg"
       },
       {
         "type": "paragraph",
@@ -1882,7 +2443,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOZaaBsasAE8rj6.png"
       },
       {
         "type": "paragraph",
@@ -1942,8 +2504,84 @@
         "listType": "ordered"
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HOZiGJnaEAAzYbw.jpg",
+        "width": 1600,
+        "height": 640,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOZYupYbYAAqm6N.jpg",
+        "width": 1329,
+        "height": 612,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOZZOUwacAAtfNV.png",
+        "width": 630,
+        "height": 420,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOZaaBsasAE8rj6.png",
+        "width": 880,
+        "height": 574,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOZZRorbAAAN38I.png",
+        "width": 600,
+        "height": 369,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOZZU4abkAAGbOr.png",
+        "width": 600,
+        "height": 386,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOZZch6bQAAzhtm.jpg",
+        "width": 1080,
+        "height": 681,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://youtu.be/1dy0D4o5I9Q",
+        "text": "https://youtu.be/1dy0D4o5I9Q"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/southkorea/law-crime/20260601/police-seek-exit-ban-on-morse-tan-over-defamation-allegations",
+        "text": "https://www.koreatimes.co.kr/southkorea/law-crime/20260601/police-seek-exit-ban-on-morse-tan-over-defamation-allegations"
+      },
+      {
+        "url": "https://www.scmp.com/news/asia/east-asia/article/3361522/south-korea-charges-former-us-diplomat-defaming-lee-jae-myung",
+        "text": "https://www.scmp.com/news/asia/east-asia/article/3361522/south-korea-charges-former-us-diplomat-defaming-lee-jae-myung"
+      },
+      {
+        "url": "https://en.sedaily.com/finance/2026/07/01/police-refer-us-professor-morse-tan-to-prosecutors-over",
+        "text": "https://en.sedaily.com/finance/2026/07/01/police-refer-us-professor-morse-tan-to-prosecutors-over"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10763526",
+        "text": "https://www.koreaherald.com/article/10763526"
+      },
+      {
+        "url": "https://www.theepochtimes.com/us/former-us-ambassador-remains-under-south-korea-exit-ban-over-dc-remarks-6063718",
+        "text": "https://www.theepochtimes.com/us/former-us-ambassador-remains-under-south-korea-exit-ban-over-dc-remarks-6063718"
+      },
+      {
+        "url": "https://www.liberty.edu/champion/?p=89838",
+        "text": "https://www.liberty.edu/champion/?p=89838"
+      },
+      {
+        "url": "https://dailycaller.com/2026/06/10/former-ambassador-morse-tan-south-korea-travel-ban/",
+        "text": "https://dailycaller.com/2026/06/10/former-ambassador-morse-tan-south-korea-travel-ban/"
+      }
+    ]
   },
   {
     "id": "2080936748021100544",
@@ -1951,7 +2589,7 @@
     "title": "統一教会（家庭連合）事件について：仏教指導者・水田真道氏が発言",
     "previewText": "金剛寺の住職は、解散命令が日本の宗教への扱いを変えつつあり、あらゆる信仰共同体を脅かすものだと警告する。\n\n原文: Bitter Winter マッシモ・イントロヴィーニュ｜2026年7月21日｜",
     "createdAt": "2026-07-25T08:58:00.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HOD8Wk5bsAASgEN.jpg",
     "likes": 335,
     "views": 7830,
     "retweets": 220,
@@ -1963,7 +2601,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOD5Io-bEAAqFRA.jpg"
       },
       {
         "type": "paragraph",
@@ -1998,7 +2637,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOD5rktawAAUNGQ.jpg"
       },
       {
         "type": "paragraph",
@@ -2018,7 +2658,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HOD5_s0aoAAKuv7.jpg"
       },
       {
         "type": "paragraph",
@@ -2049,7 +2690,32 @@
         "text": "https://bitterwinter.org/the-unification-church-case-in-japan-buddhist-leader-shindo-mizuta-speaks-out/"
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HOD8Wk5bsAASgEN.jpg",
+        "width": 1294,
+        "height": 518,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOD5Io-bEAAqFRA.jpg",
+        "width": 1024,
+        "height": 767,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOD5rktawAAUNGQ.jpg",
+        "width": 1017,
+        "height": 798,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HOD5_s0aoAAKuv7.jpg",
+        "width": 1600,
+        "height": 1200,
+        "type": "inline"
+      }
+    ],
     "links": []
   },
   {
@@ -2058,7 +2724,7 @@
     "title": "Who Catches North Korea’s Spies After August 1?",
     "previewText": "A 49-Year-Old Command Disappears in a Single Summer\nSouth Korea is shutting down a 49-year-old military command built to catch spies — and doing it in a single summer.\nOn June 10, 2026, Defense",
     "createdAt": "2026-07-24T13:55:19.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HN_2y9qbMAAjpe0.jpg",
     "likes": 2,
     "views": 691,
     "retweets": 2,
@@ -2079,7 +2745,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HN_xfcmbEAAhMqu.jpg"
       },
       {
         "type": "heading",
@@ -2097,7 +2764,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HN_xq_CbUAAZWZ0.png"
       },
       {
         "type": "paragraph",
@@ -2119,7 +2787,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HN_x4qtaYAA_J9h.png"
       },
       {
         "type": "paragraph",
@@ -2136,7 +2805,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HN_yPvpbgAA2MO3.png"
       },
       {
         "type": "paragraph",
@@ -2156,7 +2826,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HN_yTLZbcAATE3K.jpg"
       },
       {
         "type": "paragraph",
@@ -2184,7 +2855,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HN_yYtIbIAEYo2x.png"
       },
       {
         "type": "paragraph",
@@ -2265,8 +2937,88 @@
         "listType": "ordered"
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HN_2y9qbMAAjpe0.jpg",
+        "width": 1464,
+        "height": 586,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HN_yYtIbIAEYo2x.png",
+        "width": 560,
+        "height": 327,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HN_x4qtaYAA_J9h.png",
+        "width": 700,
+        "height": 342,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HN_xq_CbUAAZWZ0.png",
+        "width": 650,
+        "height": 488,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HN_xfcmbEAAhMqu.jpg",
+        "width": 1200,
+        "height": 630,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HN_yPvpbgAA2MO3.png",
+        "width": 600,
+        "height": 349,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HN_yTLZbcAATE3K.jpg",
+        "width": 1200,
+        "height": 605,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://v.daum.net/v/20260620101816568",
+        "text": "https://v.daum.net/v/20260620101816568"
+      },
+      {
+        "url": "https://www.newdaily.co.kr/site/data/html/2026/06/20/2026062000021.html",
+        "text": "https://www.newdaily.co.kr/site/data/html/2026/06/20/2026062000021.html"
+      },
+      {
+        "url": "https://www.munhwa.com/article/11595698",
+        "text": "https://www.munhwa.com/article/11595698"
+      },
+      {
+        "url": "https://www.newdaily.co.kr/site/data/html/2026/04/20/2026042000295.html",
+        "text": "https://www.newdaily.co.kr/site/data/html/2026/04/20/2026042000295.html"
+      },
+      {
+        "url": "https://v.daum.net/v/20260610190239585",
+        "text": "https://v.daum.net/v/20260610190239585"
+      },
+      {
+        "url": "https://v.daum.net/v/20260721095008686",
+        "text": "https://v.daum.net/v/20260721095008686"
+      },
+      {
+        "url": "https://www.news1.kr/diplomacy/defense-diplomacy/6222265",
+        "text": "https://www.news1.kr/diplomacy/defense-diplomacy/6222265"
+      },
+      {
+        "url": "https://www.fnnews.com/news/202607061040037478",
+        "text": "https://www.fnnews.com/news/202607061040037478"
+      },
+      {
+        "url": "https://www.hankookilbo.com/news/article/A2026062315560001265",
+        "text": "https://www.hankookilbo.com/news/article/A2026062315560001265"
+      }
+    ]
   },
   {
     "id": "2079169139793707008",
@@ -2274,7 +3026,7 @@
     "title": "China Arrested Over 10,000 Christians in Xi's Crackdown",
     "previewText": "More than 10,000. That is the number of Christians reportedly arrested during Xi Jinping's campaign against churches that worship outside Communist Party control.\nMore than 10,000 Christians have",
     "createdAt": "2026-07-20T12:26:42.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HNq8K4hb0AAqohQ.jpg",
     "likes": 9,
     "views": 756,
     "retweets": 6,
@@ -2290,7 +3042,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HNqxlVoa8AAdtVs.jpg"
       },
       {
         "type": "paragraph",
@@ -2298,7 +3051,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HNqxv0KaMAAc-3v.jpg"
       },
       {
         "type": "paragraph",
@@ -2306,7 +3060,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HNqx671b0AAFEbP.jpg"
       },
       {
         "type": "paragraph",
@@ -2327,7 +3082,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HNqyQ7NaYAA4W7w.png"
       },
       {
         "type": "paragraph",
@@ -2344,7 +3100,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HNqykqna4AA2e7P.jpg"
       },
       {
         "type": "paragraph",
@@ -2356,7 +3113,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HNqyucibIAAUjyi.png"
       },
       {
         "type": "paragraph",
@@ -2412,8 +3170,84 @@
         "listType": "ordered"
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HNq8K4hb0AAqohQ.jpg",
+        "width": 1372,
+        "height": 549,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HNqyucibIAAUjyi.png",
+        "width": 800,
+        "height": 477,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HNqx671b0AAFEbP.jpg",
+        "width": 1200,
+        "height": 675,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HNqyQ7NaYAA4W7w.png",
+        "width": 466,
+        "height": 390,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HNqxv0KaMAAc-3v.jpg",
+        "width": 2048,
+        "height": 1365,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HNqxlVoa8AAdtVs.jpg",
+        "width": 1104,
+        "height": 624,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HNqykqna4AA2e7P.jpg",
+        "width": 1024,
+        "height": 1024,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://www.worthynews.com/115885-china-intensifies-crackdown-on-christians-worshipping-outside-communist-party-control",
+        "text": "https://www.worthynews.com/115885-china-intensifies-crackdown-on-christians-worshipping-outside-communist-party-control"
+      },
+      {
+        "url": "https://www.fortifyrights.org/eas-inv-2026-06-19/",
+        "text": "https://www.fortifyrights.org/eas-inv-2026-06-19/"
+      },
+      {
+        "url": "https://www.hrw.org/news/2026/01/06/china-new-arrests-at-underground-protestant-churches",
+        "text": "https://www.hrw.org/news/2026/01/06/china-new-arrests-at-underground-protestant-churches"
+      },
+      {
+        "url": "https://www.aljazeera.com/news/2026/7/5/china-releases-underground-church-pastor-after-months-in-detention",
+        "text": "https://www.aljazeera.com/news/2026/7/5/china-releases-underground-church-pastor-after-months-in-detention"
+      },
+      {
+        "url": "https://bitterwinter.org/china-hails-japans-dissolution-of-the-unification-church/",
+        "text": "https://bitterwinter.org/china-hails-japans-dissolution-of-the-unification-church/"
+      },
+      {
+        "url": "https://bitterwinter.org/china-the-persecution-of-the-church-of-almighty-godfrom-bad-to-worse/",
+        "text": "https://bitterwinter.org/china-the-persecution-of-the-church-of-almighty-godfrom-bad-to-worse/"
+      },
+      {
+        "url": "https://www.scientologyreligion.org/blog/bitter-winter-a-voice-for-chinas-oppressed.html",
+        "text": "https://www.scientologyreligion.org/blog/bitter-winter-a-voice-for-chinas-oppressed.html"
+      },
+      {
+        "url": "https://bitterwinter.org/unholy-alliances-china-japan-korea-and-the-global-anti-cult-crusade/",
+        "text": "https://bitterwinter.org/unholy-alliances-china-japan-korea-and-the-global-anti-cult-crusade/"
+      }
+    ]
   },
   {
     "id": "2078160010606211073",
@@ -2421,7 +3255,7 @@
     "title": "Free Speech, Free Courts, Free Faith — Do Japan and Korea Still Qualify?",
     "previewText": "Secretary of State Marco Rubio drew a bright line last week. Foreigners who finance or incite violent extremists, he said, are enemies of civilization itself.\n\"Today, the State Department is imposing",
     "createdAt": "2026-07-17T17:14:12.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HNcgRGAbUAARLsA.jpg",
     "likes": 5,
     "views": 895,
     "retweets": 3,
@@ -2441,7 +3275,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HNcgcScakAALelW.jpg"
       },
       {
         "type": "paragraph",
@@ -2489,7 +3324,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HNcg5BibEAAkKpM.png"
       },
       {
         "type": "heading",
@@ -2509,7 +3345,8 @@
       },
       {
         "type": "image",
-        "text": ""
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HNcgiETasAAeVW8.jpg"
       },
       {
         "type": "paragraph",
@@ -2578,8 +3415,82 @@
         "listType": "ordered"
       }
     ],
-    "images": [],
-    "links": []
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HNcgRGAbUAARLsA.jpg",
+        "width": 1500,
+        "height": 600,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HNcgcScakAALelW.jpg",
+        "width": 1024,
+        "height": 683,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HNcg5BibEAAkKpM.png",
+        "width": 1870,
+        "height": 1000,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HNcgiETasAAeVW8.jpg",
+        "width": 2520,
+        "height": 1260,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://post.monarchreport.org/ideas/9cb36432-3d4b-497e-8c0b-48acf23fad97#src-1",
+        "text": "https://post.monarchreport.org/ideas/9cb36432-3d4b-497e-8c0b-48acf23fad97#src-1"
+      },
+      {
+        "url": "https://post.monarchreport.org/ideas/9cb36432-3d4b-497e-8c0b-48acf23fad97#src-3",
+        "text": "https://post.monarchreport.org/ideas/9cb36432-3d4b-497e-8c0b-48acf23fad97#src-3"
+      },
+      {
+        "url": "https://www.state.gov/releases/office-of-the-spokesperson/2026/07/visa-restriction-policy-targeting-far-left-terrorist-and-other-aligned-groups/",
+        "text": "https://www.state.gov/releases/office-of-the-spokesperson/2026/07/visa-restriction-policy-targeting-far-left-terrorist-and-other-aligned-groups/"
+      },
+      {
+        "url": "https://x.com/secrubio/status/2077850153814258096",
+        "text": "https://x.com/secrubio/status/2077850153814258096"
+      },
+      {
+        "url": "https://www.cnn.com/2026/07/16/politics/rubio-meeting-on-far-left-political-terrorism-with-65-countries",
+        "text": "https://www.cnn.com/2026/07/16/politics/rubio-meeting-on-far-left-political-terrorism-with-65-countries"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/foreignaffairs/20260712/us-state-department-expresses-significant-concerns-over-koreas-fake-news-law",
+        "text": "https://www.koreatimes.co.kr/foreignaffairs/20260712/us-state-department-expresses-significant-concerns-over-koreas-fake-news-law"
+      },
+      {
+        "url": "https://www.jurist.org/news/2026/07/south-korea-enforces-amended-law-on-false-and-manipulated-information/",
+        "text": "https://www.jurist.org/news/2026/07/south-korea-enforces-amended-law-on-false-and-manipulated-information/"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/southkorea/law-crime/20260312/explainer-new-law-lets-president-pick-22-of-26-supreme-court-justices-by-2030",
+        "text": "https://www.koreatimes.co.kr/southkorea/law-crime/20260312/explainer-new-law-lets-president-pick-22-of-26-supreme-court-justices-by-2030"
+      },
+      {
+        "url": "https://reclaimthenet.org/south-koreas-fake-news-law-puts-a-price-on-online-speech",
+        "text": "https://reclaimthenet.org/south-koreas-fake-news-law-puts-a-price-on-online-speech"
+      },
+      {
+        "url": "https://www.japantimes.co.jp/news/2026/06/23/japan/crime-legal/top-court-unification-church-dissolve/",
+        "text": "https://www.japantimes.co.jp/news/2026/06/23/japan/crime-legal/top-court-unification-church-dissolve/"
+      },
+      {
+        "url": "https://bitterwinter.org/japans-supreme-court-confirms-the-dissolution-of-the-unification-church/",
+        "text": "https://bitterwinter.org/japans-supreme-court-confirms-the-dissolution-of-the-unification-church/"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10693225",
+        "text": "https://www.koreaherald.com/article/10693225"
+      }
+    ]
   },
   {
     "id": "2056750018212900864",
@@ -2587,7 +3498,7 @@
     "title": "テロか、憲法か、それとも司法の越権か？",
     "previewText": "原文: Bitter Winter | 弁護士 中山達樹 | 2026年5月19日 | Op-eds Global\n家庭連合の解散はなぜ憲法上の警鐘を鳴らすのか。",
     "createdAt": "2026-05-19T15:23:17.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HIsQBXXbgAA7Z2-.jpg",
     "likes": 101,
     "views": 2504,
     "retweets": 75,
@@ -2626,7 +3537,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIsLkPxaEAAL3nA.jpg"
       },
       {
         "type": "paragraph",
@@ -2646,7 +3558,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIsPN-2aQAAl4LT.png"
       },
       {
         "type": "paragraph",
@@ -2674,7 +3587,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIsPVw1aUAAhEee.jpg"
       },
       {
         "type": "paragraph",
@@ -2725,7 +3639,7 @@
     "title": "Japan's 2022 Law Treats Religious Offerings as Consumer Transactions",
     "previewText": "In hindsight, 2022 may have marked the moment when religious offerings in Japan were reclassified as a matter of 'consumption.\nTanaka Tomihiro, the former head of the Family Federation for World Peace",
     "createdAt": "2026-05-16T02:11:30.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HIaAEsdbUAAMYSV.jpg",
     "likes": 42,
     "views": 2245,
     "retweets": 27,
@@ -2749,7 +3663,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIZ46SeaQAA1gRT.jpg"
       },
       {
         "type": "heading",
@@ -2778,7 +3693,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIZ5DUvaoAAOaDl.png"
       },
       {
         "type": "paragraph",
@@ -2834,7 +3750,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIZ5RRDacAADjd2.jpg"
       },
       {
         "type": "paragraph",
@@ -2862,7 +3779,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIZ5bota8AAzKSU.png"
       },
       {
         "type": "paragraph",
@@ -2898,7 +3816,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIZ5oh5bUAA0Gqf.png"
       },
       {
         "type": "paragraph",
@@ -3034,7 +3953,52 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://youtu.be/nI8cYemhQIs?si=5-_gF0DEZDmAuuTr",
+        "text": "https://youtu.be/nI8cYemhQIs?si=5-_gF0DEZDmAuuTr"
+      },
+      {
+        "url": "https://apjjf.org/2024/10/gaitanidis",
+        "text": "https://apjjf.org/2024/10/gaitanidis"
+      },
+      {
+        "url": "https://cesnur.net/wp-content/uploads/2024/03/tjoc_8_2_4_mickler.pdf",
+        "text": "https://cesnur.net/wp-content/uploads/2024/03/tjoc_8_2_4_mickler.pdf"
+      },
+      {
+        "url": "https://storage.googleapis.com/studio-design-asset-files/projects/4BqNAX58Or/s-1x1_7268afb1-0d44-4119-87ea-611aaf1a58e6.pdf",
+        "text": "https://storage.googleapis.com/studio-design-asset-files/projects/4BqNAX58Or/s-1x1_7268afb1-0d44-4119-87ea-611aaf1a58e6.pdf"
+      },
+      {
+        "url": "https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2023/white_paper_204.html",
+        "text": "https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2023/white_paper_204.html"
+      },
+      {
+        "url": "https://bitterwinter.org/japans-guidelines-on-religious-donations/",
+        "text": "https://bitterwinter.org/japans-guidelines-on-religious-donations/"
+      },
+      {
+        "url": "https://cesnur.net/wp-content/uploads/2023/03/tjoc_7_2_4_japanese.pdf",
+        "text": "https://cesnur.net/wp-content/uploads/2023/03/tjoc_7_2_4_japanese.pdf"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Consumer_Affairs_Agency",
+        "text": "https://en.wikipedia.org/wiki/Consumer_Affairs_Agency"
+      },
+      {
+        "url": "https://www.jurist.org/news/2022/12/japan-parliament-approves-law-to-tighten-restrictions-on-unification-church-donations/",
+        "text": "https://www.jurist.org/news/2022/12/japan-parliament-approves-law-to-tighten-restrictions-on-unification-church-donations/"
+      },
+      {
+        "url": "https://familyfedihq.org/2025/01/religious-liberty-crisis-in-japan-global-alarm/",
+        "text": "https://familyfedihq.org/2025/01/religious-liberty-crisis-in-japan-global-alarm/"
+      },
+      {
+        "url": "https://bitterwinter.org/made-in-japan-no-forb-for-the-family-federation-4-weaponizing-non-existing-crimes/",
+        "text": "https://bitterwinter.org/made-in-japan-no-forb-for-the-family-federation-4-weaponizing-non-existing-crimes/"
+      }
+    ]
   },
   {
     "id": "2054161849936117760",
@@ -3042,7 +4006,7 @@
     "title": "Why He Called It 'Victory Over Communism,' Not 'Anti-Communism': 30 Years on the Front Lines",
     "previewText": "From Japan's pro-North Korea organizations to a face-to-face meeting with Gorbachev in the Kremlin, a religious leader spent three decades going directly to the places where communism was spreading",
     "createdAt": "2026-05-13T02:24:25.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HIKllLKbMAAxf6A.jpg",
     "likes": 62,
     "views": 2219,
     "retweets": 29,
@@ -3089,7 +4053,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKgQnebEAAizt7.jpg"
       },
       {
         "type": "paragraph",
@@ -3139,7 +4104,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKgldAboAA8Sgh.jpg"
       },
       {
         "type": "paragraph",
@@ -3183,7 +4149,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKg2aJaAAANwtz.png"
       },
       {
         "type": "paragraph",
@@ -3210,7 +4177,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKg5mGacAA6UvP.png"
       },
       {
         "type": "image",
@@ -3218,7 +4186,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKg89bbYAAbFfe.png"
       },
       {
         "type": "heading",
@@ -3246,7 +4215,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKhCyhawAAYQTt.jpg"
       },
       {
         "type": "paragraph",
@@ -3278,7 +4248,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKhM0aagAAJlIx.png"
       },
       {
         "type": "image",
@@ -3286,7 +4257,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKhPTwb0AAFQVL.png"
       },
       {
         "type": "paragraph",
@@ -3319,7 +4291,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKhYwkbsAAFMy0.png"
       },
       {
         "type": "paragraph",
@@ -3335,7 +4308,8 @@
         "entityKey": "9",
         "entityKeys": [
           "9"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKhcyCbkAAAYsc.jpg"
       },
       {
         "type": "paragraph",
@@ -3366,7 +4340,8 @@
         "entityKey": "10",
         "entityKeys": [
           "10"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKhiEvaQAEnnPi.png"
       },
       {
         "type": "paragraph",
@@ -3405,7 +4380,8 @@
         "entityKey": "11",
         "entityKeys": [
           "11"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIKhrPAawAAaC2O.jpg"
       },
       {
         "type": "paragraph",
@@ -3633,7 +4609,52 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.ifvoc.org/three-stages/",
+        "text": "https://www.ifvoc.org/three-stages/"
+      },
+      {
+        "url": "https://bitterwinter.org/behind-the-dissolution-of-the-unification-church-japans-communist-party-north-korea-and-china/",
+        "text": "https://bitterwinter.org/behind-the-dissolution-of-the-unification-church-japans-communist-party-north-korea-and-china/"
+      },
+      {
+        "url": "http://sunhakpeaceprize.org/en/about/founder_intro.php",
+        "text": "http://sunhakpeaceprize.org/en/about/founder_intro.php"
+      },
+      {
+        "url": "https://www.unification.net/activities/ifvoc.html",
+        "text": "https://www.unification.net/activities/ifvoc.html"
+      },
+      {
+        "url": "https://www.tparents.org/Library/Unification/Talks/Breen/Breen-840700.htm",
+        "text": "https://www.tparents.org/Library/Unification/Talks/Breen/Breen-840700.htm"
+      },
+      {
+        "url": "https://www.tparents.org/Library/Unification/Publications/Smm-Org/works_communism.html",
+        "text": "https://www.tparents.org/Library/Unification/Publications/Smm-Org/works_communism.html"
+      },
+      {
+        "url": "https://world.time.com/2012/09/02/sun-myung-moon-the-life-and-times-of-the-unification-church-leader/",
+        "text": "https://world.time.com/2012/09/02/sun-myung-moon-the-life-and-times-of-the-unification-church-leader/"
+      },
+      {
+        "url": "https://www.tparents.org/Moon-Talks/sunmyungmoon76/sm760918.htm",
+        "text": "https://www.tparents.org/Moon-Talks/sunmyungmoon76/sm760918.htm"
+      },
+      {
+        "url": "https://history.familyfed.org/tf-sermons/sun-myung-moon-dedicated-to-the-reunification-of-korea",
+        "text": "https://history.familyfed.org/tf-sermons/sun-myung-moon-dedicated-to-the-reunification-of-korea"
+      },
+      {
+        "url": "https://archive.upf.org/peace-and-security/middle-east-peace-programs/middle-east-peace-initiative",
+        "text": "https://archive.upf.org/peace-and-security/middle-east-peace-programs/middle-east-peace-initiative"
+      },
+      {
+        "url": "https://youtu.be/77wL5BmOInc?si=5yKDnuqgO9_faSdC",
+        "text": "https://youtu.be/77wL5BmOInc?si=5yKDnuqgO9_faSdC"
+      }
+    ]
   },
   {
     "id": "2053068189446356992",
@@ -3641,7 +4662,7 @@
     "title": "Does Dissolving the Family Federation Actually Help Victims? The Major Contradiction in the Ruling",
     "previewText": "Former president Tanaka Tomihiro argues that the Tokyo High Court ruling contains a logical contradiction at its core, and that the liquidation process may push victim redress further out of reach.",
     "createdAt": "2026-05-10T12:54:45.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HH9ZznYaoAAckY5.jpg",
     "likes": 84,
     "views": 5215,
     "retweets": 42,
@@ -3664,7 +4685,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HH9Trg5b0AEleXQ.jpg"
       },
       {
         "type": "paragraph",
@@ -3699,7 +4721,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HH9T0mYaUAAmeFE.jpg"
       },
       {
         "type": "paragraph",
@@ -3745,7 +4768,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HH9T9zHaoAEtntM.png"
       },
       {
         "type": "paragraph",
@@ -3800,7 +4824,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HH9UMsTaQAAoKSF.jpg"
       },
       {
         "type": "paragraph",
@@ -3872,7 +4897,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HH9U34ragAAMN4j.jpg"
       },
       {
         "type": "paragraph",
@@ -3934,7 +4960,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HH9WXtZagAA_E4M.png"
       },
       {
         "type": "paragraph",
@@ -4082,7 +5109,64 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://youtu.be/Ahx4BoM0vwI?si=0n1zK-WRCVENgrpN",
+        "text": "https://youtu.be/Ahx4BoM0vwI?si=0n1zK-WRCVENgrpN"
+      },
+      {
+        "url": "https://youtu.be/Ahx4BoM0vwI?si=0n1zK-WRCVENgrpN",
+        "text": "https://youtu.be/Ahx4BoM0vwI?si=0n1zK-WRCVENgrpN"
+      },
+      {
+        "url": "https://www.nikkei.com/article/DGXZQOUD222XH0S5A920C2000000/",
+        "text": "https://www.nikkei.com/article/DGXZQOUD222XH0S5A920C2000000/"
+      },
+      {
+        "url": "https://www.jiji.com/jc/article?k=2025120500841&g=soc",
+        "text": "https://www.jiji.com/jc/article?k=2025120500841&g=soc"
+      },
+      {
+        "url": "https://www.christiantoday.co.jp/articles/35413/20251210/top-of-unification-church-in-japan-resigns.htm",
+        "text": "https://www.christiantoday.co.jp/articles/35413/20251210/top-of-unification-church-in-japan-resigns.htm"
+      },
+      {
+        "url": "https://www.jiji.com/jc/article?k=2025032500701&g=soc",
+        "text": "https://www.jiji.com/jc/article?k=2025032500701&g=soc"
+      },
+      {
+        "url": "https://eastasiaforum.org/2025/05/03/the-unification-church-dissolution-and-japans-evolving-religious-governance/",
+        "text": "https://eastasiaforum.org/2025/05/03/the-unification-church-dissolution-and-japans-evolving-religious-governance/"
+      },
+      {
+        "url": "https://familyfedihq.org/2025/04/ffwpu-files-appeal-citing-speculative-verdict/",
+        "text": "https://familyfedihq.org/2025/04/ffwpu-files-appeal-citing-speculative-verdict/"
+      },
+      {
+        "url": "https://bitterwinter.org/japan-the-dissolution-of-the-family-federation-is-arbitrary/",
+        "text": "https://bitterwinter.org/japan-the-dissolution-of-the-family-federation-is-arbitrary/"
+      },
+      {
+        "url": "https://foref-europe.org/blog/2025/10/16/japan-the-dissolution-of-the-family-federation-is-arbitrary/",
+        "text": "https://foref-europe.org/blog/2025/10/16/japan-the-dissolution-of-the-family-federation-is-arbitrary/"
+      },
+      {
+        "url": "https://www.nichibenren.or.jp/document/statement/year/2026/260304.html",
+        "text": "https://www.nichibenren.or.jp/document/statement/year/2026/260304.html"
+      },
+      {
+        "url": "https://ffwpu-seisan.jp/",
+        "text": "https://ffwpu-seisan.jp/"
+      },
+      {
+        "url": "https://news.yahoo.co.jp/articles/fc42dc2962304c04a8a88d7185a174b1228ee676",
+        "text": "https://news.yahoo.co.jp/articles/fc42dc2962304c04a8a88d7185a174b1228ee676"
+      },
+      {
+        "url": "https://www.tokyo-np.co.jp/article/472298",
+        "text": "https://www.tokyo-np.co.jp/article/472298"
+      }
+    ]
   },
   {
     "id": "2052588512789360640",
@@ -4090,7 +5174,7 @@
     "title": "228 Days in Custody: Dr. Hak Ja Han's Three Surgeries and 56 Days Hospitalized",
     "previewText": "Dr. Hak Ja Han Moon (83), president of the Family Federation for World Peace and Unification (the Unification Church), was taken into custody by the Seoul Central District Prosecutors' Special",
     "createdAt": "2026-05-08T12:13:14.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHyE4g6bUAAU0O7.jpg",
     "likes": 32,
     "views": 7393,
     "retweets": 18,
@@ -4106,7 +5190,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHyCNVTbIAATnXb.png"
       },
       {
         "type": "paragraph",
@@ -4210,7 +5295,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHyDUmiaQAAt53p.png"
       },
       {
         "type": "paragraph",
@@ -4269,7 +5355,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHyDobAaoAAivpY.png"
       },
       {
         "type": "paragraph",
@@ -4309,7 +5396,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHyD5MBaAAAGxFZ.png"
       },
       {
         "type": "paragraph",
@@ -4321,7 +5409,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHyD8-qaIAAF4EB.jpg"
       },
       {
         "type": "paragraph",
@@ -4333,7 +5422,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHyEAydbIAA73GT.png"
       },
       {
         "type": "paragraph",
@@ -4759,7 +5849,108 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.washingtontimes.com/news/2025/sep/23/religious-freedom-advocates-condemn-south-korean-arrest-family/",
+        "text": "https://www.washingtontimes.com/news/2025/sep/23/religious-freedom-advocates-condemn-south-korean-arrest-family/"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2025/oct/24/religious-leaders-ailing-health-concern-detained-south-korean/",
+        "text": "https://www.washingtontimes.com/news/2025/oct/24/religious-leaders-ailing-health-concern-detained-south-korean/"
+      },
+      {
+        "url": "https://uccj.org/news/52293.html",
+        "text": "https://uccj.org/news/52293.html"
+      },
+      {
+        "url": "https://www.hankyung.com/article/2025110438267",
+        "text": "https://www.hankyung.com/article/2025110438267"
+      },
+      {
+        "url": "https://www.khan.co.kr/article/202602112047001",
+        "text": "https://www.khan.co.kr/article/202602112047001"
+      },
+      {
+        "url": "https://www.sisajournal.com/news/articleView.html?idxno=351745",
+        "text": "https://www.sisajournal.com/news/articleView.html?idxno=351745"
+      },
+      {
+        "url": "https://www.sisajournal.com/news/articleView.html?idxno=352218",
+        "text": "https://www.sisajournal.com/news/articleView.html?idxno=352218"
+      },
+      {
+        "url": "https://www.sisajournal.com/news/articleView.html?idxno=353000",
+        "text": "https://www.sisajournal.com/news/articleView.html?idxno=353000"
+      },
+      {
+        "url": "https://www.afpbb.com/articles/-/3621141",
+        "text": "https://www.afpbb.com/articles/-/3621141"
+      },
+      {
+        "url": "https://www.chosun.com/national/court_law/2026/03/28/CHADQQHILJDQHAGW4EOYOYHTNA/",
+        "text": "https://www.chosun.com/national/court_law/2026/03/28/CHADQQHILJDQHAGW4EOYOYHTNA/"
+      },
+      {
+        "url": "https://www.afpbb.com/articles/-/3628795",
+        "text": "https://www.afpbb.com/articles/-/3628795"
+      },
+      {
+        "url": "https://www.sisajournal.com/news/articleView.html?idxno=371488",
+        "text": "https://www.sisajournal.com/news/articleView.html?idxno=371488"
+      },
+      {
+        "url": "https://biz.heraldcorp.com/article/10729046",
+        "text": "https://biz.heraldcorp.com/article/10729046"
+      },
+      {
+        "url": "https://imnews.imbc.com/news/2026/society/article/6819093_36918.html",
+        "text": "https://imnews.imbc.com/news/2026/society/article/6819093_36918.html"
+      },
+      {
+        "url": "https://www.newdaily.co.kr/site/data/html/2026/04/30/2026043000186.html",
+        "text": "https://www.newdaily.co.kr/site/data/html/2026/04/30/2026043000186.html"
+      },
+      {
+        "url": "https://www.ngonews.kr/news/articleView.html?idxno=219675",
+        "text": "https://www.ngonews.kr/news/articleView.html?idxno=219675"
+      },
+      {
+        "url": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003202529",
+        "text": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003202529"
+      },
+      {
+        "url": "https://imnews.imbc.com/news/2026/society/article/6806287_36918.html",
+        "text": "https://imnews.imbc.com/news/2026/society/article/6806287_36918.html"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2026/feb/4/crackdown-religious-freedom-japan-south-korea-shocking-say-spiritual/",
+        "text": "https://www.washingtontimes.com/news/2026/feb/4/crackdown-religious-freedom-japan-south-korea-shocking-say-spiritual/"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2026/feb/3/south-korea-sentences-christian-pastor-others-including-hak-ja-han/",
+        "text": "https://www.washingtontimes.com/news/2026/feb/3/south-korea-sentences-christian-pastor-others-including-hak-ja-han/"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2026/apr/10/nobel-peace-prize-religious-liberty/",
+        "text": "https://www.washingtontimes.com/news/2026/apr/10/nobel-peace-prize-religious-liberty/"
+      },
+      {
+        "url": "https://hrwf.eu/south-korea-voice-of-conscience-about-the-arrest-of-dr-hak-ja-han/",
+        "text": "https://hrwf.eu/south-korea-voice-of-conscience-about-the-arrest-of-dr-hak-ja-han/"
+      },
+      {
+        "url": "https://foref-europe.org/blog/2025/09/22/south-koreas-religious-purge/",
+        "text": "https://foref-europe.org/blog/2025/09/22/south-koreas-religious-purge/"
+      },
+      {
+        "url": "https://bitterwinter.org/a-flicker-of-light-in-the-shadows-mother-hans-temporary-release-but-justice-is-still-far-away/",
+        "text": "https://bitterwinter.org/a-flicker-of-light-in-the-shadows-mother-hans-temporary-release-but-justice-is-still-far-away/"
+      },
+      {
+        "url": "https://www.penalreform.org/resource/older-persons-in-detention-a-framework-for-preventive/",
+        "text": "https://www.penalreform.org/resource/older-persons-in-detention-a-framework-for-preventive/"
+      }
+    ]
   },
   {
     "id": "2052293043928371200",
@@ -4767,7 +5958,7 @@
     "title": "Lee Jae-myung Government's One-Year Legislative Push for Regime Defense",
     "previewText": "President Lee Jae-myung and the ruling Democratic Party of Korea have advanced major legislation across the judiciary, the prosecution, the press, and martial law in parallel during the past year,",
     "createdAt": "2026-05-07T12:24:15.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHt0syVbwAAP8eJ.jpg",
     "likes": 21,
     "views": 1560,
     "retweets": 13,
@@ -4800,7 +5991,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHttZT4bYAAs-KT.png"
       },
       {
         "type": "paragraph",
@@ -4851,7 +6043,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHttjErbQAAKd1q.jpg"
       },
       {
         "type": "paragraph",
@@ -4916,7 +6109,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHt1KcDaoAAGu_z.jpg"
       },
       {
         "type": "paragraph",
@@ -4973,7 +6167,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtt8ZrbcAAy28n.jpg"
       },
       {
         "type": "paragraph",
@@ -5041,7 +6236,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtuFMWasAAfMlx.jpg"
       },
       {
         "type": "paragraph",
@@ -5116,7 +6312,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtuVU8aYAAmSd6.jpg"
       },
       {
         "type": "paragraph",
@@ -5160,7 +6357,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtxEC8bYAARDj2.png"
       },
       {
         "type": "paragraph",
@@ -5221,7 +6419,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtu1UZbwAADkUR.jpg"
       },
       {
         "type": "paragraph",
@@ -5286,7 +6485,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtvMTQbMAAuWkW.jpg"
       },
       {
         "type": "paragraph",
@@ -5302,7 +6502,8 @@
         "entityKey": "9",
         "entityKeys": [
           "9"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtvVPWbwAAaacV.jpg"
       },
       {
         "type": "paragraph",
@@ -5348,7 +6549,8 @@
         "entityKey": "10",
         "entityKeys": [
           "10"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtvbQNbAAABhCu.png"
       },
       {
         "type": "paragraph",
@@ -5408,7 +6610,8 @@
         "entityKey": "11",
         "entityKeys": [
           "11"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtv53bbcAA7hJD.png"
       },
       {
         "type": "paragraph",
@@ -5440,7 +6643,8 @@
         "entityKey": "12",
         "entityKeys": [
           "12"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHtwFg9aQAAYq-y.png"
       },
       {
         "type": "paragraph",
@@ -5961,7 +7165,72 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.koreaherald.com/article/10732034",
+        "text": "https://www.koreaherald.com/article/10732034"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/southkorea/politics/20260506/lee-pushes-constitutional-reform-centered-on-curbing-martial-law",
+        "text": "https://www.koreatimes.co.kr/southkorea/politics/20260506/lee-pushes-constitutional-reform-centered-on-curbing-martial-law"
+      },
+      {
+        "url": "https://en.sedaily.com/finance/2026/04/03/opposition-parties-propose-martial-law-constitutional",
+        "text": "https://en.sedaily.com/finance/2026/04/03/opposition-parties-propose-martial-law-constitutional"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/southkorea/law-crime/20260312/explainer-new-law-lets-president-pick-22-of-26-supreme-court-justices-by-2030",
+        "text": "https://www.koreatimes.co.kr/southkorea/law-crime/20260312/explainer-new-law-lets-president-pick-22-of-26-supreme-court-justices-by-2030"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10693225",
+        "text": "https://www.koreaherald.com/article/10693225"
+      },
+      {
+        "url": "https://www.upi.com/Top_News/World-News/2026/03/01/national-assembly-bill-pass-doubling-supreme-court-justices/3271772425858/",
+        "text": "https://www.upi.com/Top_News/World-News/2026/03/01/national-assembly-bill-pass-doubling-supreme-court-justices/3271772425858/"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10584638",
+        "text": "https://www.koreaherald.com/article/10584638"
+      },
+      {
+        "url": "https://www.usnews.com/news/world/articles/2026-03-20/south-korea-parliament-passes-bill-stripping-prosecutors-of-investigative-powers",
+        "text": "https://www.usnews.com/news/world/articles/2026-03-20/south-korea-parliament-passes-bill-stripping-prosecutors-of-investigative-powers"
+      },
+      {
+        "url": "https://www.loc.gov/item/global-legal-monitor/2026-02-03/south-korea-reforms-to-prosecution-system-underway",
+        "text": "https://www.loc.gov/item/global-legal-monitor/2026-02-03/south-korea-reforms-to-prosecution-system-underway"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/amp/foreignaffairs/20260102/korea-in-talks-with-us-over-anti-fake-news-law",
+        "text": "https://www.koreatimes.co.kr/amp/foreignaffairs/20260102/korea-in-talks-with-us-over-anti-fake-news-law"
+      },
+      {
+        "url": "https://www.jurist.org/news/2025/12/south-korea-assembly-passes-controversial-fake-news-bill-amid-free-press-fears/",
+        "text": "https://www.jurist.org/news/2025/12/south-korea-assembly-passes-controversial-fake-news-bill-amid-free-press-fears/"
+      },
+      {
+        "url": "https://ipi.media/south-korea-ipi-condemns-passage-of-anti-fake-news-bill/",
+        "text": "https://ipi.media/south-korea-ipi-condemns-passage-of-anti-fake-news-bill/"
+      },
+      {
+        "url": "https://biz.heraldcorp.com/article/10730639",
+        "text": "https://biz.heraldcorp.com/article/10730639"
+      },
+      {
+        "url": "https://www.hankookilbo.com/News/Read/A2025051114020000688",
+        "text": "https://www.hankookilbo.com/News/Read/A2025051114020000688"
+      },
+      {
+        "url": "https://www.seoul.co.kr/news/politics/2025/10/01/20251001005002",
+        "text": "https://www.seoul.co.kr/news/politics/2025/10/01/20251001005002"
+      },
+      {
+        "url": "https://www.khan.co.kr/article/202508181513011",
+        "text": "https://www.khan.co.kr/article/202508181513011"
+      }
+    ]
   },
   {
     "id": "2051847238146781184",
@@ -5969,7 +7238,7 @@
     "title": "日本における統一教会を標的とした人道に対する罪－拉致監禁",
     "previewText": "原文: Bitter Winter | ハビエル・ルイス著 | 2026年5月4日 | 国際論説\n\n信者への人権侵害は、ローマ規程上の人道に対する罪の要件に達する可能性がある。\n\nby ハビエル・ルイス、クリスティアン・ゴンサレス",
     "createdAt": "2026-05-06T02:39:33.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHmmfOdbEAErcEH.jpg",
     "likes": 549,
     "views": 16348,
     "retweets": 374,
@@ -5992,7 +7261,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHmhu4xaUAA-9kf.png"
       },
       {
         "type": "paragraph",
@@ -6029,7 +7299,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHmiZWGa8AABZpH.png"
       },
       {
         "type": "heading",
@@ -6093,7 +7364,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHmjCSNbMAAG1vA.jpg"
       },
       {
         "type": "paragraph",
@@ -6160,7 +7432,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHmjQh7bAAAUPZ0.png"
       },
       {
         "type": "paragraph",
@@ -6234,7 +7507,7 @@
     "title": "韓国の左派的裏切り：親北勢力がアメリカの主要同盟国を脅かす",
     "previewText": "原文：Trevor Loudon 著／America Out Loud News 掲載（ポッドキャスト〈Trevor Loudon Reports〉に基づく記事）／2026年5月4日",
     "createdAt": "2026-05-05T16:12:26.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHkW10nbwAA2qUs.jpg",
     "likes": 5,
     "views": 911,
     "retweets": 5,
@@ -6339,7 +7612,12 @@
         "type": "cover"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.americaoutloud.news/south-koreas-leftist-betrayal-pro-north-forces-threaten-americas-key-ally/?utm_source=twitter&utm_medium=website&utm_campaign=SocialSnap",
+        "text": "https://www.americaoutloud.news/south-koreas-leftist-betrayal-pro-north-forces-threaten-americas-key-ally/?utm_source=twitter&utm_medium=website&utm_campaign=SocialSnap"
+      }
+    ]
   },
   {
     "id": "2051676005845389312",
@@ -6347,7 +7625,7 @@
     "title": "한국의 좌파적 배신: 친북 세력이 미국의 핵심 동맹을 위협하다",
     "previewText": "원문: Trevor Loudon 저 / America Out Loud News 게재 (팟캐스트 〈Trevor Loudon Reports〉 기반) / 2026년 5월 4일\n한때 굳건한 반공 보루이자 미국의 핵심 동맹이었던 한국이 이제 위험한 좌파 변혁의 기로에 서",
     "createdAt": "2026-05-05T15:22:55.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHkGlOLbgAAM-Lz.jpg",
     "likes": 15,
     "views": 1361,
     "retweets": 5,
@@ -6456,7 +7734,7 @@
     "title": "국경을 넘는 신앙: 미국 기독교 주교 일본 방문 — 가정연합과 함께 하다",
     "previewText": "국가가 한 종교 단체의 교회를 봉쇄할 때, 바다 건너편에 있는 신도들은 무엇을 말하는가.\n2026년 3월 4일, 도쿄 고등재판소는 일본의 세계평화통일가정연합에 대해 해산명령 판결을 내렸다.\n그로부터 몇 주 후인",
     "createdAt": "2026-05-04T04:54:14.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHcwRnwacAAfxhW.jpg",
     "likes": 43,
     "views": 1231,
     "retweets": 26,
@@ -6491,7 +7769,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcYEJ6bsAA9a6D.png"
       },
       {
         "type": "paragraph",
@@ -6507,7 +7786,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcYIZkbEAAFp_V.png"
       },
       {
         "type": "paragraph",
@@ -6552,7 +7832,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcYtvBbQAANydR.png"
       },
       {
         "type": "paragraph",
@@ -6572,7 +7853,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcaKA1aoAA8FvY.png"
       },
       {
         "type": "paragraph",
@@ -6592,7 +7874,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcaYrvbkAAP2KJ.png"
       },
       {
         "type": "paragraph",
@@ -6612,7 +7895,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHck_aoagAAt1Hu.png"
       },
       {
         "type": "paragraph",
@@ -6643,7 +7927,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHclbzmbAAAQ3hJ.png"
       },
       {
         "type": "paragraph",
@@ -6678,7 +7963,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcl4FuaUAACdDF.png"
       },
       {
         "type": "paragraph",
@@ -6713,7 +7999,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcsjlaaMAAaUiW.png"
       },
       {
         "type": "paragraph",
@@ -6733,7 +8020,8 @@
         "entityKey": "9",
         "entityKeys": [
           "9"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcs3Y9acAA9fmz.png"
       },
       {
         "type": "paragraph",
@@ -6828,7 +8116,12 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj",
+        "text": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj"
+      }
+    ]
   },
   {
     "id": "2051105312040730624",
@@ -6836,7 +8129,7 @@
     "title": "国境を越える信仰：米国のキリスト教司教らが訪日ー家庭連合と共に立つ",
     "previewText": "国家が一つの宗教団体の教会を封鎖させるとき、海の向こうの信徒たちは何を語るのか。\n2026年3月4日、東京高等裁判所は世界平和統一家庭連合へ解散命令の判決を下した。",
     "createdAt": "2026-05-04T01:59:03.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHcIBpOaUAAWjNn.jpg",
     "likes": 209,
     "views": 13161,
     "retweets": 145,
@@ -6876,7 +8169,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHb_dQybAAAR4h5.png"
       },
       {
         "type": "paragraph",
@@ -6892,7 +8186,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHb_gcqbAAADudb.png"
       },
       {
         "type": "paragraph",
@@ -6937,7 +8232,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcA1NxawAAKGCK.png"
       },
       {
         "type": "paragraph",
@@ -6957,7 +8253,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcBBQobIAAhCr0.png"
       },
       {
         "type": "paragraph",
@@ -6977,7 +8274,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcBMZ5aQAAaDqM.png"
       },
       {
         "type": "paragraph",
@@ -6997,7 +8295,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcBmD4a8AAIWOM.png"
       },
       {
         "type": "paragraph",
@@ -7021,7 +8320,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcCQr-bMAAAJNT.png"
       },
       {
         "type": "paragraph",
@@ -7049,7 +8349,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcCvYxbYAAWGz3.png"
       },
       {
         "type": "paragraph",
@@ -7077,7 +8378,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcE_w2aAAArRQN.png"
       },
       {
         "type": "paragraph",
@@ -7108,7 +8410,8 @@
         "entityKey": "9",
         "entityKeys": [
           "9"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHcFUFIa8AAGDpD.png"
       },
       {
         "type": "paragraph",
@@ -7194,7 +8497,12 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj",
+        "text": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj"
+      }
+    ]
   },
   {
     "id": "2049892730885849088",
@@ -7202,7 +8510,7 @@
     "title": "The Witness Korea Built Its Religious Crackdown On Has a Diary Problem",
     "previewText": "President Lee Jae Myung has spent five months demanding the power to dissolve the Family Federation. The 23rd hearing of Hak Ja Han's trial shows what his case is built on: a witness whose own diary",
     "createdAt": "2026-04-30T17:28:10.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHKvFfDaIAAYLkJ.jpg",
     "likes": 13,
     "views": 2021,
     "retweets": 4,
@@ -7225,7 +8533,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHK1I3FbIAAJMyH.jpg"
       },
       {
         "type": "blockquote",
@@ -7245,7 +8554,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHK2-vrbwAEmbDr.jpg"
       },
       {
         "type": "paragraph",
@@ -7296,7 +8606,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHK25fObQAAYMv7.png"
       },
       {
         "type": "paragraph",
@@ -7369,7 +8680,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHK3pNRaMAERYFX.jpg"
       },
       {
         "type": "paragraph",
@@ -7605,7 +8917,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHK4XQuaMAAPvAz.jpg"
       },
       {
         "type": "paragraph",
@@ -8284,7 +9597,160 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.news1.kr/society/court-prosecution/6021631",
+        "text": "https://www.news1.kr/society/court-prosecution/6021631"
+      },
+      {
+        "url": "https://biz.heraldcorp.com/article/10729046",
+        "text": "https://biz.heraldcorp.com/article/10729046"
+      },
+      {
+        "url": "https://www.ajunews.com/view/20260430101533258",
+        "text": "https://www.ajunews.com/view/20260430101533258"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/southkorea/law-crime/20260222/unification-church-leader-returns-to-behind-bars-after-temporary-release-over-health-issues",
+        "text": "https://www.koreatimes.co.kr/southkorea/law-crime/20260222/unification-church-leader-returns-to-behind-bars-after-temporary-release-over-health-issues"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10588294",
+        "text": "https://www.koreaherald.com/article/10588294"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10590857",
+        "text": "https://www.koreaherald.com/article/10590857"
+      },
+      {
+        "url": "https://www.upi.com/Top_News/World-News/2025/10/10/Han-Hak-ja-indicted-unification-church/4421760109017/",
+        "text": "https://www.upi.com/Top_News/World-News/2025/10/10/Han-Hak-ja-indicted-unification-church/4421760109017/"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10632927",
+        "text": "https://www.koreaherald.com/article/10632927"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/opinion/editorial/20251210/ed-lees-questionable-case-for-unification-church-dissolution",
+        "text": "https://www.koreatimes.co.kr/opinion/editorial/20251210/ed-lees-questionable-case-for-unification-church-dissolution"
+      },
+      {
+        "url": "https://www.nippon.com/en/news/yjj2025120200581/",
+        "text": "https://www.nippon.com/en/news/yjj2025120200581/"
+      },
+      {
+        "url": "https://hrwf.eu/south-korea-silencing-the-churches-why-koreas-new-rhetoric-threatens-democratic-freedom/",
+        "text": "https://hrwf.eu/south-korea-silencing-the-churches-why-koreas-new-rhetoric-threatens-democratic-freedom/"
+      },
+      {
+        "url": "https://www.scmp.com/week-asia/politics/article/3335911/south-koreas-threat-dissolve-corrupt-religious-groups-risks-political-blowback",
+        "text": "https://www.scmp.com/week-asia/politics/article/3335911/south-koreas-threat-dissolve-corrupt-religious-groups-risks-political-blowback"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=YRaSj8DirpI",
+        "text": "https://www.youtube.com/watch?v=YRaSj8DirpI"
+      },
+      {
+        "url": "https://newstapa.org/article/B1-Ci",
+        "text": "https://newstapa.org/article/B1-Ci"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/opinion/editorial/20251208/ed-selective-justice-erodes-trust-in-independent-counsel",
+        "text": "https://www.koreatimes.co.kr/opinion/editorial/20251208/ed-selective-justice-erodes-trust-in-independent-counsel"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10636064",
+        "text": "https://www.koreaherald.com/article/10636064"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10640873",
+        "text": "https://www.koreaherald.com/article/10640873"
+      },
+      {
+        "url": "https://www.cnn.com/2025/09/22/asia/unification-church-leader-arrested-bribery-case-south-korea-intl-hnk",
+        "text": "https://www.cnn.com/2025/09/22/asia/unification-church-leader-arrested-bribery-case-south-korea-intl-hnk"
+      },
+      {
+        "url": "https://www.aljazeera.com/news/2025/9/23/unification-church-leader-arrested-in-s-korean-ex-first-lady-bribery-case",
+        "text": "https://www.aljazeera.com/news/2025/9/23/unification-church-leader-arrested-in-s-korean-ex-first-lady-bribery-case"
+      },
+      {
+        "url": "https://www.scmp.com/week-asia/lifestyle-culture/article/3323992/south-korea-bribery-probe-targets-unification-churchs-business-religion-complex",
+        "text": "https://www.scmp.com/week-asia/lifestyle-culture/article/3323992/south-korea-bribery-probe-targets-unification-churchs-business-religion-complex"
+      },
+      {
+        "url": "https://moderndiplomacy.eu/2025/12/01/bribery-trial-opens-for-south-koreas-unification-church-leader-han-hak-ja/",
+        "text": "https://moderndiplomacy.eu/2025/12/01/bribery-trial-opens-for-south-koreas-unification-church-leader-han-hak-ja/"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/southkorea/politics/20251216/explainer-who-is-han-hak-ja-true-mother-at-center-of-unification-church-scandals",
+        "text": "https://www.koreatimes.co.kr/southkorea/politics/20251216/explainer-who-is-han-hak-ja-true-mother-at-center-of-unification-church-scandals"
+      },
+      {
+        "url": "https://www.aljazeera.com/news/2026/1/28/south-koreas-former-first-lady-sentenced-to-jail-term-in-bribery-case",
+        "text": "https://www.aljazeera.com/news/2026/1/28/south-koreas-former-first-lady-sentenced-to-jail-term-in-bribery-case"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2025/aug/26/trumps-concern-south-korean-church-raids-sparked-fears-zelenskyy/",
+        "text": "https://www.washingtontimes.com/news/2025/aug/26/trumps-concern-south-korean-church-raids-sparked-fears-zelenskyy/"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2025/aug/26/lee-jae-myung-korean-president-staff-feared-trumps-church-comments/",
+        "text": "https://www.washingtontimes.com/news/2025/aug/26/lee-jae-myung-korean-president-staff-feared-trumps-church-comments/"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10561498",
+        "text": "https://www.koreaherald.com/article/10561498"
+      },
+      {
+        "url": "https://premierchristian.news/us/news/article/trump-south-korea-churches-raid-protest",
+        "text": "https://premierchristian.news/us/news/article/trump-south-korea-churches-raid-protest"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2026/feb/3/south-korea-sentences-christian-pastor-others-including-hak-ja-han/",
+        "text": "https://www.washingtontimes.com/news/2026/feb/3/south-korea-sentences-christian-pastor-others-including-hak-ja-han/"
+      },
+      {
+        "url": "https://en.koreaportal.com/articles/54239/20260125/south-koreas-religious-freedom-crisis-president-lee-jae-myung-faces.htm",
+        "text": "https://en.koreaportal.com/articles/54239/20260125/south-koreas-religious-freedom-crisis-president-lee-jae-myung-faces.htm"
+      },
+      {
+        "url": "https://bitterwinter.org/a-religious-liberty-crisis-in-korea-1-after-the-2025-elections/",
+        "text": "https://bitterwinter.org/a-religious-liberty-crisis-in-korea-1-after-the-2025-elections/"
+      },
+      {
+        "url": "https://hrwf.eu/south-korea-voice-of-conscience-about-the-arrest-of-dr-hak-ja-han/",
+        "text": "https://hrwf.eu/south-korea-voice-of-conscience-about-the-arrest-of-dr-hak-ja-han/"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2025/oct/24/religious-leaders-ailing-health-concern-detained-south-korean/",
+        "text": "https://www.washingtontimes.com/news/2025/oct/24/religious-leaders-ailing-health-concern-detained-south-korean/"
+      },
+      {
+        "url": "https://www.upf.org/post/statement-on-the-detention-of-upf-co-founder-dr-hak-ja-han",
+        "text": "https://www.upf.org/post/statement-on-the-detention-of-upf-co-founder-dr-hak-ja-han"
+      },
+      {
+        "url": "https://unificationnews.eu/mother-han-briefly-released-for-medical-reasons/",
+        "text": "https://unificationnews.eu/mother-han-briefly-released-for-medical-reasons/"
+      },
+      {
+        "url": "https://unificationnews.eu/new-charges-may-extend-detention-into-2026/",
+        "text": "https://unificationnews.eu/new-charges-may-extend-detention-into-2026/"
+      },
+      {
+        "url": "https://www.scmp.com/week-asia/politics/article/3335911/south-koreas-threat-dissolve-corrupt-religious-groups-risks-political-blowback",
+        "text": "https://www.scmp.com/week-asia/politics/article/3335911/south-koreas-threat-dissolve-corrupt-religious-groups-risks-political-blowback"
+      },
+      {
+        "url": "https://en.fnnews.com/news/202510012341356421",
+        "text": "https://en.fnnews.com/news/202510012341356421"
+      },
+      {
+        "url": "https://en.sedaily.com/society/2025/12/15/police-raid-unification-church-hq-name-hak-ja-han-as",
+        "text": "https://en.sedaily.com/society/2025/12/15/police-raid-unification-church-hq-name-hak-ja-han-as"
+      }
+    ]
   },
   {
     "id": "2049491276324884482",
@@ -8292,7 +9758,7 @@
     "title": "Faith Beyond Borders: US Bishops Stand with Japan’s Family Federation",
     "previewText": "When a nation erases a religion as a legal entity, what do believers across the sea have to say?\nOn 4 March 2026, the Tokyo High Court issued a ruling that erased the Family Federation for World Peace",
     "createdAt": "2026-04-30T16:36:51.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHKsu9faUAADlKD.jpg",
     "likes": 137,
     "views": 7182,
     "retweets": 93,
@@ -8327,7 +9793,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKWkhmaIAEYzXK.jpg"
       },
       {
         "type": "paragraph",
@@ -8343,7 +9810,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKWvtfbsAAwhes.png"
       },
       {
         "type": "paragraph",
@@ -8423,7 +9891,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKXQoPbcAAxwmN.png"
       },
       {
         "type": "paragraph",
@@ -8457,7 +9926,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKXhGcb0AAvzBb.png"
       },
       {
         "type": "paragraph",
@@ -8484,7 +9954,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKXsFNbIAAYfN5.png"
       },
       {
         "type": "paragraph",
@@ -8511,7 +9982,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKX2mWasAAxbiT.jpg"
       },
       {
         "type": "paragraph",
@@ -8549,7 +10021,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKYDPhbEAAPuC6.jpg"
       },
       {
         "type": "paragraph",
@@ -8596,7 +10069,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKYN3dbUAAYJLz.png"
       },
       {
         "type": "paragraph",
@@ -8631,7 +10105,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKYceeakAEfsQM.png"
       },
       {
         "type": "paragraph",
@@ -8674,7 +10149,8 @@
         "entityKey": "9",
         "entityKeys": [
           "9"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHKY_7daEAAPM9M.jpg"
       },
       {
         "type": "paragraph",
@@ -8790,7 +10266,12 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj",
+        "text": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj"
+      }
+    ]
   },
   {
     "id": "2049877525749493760",
@@ -8798,7 +10279,7 @@
     "title": "Suspension of Detention Extension and Trial Progress from FFWPU HQ",
     "previewText": "This is a translation of the internal memo from FFWPU HQ originally written in Korean.\nDear beloved family members,\nTo all family members who are praying with concern for True Mother’s health and",
     "createdAt": "2026-04-30T15:51:18.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHKiPx4boAAv_7z.jpg",
     "likes": 58,
     "views": 946,
     "retweets": 21,
@@ -8932,7 +10413,7 @@
     "title": "미국 신자 100여 명 일본 방문 ー가정연합 해산 사태 속, 국경 넘은 결속",
     "previewText": "미국 전역에서 100명이 넘는 가정연합 2세 멤버와 목회자들이 약 2주 만에 기획하고 도쿄로 모였다.\n세계평화통일가정연합(가정연합) 멤버 100여 명이 미국 각지에서 도쿄로 건너와, 해산 명령의 여파를 마주하고",
     "createdAt": "2026-04-29T17:02:28.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHFnttDaMAArBs8.jpg",
     "likes": 144,
     "views": 4194,
     "retweets": 77,
@@ -8966,7 +10447,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFmEBEbAAA4euS.png"
       },
       {
         "type": "paragraph",
@@ -8993,7 +10475,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFmNc4aQAAjqXV.png"
       },
       {
         "type": "image",
@@ -9001,7 +10484,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFmTREaIAA_DdL.png"
       },
       {
         "type": "paragraph",
@@ -9040,7 +10524,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFme1jaIAAbN7e.png"
       },
       {
         "type": "paragraph",
@@ -9060,7 +10545,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFmrOpbYAAfwIV.png"
       },
       {
         "type": "paragraph",
@@ -9083,7 +10569,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFm1GZbEAAly03.png"
       },
       {
         "type": "paragraph",
@@ -9130,7 +10617,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFm_kVa4AAYmoU.png"
       },
       {
         "type": "paragraph",
@@ -9165,7 +10653,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFnJFKb0AAUtXp.png"
       },
       {
         "type": "paragraph",
@@ -9208,7 +10697,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFnaRda8AAlRNu.jpg"
       },
       {
         "type": "paragraph",
@@ -9277,7 +10767,12 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj",
+        "text": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj"
+      }
+    ]
   },
   {
     "id": "2049494908323676160",
@@ -9285,7 +10780,7 @@
     "title": "アメリカ信者100人以上が来日 ー 家庭連合の解散下に国境越えた連帯",
     "previewText": "米国全土から100人を超える家庭連合の二世メンバーと牧師が、わずか約2週間で企画し、東京に駆けつけた。",
     "createdAt": "2026-04-29T14:41:06.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHFHgjAbIAAiMww.jpg",
     "likes": 452,
     "views": 6440,
     "retweets": 284,
@@ -9312,7 +10807,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFE-1NbkAEBOz5.jpg"
       },
       {
         "type": "paragraph",
@@ -9328,7 +10824,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFFLm8aEAA1Oxz.jpg"
       },
       {
         "type": "image",
@@ -9336,7 +10833,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFFSf0bIAANQm-.png"
       },
       {
         "type": "paragraph",
@@ -9364,7 +10862,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFFdoXbYAA2bw1.png"
       },
       {
         "type": "paragraph",
@@ -9384,7 +10883,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFFm4KbAAAF_Tb.png"
       },
       {
         "type": "paragraph",
@@ -9400,7 +10900,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFFwN_bwAAh_D2.png"
       },
       {
         "type": "paragraph",
@@ -9447,7 +10948,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFGQI3a8AAaNss.png"
       },
       {
         "type": "paragraph",
@@ -9475,7 +10977,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFGuwSbgAA5UXq.png"
       },
       {
         "type": "paragraph",
@@ -9518,7 +11021,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFHaE6bUAAvnLU.jpg"
       },
       {
         "type": "paragraph",
@@ -9587,7 +11091,12 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj",
+        "text": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj"
+      }
+    ]
   },
   {
     "id": "2049456963457863680",
@@ -9595,7 +11104,7 @@
     "title": "100+ U.S. Believers Arrive in Japan: Solidarity Under Family Federation Dissolution",
     "previewText": "More than 100 second-generation members and pastors arrived in Tokyo, organised in roughly two weeks\nMore than 100 members of the Family Federation for World Peace and Unification travelled from",
     "createdAt": "2026-04-29T14:08:55.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HHE8nCLbcAEOFsa.jpg",
     "likes": 202,
     "views": 4574,
     "retweets": 121,
@@ -9622,7 +11131,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHE_EosbwAAOpkN.jpg"
       },
       {
         "type": "paragraph",
@@ -9649,7 +11159,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHE_OFIbQAAL2P5.jpg"
       },
       {
         "type": "image",
@@ -9657,7 +11168,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHE_S9Fb0AAexWK.png"
       },
       {
         "type": "paragraph",
@@ -9692,7 +11204,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHE_ec1bsAASK3O.png"
       },
       {
         "type": "paragraph",
@@ -9712,7 +11225,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHE_mOOa4AARaSf.png"
       },
       {
         "type": "paragraph",
@@ -9735,7 +11249,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHE_uu9aoAAsj0G.png"
       },
       {
         "type": "paragraph",
@@ -9782,7 +11297,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHE_1msa8AAexpV.png"
       },
       {
         "type": "paragraph",
@@ -9810,7 +11326,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHE_7CBaYAAhAHo.png"
       },
       {
         "type": "paragraph",
@@ -9853,7 +11370,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HHFAB7casAA7KtY.jpg"
       },
       {
         "type": "paragraph",
@@ -9922,7 +11440,12 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj",
+        "text": "https://www.youtube.com/live/YgmIoCEpPSk?si=_2ATENpzL8ln5Dkj"
+      }
+    ]
   },
   {
     "id": "2048775810954448896",
@@ -9930,7 +11453,7 @@
     "title": "統一教会:日本の解散命令と国際法 — コンプライアンス宣言の無視",
     "previewText": "原文: Bitter Winter | パトリシア・デュバル著 | 2026年4月27日 | Testimonies Global\n\n2009年の内部改革以降、献金に関して争われた事案はほぼゼロにまで減少した。\n \nコンプライアンス宣言",
     "createdAt": "2026-04-27T16:25:54.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HG7NT-ibAAAV6h0.jpg",
     "likes": 92,
     "views": 1867,
     "retweets": 66,
@@ -9953,7 +11476,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HG649JVagAAgJbR.jpg"
       },
       {
         "type": "heading",
@@ -10035,7 +11559,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HG6882UaMAE6Dv2.jpg"
       },
       {
         "type": "heading",
@@ -10117,7 +11642,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HG6_CBKbEAAAC9a.jpg"
       },
       {
         "type": "heading",
@@ -10193,7 +11719,7 @@
     "title": "統一教会:日本の解散命令と国際法ー 解散は必要だったのか",
     "previewText": "原典: Bitter Winter | パトリシア・デュバル著 | 2026年4月25日 | Testimonies Global\n裁判所は、教会の解散が「民主的社会において必要」であることを証明できなかった。",
     "createdAt": "2026-04-26T12:08:52.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HG1HEUEaAAAh4wR.jpg",
     "likes": 203,
     "views": 12268,
     "retweets": 143,
@@ -10214,7 +11740,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HG0-eg8aEAAfVqc.jpg"
       },
       {
         "type": "paragraph",
@@ -10320,7 +11847,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HG0_fnTbEAAg12q.jpg"
       },
       {
         "type": "paragraph",
@@ -10446,7 +11974,7 @@
     "title": "What is Chongryon? North Korea's Outpost in Japan — and a Problem Left Unresolved for 80 Years ",
     "previewText": "The debate over Japan's proposed anti-espionage law and foreign agents registration system under the Takaichi administration is bringing renewed attention to the General Association of Korean",
     "createdAt": "2026-04-25T11:17:57.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HGvzxeSb0AADxu6.jpg",
     "likes": 13,
     "views": 1165,
     "retweets": 9,
@@ -10458,7 +11986,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvahc2bEAA3ORa.jpg"
       },
       {
         "type": "paragraph",
@@ -10490,7 +12019,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvoTVNaQAAm5Ll.jpg"
       },
       {
         "type": "paragraph",
@@ -10546,7 +12076,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvoZmSb0AAxWWL.jpg"
       },
       {
         "type": "image",
@@ -10554,7 +12085,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvovpeaQAA0uAV.png"
       },
       {
         "type": "list-item",
@@ -10598,7 +12130,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvqEzxboAAvp_w.png"
       },
       {
         "type": "list-item",
@@ -10638,7 +12171,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvqL7pa4AAqkLS.png"
       },
       {
         "type": "paragraph",
@@ -10684,7 +12218,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvqUNgbsAA7cCO.jpg"
       },
       {
         "type": "paragraph",
@@ -10701,7 +12236,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvqafDawAANHPr.png"
       },
       {
         "type": "paragraph",
@@ -10751,7 +12287,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvqh14aYAA86bh.png"
       },
       {
         "type": "paragraph",
@@ -10811,7 +12348,8 @@
         "entityKey": "9",
         "entityKeys": [
           "9"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvqr4vaAAAndgd.png"
       },
       {
         "type": "paragraph",
@@ -10827,7 +12365,8 @@
         "entityKey": "10",
         "entityKeys": [
           "10"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvqwfUbwAAJYaM.png"
       },
       {
         "type": "paragraph",
@@ -10880,7 +12419,8 @@
         "entityKey": "11",
         "entityKeys": [
           "11"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvq83ebIAAGgcj.jpg"
       },
       {
         "type": "paragraph",
@@ -10910,7 +12450,8 @@
         "entityKey": "12",
         "entityKeys": [
           "12"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvrAc7boAAWNnb.png"
       },
       {
         "type": "paragraph",
@@ -10929,7 +12470,8 @@
         "entityKey": "13",
         "entityKeys": [
           "13"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvrLaObYAAvC_R.jpg"
       },
       {
         "type": "paragraph",
@@ -10982,7 +12524,8 @@
         "entityKey": "14",
         "entityKeys": [
           "14"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvrUKHaQAAaJBh.jpg"
       },
       {
         "type": "paragraph",
@@ -11038,7 +12581,8 @@
         "entityKey": "15",
         "entityKeys": [
           "15"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvrecmasAARgDt.jpg"
       },
       {
         "type": "paragraph",
@@ -11109,7 +12653,8 @@
         "entityKey": "16",
         "entityKeys": [
           "16"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvrmIxawAAqqc6.png"
       },
       {
         "type": "paragraph",
@@ -11126,7 +12671,8 @@
         "entityKey": "17",
         "entityKeys": [
           "17"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGvrwYoawAAd3Bd.png"
       },
       {
         "type": "paragraph",
@@ -11667,7 +13213,152 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://kotobank.jp/word/%E5%9C%A8%E6%97%A5%E6%9C%AC%E6%9C%9D%E9%AE%AE%E4%BA%BA%E7%B7%8F%E9%80%A3%E5%90%88%E4%BC%9A-158096",
+        "text": "https://kotobank.jp/word/%E5%9C%A8%E6%97%A5%E6%9C%AC%E6%9C%9D%E9%AE%AE%E4%BA%BA%E7%B7%8F%E9%80%A3%E5%90%88%E4%BC%9A-158096"
+      },
+      {
+        "url": "https://www.shugiin.go.jp/internet/itdb_shitsumon.nsf/html/shitsumon/a201243.htm",
+        "text": "https://www.shugiin.go.jp/internet/itdb_shitsumon.nsf/html/shitsumon/a201243.htm"
+      },
+      {
+        "url": "https://news.yahoo.co.jp/feature/586/",
+        "text": "https://news.yahoo.co.jp/feature/586/"
+      },
+      {
+        "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/detail/1342899.htm",
+        "text": "https://www.mext.go.jp/a_menu/shotou/mushouka/detail/1342899.htm"
+      },
+      {
+        "url": "https://yris.yira.org/column/chongryon-schools-north-koreas-hidden-hand-in-japan/",
+        "text": "https://yris.yira.org/column/chongryon-schools-north-koreas-hidden-hand-in-japan/"
+      },
+      {
+        "url": "https://www.nknews.org/2025/04/kim-jong-un-sends-2m-to-japan-for-education-of-pro-dprk-youth-state-media/",
+        "text": "https://www.nknews.org/2025/04/kim-jong-un-sends-2m-to-japan-for-education-of-pro-dprk-youth-state-media/"
+      },
+      {
+        "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/detail/1342907.htm",
+        "text": "https://www.mext.go.jp/a_menu/shotou/mushouka/detail/1342907.htm"
+      },
+      {
+        "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/detail/1342899.htm",
+        "text": "https://www.mext.go.jp/a_menu/shotou/mushouka/detail/1342899.htm"
+      },
+      {
+        "url": "https://gendai.media/articles/-/53336",
+        "text": "https://gendai.media/articles/-/53336"
+      },
+      {
+        "url": "https://www.npa.go.jp/archive/keibi/syouten/syouten283/pdf/03_16-18P.pdf",
+        "text": "https://www.npa.go.jp/archive/keibi/syouten/syouten283/pdf/03_16-18P.pdf"
+      },
+      {
+        "url": "https://www.spjd.or.jp/?cat=19&paged=4",
+        "text": "https://www.spjd.or.jp/?cat=19&paged=4"
+      },
+      {
+        "url": "https://www.jiji.com/jc/d4?p=ojk428-jlp05535554&d=d4_mili",
+        "text": "https://www.jiji.com/jc/d4?p=ojk428-jlp05535554&d=d4_mili"
+      },
+      {
+        "url": "https://www.koreaherald.com/view.php?ud=20230322000738",
+        "text": "https://www.koreaherald.com/view.php?ud=20230322000738"
+      },
+      {
+        "url": "https://www.npa.go.jp/bureau/security/abduct/index.html",
+        "text": "https://www.npa.go.jp/bureau/security/abduct/index.html"
+      },
+      {
+        "url": "https://www.rachi.go.jp/en/index.html",
+        "text": "https://www.rachi.go.jp/en/index.html"
+      },
+      {
+        "url": "https://www.jfir.or.jp/cgi/m-bbs/index.php?no=5304",
+        "text": "https://www.jfir.or.jp/cgi/m-bbs/index.php?no=5304"
+      },
+      {
+        "url": "https://www.news-postseven.com/archives/20160718_428951.html",
+        "text": "https://www.news-postseven.com/archives/20160718_428951.html"
+      },
+      {
+        "url": "https://www.kinyobi.co.jp/kinyobinews/2023/11/27/antena-1368/",
+        "text": "https://www.kinyobi.co.jp/kinyobinews/2023/11/27/antena-1368/"
+      },
+      {
+        "url": "https://www.hrw.org/ja/news/2018/08/22/321641",
+        "text": "https://www.hrw.org/ja/news/2018/08/22/321641"
+      },
+      {
+        "url": "https://www.jstage.jst.go.jp/article/jamsarms/28/0/28_47/_pdf/-char/ja",
+        "text": "https://www.jstage.jst.go.jp/article/jamsarms/28/0/28_47/_pdf/-char/ja"
+      },
+      {
+        "url": "https://www.kikokusya.org/kikokujigyou/",
+        "text": "https://www.kikokusya.org/kikokujigyou/"
+      },
+      {
+        "url": "https://gendai.media/articles/-/87665",
+        "text": "https://gendai.media/articles/-/87665"
+      },
+      {
+        "url": "https://www.nwaonline.com/news/2026/jan/27/japanese-court-rules-n-korea-owes-damages/",
+        "text": "https://www.nwaonline.com/news/2026/jan/27/japanese-court-rules-n-korea-owes-damages/"
+      },
+      {
+        "url": "https://www.shugiin.go.jp/internet/itdb_shitsumon.nsf/html/shitsumon/a153022.htm",
+        "text": "https://www.shugiin.go.jp/internet/itdb_shitsumon.nsf/html/shitsumon/a153022.htm"
+      },
+      {
+        "url": "https://www.shugiin.go.jp/internet/itdb_shitsumon.nsf/html/shitsumon/b153022.htm",
+        "text": "https://www.shugiin.go.jp/internet/itdb_shitsumon.nsf/html/shitsumon/b153022.htm"
+      },
+      {
+        "url": "https://agora-web.jp/archives/2025672.html",
+        "text": "https://agora-web.jp/archives/2025672.html"
+      },
+      {
+        "url": "https://go2senkyo.com/seijika/178781/posts/888829",
+        "text": "https://go2senkyo.com/seijika/178781/posts/888829"
+      },
+      {
+        "url": "https://www.kaisyukikou.co.jp/announce/announce_295.html",
+        "text": "https://www.kaisyukikou.co.jp/announce/announce_295.html"
+      },
+      {
+        "url": "https://www.nikkei.com/article/DGXNASDG20048_Q4A520C1CC1000/",
+        "text": "https://www.nikkei.com/article/DGXNASDG20048_Q4A520C1CC1000/"
+      },
+      {
+        "url": "https://www.nikkei.com/article/DGXNASDG2903B_Z20C12A3CC1000/",
+        "text": "https://www.nikkei.com/article/DGXNASDG2903B_Z20C12A3CC1000/"
+      },
+      {
+        "url": "https://www.j-cast.com/2007/06/29008861.html",
+        "text": "https://www.j-cast.com/2007/06/29008861.html"
+      },
+      {
+        "url": "https://www.videonews.com/interviews/20100925_ogata",
+        "text": "https://www.videonews.com/interviews/20100925_ogata"
+      },
+      {
+        "url": "https://ailaw.co.jp/en/blog-en/japan-anti-espionage-law-economic-security-2026/",
+        "text": "https://ailaw.co.jp/en/blog-en/japan-anti-espionage-law-economic-security-2026/"
+      },
+      {
+        "url": "https://www.asianmilitaryreview.com/2026/03/japans-intelligence-overhaul-push-for-a-national-intelligence-agency-and-anti-spy-law/",
+        "text": "https://www.asianmilitaryreview.com/2026/03/japans-intelligence-overhaul-push-for-a-national-intelligence-agency-and-anti-spy-law/"
+      },
+      {
+        "url": "https://www.scmp.com/week-asia/politics/article/3336322/",
+        "text": "https://www.scmp.com/week-asia/politics/article/3336322/"
+      },
+      {
+        "url": "https://www.hrw.org/news/2025/12/09/new-japanese-espionage-law-would-need-to-respect-rights",
+        "text": "https://www.hrw.org/news/2025/12/09/new-japanese-espionage-law-would-need-to-respect-rights"
+      }
+    ]
   },
   {
     "id": "2047702665308901376",
@@ -11675,7 +13366,7 @@
     "title": "統一教会:日本の解散命令と国際法ー洗脳論の再来か",
     "previewText": "原文 : パトリシア・デュバル著 | 2026年4月24日 \n\n高裁は、信用を失い疑似科学とされたマインドコントロール理論をひそかに復活させた。",
     "createdAt": "2026-04-24T17:53:31.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HGr2zWjaQAA4rnu.jpg",
     "likes": 115,
     "views": 6766,
     "retweets": 76,
@@ -11698,7 +13389,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGrndbzaMAAWpLG.jpg"
       },
       {
         "type": "paragraph",
@@ -11767,7 +13459,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGrz7UubYAARBds.jpg"
       },
       {
         "type": "paragraph",
@@ -11844,7 +13537,7 @@
     "title": "Trump Picks Michelle Park Steel: A \"Next Move\" Toward Democratizing China and North Korea?",
     "previewText": "President Donald Trump has nominated former congresswoman Michelle Park Steel as U.S. ambassador to South Korea.\nFor Lee Chun-geun (이춘근), a Korean foreign policy analyst and international relations",
     "createdAt": "2026-04-24T08:37:17.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HGqD9r_a4AAMweK.jpg",
     "likes": 29,
     "views": 1729,
     "retweets": 11,
@@ -11876,7 +13569,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGqElE6aIAARwNh.jpg"
       },
       {
         "type": "paragraph",
@@ -11916,7 +13610,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGqEs_xbQAArsKk.png"
       },
       {
         "type": "paragraph",
@@ -11952,7 +13647,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGqEvuSbMAAGJjH.jpg"
       },
       {
         "type": "paragraph",
@@ -12060,7 +13756,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGqE27pagAAJ2AB.png"
       },
       {
         "type": "paragraph",
@@ -12161,7 +13858,44 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.koreatimes.co.kr/foreignaffairs/20260414/trump-nominates-former-rep-michelle-park-steel-as-us-ambassador-to-s-korea",
+        "text": "https://www.koreatimes.co.kr/foreignaffairs/20260414/trump-nominates-former-rep-michelle-park-steel-as-us-ambassador-to-s-korea"
+      },
+      {
+        "url": "https://www.upi.com/Voices/2026/04/15/perspective-us-ambassador-skorea/2051776289917/",
+        "text": "https://www.upi.com/Voices/2026/04/15/perspective-us-ambassador-skorea/2051776289917/"
+      },
+      {
+        "url": "https://www.ajupress.com/view/20260414072859070",
+        "text": "https://www.ajupress.com/view/20260414072859070"
+      },
+      {
+        "url": "https://www.stripes.com/theaters/asia_pacific/2026-04-14/michelle-park-steel-south-korea-ambassador-21370409.html",
+        "text": "https://www.stripes.com/theaters/asia_pacific/2026-04-14/michelle-park-steel-south-korea-ambassador-21370409.html"
+      },
+      {
+        "url": "https://www.cecc.gov/sites/evo-subsites/cecc.house.gov/files/documents/CHRG-118jhrg51694.pdf",
+        "text": "https://www.cecc.gov/sites/evo-subsites/cecc.house.gov/files/documents/CHRG-118jhrg51694.pdf"
+      },
+      {
+        "url": "https://fortune.com/2026/04/12/pivot-asia-us-china-talks-trump-xi-jinping-iran-war/",
+        "text": "https://fortune.com/2026/04/12/pivot-asia-us-china-talks-trump-xi-jinping-iran-war/"
+      },
+      {
+        "url": "https://foreignpolicy.com/2026/03/26/asia-pacific-trump-pivot-japan-china-defense/",
+        "text": "https://foreignpolicy.com/2026/03/26/asia-pacific-trump-pivot-japan-china-defense/"
+      },
+      {
+        "url": "https://steel.house.gov/media/in-the-news/republicans-blinken-act-against-chinas-organ-harvesting",
+        "text": "https://steel.house.gov/media/in-the-news/republicans-blinken-act-against-chinas-organ-harvesting"
+      },
+      {
+        "url": "https://www.congress.gov/bill/118th-congress/senate-bill/3164/text",
+        "text": "https://www.congress.gov/bill/118th-congress/senate-bill/3164/text"
+      }
+    ]
   },
   {
     "id": "2047515528064073728",
@@ -12169,7 +13903,7 @@
     "title": "統一教会:日本の解散命令と国際法 — 「公の秩序」の保護とは?",
     "previewText": "原文: パトリシア・デュバル 著│Bitter Winter │2026年4月23日掲載 \n「公共の福祉」および「社会的相当性」は、「公の秩序」の一部ではなく、信教の自由を制限する正当な根拠として認められない。",
     "createdAt": "2026-04-24T03:49:54.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HGpBmaPacAAWc9h.jpg",
     "likes": 68,
     "views": 3266,
     "retweets": 39,
@@ -12196,7 +13930,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGo9cUMbcAAF32h.jpg"
       },
       {
         "type": "paragraph",
@@ -12276,7 +14011,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGo-io-aoAAQpmH.jpg"
       },
       {
         "type": "paragraph",
@@ -12336,7 +14072,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGo_kcgaIAAcvTp.jpg"
       },
       {
         "type": "paragraph",
@@ -12482,7 +14219,7 @@
     "title": "South Korea's Silent Rewrite: The Lee Jae-myung Government Races to Change the Constitution",
     "previewText": "A 38-day amendment drive is moving through the cabinet and National Assembly with little public debate and almost no media coverage. One journalist calls it the start of a shift toward socialism.",
     "createdAt": "2026-04-23T11:12:25.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HGlfR7sa0AALQCr.jpg",
     "likes": 19,
     "views": 2417,
     "retweets": 10,
@@ -12505,7 +14242,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGlc0U9bYAA8KVK.jpg"
       },
       {
         "type": "paragraph",
@@ -12586,7 +14324,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGlc4bdbQAAZkl5.png"
       },
       {
         "type": "paragraph",
@@ -12640,7 +14379,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGldINVbMAETL13.png"
       },
       {
         "type": "paragraph",
@@ -12694,7 +14434,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGldOsobMAAo7Vr.png"
       },
       {
         "type": "blockquote",
@@ -12861,7 +14602,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGldWbbbEAEeU5u.png"
       },
       {
         "type": "paragraph",
@@ -12992,7 +14734,64 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.koreatimes.co.kr/southkorea/politics/20260406/cabinet-approves-motion-to-amend-parts-of-the-constitution",
+        "text": "https://www.koreatimes.co.kr/southkorea/politics/20260406/cabinet-approves-motion-to-amend-parts-of-the-constitution"
+      },
+      {
+        "url": "https://www.upi.com/Voices/2026/04/08/perspectives-South-Korea-recent-changes-constitutional-moment/2791775571091/",
+        "text": "https://www.upi.com/Voices/2026/04/08/perspectives-South-Korea-recent-changes-constitutional-moment/2791775571091/"
+      },
+      {
+        "url": "https://www.koreancenter.or.kr/news/articleView.html?idxno=1334547",
+        "text": "https://www.koreancenter.or.kr/news/articleView.html?idxno=1334547"
+      },
+      {
+        "url": "https://en.sedaily.com/news/2026/04/03/six-parties-propose-constitutional-amendment-without-ppp",
+        "text": "https://en.sedaily.com/news/2026/04/03/six-parties-propose-constitutional-amendment-without-ppp"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10710200",
+        "text": "https://www.koreaherald.com/article/10710200"
+      },
+      {
+        "url": "https://constitutionnet.org/news/south-koreas-government-issues-constitutional-amendment-notice",
+        "text": "https://constitutionnet.org/news/south-koreas-government-issues-constitutional-amendment-notice"
+      },
+      {
+        "url": "https://www.ngonews.kr/news/articleView.html?idxno=227647",
+        "text": "https://www.ngonews.kr/news/articleView.html?idxno=227647"
+      },
+      {
+        "url": "https://en.sedaily.com/finance/2026/03/31/six-opposition-parties-to-propose-constitutional-amendment",
+        "text": "https://en.sedaily.com/finance/2026/03/31/six-opposition-parties-to-propose-constitutional-amendment"
+      },
+      {
+        "url": "https://en.sedaily.com/finance/2026/04/09/ppp-urges-president-lee-to-clearly-state-he-will-not-seek",
+        "text": "https://en.sedaily.com/finance/2026/04/09/ppp-urges-president-lee-to-clearly-state-he-will-not-seek"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10553395",
+        "text": "https://www.koreaherald.com/article/10553395"
+      },
+      {
+        "url": "https://evrimagaci.org/gpt/south-korea-proposes-twoterm-presidency-amid-sweeping-reforms-500865",
+        "text": "https://evrimagaci.org/gpt/south-korea-proposes-twoterm-presidency-amid-sweeping-reforms-500865"
+      },
+      {
+        "url": "https://www.upi.com/Top_News/World-News/2026/04/13/korea-Michelle-Steel-nominated-US-ambassador-South-Korea-Trump/5831776134238/",
+        "text": "https://www.upi.com/Top_News/World-News/2026/04/13/korea-Michelle-Steel-nominated-US-ambassador-South-Korea-Trump/5831776134238/"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/foreignaffairs/20260414/who-is-michelle-park-steel-trumps-pick-for-ambassador-to-korea",
+        "text": "https://www.koreatimes.co.kr/foreignaffairs/20260414/who-is-michelle-park-steel-trumps-pick-for-ambassador-to-korea"
+      },
+      {
+        "url": "https://youtu.be/jJcRU184xeU?si=7blXm--civLlPfiI",
+        "text": "https://youtu.be/jJcRU184xeU?si=7blXm--civLlPfiI"
+      }
+    ]
   },
   {
     "id": "2046797765955796993",
@@ -13000,7 +14799,7 @@
     "title": "Dissolution on Paper, Destitution in Practice: Family Federation Staff Face Severance Gap ",
     "previewText": "An internal notice circulated to staff of the Family Federation for World Peace and Unification sets a May 20 dismissal date and limits severance to base pay only. Between the welfare backstop the",
     "createdAt": "2026-04-22T12:30:51.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HGgndFwbUAAUhqz.jpg",
     "likes": 14,
     "views": 3832,
     "retweets": 12,
@@ -13040,7 +14839,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGgiRshbQAAYdub.png"
       },
       {
         "type": "paragraph",
@@ -13073,7 +14873,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGgiaBybsAAaK1Z.jpg"
       },
       {
         "type": "heading",
@@ -13170,7 +14971,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGgiiLmaoAELB7g.jpg"
       },
       {
         "type": "paragraph",
@@ -13271,7 +15073,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGgixKfbgAA4JtI.jpg"
       },
       {
         "type": "heading",
@@ -13366,7 +15169,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGgi2bQacAAfQhJ.jpg"
       },
       {
         "type": "blockquote",
@@ -13387,7 +15191,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGgi6-KacAAzTAN.jpg"
       },
       {
         "type": "paragraph",
@@ -13516,7 +15321,40 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://eastasiaforum.org/2025/05/03/the-unification-church-dissolution-and-japans-evolving-religious-governance/",
+        "text": "https://eastasiaforum.org/2025/05/03/the-unification-church-dissolution-and-japans-evolving-religious-governance/"
+      },
+      {
+        "url": "https://isvd.or.jp/en/columns/unification-church-dissolution-structure",
+        "text": "https://isvd.or.jp/en/columns/unification-church-dissolution-structure"
+      },
+      {
+        "url": "https://www.japantimes.co.jp/news/2026/03/04/japan/crime-legal/unification-church-ruling/",
+        "text": "https://www.japantimes.co.jp/news/2026/03/04/japan/crime-legal/unification-church-ruling/"
+      },
+      {
+        "url": "https://www.tokyoweekender.com/japan-life/news-and-opinion/japan-unification-church-reorganizes-under-new-name/",
+        "text": "https://www.tokyoweekender.com/japan-life/news-and-opinion/japan-unification-church-reorganizes-under-new-name/"
+      },
+      {
+        "url": "https://www.jurist.org/news/2025/03/japan-district-court-orders-disbandment-of-controversial-unification-church/",
+        "text": "https://www.jurist.org/news/2025/03/japan-district-court-orders-disbandment-of-controversial-unification-church/"
+      },
+      {
+        "url": "https://www.nippon.com/en/news/yjj2026030900405/",
+        "text": "https://www.nippon.com/en/news/yjj2026030900405/"
+      },
+      {
+        "url": "https://www.upi.com/Top_News/World-News/2026/03/06/japanese-court-dissolves-unification-church/5301772857414/",
+        "text": "https://www.upi.com/Top_News/World-News/2026/03/06/japanese-court-dissolves-unification-church/5301772857414/"
+      },
+      {
+        "url": "https://youtu.be/70FxWU1BBiM?si=KIe9Xsop6axDN5b9",
+        "text": "https://youtu.be/70FxWU1BBiM?si=KIe9Xsop6axDN5b9"
+      }
+    ]
   },
   {
     "id": "2046548619730485248",
@@ -13524,7 +15362,7 @@
     "title": "Not to Kill Communists, but to Save Them\": 31 Years of Inter-Korean Engagement",
     "previewText": "December 6, 1991. Heungnam, South Hamgyong Province — the ground where a young missionary had once been sentenced to five years of hard labor by the communist regime.\nThat same man now returned as a",
     "createdAt": "2026-04-21T17:46:16.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HGd7SoebkAAiW6q.jpg",
     "likes": 6,
     "views": 633,
     "retweets": 4,
@@ -13552,7 +15390,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGcR-UMa4AA0mfo.png"
       },
       {
         "type": "paragraph",
@@ -13648,7 +15487,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGcSbVTaMAAOD4n.jpg"
       },
       {
         "type": "paragraph",
@@ -13679,7 +15519,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGcSk0LbwAAhXL_.jpg"
       },
       {
         "type": "heading",
@@ -13711,7 +15552,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGcSryKagAAjgxj.png"
       },
       {
         "type": "paragraph",
@@ -13932,7 +15774,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGcTMPaboAQaE4k.png"
       },
       {
         "type": "paragraph",
@@ -13997,7 +15840,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGcUbhraIAAmVfy.png"
       },
       {
         "type": "paragraph",
@@ -14117,7 +15961,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGcTcAYbYAAEvpE.png"
       },
       {
         "type": "paragraph",
@@ -14470,7 +16315,104 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.jiji.com/jc/v8?id=2022korea32",
+        "text": "https://www.jiji.com/jc/v8?id=2022korea32"
+      },
+      {
+        "url": "https://www.nikkei.com/article/DGXZQOCB150C70V10C22A8000000/",
+        "text": "https://www.nikkei.com/article/DGXZQOCB150C70V10C22A8000000/"
+      },
+      {
+        "url": "https://bitterwinter.org/%E5%BF%98%E3%82%8C%E3%82%89%E3%82%8C%E3%81%9F%E5%90%8C%E7%9B%9F%E3%82%92%E8%A6%8B%E3%81%A4%E3%82%81%E7%9B%B4%E3%81%99%EF%BC%9A%E9%87%91%E5%A4%A7%E4%B8%AD%E3%80%81%E6%96%87%E5%A4%AB%E5%A6%BB%E3%80%81/",
+        "text": "https://bitterwinter.org/%E5%BF%98%E3%82%8C%E3%82%89%E3%82%8C%E3%81%9F%E5%90%8C%E7%9B%9F%E3%82%92%E8%A6%8B%E3%81%A4%E3%82%81%E7%9B%B4%E3%81%99%EF%BC%9A%E9%87%91%E5%A4%A7%E4%B8%AD%E3%80%81%E6%96%87%E5%A4%AB%E5%A6%BB%E3%80%81/"
+      },
+      {
+        "url": "https://bitterwinter.org/revisiting-a-forgotten-alliance-kim-dae-jung-the-moons-and-koreas-democratic-journey/",
+        "text": "https://bitterwinter.org/revisiting-a-forgotten-alliance-kim-dae-jung-the-moons-and-koreas-democratic-journey/"
+      },
+      {
+        "url": "https://www.kogensha.jp/news_app/detail.php?id=29301",
+        "text": "https://www.kogensha.jp/news_app/detail.php?id=29301"
+      },
+      {
+        "url": "https://familyforum.jp/2014062131248",
+        "text": "https://familyforum.jp/2014062131248"
+      },
+      {
+        "url": "https://history.familyfed.org/hyung-jin-moon-1/hyung-jin-moons-visit-to-north-korea-interview-of-sang-gwon-park",
+        "text": "https://history.familyfed.org/hyung-jin-moon-1/hyung-jin-moons-visit-to-north-korea-interview-of-sang-gwon-park"
+      },
+      {
+        "url": "http://www.reverendsunmyungmoon.org/works_media.html",
+        "text": "http://www.reverendsunmyungmoon.org/works_media.html"
+      },
+      {
+        "url": "https://foreignpolicy.com/2012/09/04/the-strange-life-of-reverend-sun-myung-moon/",
+        "text": "https://foreignpolicy.com/2012/09/04/the-strange-life-of-reverend-sun-myung-moon/"
+      },
+      {
+        "url": "https://www.theatlantic.com/international/archive/2012/09/sun-myung-moons-groundbreaking-campaign-to-open-north-korea/262057/",
+        "text": "https://www.theatlantic.com/international/archive/2012/09/sun-myung-moons-groundbreaking-campaign-to-open-north-korea/262057/"
+      },
+      {
+        "url": "https://www.thedailybeast.com/the-bush-administrations-secret-link-to-north-korea/",
+        "text": "https://www.thedailybeast.com/the-bush-administrations-secret-link-to-north-korea/"
+      },
+      {
+        "url": "https://prospect.org/features/dear-leader-s-paper-moon/",
+        "text": "https://prospect.org/features/dear-leader-s-paper-moon/"
+      },
+      {
+        "url": "https://www.csmonitor.com/World/Asia-Pacific/2012/0903/Korean-messiah-leaves-behind-religious-and-business-empire",
+        "text": "https://www.csmonitor.com/World/Asia-Pacific/2012/0903/Korean-messiah-leaves-behind-religious-and-business-empire"
+      },
+      {
+        "url": "https://www.washingtontimes.com/specials/rev-sun-myung-moon-remembered/",
+        "text": "https://www.washingtontimes.com/specials/rev-sun-myung-moon-remembered/"
+      },
+      {
+        "url": "https://koryogroup.com/blog/the-history-of-pyeonghwa-motors-part-1-1999-2012",
+        "text": "https://koryogroup.com/blog/the-history-of-pyeonghwa-motors-part-1-1999-2012"
+      },
+      {
+        "url": "https://koryogroup.com/blog/the-history-of-pyeonghwa-motors-part-2-2012-present",
+        "text": "https://koryogroup.com/blog/the-history-of-pyeonghwa-motors-part-2-2012-present"
+      },
+      {
+        "url": "https://koryogroup.com/travel-guide/pyeonghwa-motors-dealership-north-korea-travel-guide",
+        "text": "https://koryogroup.com/travel-guide/pyeonghwa-motors-dealership-north-korea-travel-guide"
+      },
+      {
+        "url": "https://www.nkeconwatch.com/category/organizaitons/pyonghwa-motors/",
+        "text": "https://www.nkeconwatch.com/category/organizaitons/pyonghwa-motors/"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/amp/world/20151104/north-korean-automobile-company-still-produces-vehicles",
+        "text": "https://www.koreatimes.co.kr/amp/world/20151104/north-korean-automobile-company-still-produces-vehicles"
+      },
+      {
+        "url": "https://www.cfr.org/expert/scott-snyder",
+        "text": "https://www.cfr.org/expert/scott-snyder"
+      },
+      {
+        "url": "https://www.ncnk.org/resources/briefing-papers/all-briefing-papers/inter-korean-relations",
+        "text": "https://www.ncnk.org/resources/briefing-papers/all-briefing-papers/inter-korean-relations"
+      },
+      {
+        "url": "https://www.38north.org/",
+        "text": "https://www.38north.org/"
+      },
+      {
+        "url": "https://www.upf.org/",
+        "text": "https://www.upf.org/"
+      },
+      {
+        "url": "https://www.hyunjinmoon.com/rev-dr-sun-myung-moons-quest-north-south-reunification/",
+        "text": "https://www.hyunjinmoon.com/rev-dr-sun-myung-moons-quest-north-south-reunification/"
+      }
+    ]
   },
   {
     "id": "2045117579900125184",
@@ -14478,7 +16420,7 @@
     "title": "Michelle Park Nomination Is Trump's Message to Block China's Election-Based Subversion of S. Korea",
     "previewText": "Translation of Hanmi Ilbo article by reporter Heo Gyeom, April 17, 2026\nTrump's America puts confronting communism first… \"Korea is a crucial foothold\"\n\"Create meaningful triggers so the U.S. and",
     "createdAt": "2026-04-17T12:41:13.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HGG43elasAAT02u.jpg",
     "likes": 26,
     "views": 3945,
     "retweets": 12,
@@ -14563,7 +16505,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGG4HWfaMAAEBuV.png"
       },
       {
         "type": "paragraph",
@@ -14746,7 +16689,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGG4elQaQAAdLuH.png"
       },
       {
         "type": "heading",
@@ -14837,7 +16781,12 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.hanmiilbo.kr/news/view.php?idx=7834&mcode=m93atmw",
+        "text": "https://www.hanmiilbo.kr/news/view.php?idx=7834&mcode=m93atmw"
+      }
+    ]
   },
   {
     "id": "2045088898754510848",
@@ -14845,7 +16794,7 @@
     "title": "ミシェル・パク指名は、選挙を通じた中国による韓国転覆を阻止するトランプ大統領のメッセージ",
     "previewText": "Hanmiilbo ホ・ギョム記者 2026年4月17日記事を日本語訳",
     "createdAt": "2026-04-17T12:29:56.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HGG3fgQb0AAcTGv.jpg",
     "likes": 42,
     "views": 2214,
     "retweets": 20,
@@ -14869,7 +16818,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGG0cdFa4AAquPJ.png"
       },
       {
         "type": "heading",
@@ -15082,7 +17032,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HGGncuFbkAABnd_.png"
       },
       {
         "type": "heading",
@@ -15187,7 +17138,12 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.hanmiilbo.kr/news/view.php?idx=7834&mcode=m93atmw",
+        "text": "https://www.hanmiilbo.kr/news/view.php?idx=7834&mcode=m93atmw"
+      }
+    ]
   },
   {
     "id": "2044023825927700480",
@@ -15195,7 +17151,7 @@
     "title": "Trump Taps Korean American Ex-Lawmaker Michelle Park Steel as Next U.S. Ambassador to Seoul",
     "previewText": "Why She Is What the U.S.-Korea Alliance Needs Right Now\n \nOn April 13, 2026, U.S. President Donald Trump (@realDonaldTrump) nominated Korean American former congresswoman Michelle Steel",
     "createdAt": "2026-04-14T13:56:33.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HF3o9MdboAETLSp.jpg",
     "likes": 64,
     "views": 2942,
     "retweets": 22,
@@ -15218,7 +17174,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HF3tMnJasAEbCNa.jpg"
       },
       {
         "type": "paragraph",
@@ -15383,7 +17340,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HF3tbXxasAc4NOJ.jpg"
       },
       {
         "type": "paragraph",
@@ -15435,7 +17393,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HF3tjR5a0AA2q3o.jpg"
       },
       {
         "type": "paragraph",
@@ -15494,7 +17453,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HF3tpK9bcAAp3pb.png"
       },
       {
         "type": "paragraph",
@@ -15755,7 +17715,68 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.upi.com/Top_News/World-News/2026/04/13/korea-Michelle-Steel-nominated-US-ambassador-South-Korea-Trump/5831776134238/",
+        "text": "https://www.upi.com/Top_News/World-News/2026/04/13/korea-Michelle-Steel-nominated-US-ambassador-South-Korea-Trump/5831776134238/"
+      },
+      {
+        "url": "https://www.stripes.com/theaters/asia_pacific/2026-04-14/michelle-park-steel-south-korea-ambassador-21370409.html",
+        "text": "https://www.stripes.com/theaters/asia_pacific/2026-04-14/michelle-park-steel-south-korea-ambassador-21370409.html"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10716387",
+        "text": "https://www.koreaherald.com/article/10716387"
+      },
+      {
+        "url": "https://www.koreaherald.com/article/10716904",
+        "text": "https://www.koreaherald.com/article/10716904"
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/foreignaffairs/20260414/trump-nominates-former-rep-michelle-park-steel-as-us-ambassador-to-s-korea",
+        "text": "https://www.koreatimes.co.kr/foreignaffairs/20260414/trump-nominates-former-rep-michelle-park-steel-as-us-ambassador-to-s-korea"
+      },
+      {
+        "url": "https://www.nknews.org/2026/04/trump-nominates-former-congresswoman-michelle-steel-as-ambassador-to-seoul/",
+        "text": "https://www.nknews.org/2026/04/trump-nominates-former-congresswoman-michelle-steel-as-ambassador-to-seoul/"
+      },
+      {
+        "url": "https://www.theepochtimes.com/us/seoul-born-former-congresswoman-nominated-as-us-ambassador-to-south-korea-6011504",
+        "text": "https://www.theepochtimes.com/us/seoul-born-former-congresswoman-nominated-as-us-ambassador-to-south-korea-6011504"
+      },
+      {
+        "url": "https://www.ajupress.com/view/20260414072859070",
+        "text": "https://www.ajupress.com/view/20260414072859070"
+      },
+      {
+        "url": "https://en.sedaily.com/international/2026/04/14/breaking-news-trump-nominates-former-republican-rep",
+        "text": "https://en.sedaily.com/international/2026/04/14/breaking-news-trump-nominates-former-republican-rep"
+      },
+      {
+        "url": "https://en.fnnews.com/news/202604140821094082",
+        "text": "https://en.fnnews.com/news/202604140821094082"
+      },
+      {
+        "url": "https://www.investing.com/news/stock-market-news/trump-nominates-former-lawmaker-michelle-steel-as-us-ambassador-to-south-korea-4611446",
+        "text": "https://www.investing.com/news/stock-market-news/trump-nominates-former-lawmaker-michelle-steel-as-us-ambassador-to-south-korea-4611446"
+      },
+      {
+        "url": "https://www.dailygazette.com/tribune/former-rep-michelle-steel-picked-as-trump-s-ambassador-to-south-korea/article_240ed488-b6c9-5c19-b1b7-cf98b37e0fb0.html",
+        "text": "https://www.dailygazette.com/tribune/former-rep-michelle-steel-picked-as-trump-s-ambassador-to-south-korea/article_240ed488-b6c9-5c19-b1b7-cf98b37e0fb0.html"
+      },
+      {
+        "url": "https://www.independentwomen.com/people/rep-michelle-steel/",
+        "text": "https://www.independentwomen.com/people/rep-michelle-steel/"
+      },
+      {
+        "url": "http://house.gov/",
+        "text": "http://house.gov/"
+      },
+      {
+        "url": "https://steel.house.gov/media/press-releases/steel-encourages-korean-president-improve-relations-japan",
+        "text": "https://steel.house.gov/media/press-releases/steel-encourages-korean-president-improve-relations-japan"
+      }
+    ]
   },
   {
     "id": "2042599976535306240",
@@ -15763,7 +17784,7 @@
     "title": "The False Promises of Communism: Why Ideals Without God Always Collapse",
     "previewText": "What Communism Claims to Offer — and What Religion Actually Delivers\n \nCommunism appealed to humanity's deepest longings.\nEquality, solidarity, dignity for the poor — for the early idealists at least,",
     "createdAt": "2026-04-11T13:22:42.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HFoIYLkbAAA7heP.jpg",
     "likes": 26,
     "views": 1313,
     "retweets": 10,
@@ -15786,7 +17807,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFjGNR7bcAAl_cu.jpg"
       },
       {
         "type": "paragraph",
@@ -15856,7 +17878,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFjGVGaakAQKR7E.png"
       },
       {
         "type": "paragraph",
@@ -15937,7 +17960,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFoIeP2akAQGGfV.jpg"
       },
       {
         "type": "paragraph",
@@ -16008,7 +18032,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFjGhy_bcAAJ2-2.png"
       },
       {
         "type": "paragraph",
@@ -16102,7 +18127,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFjGx5WbUAAqb4V.png"
       },
       {
         "type": "heading",
@@ -16146,7 +18172,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFjG38Oa0AApfC3.png"
       },
       {
         "type": "paragraph",
@@ -16176,7 +18203,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFjMCovaIAAqwgV.jpg"
       },
       {
         "type": "heading",
@@ -16433,7 +18461,80 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.britannica.com/topic/nomenklatura",
+        "text": "https://www.britannica.com/topic/nomenklatura"
+      },
+      {
+        "url": "https://communistcrimes.org/en/elite-and-their-privileges-soviet-union",
+        "text": "https://communistcrimes.org/en/elite-and-their-privileges-soviet-union"
+      },
+      {
+        "url": "https://www.loc.gov/exhibits/archives/intn.html",
+        "text": "https://www.loc.gov/exhibits/archives/intn.html"
+      },
+      {
+        "url": "https://www.hrw.org/news/2016/11/26/cuba-fidel-castros-record-repression",
+        "text": "https://www.hrw.org/news/2016/11/26/cuba-fidel-castros-record-repression"
+      },
+      {
+        "url": "https://www.hrw.org/report/2009/11/19/new-castro-same-cuba/political-prisoners-post-fidel-era",
+        "text": "https://www.hrw.org/report/2009/11/19/new-castro-same-cuba/political-prisoners-post-fidel-era"
+      },
+      {
+        "url": "https://www.britannica.com/biography/Fidel-Castro",
+        "text": "https://www.britannica.com/biography/Fidel-Castro"
+      },
+      {
+        "url": "https://latinoamerica21.com/en/dehumanizing-discourse-and-repression-in-cuba/",
+        "text": "https://latinoamerica21.com/en/dehumanizing-discourse-and-repression-in-cuba/"
+      },
+      {
+        "url": "https://www.britannica.com/topic/Juche",
+        "text": "https://www.britannica.com/topic/Juche"
+      },
+      {
+        "url": "https://sites.uab.edu/humanrights/2022/12/05/how-the-north-korean-regime-uses-cult-like-tactics-to-maintain-power/",
+        "text": "https://sites.uab.edu/humanrights/2022/12/05/how-the-north-korean-regime-uses-cult-like-tactics-to-maintain-power/"
+      },
+      {
+        "url": "https://www.britannica.com/place/North-Korea",
+        "text": "https://www.britannica.com/place/North-Korea"
+      },
+      {
+        "url": "https://www.hrw.org/report/2021/04/19/break-their-lineage-break-their-roots/chinas-crimes-against-humanity-targeting",
+        "text": "https://www.hrw.org/report/2021/04/19/break-their-lineage-break-their-roots/chinas-crimes-against-humanity-targeting"
+      },
+      {
+        "url": "https://www.cfr.org/backgrounders/religion-china",
+        "text": "https://www.cfr.org/backgrounders/religion-china"
+      },
+      {
+        "url": "https://www.state.gov/reports/2020-report-on-international-religious-freedom/china/",
+        "text": "https://www.state.gov/reports/2020-report-on-international-religious-freedom/china/"
+      },
+      {
+        "url": "https://www.globalr2p.org/countries/china/",
+        "text": "https://www.globalr2p.org/countries/china/"
+      },
+      {
+        "url": "https://reason.com/2021/11/20/the-pope-who-helped-bring-down-communism/",
+        "text": "https://reason.com/2021/11/20/the-pope-who-helped-bring-down-communism/"
+      },
+      {
+        "url": "http://poland.pl/",
+        "text": "http://poland.pl/"
+      },
+      {
+        "url": "https://poland.pl/history/historical-figures/pope-changed-poland/",
+        "text": "https://poland.pl/history/historical-figures/pope-changed-poland/"
+      },
+      {
+        "url": "https://www.detroitcatholic.com/news/first-visit-to-poland-led-to-iron-curtains-fall-historians-say-45-years-after-st-john-paul-ii-landmark-trip",
+        "text": "https://www.detroitcatholic.com/news/first-visit-to-poland-led-to-iron-curtains-fall-historians-say-45-years-after-st-john-paul-ii-landmark-trip"
+      }
+    ]
   },
   {
     "id": "2042276769810829313",
@@ -16441,7 +18542,7 @@
     "title": "Why Dr. Hak Ja Han Deserves the Nobel Prize — A Record of Her Life's Work",
     "previewText": "How did a woman who lost her homeland to war come to sit at the same table as world leaders? And why is a former EU Special Envoy putting her name forward for the Nobel Peace Prize right now?\nOn March",
     "createdAt": "2026-04-09T18:17:33.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HFe6X2pa0AAwrHq.jpg",
     "likes": 87,
     "views": 4517,
     "retweets": 49,
@@ -16461,7 +18562,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFejJpybwAECQOc.jpg"
       },
       {
         "type": "paragraph",
@@ -16556,7 +18658,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFegkZbbcAAaNQK.png"
       },
       {
         "type": "paragraph",
@@ -16581,7 +18684,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFegqNya8AAlEpc.jpg"
       },
       {
         "type": "paragraph",
@@ -16650,7 +18754,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFegxRbb0AAS8r7.jpg"
       },
       {
         "type": "paragraph",
@@ -16682,7 +18787,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFeg3AkbYAAiKej.jpg"
       },
       {
         "type": "paragraph",
@@ -16711,7 +18817,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFeg-_jaAAAmJKt.jpg"
       },
       {
         "type": "paragraph",
@@ -16864,7 +18971,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFej8GSbQAI1YCp.png"
       },
       {
         "type": "paragraph",
@@ -16885,7 +18993,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFehL7fbwAAH2rz.jpg"
       },
       {
         "type": "paragraph",
@@ -16982,7 +19091,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFehRvBaAAAuCaa.jpg"
       },
       {
         "type": "paragraph",
@@ -17055,7 +19165,8 @@
         "entityKey": "9",
         "entityKeys": [
           "9"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFehX09a8AAH1mM.jpg"
       },
       {
         "type": "paragraph",
@@ -17072,7 +19183,8 @@
         "entityKey": "10",
         "entityKeys": [
           "10"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFehgi-bMAAfBgS.jpg"
       },
       {
         "type": "paragraph",
@@ -17114,7 +19226,8 @@
         "entityKey": "11",
         "entityKeys": [
           "11"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFeh3F7b0AEMvPD.jpg"
       },
       {
         "type": "paragraph",
@@ -17139,7 +19252,8 @@
         "entityKey": "12",
         "entityKeys": [
           "12"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HFeiM5_aYAA91Xm.jpg"
       },
       {
         "type": "paragraph",
@@ -17474,7 +19588,104 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://www.upf.org/post/upf-co-founder-dr-hak-ja-han-nominated-for-nobel-peace-prize",
+        "text": "https://www.upf.org/post/upf-co-founder-dr-hak-ja-han-nominated-for-nobel-peace-prize"
+      },
+      {
+        "url": "https://uk.upf.org/hak-ja-han-2026-nobel-peace-prize-nominee",
+        "text": "https://uk.upf.org/hak-ja-han-2026-nobel-peace-prize-nominee"
+      },
+      {
+        "url": "https://unificationnews.eu/mother-han-nominated-for-nobel-peace-prize-2026/",
+        "text": "https://unificationnews.eu/mother-han-nominated-for-nobel-peace-prize-2026/"
+      },
+      {
+        "url": "https://foref-europe.org/blog/2025/09/22/south-koreas-religious-purge/",
+        "text": "https://foref-europe.org/blog/2025/09/22/south-koreas-religious-purge/"
+      },
+      {
+        "url": "https://www.nobelpeaceprize.org/nobel-peace-prize/nomination/",
+        "text": "https://www.nobelpeaceprize.org/nobel-peace-prize/nomination/"
+      },
+      {
+        "url": "https://www.nobelprize.org/nomination/peace/",
+        "text": "https://www.nobelprize.org/nomination/peace/"
+      },
+      {
+        "url": "https://www.upf.org/about/founders/dr-hak-ja-han-moon",
+        "text": "https://www.upf.org/about/founders/dr-hak-ja-han-moon"
+      },
+      {
+        "url": "https://motherofpeace.com/dr-hak-ja-han-moon-bio",
+        "text": "https://motherofpeace.com/dr-hak-ja-han-moon-bio"
+      },
+      {
+        "url": "https://store.familyfed.org/products/mother-of-peace-a-memoir-by-hak-ja-han-moon",
+        "text": "https://store.familyfed.org/products/mother-of-peace-a-memoir-by-hak-ja-han-moon"
+      },
+      {
+        "url": "https://www.upf.org/core-program/world-summit",
+        "text": "https://www.upf.org/core-program/world-summit"
+      },
+      {
+        "url": "https://www.upf.org/post/world-summit-2025-program-summary",
+        "text": "https://www.upf.org/post/world-summit-2025-program-summary"
+      },
+      {
+        "url": "https://archive.upf.org/conferences-2/429-peace-summit-2023",
+        "text": "https://archive.upf.org/conferences-2/429-peace-summit-2023"
+      },
+      {
+        "url": "http://sunhakpeaceprize.org/en/about/founder_intro.php",
+        "text": "http://sunhakpeaceprize.org/en/about/founder_intro.php"
+      },
+      {
+        "url": "https://eume.upf.org/what-we-do/conferences/ilc/591-2025/596-world-summit-2025/2381-the-6th-sunhak-peace-prize-award-ceremony-is-held-in-seoul",
+        "text": "https://eume.upf.org/what-we-do/conferences/ilc/591-2025/596-world-summit-2025/2381-the-6th-sunhak-peace-prize-award-ceremony-is-held-in-seoul"
+      },
+      {
+        "url": "https://www.wfwp.org/",
+        "text": "https://www.wfwp.org/"
+      },
+      {
+        "url": "https://www.upf.org/about",
+        "text": "https://www.upf.org/about"
+      },
+      {
+        "url": "https://grokipedia.com/page/Hak_Ja_Han",
+        "text": "https://grokipedia.com/page/Hak_Ja_Han"
+      },
+      {
+        "url": "https://motherofpeace.com/dr-hak-ja-han-moon-bio",
+        "text": "https://motherofpeace.com/dr-hak-ja-han-moon-bio"
+      },
+      {
+        "url": "https://unificationnews.eu/hak-ja-han/",
+        "text": "https://unificationnews.eu/hak-ja-han/"
+      },
+      {
+        "url": "https://archive.upf.org/rallyofhope",
+        "text": "https://archive.upf.org/rallyofhope"
+      },
+      {
+        "url": "https://www.washingtontimes.com/news/2025/sep/23/religious-freedom-advocates-condemn-south-korean-arrest-family/",
+        "text": "https://www.washingtontimes.com/news/2025/sep/23/religious-freedom-advocates-condemn-south-korean-arrest-family/"
+      },
+      {
+        "url": "https://familyfedihq.org/2025/10/christian-leaders-detained-without-conviction-in-south-korea/",
+        "text": "https://familyfedihq.org/2025/10/christian-leaders-detained-without-conviction-in-south-korea/"
+      },
+      {
+        "url": "https://eume.upf.org/resources/publications/upfi-connections",
+        "text": "https://eume.upf.org/resources/publications/upfi-connections"
+      },
+      {
+        "url": "https://bitterwinter.org/figel-the-unification-church-case-highlights-the-threat-to-religious-freedom-in-japan/",
+        "text": "https://bitterwinter.org/figel-the-unification-church-case-highlights-the-threat-to-religious-freedom-in-japan/"
+      }
+    ]
   },
   {
     "id": "2029814586296397824",
@@ -21801,7 +24012,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HCPg4yibEAQk036.jpg"
       },
       {
         "type": "image",
@@ -22455,7 +24667,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HCFr3sqagAASCL8.png"
       },
       {
         "type": "heading",
@@ -25249,7 +27462,7 @@
     "title": "China's Religious Crackdown: Trump to Raise Pastor Ezra Jin's Release with Xi at Beijing Summit",
     "previewText": "President Donald Trump has pledged to raise the release of Pastor Jin Mingri (金明日), known in English as Ezra Jin, with Chinese President Xi Jinping during his visit to Beijing beginning May 13. The",
     "createdAt": "1970-01-01T00:00:00.000Z",
-    "coverImage": null,
+    "coverImage": "https://pbs.twimg.com/media/HIMvM3OaIAAzYVm.jpg",
     "likes": 18,
     "views": 1146,
     "retweets": 8,
@@ -25261,7 +27474,8 @@
         "entityKey": "0",
         "entityKeys": [
           "0"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIMkzqmaQAAtBpX.jpg"
       },
       {
         "type": "paragraph",
@@ -25301,7 +27515,8 @@
         "entityKey": "1",
         "entityKeys": [
           "1"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIMk6oIb0AArwTm.jpg"
       },
       {
         "type": "paragraph",
@@ -25329,7 +27544,8 @@
         "entityKey": "2",
         "entityKeys": [
           "2"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIMlAfrbYAAlZz_.jpg"
       },
       {
         "type": "paragraph",
@@ -25369,7 +27585,8 @@
         "entityKey": "3",
         "entityKeys": [
           "3"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIMlKfea8AAwvLo.jpg"
       },
       {
         "type": "paragraph",
@@ -25404,7 +27621,8 @@
         "entityKey": "4",
         "entityKeys": [
           "4"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIMlObqa4AA0ZL5.png"
       },
       {
         "type": "paragraph",
@@ -25433,7 +27651,8 @@
         "entityKey": "5",
         "entityKeys": [
           "5"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIMlTvWaIAENuRh.png"
       },
       {
         "type": "paragraph",
@@ -25462,7 +27681,8 @@
         "entityKey": "6",
         "entityKeys": [
           "6"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIMlZp4aYAAPLbs.png"
       },
       {
         "type": "paragraph",
@@ -25501,7 +27721,8 @@
         "entityKey": "7",
         "entityKeys": [
           "7"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIMlh4gbMAAUkV-.jpg"
       },
       {
         "type": "paragraph",
@@ -25603,7 +27824,8 @@
         "entityKey": "8",
         "entityKeys": [
           "8"
-        ]
+        ],
+        "imageUrl": "https://pbs.twimg.com/media/HIMlxCDbwAAG-TW.png"
       },
       {
         "type": "heading",
@@ -25968,6 +28190,59 @@
         "type": "inline"
       }
     ],
-    "links": []
+    "links": [
+      {
+        "url": "https://youtu.be/swnRGet-5Ww",
+        "text": "https://youtu.be/swnRGet-5Ww"
+      },
+      {
+        "url": "https://www.ncregister.com/cna/trump-vows-to-discuss-freedom-of-jimmy-lai-in-china",
+        "text": "https://www.ncregister.com/cna/trump-vows-to-discuss-freedom-of-jimmy-lai-in-china"
+      },
+      {
+        "url": "https://www.ewtnnews.com/world/us/trump-vows-to-discuss-freedom-of-jimmy-lai-christian-leaders-detained-in-china",
+        "text": "https://www.ewtnnews.com/world/us/trump-vows-to-discuss-freedom-of-jimmy-lai-christian-leaders-detained-in-china"
+      },
+      {
+        "url": "https://wltreport.com/2026/05/12/trump-xi-taiwan-arms-sales-jimmy-lai-jailed-pastor/",
+        "text": "https://wltreport.com/2026/05/12/trump-xi-taiwan-arms-sales-jimmy-lai-jailed-pastor/"
+      },
+      {
+        "url": "https://www.foxnews.com/opinion/father-pastor-imprisoned-china-president-trump-please-save-him",
+        "text": "https://www.foxnews.com/opinion/father-pastor-imprisoned-china-president-trump-please-save-him"
+      },
+      {
+        "url": "https://www.hrw.org/news/2025/10/14/china-nationwide-crackdown-on-major-underground-church",
+        "text": "https://www.hrw.org/news/2025/10/14/china-nationwide-crackdown-on-major-underground-church"
+      },
+      {
+        "url": "https://www.npr.org/2025/10/12/nx-s1-5571936/zion-church-ezra-jin-arrest-china-christian",
+        "text": "https://www.npr.org/2025/10/12/nx-s1-5571936/zion-church-ezra-jin-arrest-china-christian"
+      },
+      {
+        "url": "https://www.cnn.com/2025/10/29/china/zion-church-crackdown-ezra-jin-trump-xi-intl-hnk-dst",
+        "text": "https://www.cnn.com/2025/10/29/china/zion-church-crackdown-ezra-jin-trump-xi-intl-hnk-dst"
+      },
+      {
+        "url": "https://www.csw.org.uk/2025/10/14/press/6639/article.htm",
+        "text": "https://www.csw.org.uk/2025/10/14/press/6639/article.htm"
+      },
+      {
+        "url": "https://foreignpolicy.com/2026/03/25/china-churches-crackdown-xi-zion-jin-mingri/",
+        "text": "https://foreignpolicy.com/2026/03/25/china-churches-crackdown-xi-zion-jin-mingri/"
+      },
+      {
+        "url": "https://www.tabletmag.com/sections/news/articles/china-war-christians-zion-church",
+        "text": "https://www.tabletmag.com/sections/news/articles/china-war-christians-zion-church"
+      },
+      {
+        "url": "https://www.opendoorsuk.org/news/latest-news/china-churches-raids/",
+        "text": "https://www.opendoorsuk.org/news/latest-news/china-churches-raids/"
+      },
+      {
+        "url": "https://www.hudson.org/why-trump-should-call-release-political-prisoners-negotiations-china-olivia-enos",
+        "text": "https://www.hudson.org/why-trump-should-call-release-political-prisoners-negotiations-china-olivia-enos"
+      }
+    ]
   }
 ]

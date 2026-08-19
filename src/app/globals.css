@@ -101,6 +101,43 @@ body {
 html { scroll-behavior: smooth; }
 ::selection { background: var(--tm-selection); color: var(--tm-heading); }
 
+.tm-language-switcher {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1000;
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid rgba(200, 167, 100, .42);
+  border-radius: 999px;
+  background: rgba(12, 9, 13, .92);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .28);
+  backdrop-filter: blur(14px);
+}
+
+.tm-language-switcher button {
+  min-height: 30px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 10px;
+  background: transparent;
+  color: #b9afb8;
+  font: 700 9px/1 var(--font-inter), sans-serif;
+  letter-spacing: .04em;
+  cursor: pointer;
+}
+
+.tm-language-switcher button[aria-pressed="true"] {
+  background: #c8a764;
+  color: #160f17;
+}
+
+@media (max-width: 640px) {
+  .tm-language-switcher { right: 10px; bottom: 10px; }
+  .tm-language-switcher button { min-height: 28px; padding: 0 8px; }
+}
+
 /* Light-mode accent adjustments for colored badges */
 [data-theme="light"] .text-red-400 { color: #dc2626; }
 [data-theme="light"] .text-green-400 { color: #16a34a; }
