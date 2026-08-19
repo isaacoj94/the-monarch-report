@@ -44,7 +44,7 @@ export default function MonarchNewsHero() {
         <p className={styles.dek}>{text.dek}</p>
         <div className={styles.actions}>
           <a className={styles.primary} href="#now">{text.briefing}&nbsp; →</a>
-          <Link className={styles.secondary} href="/documentary">{text.films}</Link>
+          <Link className={styles.secondary} href="/films">{text.films}</Link>
         </div>
       </div>
       <div className={styles.sourceLine}>

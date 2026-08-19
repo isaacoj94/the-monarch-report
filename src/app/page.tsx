@@ -134,7 +134,7 @@ export default function Home() {
             <a href="#now">{copy.now}</a>
             <Link href="/articles">{copy.articles}</Link>
             <Link href="/dashboard">{copy.data}</Link>
-            <Link href="/documentary">{copy.films}</Link>
+            <Link href="/films">{copy.films}</Link>
           </nav>
           <a className={styles.subscribeTop} href="#newsletter">{copy.subscribe}</a>
         </div>
@@ -243,7 +243,7 @@ export default function Home() {
           <h2>{copy.filmTitle}</h2>
           <p>{copy.filmDek}</p>
         </div>
-        <Link href="/documentary">{copy.enterFilms} <span>↗</span></Link>
+        <Link href="/films">{copy.enterFilms} <span>↗</span></Link>
       </section>
 
       <section id="newsletter" className={styles.newsletter}>
@@ -265,7 +265,7 @@ export default function Home() {
       <footer className={styles.footer}>
         <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} />
         <p>Independent reporting on Korea, democracy and freedom of belief across Asia.</p>
-        <div><a href={siteConfig.x}>𝕏</a><Link href="/articles">Articles</Link><Link href="/documentary">Films</Link></div>
+        <div><a href={siteConfig.x}>𝕏</a><Link href="/articles">Articles</Link><Link href="/films">Films</Link></div>
       </footer>
     </main>
   );
