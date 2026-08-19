@@ -38,7 +38,6 @@ function clock(value: number) {
 export function SecureVimeoPlayer({ videoId, title }: { videoId: string; title: string }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerRef = useRef<Player | null>(null);
-  const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -67,24 +66,21 @@ export function SecureVimeoPlayer({ videoId, title }: { videoId: string; title: 
     player.on('ended', onEnded);
     player.on('timeupdate', onTime);
 
-    void player.ready().then(async () => {
-      const [total, availableQualities, currentQuality, textTracks, rate] = await Promise.all([
-        player.getDuration(),
-        player.getQualities().catch(() => [] as QualityOption[]),
-        player.getQuality().catch(() => 'auto'),
-        player.getTextTracks().catch(() => [] as TextTrackOption[]),
-        player.getPlaybackRate().catch(() => 1),
-      ]);
+    void player.ready().then(() => {
       if (disposed) return;
-      setDuration(total);
-      setQualities(availableQualities as QualityOption[]);
-      setQuality(currentQuality);
-      setTracks(textTracks as TextTrackOption[]);
-      const selectedTrack = (textTracks as TextTrackOption[]).find((track) => track.mode === 'showing');
-      setActiveTrack(selectedTrack ? `${selectedTrack.language}|${selectedTrack.kind}` : 'off');
-      setPlaybackRate(rate);
-      setReady(true);
-    }).catch(() => setReady(true));
+      // Player capabilities are optional and Vimeo can answer them at
+      // different times. Never hold the play button hostage while waiting.
+      void player.getDuration().then(setDuration).catch(() => undefined);
+      void player.getQualities().then((items) => setQualities(items as QualityOption[])).catch(() => undefined);
+      void player.getQuality().then(setQuality).catch(() => undefined);
+      void player.getPlaybackRate().then(setPlaybackRate).catch(() => undefined);
+      void player.getTextTracks().then((items) => {
+        const textTracks = items as TextTrackOption[];
+        setTracks(textTracks);
+        const selectedTrack = textTracks.find((track) => track.mode === 'showing');
+        setActiveTrack(selectedTrack ? `${selectedTrack.language}|${selectedTrack.kind}` : 'off');
+      }).catch(() => undefined);
+    }).catch(() => undefined);
 
     return () => {
       disposed = true;
@@ -99,8 +95,22 @@ export function SecureVimeoPlayer({ videoId, title }: { videoId: string; title: 
   async function togglePlayback() {
     const player = playerRef.current;
     if (!player) return;
-    if (playing) await player.pause();
-    else await player.play();
+    const nextPlaying = !playing;
+    setPlaying(nextPlaying);
+
+    // Send the command immediately from the user's click. This also avoids a
+    // browser autoplay rejection if Vimeo's readiness handshake is delayed.
+    iframeRef.current?.contentWindow?.postMessage(
+      { method: nextPlaying ? 'play' : 'pause' },
+      'https://player.vimeo.com',
+    );
+
+    try {
+      if (nextPlaying) await player.play();
+      else await player.pause();
+    } catch {
+      setPlaying(false);
+    }
   }
 
   async function chooseTrack(value: string) {
@@ -126,13 +136,13 @@ export function SecureVimeoPlayer({ videoId, title }: { videoId: string; title: 
       />
 
       {!playing && (
-        <button type="button" className={styles.secureCenterPlay} onClick={togglePlayback} disabled={!ready} aria-label="Play protected screening">
-          {ready ? '▶' : '…'}
+        <button type="button" className={styles.secureCenterPlay} onClick={togglePlayback} aria-label="Play protected screening">
+          ▶
         </button>
       )}
 
       <div className={styles.securePlayerControls}>
-        <button type="button" onClick={togglePlayback} disabled={!ready} aria-label={playing ? 'Pause' : 'Play'}>{playing ? 'Ⅱ' : '▶'}</button>
+        <button type="button" onClick={togglePlayback} aria-label={playing ? 'Pause' : 'Play'}>{playing ? 'Ⅱ' : '▶'}</button>
         <span>{clock(currentTime)}</span>
         <input
           aria-label="Playback position"
