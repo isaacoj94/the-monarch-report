@@ -22,7 +22,7 @@ export default async function ScreeningPage() {
     <main className={styles.page}>
       <header className={styles.header}>
         <Link href="/documentary" className={styles.brand}>
-          <Image src="/logos/icon-gold.png" alt="" width={34} height={34} priority />
+          <Image src="/logos/monarch-films-butterfly.png" alt="" width={38} height={38} priority />
           <span>MONARCH <b>FILMS</b></span>
         </Link>
         <span className={styles.privateLabel}><i /> PRIVATE SCREENING</span>

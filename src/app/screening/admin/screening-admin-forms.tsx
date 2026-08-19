@@ -14,7 +14,7 @@ export function AdminLogin({ configured }: { configured: boolean }) {
   return (
     <main className={styles.loginPage}>
       <Link href="/documentary" className={styles.loginBrand}>
-        <Image src="/logos/icon-gold.png" alt="" width={38} height={38} />
+        <Image src="/logos/monarch-films-butterfly.png" alt="" width={42} height={42} />
         <span>MONARCH <b>FILMS</b></span>
       </Link>
       <form className={styles.loginCard} action={action}>

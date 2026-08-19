@@ -62,7 +62,7 @@ export default async function ScreeningAdminPage() {
     <main className={styles.page}>
       <header className={styles.header}>
         <Link href="/documentary" className={styles.brand}>
-          <Image src="/logos/icon-gold.png" alt="" width={32} height={32} />
+          <Image src="/logos/monarch-films-butterfly.png" alt="" width={36} height={36} />
           <span>MONARCH <b>FILMS</b></span>
         </Link>
         <span>SCREENING ADMINISTRATION</span>

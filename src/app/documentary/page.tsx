@@ -7,9 +7,9 @@ import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
 import styles from './documentary.module.css';
 
 const CHAPTERS = [
-  { number: '01', country: 'China', title: 'On China', logline: 'Coordinated raids on churches, mosques and spiritual communities reveal a system built to erase independent faith in the name of state control.' },
-  { number: '02', country: 'Japan', title: 'On Japan', logline: 'The dissolution of a religious organization establishes a legal precedent whose consequences extend far beyond one group or one courtroom.' },
-  { number: '03', country: 'Korea', title: 'On Korea', logline: 'Surveillance, detention and institutional pressure test whether democratic protections still apply when religious leaders refuse to be silenced.' },
+  { number: '01', country: 'China', title: 'Inside the Machine', logline: 'Coordinated raids on churches, mosques and spiritual communities reveal a system built to erase independent faith in the name of state control.' },
+  { number: '02', country: 'Japan', title: 'The Precedent', logline: 'The dissolution of a religious organization establishes a legal precedent whose consequences extend far beyond one group or one courtroom.' },
+  { number: '03', country: 'Korea', title: 'The Democratic Test', logline: 'Surveillance, detention and institutional pressure test whether democratic protections still apply when religious leaders refuse to be silenced.' },
 ];
 
 export default function DocumentaryPage() {
@@ -28,7 +28,7 @@ export default function DocumentaryPage() {
     <main className={styles.page}>
       <header className={styles.header}>
         <Link href="/documentary" className={styles.brand}>
-          <Image src="/logos/icon-gold.png" alt="" width={38} height={38} />
+          <Image src="/logos/monarch-films-butterfly.png" alt="" width={42} height={42} />
           <span>MONARCH <b>FILMS</b></span>
         </Link>
         <nav aria-label="Film navigation"><a href="#film">The film</a><a href="#chapters">Episodes</a><a href="#production">Production</a></nav>
@@ -81,7 +81,7 @@ export default function DocumentaryPage() {
         <span className={styles.eyebrow}>Continue with the reporting</span>
         <h2>Follow the record behind the film.</h2>
         <p>Return to The Monarch Report for independent English-language coverage of Korea, religious freedom and the public consequences behind the series.</p>
-        <div><Link href="/">Visit The Monarch Report →</Link><Link href="/articles">Read the reporting</Link></div>
+        <div><Link href="/">Visit The Monarch Report →</Link></div>
       </section>
 
       <footer className={styles.footer}><Link href="/">The Monarch Report</Link><span>A Monarch Films Production · Seoul / New York</span><span>© 2026</span></footer>
