@@ -2,32 +2,8 @@
 
 import { useMemo, useState } from 'react';
 import type { ScreeningEpisode, ViewerAccess } from '@/lib/screening';
+import { SecureVimeoPlayer } from './secure-vimeo-player';
 import styles from './screening.module.css';
-
-const VIMEO_PLAYER_PARAMETERS = new URLSearchParams({
-  autoplay: '0',
-  controls: '1',
-  fullscreen: '0',
-  keyboard: '0',
-  title: '0',
-  byline: '0',
-  portrait: '0',
-  badge: '0',
-  vimeo_logo: '0',
-  pip: '0',
-  chromecast: '0',
-  chapters: '0',
-  transcript: '0',
-  watch_full_video: '0',
-  like: '0',
-  watchlater: '0',
-  share: '0',
-  screenshot: '0',
-  speed: '1',
-  cc: '1',
-  quality_selector: '1',
-  dnt: '1',
-}).toString();
 
 function expiryLabel(value: string | null) {
   if (!value) return 'NO EXPIRY';
@@ -72,12 +48,7 @@ export function ScreeningRoom({
       <div className={styles.viewerLayout}>
         <div className={`${styles.player} ${isPlayable ? styles.playing : ''}`}>
           {isPlayable ? (
-            <iframe
-              className={styles.vimeoFrame}
-              src={`https://player.vimeo.com/video/${encodeURIComponent(episode.vimeoVideoId!)}?${VIMEO_PLAYER_PARAMETERS}`}
-              title={`${episode.title} private screener`}
-              allow="autoplay; encrypted-media"
-            />
+            <SecureVimeoPlayer videoId={episode.vimeoVideoId!} title={episode.title} />
           ) : (
             <>
               <div className={styles.playerArt} aria-hidden="true" />
