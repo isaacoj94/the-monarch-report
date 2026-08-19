@@ -19,6 +19,10 @@ const VIMEO_PLAYER_PARAMETERS = new URLSearchParams({
   chapters: '0',
   transcript: '0',
   watch_full_video: '0',
+  like: '0',
+  watchlater: '0',
+  share: '0',
+  screenshot: '0',
   speed: '1',
   cc: '1',
   quality_selector: '1',
@@ -82,7 +86,6 @@ export function ScreeningRoom({
           )}
           <div className={styles.frameCode}>MR–YN–E{String(episode.episodeNumber).padStart(2, '0')} / SECURE MASTER</div>
           <div className={styles.watermark}>{access.viewerCode} · PRIVATE SCREENER</div>
-          {isPlayable && <div className={styles.playerSecurityGuard} aria-hidden="true" />}
           <div className={styles.playerTitle}>
             <span>EPISODE {String(episode.episodeNumber).padStart(2, '0')} / {episode.country}</span>
             <h2>{episode.title}</h2>
