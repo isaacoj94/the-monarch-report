@@ -2,8 +2,8 @@
 /**
  * Import only long-form X Articles published by @monarchreport25.
  *
- * By default the script reads the most recent Apify task dataset. Pass
- * --run-task to explicitly start one paid Apify run before importing.
+ * The script starts one tightly capped Apify profile scan, then filters the
+ * resulting posts to X Article links before fetching their article bodies.
  */
 
 import fs from 'node:fs';
@@ -13,11 +13,10 @@ import { config } from 'dotenv';
 config({ path: path.resolve(process.cwd(), '.env.local') });
 
 const APIFY_TOKEN = process.env.APIFY_API_TOKEN;
-const APIFY_TASK_ID = 'Lj52A7qeMvb3gQEbZ';
+const APIFY_ACTOR_ID = 'apidojo~tweet-scraper';
 const HANDLE = 'monarchreport25';
 const ARTICLE_PATTERN = /(?:x|twitter)\.com\/i\/article\/(\d+)/;
 const DATA_PATH = path.resolve(process.cwd(), 'src/data/articles.json');
-const SHOULD_RUN_TASK = process.argv.includes('--run-task');
 
 type JsonRecord = Record<string, unknown>;
 
@@ -73,11 +72,19 @@ async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-async function runApifyTask(): Promise<string> {
-  console.log('Starting the article-only Apify task...');
+async function runApifyScan(): Promise<string> {
+  console.log('Starting one capped Monarch Report profile scan...');
   const started = await fetchJson<{ data: { id: string } }>(
-    `https://api.apify.com/v2/actor-tasks/${APIFY_TASK_ID}/runs?token=${APIFY_TOKEN}`,
-    { method: 'POST' },
+    `https://api.apify.com/v2/acts/${APIFY_ACTOR_ID}/runs?token=${APIFY_TOKEN}`,
+    {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        twitterHandles: [HANDLE],
+        maxItems: 500,
+        sort: 'Latest',
+      }),
+    },
   );
 
   const runId = started.data.id;
@@ -97,14 +104,6 @@ async function runApifyTask(): Promise<string> {
   }
 
   throw new Error('Apify run did not finish within 10 minutes');
-}
-
-async function getLatestDatasetId(): Promise<string> {
-  const run = await fetchJson<{ data: { defaultDatasetId?: string } }>(
-    `https://api.apify.com/v2/actor-tasks/${APIFY_TASK_ID}/runs/last?token=${APIFY_TOKEN}`,
-  );
-  if (!run.data.defaultDatasetId) throw new Error('The Apify task has no dataset');
-  return run.data.defaultDatasetId;
 }
 
 async function getArticleTweets(datasetId: string): Promise<{ tweetId: string; articleId: string }[]> {
@@ -239,7 +238,7 @@ async function main(): Promise<void> {
 
   const existing = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8')) as ExtractedArticle[];
   const existingIds = new Set(existing.map((article) => article.id));
-  const datasetId = SHOULD_RUN_TASK ? await runApifyTask() : await getLatestDatasetId();
+  const datasetId = await runApifyScan();
   const candidates = (await getArticleTweets(datasetId)).filter(({ articleId }) => !existingIds.has(articleId));
 
   console.log(`${candidates.length} new X Articles need importing.`);

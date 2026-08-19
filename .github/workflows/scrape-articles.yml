@@ -35,7 +35,7 @@ jobs:
       - name: Scan and import only long-form X Articles
         env:
           APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
-        run: npm run scrape-articles -- --run-task
+        run: npm run scrape-articles
 
       - name: Commit new articles
         run: |
