@@ -188,7 +188,6 @@ export function ScreeningRoom({
           >
             <span>{String(item.episodeNumber).padStart(2, '0')}</span>
             <div><small>{item.country} · {episodeStatus(item, copy)}</small><strong>{displayEpisodeTitle(item.episodeNumber, item.title)}</strong></div>
-            <b>{item.runtimeMinutes} {copy.min}</b>
           </button>
         ))}
       </div>

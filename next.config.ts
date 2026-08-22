@@ -8,6 +8,13 @@ const hasScreeningEnvironment = Boolean(
 );
 
 const nextConfig: NextConfig = {
+  // monarchreport.org is hosted on a separate Vercel project without the
+  // Supabase environment, so /screening is proxied here (rewrites below).
+  // The proxied HTML must load its JS/CSS from THIS deployment — chunks whose
+  // content differs between the two builds (Turbopack runtime, env-dependent
+  // modules) do not exist on the proxying host and 404 there, which kills
+  // hydration and leaves the screening room without a play control.
+  assetPrefix: hasScreeningEnvironment ? screeningBackend : undefined,
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'pbs.twimg.com' },
