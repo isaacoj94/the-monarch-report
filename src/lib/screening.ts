@@ -1,5 +1,9 @@
+import { cookies } from 'next/headers';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
+
+export const VIEWER_BROWSER_SESSION_COOKIE = 'mr_screening_browser_session';
+export const ACTIVE_SCREENING_WINDOW_MS = 6 * 60 * 60 * 1000;
 
 export type ScreeningEpisode = {
   id: string;
@@ -10,12 +14,12 @@ export type ScreeningEpisode = {
   runtimeMinutes: number;
   status: 'available' | 'coming_soon' | 'unavailable';
   hasVideo: boolean;
-  vimeoVideoId: string | null;
   grantId: string | null;
   expiresAt: string | null;
   viewLimit: number | null;
   viewsStarted: number;
   deviceLimit: number;
+  devicesUsed: number;
 };
 
 export type ViewerAccess = {
@@ -46,6 +50,12 @@ type GrantRow = {
   status: 'active' | 'expired' | 'revoked';
 };
 
+type SessionRow = {
+  grant_id: string;
+  device_hash: string;
+  last_active_at: string;
+};
+
 export async function getAuthenticatedUser() {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase.auth.getUser();
@@ -64,6 +74,9 @@ export async function isScreeningAdministrator(userId: string) {
 }
 
 export async function getViewerAccess(): Promise<ViewerAccess | null> {
+  const cookieStore = await cookies();
+  if (!cookieStore.get(VIEWER_BROWSER_SESSION_COOKIE)?.value) return null;
+
   const user = await getAuthenticatedUser();
   if (!user) return null;
 
@@ -76,16 +89,24 @@ export async function getViewerAccess(): Promise<ViewerAccess | null> {
 
   if (!viewer || viewer.status !== 'active') return null;
 
-  const [{ data: episodeData }, { data: grantData }] = await Promise.all([
+  const activeSince = new Date(Date.now() - ACTIVE_SCREENING_WINDOW_MS).toISOString();
+  const [{ data: episodeData }, { data: grantData }, { data: sessionData }] = await Promise.all([
     admin.from('screening_episodes').select('*').order('episode_number'),
     admin
       .from('screening_access_grants')
       .select('id, episode_id, expires_at, view_limit, views_started, device_limit, status')
       .eq('viewer_id', viewer.id),
+    admin
+      .from('screening_sessions')
+      .select('grant_id, device_hash, last_active_at')
+      .eq('viewer_id', viewer.id)
+      .is('ended_at', null)
+      .gte('last_active_at', activeSince),
   ]);
 
   const episodes = (episodeData ?? []) as EpisodeRow[];
   const grants = (grantData ?? []) as GrantRow[];
+  const sessions = (sessionData ?? []) as SessionRow[];
   const now = Date.now();
 
   return {
@@ -99,6 +120,9 @@ export async function getViewerAccess(): Promise<ViewerAccess | null> {
           grant.status === 'active' &&
           (!grant.expires_at || new Date(grant.expires_at).getTime() > now),
       );
+      const devicesUsed = grant
+        ? new Set(sessions.filter((session) => session.grant_id === grant.id).map((session) => session.device_hash)).size
+        : 0;
 
       return {
         id: episode.id,
@@ -109,12 +133,12 @@ export async function getViewerAccess(): Promise<ViewerAccess | null> {
         runtimeMinutes: episode.runtime_minutes,
         status: episode.status,
         hasVideo: active && Boolean(episode.vimeo_video_id),
-        vimeoVideoId: active ? episode.vimeo_video_id : null,
         grantId: active && grant ? grant.id : null,
         expiresAt: active && grant ? grant.expires_at : null,
         viewLimit: active && grant ? grant.view_limit : null,
         viewsStarted: grant?.views_started ?? 0,
         deviceLimit: grant?.device_limit ?? 1,
+        devicesUsed,
       };
     }),
   };
