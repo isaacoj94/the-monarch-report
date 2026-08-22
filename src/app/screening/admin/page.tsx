@@ -4,7 +4,7 @@ import { displayEpisodeTitle } from '@/lib/film-episodes';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { getAuthenticatedUser, isScreeningAdministrator } from '@/lib/screening';
 import { revokeViewerAction, signOutAction } from '../actions';
-import { AccessKeyCell, AdminLogin, InvitationForm } from './screening-admin-forms';
+import { AccessKeyCell, AdminLogin, CopyField, InvitationForm } from './screening-admin-forms';
 import styles from './screening-admin.module.css';
 
 export const dynamic = 'force-dynamic';
@@ -121,7 +121,11 @@ export default async function ScreeningAdminPage() {
                     const grant = viewer.screening_access_grants?.[0];
                     return (
                       <tr key={viewer.id}>
-                        <td><strong>{viewer.viewer_code}</strong><small>{viewer.display_name || 'Unnamed viewer'}</small>{viewer.contact_email ? <small>{viewer.contact_email}</small> : null}</td>
+                        <td>
+                          <CopyField value={viewer.viewer_code} label="Copy ID" />
+                          <small>{viewer.display_name || 'Unnamed viewer'}</small>
+                          {viewer.contact_email ? <small>{viewer.contact_email}</small> : null}
+                        </td>
                         <td>{viewer.context_note ? <span className={styles.context}>{viewer.context_note}</span> : '—'}</td>
                         <td><AccessKeyCell accessKey={viewer.access_key ?? null} viewerId={viewer.id} active={viewer.status === 'active'} /></td>
                         <td>{grant?.screening_episodes ? displayEpisodeTitle(grant.screening_episodes.episode_number, grant.screening_episodes.title) : '—'}</td>

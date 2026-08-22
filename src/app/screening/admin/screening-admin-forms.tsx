@@ -56,13 +56,13 @@ export function InvitationForm({ episodes }: { episodes: Array<{ id: string; epi
       {state.credentials && (
         <div className={styles.credentials} role="status">
           <span>CREDENTIALS SAVED TO THIS DESK</span>
-          <div><small>Viewer ID</small><strong>{state.credentials.viewerCode}</strong></div>
+          <div>
+            <small>Viewer ID</small>
+            <CopyField value={state.credentials.viewerCode} label="Copy ID" />
+          </div>
           <div>
             <small>Private access key</small>
-            <span className={styles.keyValue}>
-              <strong>{state.credentials.password}</strong>
-              <CopyButton value={state.credentials.password} />
-            </span>
+            <CopyField value={state.credentials.password} label="Copy key" />
           </div>
           {state.credentials.contactEmail && (
             <div><small>Recorded email</small><strong>{state.credentials.contactEmail}</strong></div>
@@ -70,27 +70,60 @@ export function InvitationForm({ episodes }: { episodes: Array<{ id: string; epi
           {state.credentials.contextNote && (
             <div><small>Context</small><strong>{state.credentials.contextNote}</strong></div>
           )}
-          <p>This access key is stored on the administration desk so you can retrieve it later. Send the ID and key through separate channels when possible.</p>
+          <CopyButton
+            className={styles.copyBoth}
+            value={`Viewer ID: ${state.credentials.viewerCode}\nPrivate access key: ${state.credentials.password}`}
+            label="Copy ID and key for email"
+            done="Copied for email"
+          />
+          <p>Copy buttons paste plain text — no dark highlight. The key stays on this desk if you need it again.</p>
         </div>
       )}
     </section>
   );
 }
 
-function CopyButton({ value }: { value: string }) {
+function CopyButton({
+  value,
+  label = 'Copy',
+  done = 'Copied',
+  className,
+}: {
+  value: string;
+  label?: string;
+  done?: string;
+  className?: string;
+}) {
   const [copied, setCopied] = useState(false);
   return (
     <button
       type="button"
-      className={styles.copyButton}
+      className={className ?? styles.copyButton}
       onClick={async () => {
         await navigator.clipboard.writeText(value);
         setCopied(true);
         window.setTimeout(() => setCopied(false), 1600);
       }}
     >
-      {copied ? 'Copied' : 'Copy'}
+      {copied ? done : label}
     </button>
+  );
+}
+
+export function CopyField({ value, label = 'Copy' }: { value: string; label?: string }) {
+  return (
+    <div className={styles.copyField}>
+      <input
+        readOnly
+        value={value}
+        autoComplete="off"
+        spellCheck={false}
+        aria-label={label}
+        onFocus={(event) => event.currentTarget.select()}
+        onClick={(event) => event.currentTarget.select()}
+      />
+      <CopyButton value={value} label={label} />
+    </div>
   );
 }
 
@@ -106,10 +139,5 @@ export function AccessKeyCell({ accessKey, viewerId, active }: { accessKey: stri
     );
   }
 
-  return (
-    <div className={styles.keyCell}>
-      <code>{accessKey}</code>
-      <CopyButton value={accessKey} />
-    </div>
-  );
+  return <CopyField value={accessKey} label="Copy key" />;
 }
