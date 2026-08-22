@@ -93,29 +93,47 @@ export function ScreeningRoom({
     return () => window.clearInterval(expirationTimer);
   }, [episode.expiresAt, signOutAction]);
 
-  async function startPlayback() {
-    if (!canStart || loading) return;
+  useEffect(() => {
+    if (!canStart) {
+      setPlayback(null);
+      return;
+    }
+
+    const controller = new AbortController();
+    let active = true;
+    setPlayback(null);
     setLoading(true);
     setError(null);
 
-    try {
-      const response = await fetch('/api/screening/start', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ episodeId: episode.id }),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Playback could not begin.');
+    async function authorizePlayback() {
+      try {
+        const response = await fetch('/api/screening/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ episodeId: episode.id }),
+          signal: controller.signal,
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Playback could not begin.');
+        if (!active) return;
 
-      setPlayback({ episodeId: episode.id, vimeoVideoId: data.vimeoVideoId, watermark: data.watermark });
-      setViewCounts((current) => ({ ...current, [episode.id]: data.viewsStarted }));
-      setDeviceCounts((current) => ({ ...current, [episode.id]: data.devicesUsed }));
-    } catch (playbackError) {
-      setError(playbackError instanceof Error ? playbackError.message : 'Playback could not begin.');
-    } finally {
-      setLoading(false);
+        setPlayback({ episodeId: episode.id, vimeoVideoId: data.vimeoVideoId, watermark: data.watermark });
+        setViewCounts((current) => ({ ...current, [episode.id]: data.viewsStarted }));
+        setDeviceCounts((current) => ({ ...current, [episode.id]: data.devicesUsed }));
+      } catch (playbackError) {
+        if (!active || controller.signal.aborted) return;
+        setError(playbackError instanceof Error ? playbackError.message : 'Playback could not begin.');
+      } finally {
+        if (active) setLoading(false);
+      }
     }
-  }
+
+    void authorizePlayback();
+    return () => {
+      active = false;
+      controller.abort();
+    };
+  }, [canStart, episode.id]);
 
   return (
     <section className={styles.screeningRoom}>
@@ -131,7 +149,7 @@ export function ScreeningRoom({
       <div className={styles.viewerLayout}>
         <div className={`${styles.player} ${isPlaying ? styles.playing : ''}`}>
           {isPlaying ? (
-            <SecureVimeoPlayer videoId={playback.vimeoVideoId} title={episode.title} autoplay />
+            <SecureVimeoPlayer videoId={playback.vimeoVideoId} title={episode.title} />
           ) : (
             <>
               <div className={styles.playerArt} aria-hidden="true" />
@@ -140,22 +158,11 @@ export function ScreeningRoom({
           )}
           <div className={styles.frameCode}>MR–YN–E{String(episode.episodeNumber).padStart(2, '0')} / SECURE MASTER</div>
           <div className={styles.watermark}>{playback?.watermark ?? `${access.viewerCode} · PRIVATE SCREENER`}</div>
-          {!isPlaying && (
-            <button
-              className={styles.playControl}
-              type="button"
-              onClick={startPlayback}
-              disabled={loading || !canStart}
-              aria-label="Begin protected playback"
-            >
-              {loading ? '…' : canStart ? '▶' : '—'}
-            </button>
-          )}
           <div className={styles.playerTitle}>
             <span>EPISODE {String(episode.episodeNumber).padStart(2, '0')} / {episode.country}</span>
             <h2>{displayEpisodeTitle(episode.episodeNumber, episode.title)}</h2>
           </div>
-          {!isPlaying && <div className={styles.demoNotice}>{episodeStatus(episode, copy)}</div>}
+          {!isPlaying && <div className={styles.demoNotice}>{loading ? 'AUTHORIZING' : episodeStatus(episode, copy)}</div>}
           {error && <div className={styles.playbackError} role="alert">{error}</div>}
         </div>
 

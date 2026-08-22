@@ -7,6 +7,7 @@ import styles from './screening.module.css';
 // screenshot still render on this player even when those boxes are unchecked,
 // so a transparent shield blocks that cluster without covering the film.
 const PLAYER_PARAMETERS = {
+  autoplay: '0',
   autopause: '0',
   controls: '1',
   play_button_position: 'bottom',
@@ -38,11 +39,8 @@ function absorb(event: PointerEvent<HTMLDivElement>) {
   event.stopPropagation();
 }
 
-export function SecureVimeoPlayer({ videoId, title, autoplay = false }: { videoId: string; title: string; autoplay?: boolean }) {
-  const parameters = new URLSearchParams({
-    ...PLAYER_PARAMETERS,
-    autoplay: autoplay ? '1' : '0',
-  }).toString();
+export function SecureVimeoPlayer({ videoId, title }: { videoId: string; title: string }) {
+  const parameters = new URLSearchParams(PLAYER_PARAMETERS).toString();
 
   return (
     <>
