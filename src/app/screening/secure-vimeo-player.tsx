@@ -6,8 +6,7 @@ import styles from './screening.module.css';
 // Mirror the Vimeo Appearance > Embed preset. Share / Like / Watch Later /
 // screenshot still render on this player even when those boxes are unchecked,
 // so a transparent shield blocks that cluster without covering the film.
-const PLAYER_PARAMETERS = new URLSearchParams({
-  autoplay: '0',
+const PLAYER_PARAMETERS = {
   autopause: '0',
   controls: '1',
   play_button_position: 'bottom',
@@ -32,20 +31,25 @@ const PLAYER_PARAMETERS = new URLSearchParams({
   watch_full_video: '0',
   transparent: '0',
   dnt: '1',
-}).toString();
+} as const;
 
 function absorb(event: PointerEvent<HTMLDivElement>) {
   event.preventDefault();
   event.stopPropagation();
 }
 
-export function SecureVimeoPlayer({ videoId, title }: { videoId: string; title: string }) {
+export function SecureVimeoPlayer({ videoId, title, autoplay = false }: { videoId: string; title: string; autoplay?: boolean }) {
+  const parameters = new URLSearchParams({
+    ...PLAYER_PARAMETERS,
+    autoplay: autoplay ? '1' : '0',
+  }).toString();
+
   return (
     <>
       <iframe
         key={videoId}
         className={styles.vimeoFrame}
-        src={`https://player.vimeo.com/video/${encodeURIComponent(videoId)}?${PLAYER_PARAMETERS}`}
+        src={`https://player.vimeo.com/video/${encodeURIComponent(videoId)}?${parameters}`}
         title={`${title} private screener`}
         allow="autoplay; encrypted-media"
         referrerPolicy="strict-origin-when-cross-origin"

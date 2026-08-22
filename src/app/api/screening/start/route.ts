@@ -2,7 +2,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
-import { getAuthenticatedUser } from '@/lib/screening';
+import { ACTIVE_SCREENING_WINDOW_MS, getAuthenticatedUser, VIEWER_BROWSER_SESSION_COOKIE } from '@/lib/screening';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,6 +32,11 @@ function hasTrustedOrigin(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   if (!hasTrustedOrigin(request)) return json({ error: 'Invalid request origin.' }, 403);
+
+  const cookieStore = await cookies();
+  if (!cookieStore.get(VIEWER_BROWSER_SESSION_COOKIE)?.value) {
+    return json({ error: 'Your screening session has ended. Sign in again.' }, 401);
+  }
 
   const user = await getAuthenticatedUser();
   if (!user) return json({ error: 'Your screening session has expired. Sign in again.' }, 401);
@@ -73,33 +78,30 @@ export async function POST(request: NextRequest) {
   }
   if (!episode?.vimeo_video_id) return json({ error: 'The protected video master has not been uploaded yet.' }, 409);
 
-  const cookieStore = await cookies();
   const existingDeviceId = cookieStore.get(DEVICE_COOKIE)?.value;
   const deviceId = existingDeviceId || randomUUID();
   const deviceHash = createHash('sha256').update(deviceId).digest('hex');
-  const activeSince = new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString();
+  const activeSince = new Date(Date.now() - ACTIVE_SCREENING_WINDOW_MS).toISOString();
 
-  const { data: existingSession } = await admin
+  const { data: activeSessions, error: activeSessionsError } = await admin
     .from('screening_sessions')
-    .select('id')
+    .select('id, device_hash')
     .eq('grant_id', grant.id)
-    .eq('device_hash', deviceHash)
     .is('ended_at', null)
     .gte('last_active_at', activeSince)
-    .order('last_active_at', { ascending: false })
-    .limit(1)
-    .maybeSingle();
+    .order('last_active_at', { ascending: false });
+
+  if (activeSessionsError) {
+    return json({ error: 'Could not verify the active device count.' }, 500);
+  }
+
+  const existingSession = (activeSessions ?? []).find((session) => session.device_hash === deviceHash);
+  const activeDevices = new Set((activeSessions ?? []).map((session) => session.device_hash));
+  let viewsStarted = grant.views_started;
 
   if (existingSession) {
     await admin.from('screening_sessions').update({ last_active_at: new Date().toISOString() }).eq('id', existingSession.id);
   } else {
-    const { data: activeSessions } = await admin
-      .from('screening_sessions')
-      .select('device_hash')
-      .eq('grant_id', grant.id)
-      .is('ended_at', null)
-      .gte('last_active_at', activeSince);
-    const activeDevices = new Set((activeSessions ?? []).map((session) => session.device_hash));
     if (!activeDevices.has(deviceHash) && activeDevices.size >= grant.device_limit) {
       return json({ error: 'The device limit for this invitation has been reached.' }, 403);
     }
@@ -116,6 +118,7 @@ export async function POST(request: NextRequest) {
       .select('id')
       .maybeSingle();
     if (!updatedGrant) return json({ error: 'Playback authorization changed. Please try again.' }, 409);
+    viewsStarted = nextViews;
 
     const { error: sessionError } = await admin.from('screening_sessions').insert({
       grant_id: grant.id,
@@ -126,12 +129,19 @@ export async function POST(request: NextRequest) {
       await admin.from('screening_access_grants').update({ views_started: grant.views_started }).eq('id', grant.id).eq('views_started', nextViews);
       return json({ error: 'Could not establish the protected playback session.' }, 500);
     }
+
+    activeDevices.add(deviceHash);
   }
 
   const timestamp = new Date().toISOString().replace('T', ' ').slice(0, 16) + ' UTC';
   const response = json({
     vimeoVideoId: episode.vimeo_video_id,
     watermark: `${viewer.viewer_code} · PRIVATE SCREENER · ${timestamp}`,
+    viewsStarted,
+    viewLimit: grant.view_limit,
+    devicesUsed: activeDevices.size,
+    deviceLimit: grant.device_limit,
+    expiresAt: grant.expires_at,
   }, 200);
   if (!existingDeviceId) {
     response.cookies.set(DEVICE_COOKIE, deviceId, {

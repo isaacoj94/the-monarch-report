@@ -1,11 +1,12 @@
 'use server';
 
 import { randomInt } from 'node:crypto';
+import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { getAuthenticatedUser, isScreeningAdministrator } from '@/lib/screening';
+import { getAuthenticatedUser, isScreeningAdministrator, VIEWER_BROWSER_SESSION_COOKIE } from '@/lib/screening';
 
 export type LoginState = { error: string | null };
 export type InvitationState = {
@@ -57,6 +58,14 @@ export async function viewerLoginAction(_state: LoginState, formData: FormData):
     });
 
     if (error) return { error: INVALID_CREDENTIALS };
+
+    const cookieStore = await cookies();
+    cookieStore.set(VIEWER_BROWSER_SESSION_COOKIE, 'active', {
+      httpOnly: true,
+      sameSite: 'strict',
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+    });
   } catch {
     return { error: 'The screening service is temporarily unavailable. Please try again.' };
   }
@@ -85,8 +94,32 @@ export async function adminLoginAction(_state: LoginState, formData: FormData): 
 }
 
 export async function signOutAction() {
+  try {
+    const user = await getAuthenticatedUser();
+    if (user) {
+      const admin = createSupabaseAdminClient();
+      const { data: viewer } = await admin
+        .from('screening_viewers')
+        .select('id')
+        .eq('auth_user_id', user.id)
+        .maybeSingle();
+
+      if (viewer) {
+        await admin
+          .from('screening_sessions')
+          .update({ ended_at: new Date().toISOString() })
+          .eq('viewer_id', viewer.id)
+          .is('ended_at', null);
+      }
+    }
+  } catch {
+    // Authentication cookies must still be cleared if session cleanup fails.
+  }
+
   const supabase = await createSupabaseServerClient();
   await supabase.auth.signOut();
+  const cookieStore = await cookies();
+  cookieStore.delete(VIEWER_BROWSER_SESSION_COOKIE);
   redirect('/screening');
 }
 
