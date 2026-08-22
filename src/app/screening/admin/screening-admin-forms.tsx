@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { displayEpisodeTitle } from '@/lib/film-episodes';
-import { adminLoginAction, createInvitationAction, type InvitationState, type LoginState } from '../actions';
+import { adminLoginAction, createInvitationAction, rotateAccessKeyAction, type InvitationState, type LoginState } from '../actions';
 import styles from './screening-admin.module.css';
 
 const loginInitial: LoginState = { error: null };
@@ -43,6 +43,7 @@ export function InvitationForm({ episodes }: { episodes: Array<{ id: string; epi
       <form action={action}>
         <label>Viewer name <small>Optional, for your records</small><input name="displayName" maxLength={100} placeholder="Jane Smith / Publication" /></label>
         <label>Viewer email <small>Optional, recorded only — not used to sign in</small><input name="contactEmail" type="email" autoComplete="off" placeholder="name@publication.com" /></label>
+        <label>Context <small>Who this person is — journalist, donor, pastor, family, press, etc.</small><textarea name="contextNote" maxLength={280} rows={3} placeholder="e.g. Korean church leader, introduced by Will / US journalist, first look" /></label>
         <label>Episode<select name="episodeId" required defaultValue={episodes[0]?.id}>{episodes.map((episode) => <option value={episode.id} key={episode.id}>E{episode.episode_number} · {episode.country} — {displayEpisodeTitle(episode.episode_number, episode.title)}</option>)}</select></label>
         <div className={styles.formGrid}>
           <label>Access period<select name="expiresHours" defaultValue="48"><option value="24">24 hours</option><option value="48">48 hours</option><option value="72">72 hours</option><option value="168">7 days</option></select></label>
@@ -54,15 +55,61 @@ export function InvitationForm({ episodes }: { episodes: Array<{ id: string; epi
       </form>
       {state.credentials && (
         <div className={styles.credentials} role="status">
-          <span>ONE-TIME CREDENTIALS — COPY NOW</span>
+          <span>CREDENTIALS SAVED TO THIS DESK</span>
           <div><small>Viewer ID</small><strong>{state.credentials.viewerCode}</strong></div>
-          <div><small>Private access key</small><strong>{state.credentials.password}</strong></div>
+          <div>
+            <small>Private access key</small>
+            <span className={styles.keyValue}>
+              <strong>{state.credentials.password}</strong>
+              <CopyButton value={state.credentials.password} />
+            </span>
+          </div>
           {state.credentials.contactEmail && (
             <div><small>Recorded email</small><strong>{state.credentials.contactEmail}</strong></div>
           )}
-          <p>The access key cannot be recovered later. Send the ID and password through separate channels when possible.</p>
+          {state.credentials.contextNote && (
+            <div><small>Context</small><strong>{state.credentials.contextNote}</strong></div>
+          )}
+          <p>This access key is stored on the administration desk so you can retrieve it later. Send the ID and key through separate channels when possible.</p>
         </div>
       )}
     </section>
+  );
+}
+
+function CopyButton({ value }: { value: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      type="button"
+      className={styles.copyButton}
+      onClick={async () => {
+        await navigator.clipboard.writeText(value);
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 1600);
+      }}
+    >
+      {copied ? 'Copied' : 'Copy'}
+    </button>
+  );
+}
+
+export function AccessKeyCell({ accessKey, viewerId, active }: { accessKey: string | null; viewerId: string; active: boolean }) {
+  if (!accessKey) {
+    if (!active) return <small>Not saved at issue</small>;
+    return (
+      <form action={rotateAccessKeyAction} className={styles.keyCell}>
+        <small>Not saved at issue</small>
+        <input type="hidden" name="viewerId" value={viewerId} />
+        <button type="submit">Issue new key</button>
+      </form>
+    );
+  }
+
+  return (
+    <div className={styles.keyCell}>
+      <code>{accessKey}</code>
+      <CopyButton value={accessKey} />
+    </div>
   );
 }

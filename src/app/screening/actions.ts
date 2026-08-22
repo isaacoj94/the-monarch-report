@@ -11,7 +11,12 @@ import { getAuthenticatedUser, isScreeningAdministrator, VIEWER_BROWSER_SESSION_
 export type LoginState = { error: string | null };
 export type InvitationState = {
   error: string | null;
-  credentials: { viewerCode: string; password: string; contactEmail: string | null } | null;
+  credentials: {
+    viewerCode: string;
+    password: string;
+    contactEmail: string | null;
+    contextNote: string | null;
+  } | null;
 };
 
 const INVALID_CREDENTIALS = 'The viewer ID or access key is incorrect.';
@@ -136,6 +141,7 @@ export async function createInvitationAction(
   const displayName = String(formData.get('displayName') ?? '').trim().slice(0, 100) || null;
   const contactEmailRaw = String(formData.get('contactEmail') ?? '').trim().toLowerCase();
   const contactEmail = contactEmailRaw || null;
+  const contextNote = String(formData.get('contextNote') ?? '').trim().slice(0, 280) || null;
   if (contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) {
     return { error: 'Enter a valid email address, or leave it blank.', credentials: null };
   }
@@ -180,27 +186,46 @@ export async function createInvitationAction(
 
   const password = randomString(PASSWORD_ALPHABET, 18);
   const email = `${viewerCode.toLowerCase()}@screening.monarchreport.org`;
+  const userMetadata = {
+    viewer_code: viewerCode,
+    display_name: displayName,
+    contact_email: contactEmail,
+    context_note: contextNote,
+    access_key: password,
+  };
   const { data: authData, error: authError } = await admin.auth.admin.createUser({
     email,
     password,
     email_confirm: true,
-    user_metadata: { viewer_code: viewerCode, display_name: displayName, contact_email: contactEmail },
+    user_metadata: userMetadata,
   });
 
   if (authError || !authData.user) {
     return { error: 'Could not create the private viewer account.', credentials: null };
   }
 
-  let viewerInsert = await admin
-    .from('screening_viewers')
-    .insert({
-      auth_user_id: authData.user.id,
-      viewer_code: viewerCode,
-      display_name: displayName,
-      contact_email: contactEmail,
-    })
-    .select('id')
-    .single();
+  const viewerRecord = {
+    auth_user_id: authData.user.id,
+    viewer_code: viewerCode,
+    display_name: displayName,
+    contact_email: contactEmail,
+    context_note: contextNote,
+    access_key: password,
+  };
+  let viewerInsert = await admin.from('screening_viewers').insert(viewerRecord).select('id').single();
+
+  if (viewerInsert.error) {
+    viewerInsert = await admin
+      .from('screening_viewers')
+      .insert({
+        auth_user_id: authData.user.id,
+        viewer_code: viewerCode,
+        display_name: displayName,
+        contact_email: contactEmail,
+      })
+      .select('id')
+      .single();
+  }
 
   if (viewerInsert.error) {
     viewerInsert = await admin
@@ -232,7 +257,37 @@ export async function createInvitationAction(
   }
 
   revalidatePath('/screening/admin');
-  return { error: null, credentials: { viewerCode, password, contactEmail } };
+  return { error: null, credentials: { viewerCode, password, contactEmail, contextNote } };
+}
+
+export async function rotateAccessKeyAction(formData: FormData) {
+  await requireAdministrator();
+  const viewerId = String(formData.get('viewerId') ?? '');
+  if (!viewerId) return;
+
+  const admin = createSupabaseAdminClient();
+  const { data: viewer } = await admin
+    .from('screening_viewers')
+    .select('id, auth_user_id, viewer_code, status')
+    .eq('id', viewerId)
+    .maybeSingle();
+
+  if (!viewer || viewer.status !== 'active') return;
+
+  const password = randomString(PASSWORD_ALPHABET, 18);
+  const { data: authData } = await admin.auth.admin.getUserById(viewer.auth_user_id);
+  const { error } = await admin.auth.admin.updateUserById(viewer.auth_user_id, {
+    password,
+    user_metadata: {
+      ...(authData.user?.user_metadata ?? {}),
+      viewer_code: viewer.viewer_code,
+      access_key: password,
+    },
+  });
+  if (error) return;
+
+  await admin.from('screening_viewers').update({ access_key: password }).eq('id', viewer.id);
+  revalidatePath('/screening/admin');
 }
 
 export async function revokeViewerAction(formData: FormData) {
