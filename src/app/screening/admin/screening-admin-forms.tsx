@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useActionState, useState } from 'react';
 import { displayEpisodeTitle } from '@/lib/film-episodes';
-import { adminLoginAction, createInvitationAction, rotateAccessKeyAction, type InvitationState, type LoginState } from '../actions';
+import { adminLoginAction, createInvitationAction, deleteViewerAction, rotateAccessKeyAction, type InvitationState, type LoginState } from '../actions';
 import styles from './screening-admin.module.css';
 
 const loginInitial: LoginState = { error: null };
@@ -80,6 +80,22 @@ export function InvitationForm({ episodes }: { episodes: Array<{ id: string; epi
         </div>
       )}
     </section>
+  );
+}
+
+export function DeleteViewerForm({ viewerId, viewerLabel }: { viewerId: string; viewerLabel: string }) {
+  return (
+    <form
+      action={deleteViewerAction}
+      onSubmit={(event) => {
+        if (!window.confirm(`Delete ${viewerLabel} permanently? Their sign-in and viewing history are erased and their ID stops working immediately.`)) {
+          event.preventDefault();
+        }
+      }}
+    >
+      <input type="hidden" name="viewerId" value={viewerId} />
+      <button type="submit" className={styles.deleteButton}>Delete</button>
+    </form>
   );
 }
 

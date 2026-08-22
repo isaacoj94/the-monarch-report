@@ -4,7 +4,7 @@ import { displayEpisodeTitle } from '@/lib/film-episodes';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { getAuthenticatedUser, isScreeningAdministrator } from '@/lib/screening';
 import { revokeViewerAction, signOutAction } from '../actions';
-import { AccessKeyCell, AdminLogin, CopyButton, InvitationForm } from './screening-admin-forms';
+import { AccessKeyCell, AdminLogin, CopyButton, DeleteViewerForm, InvitationForm } from './screening-admin-forms';
 import styles from './screening-admin.module.css';
 
 export const dynamic = 'force-dynamic';
@@ -135,12 +135,15 @@ export default async function ScreeningAdminPage() {
                         <td>{utcDate(grant?.expires_at ?? null)}</td>
                         <td><span className={viewer.status === 'active' ? styles.active : styles.revoked}>{viewer.status}</span></td>
                         <td>
-                          {viewer.status === 'active' && (
-                            <form action={revokeViewerAction}>
-                              <input type="hidden" name="viewerId" value={viewer.id} />
-                              <button type="submit">Revoke</button>
-                            </form>
-                          )}
+                          <div className={styles.rowActions}>
+                            {viewer.status === 'active' && (
+                              <form action={revokeViewerAction}>
+                                <input type="hidden" name="viewerId" value={viewer.id} />
+                                <button type="submit">Revoke</button>
+                              </form>
+                            )}
+                            <DeleteViewerForm viewerId={viewer.id} viewerLabel={viewer.display_name || viewer.viewer_code} />
+                          </div>
                         </td>
                       </tr>
                     );

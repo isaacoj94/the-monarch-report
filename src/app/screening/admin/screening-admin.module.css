@@ -9,3 +9,6 @@
 .viewerName{display:block;color:#ead9b7;font:400 15px var(--font-cormorant),Georgia,serif;letter-spacing:.02em}
 .credentialActions{display:flex;align-items:center;gap:16px;margin-top:9px}
 .credentialActions .keyCell{min-width:0;flex-direction:row;gap:0}
+.rowActions{display:flex;flex-direction:column;align-items:flex-start;gap:7px}
+.ledger .deleteButton{border-bottom-color:#c56d6570;color:#c56d65b0}
+.ledger .deleteButton:hover{color:#f1b4ae}

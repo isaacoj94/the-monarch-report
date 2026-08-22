@@ -303,3 +303,26 @@ export async function revokeViewerAction(formData: FormData) {
   ]);
   revalidatePath('/screening/admin');
 }
+
+export async function deleteViewerAction(formData: FormData) {
+  await requireAdministrator();
+  const viewerId = String(formData.get('viewerId') ?? '');
+  if (!viewerId) return;
+
+  const admin = createSupabaseAdminClient();
+  const { data: viewer } = await admin
+    .from('screening_viewers')
+    .select('auth_user_id')
+    .eq('id', viewerId)
+    .maybeSingle();
+  if (!viewer) return;
+
+  await admin.from('screening_sessions').delete().eq('viewer_id', viewerId);
+  await admin.from('screening_access_grants').delete().eq('viewer_id', viewerId);
+  await admin.from('screening_viewers').delete().eq('id', viewerId);
+  await admin.auth.admin.deleteUser(viewer.auth_user_id).catch(() => {
+    // The ledger row is already gone; an orphaned auth user only blocks
+    // reusing this viewer code's generated email address.
+  });
+  revalidatePath('/screening/admin');
+}
