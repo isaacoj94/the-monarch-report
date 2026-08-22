@@ -5,10 +5,14 @@ import Link from 'next/link';
 import { buildUtm, type UtmParams } from '@/lib/shortlinks';
 import { trackEvent } from '@/lib/utm-client';
 import { siteConfig } from '@/lib/content';
+import { useLocale } from '@/components/LocaleProvider';
+import type { Locale } from '@/lib/translations';
+
+export type HubText = string | Record<Locale, string>;
 
 export type HubCta = {
-  label: string;
-  sublabel?: string;
+  label: HubText;
+  sublabel?: HubText;
   base: string;
   campaign: string;
   content: string;
@@ -17,8 +21,14 @@ export type HubCta = {
 
 export type HubPlatform = {
   key: 'x' | 'ig' | 'yt' | 'tt' | 'fb' | 'policy';
-  label: string;
-  tagline: string;
+  label: HubText;
+  tagline: HubText;
+};
+
+const followLabel: Record<Locale, string> = {
+  en: 'Also follow us on',
+  ko: '다른 채널도 팔로우',
+  ja: 'ほかのチャンネルもフォロー',
 };
 
 type Props = {
@@ -38,6 +48,8 @@ const SOCIALS: { key: 'x' | 'ig' | 'yt' | 'tt' | 'fb'; label: string; url: strin
 ];
 
 export function HubPage({ platform, ctas }: Props) {
+  const { locale } = useLocale();
+  const text = (value: HubText): string => (typeof value === 'string' ? value : value[locale]);
   const sourceFor = (key: HubPlatform['key']): string =>
     key === 'policy' ? 'link-in-bio' : key;
 
@@ -55,9 +67,9 @@ export function HubPage({ platform, ctas }: Props) {
       : 'block w-full px-6 py-5 border border-tm-border-hover hover:border-tm-gold/40 text-tm-heading rounded-lg text-center transition-colors';
     const inner = (
       <>
-        <span className="block text-base font-serif">{cta.label}</span>
+        <span className="block text-base font-serif">{text(cta.label)}</span>
         {cta.sublabel && (
-          <span className="block text-xs font-sans text-tm-secondary mt-1">{cta.sublabel}</span>
+          <span className="block text-xs font-sans text-tm-secondary mt-1">{text(cta.sublabel)}</span>
         )}
       </>
     );
@@ -98,15 +110,15 @@ export function HubPage({ platform, ctas }: Props) {
             <Image src="/logos/icon-gold.png" alt="The Monarch Report" width={64} height={64} className="w-14 h-14 mx-auto opacity-80" />
           </Link>
           <h1 className="text-2xl font-serif font-bold text-tm-heading mb-1">The Monarch Report</h1>
-          <p className="text-[10px] font-sans uppercase tracking-widest text-tm-gold mb-3">{platform.label}</p>
-          <p className="text-sm text-tm-secondary leading-relaxed max-w-xs mx-auto">{platform.tagline}</p>
+          <p className="text-[10px] font-sans uppercase tracking-widest text-tm-gold mb-3">{text(platform.label)}</p>
+          <p className="text-sm text-tm-secondary leading-relaxed max-w-xs mx-auto">{text(platform.tagline)}</p>
         </div>
         <div className="space-y-3">
           {ctas.map((cta, idx) => renderCta(cta, idx))}
         </div>
         {platform.key !== 'policy' && (
           <div className="mt-10 pt-6 border-t border-tm-border-subtle">
-            <p className="text-center text-[10px] font-sans uppercase tracking-widest text-tm-muted mb-3">Also follow us on</p>
+            <p className="text-center text-[10px] font-sans uppercase tracking-widest text-tm-muted mb-3">{followLabel[locale]}</p>
             <div className="flex flex-wrap justify-center gap-2">
               {SOCIALS.filter(s => s.key !== platform.key).map(s => {
                 const utm: UtmParams = {

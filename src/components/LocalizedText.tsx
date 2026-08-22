@@ -7,6 +7,12 @@ export function LocalizedText({ en, ko, ja }: { en: string; ko: string; ja: stri
   return <>{({ en, ko, ja })[locale]}</>;
 }
 
+export function LocalizedDate({ iso, options }: { iso: string; options?: Intl.DateTimeFormatOptions }) {
+  const { locale } = useLocale();
+  const dateLocale = { en: 'en-US', ko: 'ko-KR', ja: 'ja-JP' }[locale];
+  return <>{new Date(iso).toLocaleDateString(dateLocale, options ?? { year: 'numeric', month: 'long', day: 'numeric' })}</>;
+}
+
 export function ArticleLanguageNotice({ articleLocale }: { articleLocale: 'en' | 'ko' | 'ja' }) {
   const { locale } = useLocale();
   if (locale === articleLocale) return null;

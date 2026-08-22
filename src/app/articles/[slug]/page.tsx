@@ -4,14 +4,14 @@ import Link from 'next/link';
 import { articles, articleSlug, articleBySlug, articleCategory, articleLang } from '@/lib/articles';
 import type { ArticleBlock } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
-import { ArticleLanguageNotice, LocalizedText } from '@/components/LocalizedText';
+import { ArticleLanguageNotice, LocalizedDate, LocalizedText } from '@/components/LocalizedText';
 
-const categoryColors: Record<string, { color: string; label: string }> = {
-  korea: { color: '#ef4444', label: 'KOREA' },
-  japan: { color: '#f59e0b', label: 'JAPAN' },
-  democracy: { color: '#3b82f6', label: 'DEMOCRACY' },
-  economy: { color: '#06b6d4', label: 'ECONOMY' },
-  religion: { color: '#a855f7', label: 'RELIGION' },
+const categoryColors: Record<string, { color: string; label: { en: string; ko: string; ja: string } }> = {
+  korea: { color: '#ef4444', label: { en: 'KOREA', ko: '한국', ja: '韓国' } },
+  japan: { color: '#f59e0b', label: { en: 'JAPAN', ko: '일본', ja: '日本' } },
+  democracy: { color: '#3b82f6', label: { en: 'DEMOCRACY', ko: '민주주의', ja: '民主主義' } },
+  economy: { color: '#06b6d4', label: { en: 'ECONOMY', ko: '경제', ja: '経済' } },
+  religion: { color: '#a855f7', label: { en: 'RELIGION', ko: '종교', ja: '宗教' } },
 };
 
 export function generateStaticParams() {
@@ -133,11 +133,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const cat = articleCategory(article);
   const catInfo = categoryColors[cat] || categoryColors.korea;
   const lang = articleLang(article);
-  const dateStr = new Date(article.createdAt).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
 
   return (
     <div data-theme="light" className="min-h-screen bg-tm-page text-tm-body">
@@ -175,9 +170,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             className="text-[9px] font-sans font-bold tracking-widest px-2 py-0.5 rounded"
             style={{ color: catInfo.color, backgroundColor: catInfo.color + '15', border: `1px solid ${catInfo.color}30` }}
           >
-            {catInfo.label}
+            <LocalizedText {...catInfo.label} />
           </span>
-          <span className="text-tm-faint text-xs font-sans">{dateStr}</span>
+          <span className="text-tm-faint text-xs font-sans"><LocalizedDate iso={article.createdAt} /></span>
           {lang !== 'en' && (
             <span className="text-tm-faint text-[10px] font-sans border border-tm-border-hover px-1.5 py-0.5 rounded">
               {lang === 'ko' ? '한국어' : '日本語'}
@@ -205,8 +200,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </a>
           </div>
           <div className="flex items-center gap-3 text-tm-faint text-xs font-sans">
-            <span>{article.likes.toLocaleString()} likes</span>
-            <span>{article.views.toLocaleString()} views</span>
+            <span>{article.likes.toLocaleString()} <LocalizedText en="likes" ko="공감" ja="反応" /></span>
+            <span>{article.views.toLocaleString()} <LocalizedText en="views" ko="조회" ja="閲覧" /></span>
           </div>
         </div>
 

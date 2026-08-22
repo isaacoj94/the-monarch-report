@@ -323,8 +323,8 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <Image src="/logos/combined-gold.png" alt="The Monarch Report" width={554} height={80} />
-        <p>Independent reporting on Korea, democracy and freedom of belief across Asia.</p>
-        <div><a href={siteConfig.x}>𝕏</a><Link href="/articles">Articles</Link><Link href="/films">Films</Link></div>
+        <p>{locale === 'ko' ? '한국과 아시아의 민주주의, 믿을 자유를 다루는 독립 언론.' : locale === 'ja' ? '韓国とアジアの民主主義、信じる自由を扱う独立報道。' : 'Independent reporting on Korea, democracy and freedom of belief across Asia.'}</p>
+        <div><a href={siteConfig.x}>𝕏</a><Link href="/articles">{copy.articles}</Link><Link href="/films">{copy.films}</Link></div>
       </footer>
     </main>
   );

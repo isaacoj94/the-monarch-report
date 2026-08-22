@@ -112,7 +112,7 @@ export default function Dashboard() {
       <section className="max-w-7xl mx-auto px-4 py-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="block text-[#7b4d82] text-[10px] font-sans font-bold uppercase tracking-[.16em] mb-4">Korea data desk</span>
+            <span className="block text-[#7b4d82] text-[10px] font-sans font-bold uppercase tracking-[.16em] mb-4">{locale === 'ko' ? '한국 데이터 데스크' : locale === 'ja' ? '韓国データデスク' : 'Korea data desk'}</span>
             <h2 className="text-4xl md:text-6xl font-serif font-semibold mb-4 leading-[.98] tracking-tight">{t(locale, 'siteDescription')}</h2>
             <p className="text-[#756c73] text-sm leading-relaxed">{t(locale, 'asOf')} {LAST_UPDATED_LABEL} · {t(locale, 'presidencyStart')}: {PRESIDENCY_START_LABEL}</p>
           </div>
