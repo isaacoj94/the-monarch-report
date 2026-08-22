@@ -83,7 +83,7 @@ export function InvitationForm({ episodes }: { episodes: Array<{ id: string; epi
   );
 }
 
-function CopyButton({
+export function CopyButton({
   value,
   label = 'Copy',
   done = 'Copied',
@@ -129,15 +129,14 @@ export function CopyField({ value, label = 'Copy' }: { value: string; label?: st
 
 export function AccessKeyCell({ accessKey, viewerId, active }: { accessKey: string | null; viewerId: string; active: boolean }) {
   if (!accessKey) {
-    if (!active) return <small>Not saved at issue</small>;
+    if (!active) return null;
     return (
       <form action={rotateAccessKeyAction} className={styles.keyCell}>
-        <small>Not saved at issue</small>
         <input type="hidden" name="viewerId" value={viewerId} />
         <button type="submit">Issue new key</button>
       </form>
     );
   }
 
-  return <CopyField value={accessKey} label="Copy key" />;
+  return <CopyButton value={accessKey} label="Copy key" />;
 }

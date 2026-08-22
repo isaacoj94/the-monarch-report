@@ -4,7 +4,7 @@ import { displayEpisodeTitle } from '@/lib/film-episodes';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { getAuthenticatedUser, isScreeningAdministrator } from '@/lib/screening';
 import { revokeViewerAction, signOutAction } from '../actions';
-import { AccessKeyCell, AdminLogin, CopyField, InvitationForm } from './screening-admin-forms';
+import { AccessKeyCell, AdminLogin, CopyButton, InvitationForm } from './screening-admin-forms';
 import styles from './screening-admin.module.css';
 
 export const dynamic = 'force-dynamic';
@@ -115,19 +115,21 @@ export default async function ScreeningAdminPage() {
           ) : (
             <div className={styles.tableWrap}>
               <table>
-                <thead><tr><th>Viewer</th><th>Context</th><th>Access key</th><th>Episode</th><th>Usage</th><th>Expiry</th><th>Status</th><th /></tr></thead>
+                <thead><tr><th>Viewer</th><th>Context</th><th>Episode</th><th>Usage</th><th>Expiry</th><th>Status</th><th /></tr></thead>
                 <tbody>
                   {viewers.map((viewer) => {
                     const grant = viewer.screening_access_grants?.[0];
                     return (
                       <tr key={viewer.id}>
                         <td>
-                          <CopyField value={viewer.viewer_code} label="Copy ID" />
-                          <small>{viewer.display_name || 'Unnamed viewer'}</small>
+                          <strong className={styles.viewerName}>{viewer.display_name || 'Unnamed viewer'}</strong>
                           {viewer.contact_email ? <small>{viewer.contact_email}</small> : null}
+                          <div className={styles.credentialActions}>
+                            <CopyButton value={viewer.viewer_code} label="Copy ID" />
+                            <AccessKeyCell accessKey={viewer.access_key ?? null} viewerId={viewer.id} active={viewer.status === 'active'} />
+                          </div>
                         </td>
                         <td>{viewer.context_note ? <span className={styles.context}>{viewer.context_note}</span> : '—'}</td>
-                        <td><AccessKeyCell accessKey={viewer.access_key ?? null} viewerId={viewer.id} active={viewer.status === 'active'} /></td>
                         <td>{grant?.screening_episodes ? displayEpisodeTitle(grant.screening_episodes.episode_number, grant.screening_episodes.title) : '—'}</td>
                         <td>{grant ? `${grant.views_started} / ${grant.view_limit ?? '∞'}` : '—'}</td>
                         <td>{utcDate(grant?.expires_at ?? null)}</td>
