@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
-import type { ScreeningEpisode, ViewerAccess } from '@/lib/screening';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { ScreeningEpisode, ViewerAccess, ViewerFeedbackEntry } from '@/lib/screening';
 import { displayEpisodeTitle } from '@/lib/film-episodes';
 import { useLocale } from '@/components/LocaleProvider';
-import { SecureVimeoPlayer } from './secure-vimeo-player';
+import { SecureVimeoPlayer, type PlayerApi } from './secure-vimeo-player';
+import { FeedbackPanel } from './feedback-panel';
 import { clearViewerSession, ViewerSessionGuard } from './viewer-session-guard';
 import styles from './screening.module.css';
 
@@ -53,9 +54,11 @@ function episodeStatus(episode: ScreeningEpisode, copy: { noAccess: string; awai
 
 export function ScreeningRoom({
   access,
+  feedback,
   signOutAction,
 }: {
   access: ViewerAccess;
+  feedback: ViewerFeedbackEntry[];
   signOutAction: () => Promise<void>;
 }) {
   const { locale } = useLocale();
@@ -69,6 +72,14 @@ export function ScreeningRoom({
   const [deviceCounts, setDeviceCounts] = useState<Record<string, number>>({});
   const episode = access.episodes[episodeIndex];
   const canStart = Boolean(episode.grantId && episode.hasVideo);
+  const playerApiRef = useRef<PlayerApi | null>(null);
+  const handlePlayerReady = useCallback((api: PlayerApi) => {
+    playerApiRef.current = api;
+  }, []);
+  const getCurrentTime = useCallback(
+    () => playerApiRef.current?.getCurrentTime() ?? Promise.resolve(null),
+    [],
+  );
   const isPlaying = playback?.episodeId === episode.id;
   const viewsStarted = viewCounts[episode.id] ?? episode.viewsStarted;
   const devicesUsed = deviceCounts[episode.id] ?? episode.devicesUsed;
@@ -149,7 +160,7 @@ export function ScreeningRoom({
       <div className={styles.viewerLayout}>
         <div className={`${styles.player} ${isPlaying ? styles.playing : ''}`}>
           {isPlaying ? (
-            <SecureVimeoPlayer videoId={playback.vimeoVideoId} title={episode.title} />
+            <SecureVimeoPlayer videoId={playback.vimeoVideoId} title={episode.title} onPlayerReady={handlePlayerReady} />
           ) : (
             <>
               <div className={styles.playerArt} aria-hidden="true" />
@@ -177,6 +188,15 @@ export function ScreeningRoom({
           <div className={styles.protection}><i /> {copy.identified}<p>{copy.watermark}</p></div>
         </aside>
       </div>
+
+      {episode.grantId && (
+        <FeedbackPanel
+          episode={episode}
+          episodes={access.episodes}
+          entries={feedback}
+          getCurrentTime={getCurrentTime}
+        />
+      )}
 
       <div className={styles.episodeRail}>
         {access.episodes.map((item, index) => (

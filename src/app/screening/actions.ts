@@ -128,6 +128,67 @@ export async function signOutAction() {
   redirect('/screening');
 }
 
+export type FeedbackState = { error: string | null; savedAt: string | null };
+
+export async function submitScreeningFeedbackAction(
+  _state: FeedbackState,
+  formData: FormData,
+): Promise<FeedbackState> {
+  const failure = (error: string): FeedbackState => ({ error, savedAt: null });
+
+  const cookieStore = await cookies();
+  if (!cookieStore.get(VIEWER_BROWSER_SESSION_COOKIE)?.value) {
+    return failure('Your screening session has ended. Sign in again.');
+  }
+  const user = await getAuthenticatedUser();
+  if (!user) return failure('Your screening session has expired. Sign in again.');
+
+  const episodeId = String(formData.get('episodeId') ?? '');
+  const body = String(formData.get('body') ?? '').trim().slice(0, 2000);
+  const timecodeRaw = String(formData.get('timecodeSeconds') ?? '').trim();
+  const timecodeNumber = Number(timecodeRaw);
+  const timecodeSeconds =
+    timecodeRaw && Number.isFinite(timecodeNumber) && timecodeNumber >= 0
+      ? Math.floor(timecodeNumber)
+      : null;
+
+  if (!episodeId) return failure('No episode was selected.');
+  if (!body) return failure('Write a note before sending.');
+
+  try {
+    const admin = createSupabaseAdminClient();
+    const { data: viewer } = await admin
+      .from('screening_viewers')
+      .select('id, status')
+      .eq('auth_user_id', user.id)
+      .maybeSingle();
+    if (!viewer || viewer.status !== 'active') {
+      return failure('This invitation is no longer active.');
+    }
+
+    const { data: grant } = await admin
+      .from('screening_access_grants')
+      .select('id')
+      .eq('viewer_id', viewer.id)
+      .eq('episode_id', episodeId)
+      .maybeSingle();
+    if (!grant) return failure('Notes are limited to episodes you were invited to.');
+
+    const { error } = await admin.from('screening_feedback').insert({
+      viewer_id: viewer.id,
+      episode_id: episodeId,
+      timecode_seconds: timecodeSeconds,
+      body,
+    });
+    if (error) return failure('Your note could not be saved. Please try again.');
+  } catch {
+    return failure('The screening service is temporarily unavailable. Please try again.');
+  }
+
+  revalidatePath('/screening');
+  return { error: null, savedAt: new Date().toISOString() };
+}
+
 export async function createInvitationAction(
   _state: InvitationState,
   formData: FormData,
@@ -317,6 +378,7 @@ export async function deleteViewerAction(formData: FormData) {
     .maybeSingle();
   if (!viewer) return;
 
+  await admin.from('screening_feedback').delete().eq('viewer_id', viewerId);
   await admin.from('screening_sessions').delete().eq('viewer_id', viewerId);
   await admin.from('screening_access_grants').delete().eq('viewer_id', viewerId);
   await admin.from('screening_viewers').delete().eq('id', viewerId);

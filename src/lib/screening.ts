@@ -29,6 +29,14 @@ export type ViewerAccess = {
   episodes: ScreeningEpisode[];
 };
 
+export type ViewerFeedbackEntry = {
+  id: string;
+  episodeId: string;
+  timecodeSeconds: number | null;
+  body: string;
+  createdAt: string;
+};
+
 type EpisodeRow = {
   id: string;
   slug: string;
@@ -71,6 +79,28 @@ export async function isScreeningAdministrator(userId: string) {
     .maybeSingle();
 
   return Boolean(data);
+}
+
+// Feedback rows are only ever queried for the signed-in viewer; combined with
+// the table's deny-all RLS, that keeps every note between its writer and the
+// administration desk. Returns [] until the screening_feedback table exists.
+export async function getViewerFeedback(viewerId: string): Promise<ViewerFeedbackEntry[]> {
+  const admin = createSupabaseAdminClient();
+  const { data, error } = await admin
+    .from('screening_feedback')
+    .select('id, episode_id, timecode_seconds, body, created_at')
+    .eq('viewer_id', viewerId)
+    .order('created_at', { ascending: false })
+    .limit(100);
+
+  if (error || !data) return [];
+  return data.map((row) => ({
+    id: String(row.id),
+    episodeId: String(row.episode_id),
+    timecodeSeconds: typeof row.timecode_seconds === 'number' ? row.timecode_seconds : null,
+    body: String(row.body),
+    createdAt: String(row.created_at),
+  }));
 }
 
 export async function getViewerAccess(): Promise<ViewerAccess | null> {

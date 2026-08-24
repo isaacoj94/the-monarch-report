@@ -1,7 +1,13 @@
 'use client';
 
+import { useCallback, useEffect, useRef } from 'react';
 import type { PointerEvent } from 'react';
+import Player from '@vimeo/player';
 import styles from './screening.module.css';
+
+export type PlayerApi = {
+  getCurrentTime: () => Promise<number | null>;
+};
 
 // Mirror the Vimeo Appearance > Embed preset. Share / Like / Watch Later /
 // screenshot still render on this player even when those boxes are unchecked,
@@ -39,12 +45,95 @@ function absorb(event: PointerEvent<HTMLDivElement>) {
   event.stopPropagation();
 }
 
-export function SecureVimeoPlayer({ videoId, title }: { videoId: string; title: string }) {
+function isTypingTarget(target: EventTarget | null) {
+  if (!(target instanceof HTMLElement)) return false;
+  return (
+    target.tagName === 'INPUT' ||
+    target.tagName === 'TEXTAREA' ||
+    target.tagName === 'SELECT' ||
+    target.tagName === 'BUTTON' ||
+    target.isContentEditable
+  );
+}
+
+export function SecureVimeoPlayer({
+  videoId,
+  title,
+  onPlayerReady,
+}: {
+  videoId: string;
+  title: string;
+  onPlayerReady?: (api: PlayerApi) => void;
+}) {
   const parameters = new URLSearchParams(PLAYER_PARAMETERS).toString();
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerRef = useRef<Player | null>(null);
+  const playingRef = useRef(false);
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    const player = new Player(iframe);
+    playerRef.current = player;
+    playingRef.current = false;
+    const onPlay = () => {
+      playingRef.current = true;
+    };
+    const onHalt = () => {
+      playingRef.current = false;
+    };
+    player.on('play', onPlay);
+    player.on('pause', onHalt);
+    player.on('ended', onHalt);
+    onPlayerReady?.({
+      getCurrentTime: () => player.getCurrentTime().catch(() => null),
+    });
+
+    return () => {
+      playerRef.current = null;
+      playingRef.current = false;
+      player.off('play', onPlay);
+      player.off('pause', onHalt);
+      player.off('ended', onHalt);
+    };
+  }, [videoId, onPlayerReady]);
+
+  const togglePlayback = useCallback(() => {
+    const player = playerRef.current;
+    if (!player) return;
+    player
+      .getPaused()
+      .then((paused) => (paused ? player.play() : player.pause()))
+      .catch(() => {});
+  }, []);
+
+  // Clicking the film itself already toggles playback inside the Vimeo frame.
+  // These listeners extend that to the rest of the screen: any click outside
+  // the frame, or the space bar, halts the film so the viewer can take notes.
+  useEffect(() => {
+    const pauseFromOutside = () => {
+      const player = playerRef.current;
+      if (!player || !playingRef.current) return;
+      player.pause().catch(() => {});
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.code !== 'Space' || isTypingTarget(event.target)) return;
+      event.preventDefault();
+      togglePlayback();
+    };
+    document.addEventListener('click', pauseFromOutside);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('click', pauseFromOutside);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [togglePlayback]);
 
   return (
     <>
       <iframe
+        ref={iframeRef}
         key={videoId}
         className={styles.vimeoFrame}
         src={`https://player.vimeo.com/video/${encodeURIComponent(videoId)}?${parameters}`}

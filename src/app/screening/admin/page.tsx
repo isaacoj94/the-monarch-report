@@ -10,6 +10,14 @@ import styles from './screening-admin.module.css';
 export const dynamic = 'force-dynamic';
 
 type EpisodeOption = { id: string; episode_number: number; country: string; title: string };
+type FeedbackRow = {
+  id: string;
+  body: string;
+  timecode_seconds: number | null;
+  created_at: string;
+  screening_viewers: { viewer_code: string; display_name: string | null } | null;
+  screening_episodes: { episode_number: number; title: string } | null;
+};
 type ViewerRow = {
   id: string;
   auth_user_id: string;
@@ -35,6 +43,14 @@ function metadataString(value: unknown) {
 function utcDate(value: string | null) {
   if (!value) return 'No expiry';
   return new Date(value).toISOString().replace('T', ' ').slice(0, 16) + ' UTC';
+}
+
+function timecodeLabel(totalSeconds: number) {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = Math.floor(totalSeconds % 60);
+  const core = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  return hours > 0 ? `${hours}:${core}` : core;
 }
 
 export default async function ScreeningAdminPage() {
@@ -74,6 +90,13 @@ export default async function ScreeningAdminPage() {
         .limit(30)
     : viewerQuery;
   const episodes = (episodeData ?? []) as EpisodeOption[];
+  // Returns no rows until the screening_feedback migration has been applied.
+  const { data: feedbackData } = await admin
+    .from('screening_feedback')
+    .select('id, body, timecode_seconds, created_at, screening_viewers(viewer_code, display_name), screening_episodes(episode_number, title)')
+    .order('created_at', { ascending: false })
+    .limit(100);
+  const feedbackEntries = (feedbackData ?? []) as unknown as FeedbackRow[];
   const viewers = await Promise.all(((viewerData ?? []) as unknown as ViewerRow[]).map(async (viewer) => {
     const { data } = await admin.auth.admin.getUserById(viewer.auth_user_id);
     const metadata = data.user?.user_metadata ?? {};
@@ -148,6 +171,36 @@ export default async function ScreeningAdminPage() {
                       </tr>
                     );
                   })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+
+        <section className={styles.ledger}>
+          <div className={styles.ledgerHeading}>
+            <div><span>VIEWER FEEDBACK — PRIVATE</span><h2>Screening notes</h2></div>
+            <b>{feedbackEntries.length} NOTES</b>
+          </div>
+          {feedbackEntries.length === 0 ? (
+            <p className={styles.empty}>No screening notes have been left yet.</p>
+          ) : (
+            <div className={styles.tableWrap}>
+              <table>
+                <thead><tr><th>Viewer</th><th>Episode</th><th>Timecode</th><th>Note</th><th>Left</th></tr></thead>
+                <tbody>
+                  {feedbackEntries.map((entry) => (
+                    <tr key={entry.id}>
+                      <td>
+                        <strong className={styles.viewerName}>{entry.screening_viewers?.display_name || 'Unnamed viewer'}</strong>
+                        <small>{entry.screening_viewers?.viewer_code ?? '—'}</small>
+                      </td>
+                      <td>{entry.screening_episodes ? displayEpisodeTitle(entry.screening_episodes.episode_number, entry.screening_episodes.title) : '—'}</td>
+                      <td>{entry.timecode_seconds !== null ? timecodeLabel(entry.timecode_seconds) : '—'}</td>
+                      <td><span className={styles.feedbackBody}>{entry.body}</span></td>
+                      <td>{utcDate(entry.created_at)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

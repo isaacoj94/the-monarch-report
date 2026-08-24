@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getViewerAccess } from '@/lib/screening';
+import { getViewerAccess, getViewerFeedback, type ViewerFeedbackEntry } from '@/lib/screening';
 import { signOutAction } from './actions';
 import { ScreeningLogin } from './screening-login';
 import { ScreeningRoom } from './screening-room';
@@ -12,9 +12,11 @@ export const dynamic = 'force-dynamic';
 export default async function ScreeningPage() {
   let access = null;
   let configurationError = false;
+  let feedback: ViewerFeedbackEntry[] = [];
 
   try {
     access = await getViewerAccess();
+    if (access) feedback = await getViewerFeedback(access.viewerId);
   } catch {
     configurationError = true;
   }
@@ -31,7 +33,7 @@ export default async function ScreeningPage() {
       </header>
 
       {access ? (
-        <ScreeningRoom access={access} signOutAction={signOutAction} />
+        <ScreeningRoom access={access} feedback={feedback} signOutAction={signOutAction} />
       ) : (
         <ScreeningLogin configurationError={configurationError} />
       )}
