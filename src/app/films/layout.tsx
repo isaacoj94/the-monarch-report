@@ -2,18 +2,18 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "You're Next: Do Nothing | Monarch Films",
-  description: 'A five-part cinematic investigation into religious persecution across China, Japan, South Korea and North Korea.',
+  description: 'A three-part cinematic investigation into religious persecution across China, Japan and South Korea. Episode 1 premieres August 28 at 8 PM ET.',
   openGraph: {
     title: "You're Next: Do Nothing",
-    description: 'A Monarch Films production built from testimony, court records and cinematic reconstruction.',
+    description: 'Episode 1 premieres publicly August 28 at 8 PM ET on YouTube, X and Facebook.',
     type: 'video.movie',
-    images: [{ url: '/images/cinematic-citizen.jpg', alt: "You're Next: Do Nothing — A Monarch Films production" }],
+    images: [{ url: '/social/episode-01-launch-x-1600x900.png', alt: "Inside the Machine — Episode 1 premieres August 28 at 8 PM ET" }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "You're Next: Do Nothing",
-    description: 'A Monarch Films production.',
-    images: ['/images/cinematic-citizen.jpg'],
+    title: "Inside the Machine | Episode 1",
+    description: 'Premieres publicly August 28 at 8 PM ET on YouTube, X and Facebook.',
+    images: ['/social/episode-01-launch-x-1600x900.png'],
   },
 };
 
