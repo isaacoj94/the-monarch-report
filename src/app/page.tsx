@@ -177,7 +177,7 @@ export default function Home() {
       });
       if (!response.ok) throw new Error('Signup failed');
       setEmailStatus('sent');
-      trackEvent('newsletter_signup', { method: 'news-desk', ...utms.current });
+      trackEvent('newsletter_signup', { method: 'news-desk', source_page: 'homepage', ...utms.current });
     } catch {
       setEmailStatus('error');
     }
