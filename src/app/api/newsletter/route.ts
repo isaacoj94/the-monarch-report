@@ -9,6 +9,9 @@ const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
 const BREVO_ACCOUNT_URL = 'https://api.brevo.com/v3/account';
 const BREVO_SEND_URL = 'https://api.brevo.com/v3/smtp/email';
 const SENDER = { name: 'The Monarch Report', email: 'news@monarchreport.org' };
+// Make.com scenario "Monarch Newsletter Signup → Google Sheet" — appends each new
+// subscriber to the "Monarch Report Newsletter Sign Ups" sheet. Write-only endpoint.
+const SIGNUP_WEBHOOK_URL = 'https://hook.us2.make.com/cq1586foli939prrse4y1pifn6hbtpnt';
 
 type SignupBody = {
   email?: string;
@@ -94,6 +97,21 @@ export async function POST(request: Request) {
     if (res.status !== 201) {
       return NextResponse.json({ success: true, message: 'Already subscribed' });
     }
+
+    // Log the signup to the Google Sheet via Make — best-effort, fire-and-forget.
+    fetch(SIGNUP_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        signup_at: attributes.SIGNUP_AT,
+        locale: body.locale ?? 'en',
+        utm_source: body.utm_source ?? '',
+        utm_medium: body.utm_medium ?? '',
+        utm_campaign: body.utm_campaign ?? '',
+        utm_content: body.utm_content ?? '',
+      }),
+    }).catch((err) => console.error('Signup webhook failed:', err));
 
     // Welcome email is best-effort: a send failure must never fail the signup.
     const locale: WelcomeLocale = body.locale === 'ko' || body.locale === 'ja' ? body.locale : 'en';
