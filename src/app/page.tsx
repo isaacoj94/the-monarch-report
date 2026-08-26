@@ -173,7 +173,7 @@ export default function Home() {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, ...utms.current }),
+        body: JSON.stringify({ email, locale, ...utms.current }),
       });
       if (!response.ok) throw new Error('Signup failed');
       setEmailStatus('sent');

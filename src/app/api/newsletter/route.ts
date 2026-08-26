@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { welcomeEmail, type WelcomeLocale } from '@/lib/welcome-email';
 
 // Brevo (formerly Sendinblue) API integration
 // Set BREVO_API_KEY in Vercel environment variables
@@ -6,9 +7,12 @@ import { NextResponse } from 'next/server';
 
 const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
 const BREVO_ACCOUNT_URL = 'https://api.brevo.com/v3/account';
+const BREVO_SEND_URL = 'https://api.brevo.com/v3/smtp/email';
+const SENDER = { name: 'The Monarch Report', email: 'news@monarchreport.org' };
 
 type SignupBody = {
   email?: string;
+  locale?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
@@ -56,6 +60,12 @@ export async function POST(request: Request) {
       );
     }
 
+    const attributes: Record<string, string> = { SIGNUP_AT: new Date().toISOString() };
+    if (body.utm_source) attributes.UTM_SOURCE = body.utm_source;
+    if (body.utm_medium) attributes.UTM_MEDIUM = body.utm_medium;
+    if (body.utm_campaign) attributes.UTM_CAMPAIGN = body.utm_campaign;
+    if (body.utm_content) attributes.UTM_CONTENT = body.utm_content;
+
     const res = await fetch(BREVO_API_URL, {
       method: 'POST',
       headers: {
@@ -67,6 +77,7 @@ export async function POST(request: Request) {
         email,
         listIds: [newsletterListId()],
         updateEnabled: true,
+        attributes,
       }),
     });
 
@@ -77,6 +88,37 @@ export async function POST(request: Request) {
       }
       console.error('Brevo API error:', data);
       return NextResponse.json({ error: 'Subscription failed. Please try again.' }, { status: 500 });
+    }
+
+    // 201 = contact created; 204 = existing contact updated (no welcome re-send).
+    if (res.status !== 201) {
+      return NextResponse.json({ success: true, message: 'Already subscribed' });
+    }
+
+    // Welcome email is best-effort: a send failure must never fail the signup.
+    const locale: WelcomeLocale = body.locale === 'ko' || body.locale === 'ja' ? body.locale : 'en';
+    const { subject, html } = welcomeEmail(locale);
+    try {
+      const sendRes = await fetch(BREVO_SEND_URL, {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+          'api-key': apiKey,
+        },
+        body: JSON.stringify({
+          sender: SENDER,
+          to: [{ email }],
+          subject,
+          htmlContent: html,
+          tags: ['welcome', 'newsletter-2026'],
+        }),
+      });
+      if (!sendRes.ok) {
+        console.error('Brevo welcome send error:', await sendRes.json().catch(() => ({})));
+      }
+    } catch (err) {
+      console.error('Brevo welcome send failed:', err);
     }
 
     return NextResponse.json({ success: true, message: 'Subscribed' });
