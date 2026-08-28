@@ -8,6 +8,9 @@ import { FILM_EPISODES } from '@/lib/film-episodes';
 import { useLocale } from '@/components/LocaleProvider';
 import styles from './documentary.module.css';
 
+const EPISODE_1_VIDEO_ID = 'xCm4PlXl35M';
+const EPISODE_1_PREMIERE_AT = new Date('2026-08-29T00:00:00Z').getTime();
+
 const CHAPTERS = [
   {
     number: '01', title: FILM_EPISODES[0].title, country: { en: 'China', ko: '중국', ja: '中国' },
@@ -27,7 +30,8 @@ const filmCopy = {
   en: {
     film: 'The film', episodes: 'Episodes', production: 'Production', eyebrow: 'What happens behind closed doors reaches everyone', title: 'You’re Next:', emphasis: 'Do Nothing.',
     dek: 'Three nations. One blueprint of persecution. A documentary series built from testimony, rare footage, public records and cinematic storytelling.', trailer: 'Watch the trailer', series: 'The series', warning: 'Three nations. One warning.', seriesDek: 'China, Japan and Korea reveal different methods of pressure—and a shared threat to freedom of belief.',
-    premiere: 'Public premiere', premiereDate: 'August 28 · 8 PM ET', premierePlatforms: 'YouTube · X · Facebook',
+    premiere: 'Public premiere', premiereDate: 'August 28 · 8 PM ET', premiereNow: 'Episode 1 · Now playing', premierePlatforms: 'YouTube · X · Facebook', watchEpisode: 'Watch Episode 1',
+    episodeVideoLabel: 'Episode 01 · China', episodeVideoTitle: 'Inside the Machine', episodeVideoDek: 'How China built a system to erase independent faith—and what happens to the people caught inside it.', episodePremiere: 'Premieres today · 8 PM ET', nowPlaying: 'Now playing',
     format: 'FORMAT', status: 'STATUS', documentary: 'DOCUMENTARY', inProduction: 'IN PRODUCTION', productionLabel: 'A Monarch Films production', productionTitle: 'Truth, scaled to cinema.',
     productionDek: 'Exclusive interviews, rare footage, original reporting and high-end filmmaking bring clarity to stories too often hidden by distance, language or institutional power.', continue: 'Continue with the reporting', follow: 'Follow the record behind the film.', followDek: 'Return to The Monarch Report for independent coverage of Korea, religious freedom and the public consequences behind the series.', visit: 'Visit The Monarch Report →',
     productionCards: [
@@ -39,7 +43,8 @@ const filmCopy = {
   ko: {
     film: '작품', episodes: '에피소드', production: '제작', eyebrow: '닫힌 문 뒤에서 시작된 일. 다음은 당신이다', title: 'You’re Next:', emphasis: 'Do Nothing.',
     dek: '중국, 일본, 한국. 세 나라에서 같은 수법이 반복된다. 증언과 기록으로 추적하는 장편 다큐멘터리.', trailer: '예고편 보기', series: '시리즈', warning: '세 나라, 하나의 경고', seriesDek: '압박의 방식은 달라도, 노리는 것은 같다. 믿을 자유.',
-    premiere: '공개 예정', premiereDate: '8월 28일 · 오후 8시 (미국 동부시간)', premierePlatforms: 'YouTube · X · Facebook',
+    premiere: '공개 예정', premiereDate: '8월 28일 · 오후 8시 (미국 동부시간)', premiereNow: '에피소드 1 · 지금 시청', premierePlatforms: 'YouTube · X · Facebook', watchEpisode: '에피소드 1 보기',
+    episodeVideoLabel: '에피소드 01 · 중국', episodeVideoTitle: 'Inside the Machine', episodeVideoDek: '중국은 어떻게 독립된 신앙을 지우는 시스템을 만들었으며, 그 안에 갇힌 사람들에게 무슨 일이 일어나는가.', episodePremiere: '오늘 오후 8시 공개 · 미국 동부시간', nowPlaying: '지금 시청',
     format: '형식', status: '제작', documentary: '다큐멘터리', inProduction: '제작 중', productionLabel: '모나크 필름스', productionTitle: '진실은, 영화가 되어야 한다',
     productionDek: '독점 인터뷰, 희귀 영상, 현장 취재. 거리와 언어, 권력이 가린 이야기를 스크린에 올린다.', continue: '보도로 이어집니다', follow: '작품 뒤에 있는 기록', followDek: '시리즈가 다루는 한국과 종교의 자유를, 모나크 리포트에서 계속 읽으십시오.', visit: '모나크 리포트로 →',
     productionCards: [
@@ -51,7 +56,8 @@ const filmCopy = {
   ja: {
     film: '作品', episodes: 'エピソード', production: '制作', eyebrow: '閉ざされた扉の向こうで始まったこと。次は、あなただ', title: 'You’re Next:', emphasis: 'Do Nothing.',
     dek: '中国、日本、韓国。三つの国で、同じ手法が繰り返される。証言と記録で追う長編ドキュメンタリー。', trailer: '予告編を見る', series: 'シリーズ', warning: '三つの国、ひとつの警告', seriesDek: '圧力のかたちは違っても、狙いは同じだ。信じる自由。',
-    premiere: '一般公開', premiereDate: '8月28日 · 午後8時（米国東部時間）', premierePlatforms: 'YouTube · X · Facebook',
+    premiere: '一般公開', premiereDate: '8月28日 · 午後8時（米国東部時間）', premiereNow: 'エピソード1 · 公開中', premierePlatforms: 'YouTube · X · Facebook', watchEpisode: 'エピソード1を見る',
+    episodeVideoLabel: 'エピソード01 · 中国', episodeVideoTitle: 'Inside the Machine', episodeVideoDek: '中国はいかにして独立した信仰を消すシステムを築いたのか。そして、その中に置かれた人々に何が起きるのか。', episodePremiere: '本日午後8時公開 · 米国東部時間', nowPlaying: '公開中',
     format: '形式', status: '制作', documentary: 'ドキュメンタリー', inProduction: '制作中', productionLabel: 'モナーク・フィルムズ', productionTitle: '真実は、映画にならなければならない',
     productionDek: '独占インタビュー、希少な映像、現場取材。距離とことば、権力が覆い隠した話をスクリーンに上げる。', continue: '報道へ続く', follow: '作品の背後にある記録', followDek: 'シリーズが扱う韓国と信教の自由を、モナーク・レポートで読み継ぐ。', visit: 'モナーク・レポートへ →',
     productionCards: [
@@ -67,9 +73,16 @@ export default function DocumentaryPage() {
   const copy = filmCopy[locale];
   const [chapter, setChapter] = useState(0);
   const [trailerOpen, setTrailerOpen] = useState(false);
+  const [episodeIsLive, setEpisodeIsLive] = useState(() => Date.now() >= EPISODE_1_PREMIERE_AT);
   const utms = useRef<UtmPayload>({});
 
-  useEffect(() => { utms.current = captureUtms(); }, []);
+  useEffect(() => {
+    utms.current = captureUtms();
+    const updateReleaseState = () => setEpisodeIsLive(Date.now() >= EPISODE_1_PREMIERE_AT);
+    updateReleaseState();
+    const timer = window.setInterval(updateReleaseState, 30_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   const openTrailer = () => {
     setTrailerOpen(true);
@@ -99,10 +112,11 @@ export default function DocumentaryPage() {
           <p>{copy.dek}</p>
           <div className={styles.premiere}>
             <span>{copy.premiere}</span>
-            <strong>{copy.premiereDate}</strong>
+            <strong>{episodeIsLive ? copy.premiereNow : copy.premiereDate}</strong>
             <small>{copy.premierePlatforms}</small>
           </div>
           <div className={styles.heroActions}>
+            <a className={styles.play} href="#episode-1" onClick={() => trackEvent('documentary_episode_play_intent', { episode: 1, source_page: 'films', ...utms.current })}><span>▶</span> {copy.watchEpisode}</a>
             <button type="button" className={styles.play} onClick={openTrailer}><span>▶</span> {copy.trailer}</button>
           </div>
         </div>
@@ -121,7 +135,26 @@ export default function DocumentaryPage() {
         <article className={styles.chapterDetail}>
           <div className={styles.chapterNumber}>{CHAPTERS[chapter].number}</div>
           <div><span>{CHAPTERS[chapter].country[locale]}</span><h3>{CHAPTERS[chapter].title}</h3><p>{CHAPTERS[chapter].logline[locale]}</p></div>
-          <div className={styles.chapterMeta}><small>{copy.format}</small><strong>{copy.documentary}</strong><small>{copy.status}</small><strong>{copy.inProduction}</strong></div>
+          <div className={styles.chapterMeta}><small>{copy.format}</small><strong>{copy.documentary}</strong><small>{copy.status}</small><strong>{chapter === 0 ? (episodeIsLive ? copy.nowPlaying : copy.episodePremiere) : copy.inProduction}</strong></div>
+          {chapter === 0 && (
+            <div id="episode-1" className={styles.episodePlayer}>
+              <div className={styles.episodePlayerCopy}>
+                <small>{copy.episodeVideoLabel}</small>
+                <h4>{copy.episodeVideoTitle}</h4>
+                <p>{copy.episodeVideoDek}</p>
+                <strong>{episodeIsLive ? copy.nowPlaying : copy.episodePremiere}</strong>
+              </div>
+              <div className={styles.episodeFrame}>
+                <iframe
+                  src={`https://www.youtube.com/embed/${EPISODE_1_VIDEO_ID}?rel=0`}
+                  title="You're Next | Ep. 1: Inside the Machine — How China Erases Religion"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          )}
         </article>
       </section>
 
