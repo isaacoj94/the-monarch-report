@@ -5,7 +5,7 @@ import { mkdtemp, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
-import { discover, recordBackoff, writeStatus } from './sync-articles-free.mjs';
+import { AUTH_PROFILE_DIRECTORY, AUTH_PROFILE_LABEL, createAuthenticatedContext, discover, recordBackoff, writeStatus } from './sync-articles-free.mjs';
 
 function context({ auth = true, status = 200, payload = {}, emit = true } = {}) {
   let listener;
@@ -21,6 +21,34 @@ function context({ auth = true, status = 200, payload = {}, emit = true } = {}) 
   return { pages: () => [page] };
 }
 const emptyVerified = { data: { user: { result: { timeline: { timeline: { instructions: [{ type: 'TimelineTerminateTimeline', direction: 'Bottom' }] } } } } } };
+test('authentication requests only Chrome Profile 4 and injects into an isolated context', async () => {
+  assert.equal(AUTH_PROFILE_DIRECTORY, 'Profile 4');
+  assert.equal(AUTH_PROFILE_LABEL, 'Yoo Suk');
+  const calls = []; let added; let persistentRequested = false;
+  const isolated = { addCookies: async cookies => { added = cookies; } };
+  const browser = { newContext: async () => isolated, close: async () => {} };
+  const chromiumApi = {
+    launch: async options => { calls.push(['launch', options]); return browser; },
+    launchPersistentContext: async () => { persistentRequested = true; throw new Error('must not use profile storage'); },
+  };
+  const cookieReader = async options => {
+    calls.push(['cookies', options]);
+    return { cookies: [{ name: 'synthetic', value: 'not-logged', domain: 'x.com', hostOnly: true, path: '/' }], warnings: ['synthetic warning'] };
+  };
+  const result = await createAuthenticatedContext({ chromiumApi, cookieReader, headless: true });
+  assert.deepEqual(calls[0], ['cookies', { url: 'https://x.com/', browsers: ['chrome'], chromeProfile: 'Profile 4', chromiumBrowser: 'chrome' }]);
+  assert.deepEqual(calls[1], ['launch', { headless: true, channel: 'chrome', timeout: 15000 }]);
+  assert.equal(persistentRequested, false);
+  assert.equal(result.context, isolated); assert.equal(result.browser, browser);
+  assert.deepEqual(added, [{ name: 'synthetic', value: 'not-logged', url: 'https://x.com' }]);
+});
+test('authentication failures expose only a stable redacted code', async () => {
+  const chromiumApi = { launch: async () => { throw new Error('browser should not launch'); } };
+  await assert.rejects(
+    createAuthenticatedContext({ chromiumApi, cookieReader: async () => { throw new Error('synthetic-secret-cookie-value'); } }),
+    error => error.message === 'AUTH_COOKIE_ACCESS_FAILED',
+  );
+});
 test('no authorized navigation fails explicitly, never empty success', async () => {
   await assert.rejects(discover(context({ auth: false, payload: emptyVerified })), /LOGIN_REQUIRED/);
 });

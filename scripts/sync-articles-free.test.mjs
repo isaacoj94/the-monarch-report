@@ -41,6 +41,24 @@ test('authentication backoff persists across runs, expires and does not slide', 
   await mod.recordBackoff(file, 'RATE_LIMITED', 1000 + 6 * 60 * 60 * 1000);
   assert.equal(await mod.activeBackoff(file, 1001 + 6 * 60 * 60 * 1000), 'RATE_LIMITED');
 });
+test('refresh auth bypasses only LOGIN_REQUIRED backoff', () => {
+  assert.equal(mod.shouldHonorBackoff('LOGIN_REQUIRED', true), false);
+  assert.equal(mod.shouldHonorBackoff('LOGIN_REQUIRED', false), true);
+  assert.equal(mod.shouldHonorBackoff('RATE_LIMITED', true), true);
+  assert.equal(mod.shouldHonorBackoff(null, true), false);
+});
+test('maps only valid x.com cookies without widening host-only scope', () => {
+  const cookies = mod.mapCookiesForPlaywright([
+    { name: 'host', value: 'synthetic-secret-one', domain: 'x.com', hostOnly: true, path: '/', secure: true, httpOnly: true, sameSite: 'Lax' },
+    { name: 'domain', value: 'synthetic-secret-two', domain: 'x.com', hostOnly: false, path: '/', expires: 2000000000, sameSite: 'None' },
+    { name: 'wrong', value: 'must-not-map', domain: 'example.com', path: '/' },
+    { name: 'bad-path', value: 'must-not-map', domain: 'x.com', path: 'relative' },
+  ]);
+  assert.deepEqual(cookies, [
+    { name: 'host', value: 'synthetic-secret-one', url: 'https://x.com', secure: true, httpOnly: true, sameSite: 'Lax' },
+    { name: 'domain', value: 'synthetic-secret-two', domain: '.x.com', path: '/', expires: 2000000000, sameSite: 'None' },
+  ]);
+});
 const candidate = { tweetId: '1234567890123456789', articleId: '1234567890123456788' };
 function fixture() { return { tweet: { id: candidate.tweetId, author: { screen_name: 'monarchreport25' }, article: { id: candidate.articleId, title: 'Synthetic article', created_at: '2026-09-01T00:00:00Z', preview_text: 'Synthetic preview', content: { blocks: [{ type: 'header-two', text: 'Synthetic heading' }, { type: 'unstyled', text: 'Synthetic full body beyond preview.', inlineStyleRanges: [{ style: 'BOLD', offset: 0, length: 9 }] }], entityMap: {} } } } }; }
 test('does not resolve missing media keys by comparing undefined values', () => {
@@ -57,4 +75,4 @@ test('rejects empty, preview-only, truncated and unresolved media bodies', () =>
 function timeline() { return { data: { user: { result: { timeline: { timeline: { instructions: [{ type: 'TimelineAddEntries', entries: [{ content: { itemContent: { tweet_results: { result: { rest_id: candidate.tweetId, core: { user_results: { result: { legacy: { screen_name: 'monarchreport25' } } } }, article: { article_results: { result: { rest_id: candidate.articleId } } } } } } } }, { content: { cursorType: 'Bottom', value: '' } }] }] } } } } } }; }
 test('discovers article tweet identities and positive terminal marker only', () => { const d = mod.parseDiscovery(timeline()); assert.deepEqual(d.candidates, [candidate]); assert.equal(d.complete, true); assert.equal(mod.parseDiscovery({ data: {} }).verified, false); assert.equal(mod.parseDiscovery({ data: {} }).complete, false); });
 test('deduplicates atomically while preserving existing objects; dry-run never writes', async () => { const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-x-')); const file = path.join(dir, 'articles.json'); const old = [{ id: 'old', tweetId: 'old-tweet', arbitrary: { preserved: true } }]; const original = JSON.stringify(old); await writeFile(file, original); const fresh = mod.normalizeArticle(fixture(), candidate); assert.equal(await mod.appendArticles(file, [fresh, fresh], true), 1); assert.equal(await readFile(file, 'utf8'), original); assert.equal(await mod.appendArticles(file, [fresh, fresh], false), 1); assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), [...old, fresh]); assert.equal(await mod.appendArticles(file, [fresh], false), 0); });
-test('status errors retain last successful discovery timestamp', async () => { const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-status-')); const file = path.join(dir, 'status.json'); await mod.writeStatus(file, { status: 'success', errorCode: null, lastSuccessfulDiscoveryAt: '2026-09-01T00:00:00Z', addedCount: 2 }); await mod.writeStatus(file, { status: 'error', errorCode: 'LOGIN_REQUIRED', addedCount: 0 }); assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), { status: 'error', errorCode: 'LOGIN_REQUIRED', lastSuccessfulDiscoveryAt: '2026-09-01T00:00:00Z', addedCount: 0 }); });
+test('status errors retain discovery timestamp and redact unknown error values', async () => { const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-status-')); const file = path.join(dir, 'status.json'); await mod.writeStatus(file, { status: 'success', errorCode: null, lastSuccessfulDiscoveryAt: '2026-09-01T00:00:00Z', addedCount: 2 }); await mod.writeStatus(file, { status: 'error', errorCode: 'raw-cookie=synthetic-secret', addedCount: 0 }); assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), { status: 'error', errorCode: 'IMPORT_FAILED', lastSuccessfulDiscoveryAt: '2026-09-01T00:00:00Z', addedCount: 0 }); });

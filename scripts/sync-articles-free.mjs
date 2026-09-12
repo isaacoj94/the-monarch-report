@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 // Free browser discovery + public FxTwitter structured article bodies. No env loading.
 import fs from 'node:fs/promises';
-import { existsSync } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { getCookies } from '@steipete/sweet-cookie';
 
 const HANDLE = 'monarchreport25';
+export const AUTH_PROFILE_DIRECTORY = 'Profile 4';
+export const AUTH_PROFILE_LABEL = 'Yoo Suk';
+const AUTH_COOKIE_URL = 'https://x.com/';
 const STATE = path.join(os.homedir(), '.hermes/profiles/monarch/state/x-article-sync');
-const PROFILE = path.join(STATE, 'browser');
 const STATUS = path.join(STATE, 'import-status.json');
 const BACKOFF = path.join(STATE, 'auth-backoff.json');
 export async function activeBackoff(file, now = Date.now()) {
@@ -22,9 +24,14 @@ export async function recordBackoff(file, code, now = Date.now()) {
   if (!['LOGIN_REQUIRED', 'RATE_LIMITED'].includes(code) || await activeBackoff(file, now)) return;
   await atomicJson(file, { errorCode: code, retryAfter: now + 6 * 60 * 60 * 1000 });
 }
+export function shouldHonorBackoff(code, refreshAuth) {
+  return Boolean(code) && !(refreshAuth && code === 'LOGIN_REQUIRED');
+}
 const DATA = fileURLToPath(new URL('../src/data/articles.json', import.meta.url));
 const numericId = value => typeof value === 'string' && /^\d{15,22}$/.test(value);
 const fail = code => { throw new Error(code); };
+const ERROR_CODES = new Set(['AUTH_COOKIE_ACCESS_FAILED', 'BODY_FETCH_FAILED', 'DATA_CHANGED', 'DISCOVERY_UNVERIFIED', 'DISCOVERY_UPSTREAM_ERROR', 'IDENTITY_MISMATCH', 'IMPORT_FAILED', 'IMPORT_LOCKED', 'INCOMPLETE_BODY', 'INVALID_ARGUMENTS', 'INVALID_DATA', 'LOGIN_REQUIRED', 'RATE_LIMITED', 'TIMEOUT']);
+const safeErrorCode = value => ERROR_CODES.has(value) ? value : 'IMPORT_FAILED';
 const array = value => Array.isArray(value) ? value : [];
 const number = value => Number.isFinite(Number(value)) ? Number(value) : 0;
 const safeUrl = value => typeof value === 'string' && /^https:\/\//.test(value) ? value : '';
@@ -111,11 +118,49 @@ export async function appendArticles(file, fresh, dryRun) {
 export async function writeStatus(file, update) {
   let previous = {};
   try { previous = JSON.parse(await fs.readFile(file, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
-  await atomicJson(file, { status: update.status, errorCode: update.errorCode ?? null, lastSuccessfulDiscoveryAt: update.lastSuccessfulDiscoveryAt ?? previous.lastSuccessfulDiscoveryAt ?? null, addedCount: update.addedCount ?? 0 });
+  await atomicJson(file, { status: update.status, errorCode: update.errorCode == null ? null : safeErrorCode(update.errorCode), lastSuccessfulDiscoveryAt: update.lastSuccessfulDiscoveryAt ?? previous.lastSuccessfulDiscoveryAt ?? null, addedCount: update.addedCount ?? 0 });
 }
-async function launch(headless) {
-  await fs.mkdir(PROFILE, { recursive: true, mode: 0o700 });
-  return chromium.launchPersistentContext(PROFILE, { headless, ...(existsSync('/Applications/Google Chrome.app') ? { channel: 'chrome' } : {}), timeout: 15000 });
+function xDomain(value) {
+  if (typeof value !== 'string') return null;
+  const domain = value.toLowerCase().replace(/^\./, '');
+  return domain === 'x.com' || domain.endsWith('.x.com') ? domain : null;
+}
+export function mapCookiesForPlaywright(cookies) {
+  const mapped = [];
+  for (const cookie of array(cookies)) {
+    const domain = xDomain(cookie.domain);
+    if (!domain || typeof cookie.name !== 'string' || !cookie.name || /[\x00-\x20\x7f()<>@,;:\\"/\[\]?={}]/.test(cookie.name) || typeof cookie.value !== 'string' || /[\r\n\0]/.test(cookie.value)) continue;
+    if (cookie.path !== undefined && (typeof cookie.path !== 'string' || !cookie.path.startsWith('/'))) continue;
+    const hostOnly = cookie.hostOnly !== false;
+    if (!hostOnly && typeof cookie.path !== 'string') continue;
+    const out = hostOnly
+      ? { name: cookie.name, value: cookie.value, url: `https://${domain}` }
+      : { name: cookie.name, value: cookie.value, domain: `.${domain}`, path: cookie.path };
+    if (Number.isFinite(cookie.expires) && cookie.expires > 0) out.expires = cookie.expires;
+    if (typeof cookie.secure === 'boolean') out.secure = cookie.secure;
+    if (typeof cookie.httpOnly === 'boolean') out.httpOnly = cookie.httpOnly;
+    if (['Strict', 'Lax', 'None'].includes(cookie.sameSite)) out.sameSite = cookie.sameSite;
+    mapped.push(out);
+  }
+  return mapped;
+}
+export async function createAuthenticatedContext({ chromiumApi = chromium, cookieReader = getCookies, headless = true } = {}) {
+  let cookies;
+  try {
+    const result = await cookieReader({ url: AUTH_COOKIE_URL, browsers: ['chrome'], chromeProfile: AUTH_PROFILE_DIRECTORY, chromiumBrowser: 'chrome' });
+    cookies = mapCookiesForPlaywright(result.cookies);
+  } catch { fail('AUTH_COOKIE_ACCESS_FAILED'); }
+  if (!cookies.length) fail('AUTH_COOKIE_ACCESS_FAILED');
+  let browser;
+  try {
+    browser = await chromiumApi.launch({ headless, channel: 'chrome', timeout: 15000 });
+    const context = await browser.newContext();
+    await context.addCookies(cookies);
+    return { browser, context };
+  } catch {
+    await browser?.close().catch(() => {});
+    fail('AUTH_COOKIE_ACCESS_FAILED');
+  }
 }
 export function isArticleResponse(url) {
   return /^https:\/\/(?:x\.com|api\.x\.com)\/(?:i\/api\/)?graphql\/[^/]+\/UserArticles(?:Tweets)?(?:\?|$)/.test(url);
@@ -186,30 +231,23 @@ async function fetchArticle(candidate) {
   }
 }
 export async function main(args = process.argv.slice(2)) {
-  let context, discoveryAt, lock;
-  const login = args.includes('--login'), dryRun = args.includes('--dry-run');
+  let browser, context, discoveryAt, lock;
+  const dryRun = args.includes('--dry-run'), refreshAuth = args.includes('--refresh-auth');
   await fs.mkdir(STATE, { recursive: true, mode: 0o700 });
-  // Hard process deadline also covers hung browser shutdown; login is deliberately interactive.
-  const deadline = login ? null : setTimeout(() => {
+  // Hard process deadline also covers hung browser shutdown.
+  const deadline = setTimeout(() => {
     void writeStatus(STATUS, { status: 'error', errorCode: 'TIMEOUT', lastSuccessfulDiscoveryAt: discoveryAt, addedCount: 0 }).finally(() => process.exit(1));
     setTimeout(() => process.exit(1), 1500);
   }, 115000);
   try {
-    if (args.some(a => !['--login', '--dry-run'].includes(a)) || (login && dryRun)) fail('INVALID_ARGUMENTS');
-    if (!login) { const blocked = await activeBackoff(BACKOFF); if (blocked) fail(blocked); }
-    // Advisory lock is only for this importer; persistent browser also has its own lock.
+    if (args.some(a => !['--dry-run', '--refresh-auth'].includes(a))) fail('INVALID_ARGUMENTS');
+    const blocked = await activeBackoff(BACKOFF);
+    if (shouldHonorBackoff(blocked, refreshAuth)) fail(blocked);
     lock = await acquireLock(path.join(STATE, 'import.lock'));
-    context = await launch(!login);
-    if (login) {
-      const page = context.pages()[0] ?? await context.newPage();
-      await page.goto('https://x.com/i/flow/login', { waitUntil: 'domcontentloaded', timeout: 25000 });
-      console.log(`LOGIN_BROWSER_OPEN: dedicated profile ${PROFILE}. Sign in, then close this browser before running sync.`);
-      await new Promise(resolve => context.once('close', resolve));
-      await fs.rm(BACKOFF, { force: true });
-      return;
-    }
+    ({ browser, context } = await createAuthenticatedContext());
     const candidates = await discover(context);
     discoveryAt = new Date().toISOString();
+    await fs.rm(BACKOFF, { force: true });
     const existing = JSON.parse(await fs.readFile(DATA, 'utf8'));
     const known = new Set(existing.map(a => a.id));
     const fresh = [];
@@ -218,15 +256,16 @@ export async function main(args = process.argv.slice(2)) {
     await writeStatus(STATUS, { status: 'success', errorCode: null, lastSuccessfulDiscoveryAt: discoveryAt, addedCount: dryRun ? 0 : count });
     console.log(JSON.stringify({ status: 'success', dryRun, discoveredCount: candidates.length, addedCount: dryRun ? 0 : count, wouldAddCount: count }));
   } catch (error) {
-    const code = /^[A-Z_]+$/.test(error.message) ? error.message : 'IMPORT_FAILED';
+    const code = safeErrorCode(error?.message);
     await recordBackoff(BACKOFF, code);
     await writeStatus(STATUS, { status: 'error', errorCode: code, lastSuccessfulDiscoveryAt: discoveryAt, addedCount: 0 });
-    console.error(`${code}: ${code === 'LOGIN_REQUIRED' ? 'Run npm run sync-articles-free -- --login, sign in to X, then close the dedicated browser.' : 'Import aborted without partial article writes.'}`);
+    console.error(`${code}: Import aborted without partial article writes.`);
     process.exitCode = 1;
   } finally {
     await context?.close().catch(() => {});
+    await browser?.close().catch(() => {});
     if (lock) { await lock.close(); await fs.rm(path.join(STATE, 'import.lock'), { force: true }); }
-    if (deadline) clearTimeout(deadline);
+    clearTimeout(deadline);
   }
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();

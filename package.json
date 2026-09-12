@@ -23,6 +23,7 @@
     "recharts": "^3.8.0"
   },
   "devDependencies": {
+    "@steipete/sweet-cookie": "0.4.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
