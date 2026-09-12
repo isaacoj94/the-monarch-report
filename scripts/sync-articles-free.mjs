@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Free browser discovery + public FxTwitter structured article bodies. No env loading.
 import fs from 'node:fs/promises';
+import { constants as fsConstants } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
-import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
@@ -11,8 +11,8 @@ const HANDLE = 'monarchreport25';
 export const AUTH_PROFILE_DIRECTORY = 'Profile 4';
 export const AUTH_PROFILE_LABEL = 'Yoo Suk';
 const STATE = path.join(os.homedir(), '.hermes/profiles/monarch/state/x-article-sync');
-const CHROME_USER_DATA = path.join(os.homedir(), 'Library/Application Support/Google/Chrome');
-const COOKIE_STAGER = fileURLToPath(new URL('./stage-x-cookies.py', import.meta.url));
+export const AUTH_COOKIE_FILE = '/Users/jeongxclaw1/.hermes/profiles/monarch/state/x-article-sync/yoo-suk-x-cookies.json';
+export const MAX_AUTH_FILE_BYTES = 64 * 1024;
 const STATUS = path.join(STATE, 'import-status.json');
 const BACKOFF = path.join(STATE, 'auth-backoff.json');
 export async function activeBackoff(file, now = Date.now()) {
@@ -39,6 +39,10 @@ const safeUrl = value => typeof value === 'string' && /^https:\/\//.test(value) 
 function mediaDetails(media = {}) {
   return { url: safeUrl(media.media_url_https ?? media.media_url ?? media.media_info?.original_img_url), width: number(media.width ?? media.original_info?.width ?? media.media_info?.original_img_width), height: number(media.height ?? media.original_info?.height ?? media.media_info?.original_img_height) };
 }
+function videoDetails(media = {}) {
+  const variants = array(media.media_info?.variants).filter(v => v.content_type === 'video/mp4' && safeUrl(v.url)).sort((a, b) => number(b.bit_rate) - number(a.bit_rate));
+  return { videoUrl: variants[0]?.url ?? '', imageUrl: safeUrl(media.media_info?.preview_image?.original_img_url) };
+}
 export function normalizeArticle(payload, candidate) {
   const tweet = payload?.tweet, article = tweet?.article;
   if (!numericId(candidate.tweetId) || !numericId(candidate.articleId) || String(tweet?.id) !== candidate.tweetId || String(article?.id) !== candidate.articleId || tweet?.author?.screen_name?.toLowerCase() !== HANDLE) fail('IDENTITY_MISMATCH');
@@ -49,11 +53,15 @@ export function normalizeArticle(payload, candidate) {
   const blocks = content.blocks.map(block => {
     const type = block.type;
     if (type === 'atomic') {
+      const exactEmptyArtifact = block.text === '' && typeof block.key === 'string' && block.data && typeof block.data === 'object' && !Array.isArray(block.data) && Object.keys(block.data).length === 0 && Array.isArray(block.entityRanges) && block.entityRanges.length === 0 && Array.isArray(block.inlineStyleRanges) && block.inlineStyleRanges.length === 0;
+      if (exactEmptyArtifact) return { type: 'paragraph', text: '' };
       for (const range of array(block.entityRanges)) {
         const entity = entities[String(range.key)];
         const data = entity?.data ?? {};
+        if (entity?.type === 'DIVIDER') return { type: 'divider', text: '' };
         const match = media.find(m => (data.mediaKey != null && m.media_key != null && String(m.media_key) === String(data.mediaKey)) || array(data.mediaItems).some(i => i.mediaId != null && m.media_id != null && String(i.mediaId) === String(m.media_id)));
         if (['IMAGE', 'MEDIA'].includes(entity?.type) && match && mediaDetails(match).url) return { type: 'image', text: '', imageUrl: mediaDetails(match).url };
+        if (entity?.type === 'MEDIA' && match && videoDetails(match).videoUrl && videoDetails(match).imageUrl) return { type: 'video', text: '', ...videoDetails(match) };
       }
       fail('INCOMPLETE_BODY'); // Never silently discard unsupported embedded content.
     }
@@ -85,6 +93,12 @@ export function parseDiscovery(payload) {
   const timeline = root?.timeline_v2?.timeline ?? root?.timeline?.timeline ?? root?.timeline;
   if (!Array.isArray(timeline?.instructions) || payload.errors?.length) return { candidates: [], verified, complete };
   verified = true;
+  // Current X pagination ends with a verified UserArticles page containing only
+  // timeline cursors; its Bottom cursor remains nonempty, so emptiness is not a terminal signal.
+  for (const instruction of timeline.instructions) {
+    const entries = array(instruction.entries);
+    if (instruction.type === 'TimelineAddEntries' && entries.length && entries.every(entry => entry.content?.entryType === 'TimelineTimelineCursor') && entries.some(entry => entry.content?.cursorType === 'Bottom')) complete = true;
+  }
   walk(timeline.instructions, node => {
     if ((node.type === 'TimelineTerminateTimeline' && node.direction === 'Bottom') || (node.cursorType === 'Bottom' && node.value === '')) complete = true;
     const tweet = node.tweet_results?.result?.tweet ?? node.tweet_results?.result;
@@ -121,83 +135,60 @@ export async function writeStatus(file, update) {
   try { previous = JSON.parse(await fs.readFile(file, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
   await atomicJson(file, { status: update.status, errorCode: update.errorCode == null ? null : safeErrorCode(update.errorCode), lastSuccessfulDiscoveryAt: update.lastSuccessfulDiscoveryAt ?? previous.lastSuccessfulDiscoveryAt ?? null, addedCount: update.addedCount ?? 0 });
 }
-async function validateOwnedPath(file, type) {
-  const info = await fs.lstat(file);
-  if (info.isSymbolicLink() || info.uid !== process.getuid?.()) fail('AUTH_COOKIE_ACCESS_FAILED');
-  if ((type === 'file' && !info.isFile()) || (type === 'directory' && !info.isDirectory())) fail('AUTH_COOKIE_ACCESS_FAILED');
-}
-
-async function runCookieStager(source, destination) {
-  await new Promise((resolve, reject) => {
-    const child = spawn('/usr/bin/python3', [COOKIE_STAGER, source, destination], { stdio: 'ignore', shell: false });
-    child.once('error', reject);
-    child.once('exit', code => code === 0 ? resolve() : reject(new Error('stager failed')));
-  });
-}
-
-export async function stageChromeProfile4({ chromeUserDataDir = CHROME_USER_DATA, stagingRoot = STATE } = {}) {
-  let userDataDir;
+const AUTH_COOKIE_KEYS = new Set(['name', 'value', 'domain', 'path', 'expires', 'httpOnly', 'secure', 'sameSite', 'hostOnly', 'source']);
+export async function loadApprovedAuthCookies({ file = AUTH_COOKIE_FILE, expectedPath = AUTH_COOKIE_FILE, maxBytes = MAX_AUTH_FILE_BYTES } = {}) {
+  let handle;
   try {
-    await fs.mkdir(stagingRoot, { recursive: true, mode: 0o700 });
-    await validateOwnedPath(stagingRoot, 'directory');
-    await fs.chmod(stagingRoot, 0o700);
-    const localState = path.join(chromeUserDataDir, 'Local State');
-    const profile = path.join(chromeUserDataDir, AUTH_PROFILE_DIRECTORY);
-    const network = path.join(profile, 'Network');
-    let sourceCookieDb = path.join(network, 'Cookies');
-    let legacyLayout = false;
-    await validateOwnedPath(chromeUserDataDir, 'directory');
-    await validateOwnedPath(localState, 'file');
-    await validateOwnedPath(profile, 'directory');
-    try {
-      await validateOwnedPath(network, 'directory');
-      await validateOwnedPath(sourceCookieDb, 'file');
-    } catch (error) {
-      if (error.code !== 'ENOENT') throw error;
-      // Chrome 153 on macOS still uses the older exact Profile 4/Cookies location.
-      sourceCookieDb = path.join(profile, 'Cookies');
-      legacyLayout = true;
-    }
-    await validateOwnedPath(sourceCookieDb, 'file');
-    const realProfile = await fs.realpath(profile);
-    const allowedSources = new Set([path.join(realProfile, 'Network', 'Cookies'), path.join(realProfile, 'Cookies')]);
-    if (!allowedSources.has(await fs.realpath(sourceCookieDb))) fail('AUTH_COOKIE_ACCESS_FAILED');
-
-    userDataDir = await fs.mkdtemp(path.join(stagingRoot, 'chrome-profile-'));
-    await fs.chmod(userDataDir, 0o700);
-    const stagedProfile = path.join(userDataDir, AUTH_PROFILE_DIRECTORY);
-    const stagedCookieDir = legacyLayout ? stagedProfile : path.join(stagedProfile, 'Network');
-    await fs.mkdir(stagedCookieDir, { recursive: true, mode: 0o700 });
-    await fs.copyFile(localState, path.join(userDataDir, 'Local State'));
-    await fs.chmod(path.join(userDataDir, 'Local State'), 0o600);
-    const cookieDb = path.join(stagedCookieDir, 'Cookies');
-    await runCookieStager(sourceCookieDb, cookieDb);
-    await fs.chmod(cookieDb, 0o600);
-    return {
-      userDataDir,
-      cookieDb,
-      cleanup: async () => { await fs.rm(userDataDir, { recursive: true, force: true }); },
-    };
+    if (!path.isAbsolute(file) || !path.isAbsolute(expectedPath) || file !== expectedPath) fail('AUTH_COOKIE_ACCESS_FAILED');
+    handle = await fs.open(file, fsConstants.O_RDONLY | fsConstants.O_NOFOLLOW);
+    const info = await handle.stat();
+    if (!info.isFile() || info.uid !== process.getuid?.() || (info.mode & 0o077) !== 0 || info.size <= 0 || info.size > maxBytes) fail('AUTH_COOKIE_ACCESS_FAILED');
+    const payload = JSON.parse(await handle.readFile('utf8'));
+    if (!payload || typeof payload !== 'object' || Array.isArray(payload) || Object.keys(payload).length !== 1 || !Array.isArray(payload.cookies) || payload.cookies.length !== 2) fail('AUTH_COOKIE_ACCESS_FAILED');
+    const names = new Set();
+    const cookies = payload.cookies.map(cookie => {
+      if (!cookie || typeof cookie !== 'object' || Array.isArray(cookie) || Object.keys(cookie).some(key => !AUTH_COOKIE_KEYS.has(key))) fail('AUTH_COOKIE_ACCESS_FAILED');
+      if (!['auth_token', 'ct0'].includes(cookie.name) || names.has(cookie.name) || typeof cookie.value !== 'string' || cookie.value.length === 0 || !['x.com', '.x.com'].includes(cookie.domain)) fail('AUTH_COOKIE_ACCESS_FAILED');
+      if (cookie.path != null && cookie.path !== '/') fail('AUTH_COOKIE_ACCESS_FAILED');
+      if (cookie.secure != null && cookie.secure !== true) fail('AUTH_COOKIE_ACCESS_FAILED');
+      if (cookie.httpOnly != null && typeof cookie.httpOnly !== 'boolean') fail('AUTH_COOKIE_ACCESS_FAILED');
+      if (cookie.sameSite != null && !['Strict', 'Lax', 'None'].includes(cookie.sameSite)) fail('AUTH_COOKIE_ACCESS_FAILED');
+      if (cookie.expires != null && (!Number.isFinite(cookie.expires) || cookie.expires <= 0)) fail('AUTH_COOKIE_ACCESS_FAILED');
+      if (cookie.hostOnly != null && typeof cookie.hostOnly !== 'boolean') fail('AUTH_COOKIE_ACCESS_FAILED');
+      if (cookie.source != null && cookie.source !== 'chrome') fail('AUTH_COOKIE_ACCESS_FAILED');
+      names.add(cookie.name);
+      return {
+        name: cookie.name,
+        value: cookie.value,
+        domain: cookie.domain,
+        path: '/',
+        secure: true,
+        ...(cookie.httpOnly == null ? {} : { httpOnly: cookie.httpOnly }),
+        ...(cookie.sameSite == null ? {} : { sameSite: cookie.sameSite }),
+        ...(cookie.expires == null ? {} : { expires: cookie.expires }),
+      };
+    });
+    if (!names.has('auth_token') || !names.has('ct0')) fail('AUTH_COOKIE_ACCESS_FAILED');
+    await handle.close();
+    handle = null;
+    return cookies;
   } catch {
-    if (userDataDir) await fs.rm(userDataDir, { recursive: true, force: true }).catch(() => {});
+    await handle?.close().catch(() => {});
     fail('AUTH_COOKIE_ACCESS_FAILED');
   }
 }
 
-export async function createAuthenticatedContext({ chromiumApi = chromium, profileStager = stageChromeProfile4, headless = true } = {}) {
-  let staged, context;
+export async function createAuthenticatedContext({ chromiumApi = chromium, cookieLoader = loadApprovedAuthCookies, headless = true } = {}) {
+  let browser, context;
   try {
-    staged = await profileStager();
-    context = await chromiumApi.launchPersistentContext(staged.userDataDir, {
-      headless,
-      channel: 'chrome',
-      timeout: 15000,
-      args: ['--profile-directory=Profile 4', '--no-first-run', '--disable-default-apps', '--disable-background-networking', '--disable-component-update', '--disable-sync'],
-    });
-    return { browser: null, context, cleanup: staged.cleanup };
+    const cookies = await cookieLoader();
+    browser = await chromiumApi.launch({ headless, channel: 'chrome', timeout: 15000 });
+    context = await browser.newContext({});
+    await context.addCookies(cookies);
+    return { browser, context };
   } catch {
     await context?.close().catch(() => {});
-    await staged?.cleanup().catch(() => {});
+    await browser?.close().catch(() => {});
     fail('AUTH_COOKIE_ACCESS_FAILED');
   }
 }
@@ -270,7 +261,7 @@ async function fetchArticle(candidate) {
   }
 }
 export async function main(args = process.argv.slice(2)) {
-  let browser, context, cleanupAuth, discoveryAt, lock;
+  let browser, context, discoveryAt, lock;
   const dryRun = args.includes('--dry-run'), refreshAuth = args.includes('--refresh-auth');
   await fs.mkdir(STATE, { recursive: true, mode: 0o700 });
   // Hard process deadline also covers hung browser shutdown.
@@ -278,7 +269,6 @@ export async function main(args = process.argv.slice(2)) {
     const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
     await Promise.race([context?.close().catch(() => {}), wait(500)]);
     await browser?.close().catch(() => {});
-    await cleanupAuth?.().catch(() => {});
     await writeStatus(STATUS, { status: 'error', errorCode: 'TIMEOUT', lastSuccessfulDiscoveryAt: discoveryAt, addedCount: 0 }).catch(() => {});
     process.exit(1);
   }, 115000);
@@ -287,7 +277,7 @@ export async function main(args = process.argv.slice(2)) {
     const blocked = await activeBackoff(BACKOFF);
     if (shouldHonorBackoff(blocked, refreshAuth)) fail(blocked);
     lock = await acquireLock(path.join(STATE, 'import.lock'));
-    ({ browser, context, cleanup: cleanupAuth } = await createAuthenticatedContext());
+    ({ browser, context } = await createAuthenticatedContext());
     const candidates = await discover(context);
     discoveryAt = new Date().toISOString();
     await fs.rm(BACKOFF, { force: true });
@@ -307,7 +297,7 @@ export async function main(args = process.argv.slice(2)) {
   } finally {
     await context?.close().catch(() => {});
     await browser?.close().catch(() => {});
-    await cleanupAuth?.().catch(() => {});
+
     if (lock) { await lock.close(); await fs.rm(path.join(STATE, 'import.lock'), { force: true }); }
     clearTimeout(deadline);
   }

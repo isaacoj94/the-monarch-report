@@ -21,39 +21,41 @@ function context({ auth = true, status = 200, payload = {}, emit = true } = {}) 
   return { pages: () => [page] };
 }
 const emptyVerified = { data: { user: { result: { timeline: { timeline: { instructions: [{ type: 'TimelineTerminateTimeline', direction: 'Bottom' }] } } } } } };
-test('authentication launches installed Chrome persistently against only the staged Profile 4', async () => {
+test('authentication launches isolated nonpersistent installed Chrome and adds only approved cookies', async () => {
   assert.equal(AUTH_PROFILE_DIRECTORY, 'Profile 4');
   assert.equal(AUTH_PROFILE_LABEL, 'Yoo Suk');
-  const calls = []; let cleaned = false; let nonPersistentRequested = false;
-  const stagedContext = { close: async () => {} };
+  const calls = [];
+  const approved = [
+    { name: 'ct0', value: 'synthetic-ct0', domain: 'x.com', path: '/', secure: true },
+    { name: 'auth_token', value: 'synthetic-auth', domain: '.x.com', path: '/', secure: true },
+  ];
+  const contextApi = { addCookies: async cookies => calls.push(['addCookies', cookies]), close: async () => calls.push(['context.close']) };
+  const browserApi = { newContext: async options => { calls.push(['newContext', options]); return contextApi; }, close: async () => calls.push(['browser.close']) };
   const chromiumApi = {
-    launch: async () => { nonPersistentRequested = true; throw new Error('must not launch an empty browser'); },
-    launchPersistentContext: async (userDataDir, options) => { calls.push([userDataDir, options]); return stagedContext; },
+    launch: async options => { calls.push(['launch', options]); return browserApi; },
+    launchPersistentContext: async () => { throw new Error('persistent launch is forbidden'); },
   };
-  const result = await createAuthenticatedContext({
-    chromiumApi,
-    profileStager: async () => ({ userDataDir: '/synthetic/staged-root', cleanup: async () => { cleaned = true; } }),
-    headless: true,
-  });
-  assert.equal(nonPersistentRequested, false);
-  assert.equal(result.context, stagedContext);
-  assert.deepEqual(calls, [['/synthetic/staged-root', {
-    headless: true,
-    channel: 'chrome',
-    timeout: 15000,
-    args: ['--profile-directory=Profile 4', '--no-first-run', '--disable-default-apps', '--disable-background-networking', '--disable-component-update', '--disable-sync'],
-  }]]);
-  await result.cleanup();
-  assert.equal(cleaned, true);
+  const result = await createAuthenticatedContext({ chromiumApi, cookieLoader: async () => approved, headless: true });
+  assert.equal(result.browser, browserApi);
+  assert.equal(result.context, contextApi);
+  assert.deepEqual(calls, [
+    ['launch', { headless: true, channel: 'chrome', timeout: 15000 }],
+    ['newContext', {}],
+    ['addCookies', approved],
+  ]);
 });
-test('authentication failures expose only a stable redacted code', async () => {
+test('authentication failures close partial resources and expose only a stable redacted code', async () => {
+  const calls = [];
+  const contextApi = { addCookies: async () => { throw new Error('synthetic-secret-cookie-value'); }, close: async () => calls.push('context') };
+  const browserApi = { newContext: async () => contextApi, close: async () => calls.push('browser') };
   await assert.rejects(
     createAuthenticatedContext({
-      chromiumApi: { launchPersistentContext: async () => { throw new Error('browser should not launch'); } },
-      profileStager: async () => { throw new Error('synthetic-secret-cookie-value'); },
+      chromiumApi: { launch: async () => browserApi },
+      cookieLoader: async () => [{ name: 'ct0', value: 'synthetic-secret-cookie-value' }],
     }),
-    error => error.message === 'AUTH_COOKIE_ACCESS_FAILED',
+    error => error.message === 'AUTH_COOKIE_ACCESS_FAILED' && !String(error).includes('synthetic-secret-cookie-value'),
   );
+  assert.deepEqual(calls, ['context', 'browser']);
 });
 test('no authorized navigation fails explicitly, never empty success', async () => {
   await assert.rejects(discover(context({ auth: false, payload: emptyVerified })), /LOGIN_REQUIRED/);

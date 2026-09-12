@@ -119,6 +119,17 @@ function ArticleBlock({ block, index }: { block: ArticleBlock; index: number }) 
         </figure>
       );
 
+    case 'divider':
+      return <hr className="my-8 border-t border-tm-border-subtle" />;
+
+    case 'video':
+      if (!block.videoUrl || !block.imageUrl) return null;
+      return (
+        <video className="my-6 w-full rounded-lg border border-tm-border" controls preload="metadata" poster={block.imageUrl}>
+          <source src={block.videoUrl} type="video/mp4" />
+        </video>
+      );
+
     default:
       return null;
   }

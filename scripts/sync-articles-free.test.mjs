@@ -56,11 +56,49 @@ test('does not resolve missing media keys by comparing undefined values', () => 
   f.tweet.article.content.blocks.push({ type: 'atomic', text: '', entityRanges: [{ key: 0 }] });
   assert.throws(() => mod.normalizeArticle(f, candidate), /INCOMPLETE_BODY/);
 });
+test('preserves X DIVIDER atomic entities as explicit divider blocks', () => {
+  const f = fixture();
+  f.tweet.article.content.entityMap = [{ key: 0, value: { type: 'DIVIDER', data: {} } }];
+  f.tweet.article.content.blocks.push({ type: 'atomic', text: '', entityRanges: [{ key: 0 }] });
+  assert.deepEqual(mod.normalizeArticle(f, candidate).blocks.at(-1), { type: 'divider', text: '' });
+});
+test('preserves current X video MEDIA atomics with the highest bitrate MP4 and preview', () => {
+  const f = fixture();
+  f.tweet.article.media_entities = [{
+    media_id: 'synthetic-video', media_key: '13_synthetic-video', media_info: {
+      preview_image: { original_img_url: 'https://example.com/synthetic-preview.jpg' },
+      variants: [
+        { content_type: 'video/mp4', bit_rate: 256000, url: 'https://example.com/synthetic-low.mp4' },
+        { content_type: 'application/x-mpegURL', url: 'https://example.com/synthetic.m3u8' },
+        { content_type: 'video/mp4', bit_rate: 832000, url: 'https://example.com/synthetic-high.mp4' },
+      ],
+    },
+  }];
+  f.tweet.article.content.entityMap = [{ key: 0, value: { type: 'MEDIA', data: { mediaItems: [{ mediaId: 'synthetic-video' }] } } }];
+  f.tweet.article.content.blocks.push({ type: 'atomic', text: ' ', entityRanges: [{ key: 0 }] });
+  assert.deepEqual(mod.normalizeArticle(f, candidate).blocks.at(-1), { type: 'video', text: '', videoUrl: 'https://example.com/synthetic-high.mp4', imageUrl: 'https://example.com/synthetic-preview.jpg' });
+});
+test('preserves only the exact empty atomic artifact emitted by the current X editor as spacing', () => {
+  const f = fixture();
+  f.tweet.article.content.blocks.push({ type: 'atomic', text: '', key: 'synthetic', data: {}, entityRanges: [], inlineStyleRanges: [] });
+  assert.deepEqual(mod.normalizeArticle(f, candidate).blocks.at(-1), { type: 'paragraph', text: '' });
+});
 test('exports real free importer functions', () => assert.equal(typeof mod.normalizeArticle, 'function'));
 test('normalizes structured full body and styles', () => { const a = mod.normalizeArticle(fixture(), candidate); assert.equal(a.id, candidate.articleId); assert.equal(a.blocks[0].level, 2); assert.equal(a.blocks[1].styles[0].style, 'bold'); assert.deepEqual(a.images, []); });
 test('rejects wrong author, tweet and article IDs', () => { for (const change of [f => f.tweet.author.screen_name = 'other', f => f.tweet.id = '999', f => f.tweet.article.id = '888']) { const f = fixture(); change(f); assert.throws(() => mod.normalizeArticle(f, candidate), /IDENTITY_MISMATCH/); } });
 test('rejects empty, preview-only, truncated and unresolved media bodies', () => { for (const change of [f => f.tweet.article.content.blocks = [], f => f.tweet.article.content.blocks = [{ type: 'unstyled', text: 'Synthetic preview' }], f => f.tweet.article.truncated = true, f => f.tweet.article.content.blocks.push({ type: 'atomic', text: '' })]) { const f = fixture(); change(f); assert.throws(() => mod.normalizeArticle(f, candidate), /INCOMPLETE_BODY/); } });
 function timeline() { return { data: { user: { result: { timeline: { timeline: { instructions: [{ type: 'TimelineAddEntries', entries: [{ content: { itemContent: { tweet_results: { result: { rest_id: candidate.tweetId, core: { user_results: { result: { legacy: { screen_name: 'monarchreport25' } } } }, article: { article_results: { result: { rest_id: candidate.articleId } } } } } } } }, { content: { cursorType: 'Bottom', value: '' } }] }] } } } } } }; }
 test('discovers article tweet identities and positive terminal marker only', () => { const d = mod.parseDiscovery(timeline()); assert.deepEqual(d.candidates, [candidate]); assert.equal(d.complete, true); assert.equal(mod.parseDiscovery({ data: {} }).verified, false); assert.equal(mod.parseDiscovery({ data: {} }).complete, false); });
+test('treats a verified cursor-only Articles page as current X terminal pagination', () => {
+  const payload = timeline();
+  payload.data.user.result.timeline.timeline.instructions[0].entries = [
+    { entryId: 'cursor-top', content: { entryType: 'TimelineTimelineCursor', cursorType: 'Top', value: 'synthetic-top-cursor' } },
+    { entryId: 'cursor-bottom', content: { entryType: 'TimelineTimelineCursor', cursorType: 'Bottom', value: 'synthetic-nonempty-terminal-cursor' } },
+  ];
+  const result = mod.parseDiscovery(payload);
+  assert.equal(result.verified, true);
+  assert.equal(result.complete, true);
+  assert.deepEqual(result.candidates, []);
+});
 test('deduplicates atomically while preserving existing objects; dry-run never writes', async () => { const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-x-')); const file = path.join(dir, 'articles.json'); const old = [{ id: 'old', tweetId: 'old-tweet', arbitrary: { preserved: true } }]; const original = JSON.stringify(old); await writeFile(file, original); const fresh = mod.normalizeArticle(fixture(), candidate); assert.equal(await mod.appendArticles(file, [fresh, fresh], true), 1); assert.equal(await readFile(file, 'utf8'), original); assert.equal(await mod.appendArticles(file, [fresh, fresh], false), 1); assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), [...old, fresh]); assert.equal(await mod.appendArticles(file, [fresh], false), 0); });
 test('status errors retain discovery timestamp and redact unknown error values', async () => { const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-status-')); const file = path.join(dir, 'status.json'); await mod.writeStatus(file, { status: 'success', errorCode: null, lastSuccessfulDiscoveryAt: '2026-09-01T00:00:00Z', addedCount: 2 }); await mod.writeStatus(file, { status: 'error', errorCode: 'raw-cookie=synthetic-secret', addedCount: 0 }); assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), { status: 'error', errorCode: 'IMPORT_FAILED', lastSuccessfulDiscoveryAt: '2026-09-01T00:00:00Z', addedCount: 0 }); });

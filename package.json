@@ -9,6 +9,7 @@
     "lint": "eslint",
     "scrape-articles": "tsx scripts/scrape-articles.ts",
     "sync-articles-free": "node scripts/sync-articles-free.mjs",
+    "refresh-x-auth": "python3 /Users/jeongxclaw1/.hermes/profiles/monarch/scripts/monarch_sync/refresh_yoo_suk_cookies.py",
     "test:sync-articles-free": "node --test scripts/sync-articles-free*.test.mjs",
     "update-data": "tsx scripts/update-data.ts"
   },
@@ -23,6 +24,7 @@
     "recharts": "^3.8.0"
   },
   "devDependencies": {
+    "@steipete/sweet-cookie": "0.4.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
