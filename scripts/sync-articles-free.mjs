@@ -124,9 +124,13 @@ export async function appendArticles(file, fresh, dryRun) {
   const ids = new Set(existing.map(a => a.id)), tweets = new Set(existing.map(a => a.tweetId));
   const added = [];
   for (const a of fresh) if (!ids.has(a.id) && !tweets.has(a.tweetId)) { added.push(a); ids.add(a.id); tweets.add(a.tweetId); }
-  if (added.length && !dryRun) {
+  const merged = [...existing, ...added];
+  if (merged.some(article => !Number.isFinite(Date.parse(article.createdAt)))) fail('INVALID_DATA');
+  const sorted = merged.toSorted((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt));
+  const needsWrite = JSON.stringify(sorted) !== JSON.stringify(existing);
+  if (needsWrite && !dryRun) {
     if (await fs.readFile(file, 'utf8') !== original) fail('DATA_CHANGED');
-    await atomicJson(file, [...existing, ...added]);
+    await atomicJson(file, sorted);
   }
   return added.length;
 }
@@ -155,7 +159,14 @@ export async function loadApprovedAuthCookies({ file = AUTH_COOKIE_FILE, expecte
       if (cookie.sameSite != null && !['Strict', 'Lax', 'None'].includes(cookie.sameSite)) fail('AUTH_COOKIE_ACCESS_FAILED');
       if (cookie.expires != null && (!Number.isFinite(cookie.expires) || cookie.expires <= 0)) fail('AUTH_COOKIE_ACCESS_FAILED');
       if (cookie.hostOnly != null && typeof cookie.hostOnly !== 'boolean') fail('AUTH_COOKIE_ACCESS_FAILED');
-      if (cookie.source != null && cookie.source !== 'chrome') fail('AUTH_COOKIE_ACCESS_FAILED');
+      const source = cookie.source;
+      const validSource = source == null || source === 'chrome' || (
+        source && typeof source === 'object' && !Array.isArray(source)
+        && Object.keys(source).length === 3
+        && source.browser === 'chrome' && source.profile === AUTH_PROFILE_DIRECTORY
+        && source.storeId === 'chrome'
+      );
+      if (!validSource) fail('AUTH_COOKIE_ACCESS_FAILED');
       names.add(cookie.name);
       return {
         name: cookie.name,

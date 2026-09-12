@@ -61,6 +61,20 @@ test('rejects an oversized auth file before parsing it', async () => {
   await assert.rejects(mod.loadApprovedAuthCookies(options), /AUTH_COOKIE_ACCESS_FAILED/);
 });
 
+test('accepts only exporter provenance bound to Chrome Profile 4', async () => {
+  const source = { browser: 'chrome', profile: 'Profile 4', storeId: 'chrome' };
+  const options = await fixture({ cookies: [{ ...cookie('ct0'), source }, { ...cookie('auth_token'), source }] });
+  assert.equal((await mod.loadApprovedAuthCookies(options)).length, 2);
+  for (const wrongSource of [
+    { browser: 'chrome', profile: 'Profile 2', storeId: 'chrome' },
+    { browser: 'firefox', profile: 'Profile 4', storeId: 'chrome' },
+    { browser: 'chrome', profile: 'Profile 4', storeId: 'chrome', extra: true },
+  ]) {
+    const bad = await fixture({ cookies: [{ ...cookie('ct0'), source: wrongSource }, { ...cookie('auth_token'), source: wrongSource }] });
+    await assert.rejects(mod.loadApprovedAuthCookies(bad), /AUTH_COOKIE_ACCESS_FAILED/);
+  }
+});
+
 test('rejects malformed, extra, duplicate, empty, or wrong-domain cookies with redacted errors', async () => {
   const payloads = [
     [],

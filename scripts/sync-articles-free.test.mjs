@@ -100,5 +100,17 @@ test('treats a verified cursor-only Articles page as current X terminal paginati
   assert.equal(result.complete, true);
   assert.deepEqual(result.candidates, []);
 });
-test('deduplicates atomically while preserving existing objects; dry-run never writes', async () => { const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-x-')); const file = path.join(dir, 'articles.json'); const old = [{ id: 'old', tweetId: 'old-tweet', arbitrary: { preserved: true } }]; const original = JSON.stringify(old); await writeFile(file, original); const fresh = mod.normalizeArticle(fixture(), candidate); assert.equal(await mod.appendArticles(file, [fresh, fresh], true), 1); assert.equal(await readFile(file, 'utf8'), original); assert.equal(await mod.appendArticles(file, [fresh, fresh], false), 1); assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), [...old, fresh]); assert.equal(await mod.appendArticles(file, [fresh], false), 0); });
+test('deduplicates atomically, preserves objects, sorts newest first, and keeps dry-run read-only', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-x-'));
+  const file = path.join(dir, 'articles.json');
+  const old = [{ id: 'old', tweetId: 'old-tweet', createdAt: '2026-08-01T00:00:00Z', arbitrary: { preserved: true } }];
+  const original = JSON.stringify(old);
+  await writeFile(file, original);
+  const fresh = mod.normalizeArticle(fixture(), candidate);
+  assert.equal(await mod.appendArticles(file, [fresh, fresh], true), 1);
+  assert.equal(await readFile(file, 'utf8'), original);
+  assert.equal(await mod.appendArticles(file, [fresh, fresh], false), 1);
+  assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), [fresh, ...old]);
+  assert.equal(await mod.appendArticles(file, [fresh], false), 0);
+});
 test('status errors retain discovery timestamp and redact unknown error values', async () => { const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-status-')); const file = path.join(dir, 'status.json'); await mod.writeStatus(file, { status: 'success', errorCode: null, lastSuccessfulDiscoveryAt: '2026-09-01T00:00:00Z', addedCount: 2 }); await mod.writeStatus(file, { status: 'error', errorCode: 'raw-cookie=synthetic-secret', addedCount: 0 }); assert.deepEqual(JSON.parse(await readFile(file, 'utf8')), { status: 'error', errorCode: 'IMPORT_FAILED', lastSuccessfulDiscoveryAt: '2026-09-01T00:00:00Z', addedCount: 0 }); });
