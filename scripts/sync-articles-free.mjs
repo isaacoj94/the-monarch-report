@@ -3,15 +3,16 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
+import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
-import { getCookies } from '@steipete/sweet-cookie';
 
 const HANDLE = 'monarchreport25';
 export const AUTH_PROFILE_DIRECTORY = 'Profile 4';
 export const AUTH_PROFILE_LABEL = 'Yoo Suk';
-const AUTH_COOKIE_URL = 'https://x.com/';
 const STATE = path.join(os.homedir(), '.hermes/profiles/monarch/state/x-article-sync');
+const CHROME_USER_DATA = path.join(os.homedir(), 'Library/Application Support/Google/Chrome');
+const COOKIE_STAGER = fileURLToPath(new URL('./stage-x-cookies.py', import.meta.url));
 const STATUS = path.join(STATE, 'import-status.json');
 const BACKOFF = path.join(STATE, 'auth-backoff.json');
 export async function activeBackoff(file, now = Date.now()) {
@@ -120,45 +121,83 @@ export async function writeStatus(file, update) {
   try { previous = JSON.parse(await fs.readFile(file, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
   await atomicJson(file, { status: update.status, errorCode: update.errorCode == null ? null : safeErrorCode(update.errorCode), lastSuccessfulDiscoveryAt: update.lastSuccessfulDiscoveryAt ?? previous.lastSuccessfulDiscoveryAt ?? null, addedCount: update.addedCount ?? 0 });
 }
-function xDomain(value) {
-  if (typeof value !== 'string') return null;
-  const domain = value.toLowerCase().replace(/^\./, '');
-  return domain === 'x.com' || domain.endsWith('.x.com') ? domain : null;
+async function validateOwnedPath(file, type) {
+  const info = await fs.lstat(file);
+  if (info.isSymbolicLink() || info.uid !== process.getuid?.()) fail('AUTH_COOKIE_ACCESS_FAILED');
+  if ((type === 'file' && !info.isFile()) || (type === 'directory' && !info.isDirectory())) fail('AUTH_COOKIE_ACCESS_FAILED');
 }
-export function mapCookiesForPlaywright(cookies) {
-  const mapped = [];
-  for (const cookie of array(cookies)) {
-    const domain = xDomain(cookie.domain);
-    if (!domain || typeof cookie.name !== 'string' || !cookie.name || /[\x00-\x20\x7f()<>@,;:\\"/\[\]?={}]/.test(cookie.name) || typeof cookie.value !== 'string' || /[\r\n\0]/.test(cookie.value)) continue;
-    if (cookie.path !== undefined && (typeof cookie.path !== 'string' || !cookie.path.startsWith('/'))) continue;
-    const hostOnly = cookie.hostOnly !== false;
-    if (!hostOnly && typeof cookie.path !== 'string') continue;
-    const out = hostOnly
-      ? { name: cookie.name, value: cookie.value, url: `https://${domain}` }
-      : { name: cookie.name, value: cookie.value, domain: `.${domain}`, path: cookie.path };
-    if (Number.isFinite(cookie.expires) && cookie.expires > 0) out.expires = cookie.expires;
-    if (typeof cookie.secure === 'boolean') out.secure = cookie.secure;
-    if (typeof cookie.httpOnly === 'boolean') out.httpOnly = cookie.httpOnly;
-    if (['Strict', 'Lax', 'None'].includes(cookie.sameSite)) out.sameSite = cookie.sameSite;
-    mapped.push(out);
-  }
-  return mapped;
+
+async function runCookieStager(source, destination) {
+  await new Promise((resolve, reject) => {
+    const child = spawn('/usr/bin/python3', [COOKIE_STAGER, source, destination], { stdio: 'ignore', shell: false });
+    child.once('error', reject);
+    child.once('exit', code => code === 0 ? resolve() : reject(new Error('stager failed')));
+  });
 }
-export async function createAuthenticatedContext({ chromiumApi = chromium, cookieReader = getCookies, headless = true } = {}) {
-  let cookies;
+
+export async function stageChromeProfile4({ chromeUserDataDir = CHROME_USER_DATA, stagingRoot = STATE } = {}) {
+  let userDataDir;
   try {
-    const result = await cookieReader({ url: AUTH_COOKIE_URL, browsers: ['chrome'], chromeProfile: AUTH_PROFILE_DIRECTORY, chromiumBrowser: 'chrome' });
-    cookies = mapCookiesForPlaywright(result.cookies);
-  } catch { fail('AUTH_COOKIE_ACCESS_FAILED'); }
-  if (!cookies.length) fail('AUTH_COOKIE_ACCESS_FAILED');
-  let browser;
-  try {
-    browser = await chromiumApi.launch({ headless, channel: 'chrome', timeout: 15000 });
-    const context = await browser.newContext();
-    await context.addCookies(cookies);
-    return { browser, context };
+    await fs.mkdir(stagingRoot, { recursive: true, mode: 0o700 });
+    await validateOwnedPath(stagingRoot, 'directory');
+    await fs.chmod(stagingRoot, 0o700);
+    const localState = path.join(chromeUserDataDir, 'Local State');
+    const profile = path.join(chromeUserDataDir, AUTH_PROFILE_DIRECTORY);
+    const network = path.join(profile, 'Network');
+    let sourceCookieDb = path.join(network, 'Cookies');
+    let legacyLayout = false;
+    await validateOwnedPath(chromeUserDataDir, 'directory');
+    await validateOwnedPath(localState, 'file');
+    await validateOwnedPath(profile, 'directory');
+    try {
+      await validateOwnedPath(network, 'directory');
+      await validateOwnedPath(sourceCookieDb, 'file');
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+      // Chrome 153 on macOS still uses the older exact Profile 4/Cookies location.
+      sourceCookieDb = path.join(profile, 'Cookies');
+      legacyLayout = true;
+    }
+    await validateOwnedPath(sourceCookieDb, 'file');
+    const realProfile = await fs.realpath(profile);
+    const allowedSources = new Set([path.join(realProfile, 'Network', 'Cookies'), path.join(realProfile, 'Cookies')]);
+    if (!allowedSources.has(await fs.realpath(sourceCookieDb))) fail('AUTH_COOKIE_ACCESS_FAILED');
+
+    userDataDir = await fs.mkdtemp(path.join(stagingRoot, 'chrome-profile-'));
+    await fs.chmod(userDataDir, 0o700);
+    const stagedProfile = path.join(userDataDir, AUTH_PROFILE_DIRECTORY);
+    const stagedCookieDir = legacyLayout ? stagedProfile : path.join(stagedProfile, 'Network');
+    await fs.mkdir(stagedCookieDir, { recursive: true, mode: 0o700 });
+    await fs.copyFile(localState, path.join(userDataDir, 'Local State'));
+    await fs.chmod(path.join(userDataDir, 'Local State'), 0o600);
+    const cookieDb = path.join(stagedCookieDir, 'Cookies');
+    await runCookieStager(sourceCookieDb, cookieDb);
+    await fs.chmod(cookieDb, 0o600);
+    return {
+      userDataDir,
+      cookieDb,
+      cleanup: async () => { await fs.rm(userDataDir, { recursive: true, force: true }); },
+    };
   } catch {
-    await browser?.close().catch(() => {});
+    if (userDataDir) await fs.rm(userDataDir, { recursive: true, force: true }).catch(() => {});
+    fail('AUTH_COOKIE_ACCESS_FAILED');
+  }
+}
+
+export async function createAuthenticatedContext({ chromiumApi = chromium, profileStager = stageChromeProfile4, headless = true } = {}) {
+  let staged, context;
+  try {
+    staged = await profileStager();
+    context = await chromiumApi.launchPersistentContext(staged.userDataDir, {
+      headless,
+      channel: 'chrome',
+      timeout: 15000,
+      args: ['--profile-directory=Profile 4', '--no-first-run', '--disable-default-apps', '--disable-background-networking', '--disable-component-update', '--disable-sync'],
+    });
+    return { browser: null, context, cleanup: staged.cleanup };
+  } catch {
+    await context?.close().catch(() => {});
+    await staged?.cleanup().catch(() => {});
     fail('AUTH_COOKIE_ACCESS_FAILED');
   }
 }
@@ -231,20 +270,24 @@ async function fetchArticle(candidate) {
   }
 }
 export async function main(args = process.argv.slice(2)) {
-  let browser, context, discoveryAt, lock;
+  let browser, context, cleanupAuth, discoveryAt, lock;
   const dryRun = args.includes('--dry-run'), refreshAuth = args.includes('--refresh-auth');
   await fs.mkdir(STATE, { recursive: true, mode: 0o700 });
   // Hard process deadline also covers hung browser shutdown.
-  const deadline = setTimeout(() => {
-    void writeStatus(STATUS, { status: 'error', errorCode: 'TIMEOUT', lastSuccessfulDiscoveryAt: discoveryAt, addedCount: 0 }).finally(() => process.exit(1));
-    setTimeout(() => process.exit(1), 1500);
+  const deadline = setTimeout(async () => {
+    const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+    await Promise.race([context?.close().catch(() => {}), wait(500)]);
+    await browser?.close().catch(() => {});
+    await cleanupAuth?.().catch(() => {});
+    await writeStatus(STATUS, { status: 'error', errorCode: 'TIMEOUT', lastSuccessfulDiscoveryAt: discoveryAt, addedCount: 0 }).catch(() => {});
+    process.exit(1);
   }, 115000);
   try {
     if (args.some(a => !['--dry-run', '--refresh-auth'].includes(a))) fail('INVALID_ARGUMENTS');
     const blocked = await activeBackoff(BACKOFF);
     if (shouldHonorBackoff(blocked, refreshAuth)) fail(blocked);
     lock = await acquireLock(path.join(STATE, 'import.lock'));
-    ({ browser, context } = await createAuthenticatedContext());
+    ({ browser, context, cleanup: cleanupAuth } = await createAuthenticatedContext());
     const candidates = await discover(context);
     discoveryAt = new Date().toISOString();
     await fs.rm(BACKOFF, { force: true });
@@ -264,6 +307,7 @@ export async function main(args = process.argv.slice(2)) {
   } finally {
     await context?.close().catch(() => {});
     await browser?.close().catch(() => {});
+    await cleanupAuth?.().catch(() => {});
     if (lock) { await lock.close(); await fs.rm(path.join(STATE, 'import.lock'), { force: true }); }
     clearTimeout(deadline);
   }

@@ -47,18 +47,6 @@ test('refresh auth bypasses only LOGIN_REQUIRED backoff', () => {
   assert.equal(mod.shouldHonorBackoff('RATE_LIMITED', true), true);
   assert.equal(mod.shouldHonorBackoff(null, true), false);
 });
-test('maps only valid x.com cookies without widening host-only scope', () => {
-  const cookies = mod.mapCookiesForPlaywright([
-    { name: 'host', value: 'synthetic-secret-one', domain: 'x.com', hostOnly: true, path: '/', secure: true, httpOnly: true, sameSite: 'Lax' },
-    { name: 'domain', value: 'synthetic-secret-two', domain: 'x.com', hostOnly: false, path: '/', expires: 2000000000, sameSite: 'None' },
-    { name: 'wrong', value: 'must-not-map', domain: 'example.com', path: '/' },
-    { name: 'bad-path', value: 'must-not-map', domain: 'x.com', path: 'relative' },
-  ]);
-  assert.deepEqual(cookies, [
-    { name: 'host', value: 'synthetic-secret-one', url: 'https://x.com', secure: true, httpOnly: true, sameSite: 'Lax' },
-    { name: 'domain', value: 'synthetic-secret-two', domain: '.x.com', path: '/', expires: 2000000000, sameSite: 'None' },
-  ]);
-});
 const candidate = { tweetId: '1234567890123456789', articleId: '1234567890123456788' };
 function fixture() { return { tweet: { id: candidate.tweetId, author: { screen_name: 'monarchreport25' }, article: { id: candidate.articleId, title: 'Synthetic article', created_at: '2026-09-01T00:00:00Z', preview_text: 'Synthetic preview', content: { blocks: [{ type: 'header-two', text: 'Synthetic heading' }, { type: 'unstyled', text: 'Synthetic full body beyond preview.', inlineStyleRanges: [{ style: 'BOLD', offset: 0, length: 9 }] }], entityMap: {} } } } }; }
 test('does not resolve missing media keys by comparing undefined values', () => {
