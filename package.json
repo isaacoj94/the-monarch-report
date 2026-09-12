@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "scrape-articles": "tsx scripts/scrape-articles.ts",
+    "sync-articles-free": "node scripts/sync-articles-free.mjs",
+    "test:sync-articles-free": "node --test scripts/sync-articles-free*.test.mjs",
     "update-data": "tsx scripts/update-data.ts"
   },
   "dependencies": {
@@ -28,6 +30,7 @@
     "dotenv": "^17.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "playwright": "1.58.2",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"
