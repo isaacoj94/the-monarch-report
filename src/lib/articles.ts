@@ -5,9 +5,10 @@
 import articlesData from '@/data/articles.json';
 
 export interface ArticleBlock {
-  type: 'paragraph' | 'heading' | 'blockquote' | 'list-item' | 'image';
+  type: 'paragraph' | 'heading' | 'blockquote' | 'list-item' | 'image' | 'video' | 'divider';
   text: string;
   imageUrl?: string;
+  videoUrl?: string;
   level?: number;
   listType?: 'ordered' | 'unordered';
   styles?: { style: string; offset: number; length: number }[];
