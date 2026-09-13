@@ -6,7 +6,7 @@ import Link from 'next/link';
 import MonarchNewsHero from '@/components/MonarchNewsHero';
 import { siteConfig } from '@/lib/content';
 import { currentSnapshot } from '@/lib/data';
-import { koreaTimeline, KOREA_TIMELINE_RANGE_LABEL } from '@/lib/editorial';
+import { koreaTimeline, homepageBriefs, briefingCheckedLabel } from '@/lib/editorial';
 import { articles, articleCategory, articleLang, articleSlug } from '@/lib/articles';
 import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
 import { useLocale } from '@/components/LocaleProvider';
@@ -159,7 +159,7 @@ export default function Home() {
 
   useEffect(() => { utms.current = captureUtms(); }, []);
 
-  const latestBriefs = useMemo(() => koreaTimeline.slice(-6).reverse().slice(0, 4), []);
+  const latestBriefs = useMemo(() => homepageBriefs.slice(0, 4), []);
   const latestArticles = useMemo(() => {
     const localized = articles.filter((article) => articleLang(article) === locale);
     return (localized.length > 0 ? localized : articles.filter((article) => articleLang(article) === 'en')).slice(0, 6);
@@ -212,7 +212,7 @@ export default function Home() {
             <span className={styles.kicker}>{copy.desk}</span>
             <h2>{copy.happening}</h2>
             <p>{copy.happeningDek}</p>
-            <small className={styles.freshnessNote}>{copy.verified} · {locale === 'ko' ? '2024년 1월–2026년 8월 · 8월 19일 확인' : locale === 'ja' ? '2024年1月–2026年8月 · 8月19日確認' : KOREA_TIMELINE_RANGE_LABEL}</small>
+            <small className={styles.freshnessNote}>{copy.verified} · {locale === 'ko' ? briefingCheckedLabel.ko : locale === 'ja' ? briefingCheckedLabel.ja : briefingCheckedLabel.en}</small>
           </div>
           <div className={styles.impactSwitch} role="group" aria-label="Choose impact perspective">
             <button aria-pressed={impactView === 'people'} onClick={() => setImpactView('people')}>{copy.people}</button>
@@ -224,9 +224,11 @@ export default function Home() {
           {latestBriefs.map((brief, index) => {
             const briefTitle = locale === 'ko' ? brief.titleKo ?? brief.title : locale === 'ja' ? brief.titleJa ?? brief.title : brief.title;
             const briefDescription = locale === 'ko' ? brief.descriptionKo ?? brief.description : locale === 'ja' ? brief.descriptionJa ?? brief.description : brief.description;
-            const localizedImpact = (impactByCategory[brief.category] ?? impactByCategory.legislation)[locale][impactView];
+            const localizedImpact = (brief.whyPeople || brief.whyInstitutions)
+              ? (impactView === 'people' ? (brief.whyPeople || brief.whyInstitutions) : (brief.whyInstitutions || brief.whyPeople))
+              : (impactByCategory[brief.category] ?? impactByCategory.legislation)[locale][impactView];
             const briefKey = `${brief.date}-${brief.title}`;
-            const briefIndex = koreaTimeline.findIndex((item) => item.date === brief.date && item.title === brief.title);
+            const briefIndex = koreaTimeline.findIndex((item) => item.title === brief.title);
             const progression = koreaTimeline
               .slice(0, briefIndex + 1)
               .filter((item) => item.category === brief.category)

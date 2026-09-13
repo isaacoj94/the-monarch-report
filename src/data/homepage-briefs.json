@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-08-17",
+  "items": [
+    {
+      "id": "seed-2026-08-17-communism",
+      "date": "2026-08-17",
+      "title": "Why renewed interest in communism matters for faith and family",
+      "titleKo": "다시 고개 든 공산주의 담론…신앙과 가정은",
+      "titleJa": "再び頭をもたげる共産主義論　信仰と家族は",
+      "description": "A new long-form analysis compares communism’s stated promises with its historical record and examines why independent faith, family life, property rights and a free press remain central safeguards.",
+      "descriptionKo": "공산주의가 내건 약속과 역사를 맞춰 봤다. 신앙·가정·재산권·언론 자유가 사회를 붙드는 까닭을 따졌다.",
+      "descriptionJa": "共産主義が掲げた約束と歴史を突き合わせた。信仰、家族、財産権、報道の自由が社会を支える理由を問うた。",
+      "category": "media",
+      "source": "The Monarch Report on X",
+      "sourceUrl": "https://x.com/monarchreport25/status/2089327475226775667",
+      "whyPeople": "Who controls the public square shapes what citizens can hear and say.",
+      "whyInstitutions": "Media-rule changes alter reputation risk, advertising markets and political exposure."
+    },
+    {
+      "id": "seed-2026-08-14-testimony",
+      "date": "2026-08-14",
+      "title": "Defense challenges inconsistencies in testimony in Dr. Hak Ja Han case",
+      "titleKo": "한학자 총재 사건…변호인단 “진술 기록 불일치”",
+      "titleJa": "韓鶴子総裁の裁判、弁護側が「供述記録に不一致」",
+      "description": "The defense account identifies statements it says do not align across the record. The article separates the defense argument from established findings while the proceeding remains ongoing.",
+      "descriptionKo": "변호인단은 진술 기록이 서로 어긋난다고 주장한다. 재판이 진행 중인 만큼, 주장과 확인된 사실을 갈라 전했다.",
+      "descriptionJa": "弁護側は、供述記録が食い違うと主張する。審理中につき、主張と確認された事実を分けて伝えた。",
+      "category": "court-case",
+      "source": "The Monarch Report on X",
+      "sourceUrl": "https://x.com/monarchreport25/status/2088228544606519789",
+      "whyPeople": "The ruling tests due process and the balance between state power and individual liberty.",
+      "whyInstitutions": "Court independence and predictable enforcement are core conditions for long-term investment."
+    },
+    {
+      "id": "seed-2026-08-08-missionary",
+      "date": "2026-08-08",
+      "title": "Missionary support payments face new tax questions",
+      "titleKo": "해외 선교 지원금 과세 논란…종교활동 경계는",
+      "titleJa": "海外宣教師への支援金、課税を巡り新たな論点",
+      "description": "A Monarch Report analysis examines how tax treatment of overseas missionary support could affect churches, missionaries and the boundary between religious activity and taxable compensation.",
+      "descriptionKo": "해외 선교 지원금을 어떻게 과세하느냐가 교회와 선교사의 경계를 흔든다. 종교활동과 과세 대상 보수를 나눴다.",
+      "descriptionJa": "海外宣教の支援金をどう課税するかが、教会と宣教師の境界を揺さぶる。宗教活動と課税対象の報酬を分けた。",
+      "category": "religious-freedom",
+      "source": "The Monarch Report on X",
+      "sourceUrl": "https://x.com/monarchreport25/status/2085917079509877041",
+      "whyPeople": "The precedent affects how freely communities can organize, worship and participate in public life.",
+      "whyInstitutions": "Institutional targeting can signal wider rule-of-law and reputation risks for organizations operating in Korea."
+    },
+    {
+      "id": "seed-2026-08-01-police",
+      "date": "2026-08-01",
+      "title": "New investigative structure shifts the final check on police cases",
+      "titleKo": "수사 체계 개편…경찰 사건 최종 견제 장치 바뀐다",
+      "titleJa": "捜査制度を再編、警察捜査の「最後の歯止め」に変化",
+      "description": "Original reporting reviews a legal restructuring that gives police investigations a more decisive role and asks what recourse remains when an investigation is incomplete or disputed.",
+      "descriptionKo": "경찰 수사 비중을 키운 개편 뒤에, 수사가 비거나 다툴 때 남은 구제 장치가 무엇인지 확인했다.",
+      "descriptionJa": "警察捜査の比重を高めた改編のあと、捜査が不十分でもめたときに残る救済は何かを確かめた。",
+      "category": "legislation",
+      "source": "The Monarch Report on X",
+      "sourceUrl": "https://x.com/monarchreport25/status/2083538660138614813",
+      "whyPeople": "Changes to law can alter speech, court access and the protections available to ordinary citizens.",
+      "whyInstitutions": "New enforcement powers can change compliance exposure, litigation risk and investor confidence."
+    }
+  ]
+}
