@@ -1,4 +1,5 @@
 // Editorial content for homepage sections — fact-checked, sourced data
+import homepageBriefsData from '@/data/homepage-briefs.json';
 
 // === FAITH ON FIRE: Religious Freedom Crisis ===
 
@@ -150,11 +151,38 @@ export interface KoreaTimelineEntry {
   sourceUrl: string;
   featured?: boolean; // hero treatment for key events
   image?: string; // local path in /public/timeline/
+  whyPeople?: string;
+  whyInstitutions?: string;
 }
 
 // Inclusive month range of events present in koreaTimeline below.
 // Update this whenever you add events past the current end date.
 export const KOREA_TIMELINE_RANGE_LABEL = 'Jan 2024 – Aug 2026 · checked Aug 19';
+
+export type HomepageBrief = {
+  id: string;
+  date: string;
+  title: string;
+  titleKo?: string;
+  titleJa?: string;
+  description: string;
+  descriptionKo?: string;
+  descriptionJa?: string;
+  category: KoreaTimelineEntry['category'];
+  source: string;
+  sourceUrl: string;
+  whyPeople?: string;
+  whyInstitutions?: string;
+};
+
+export const homepageBriefs: HomepageBrief[] = homepageBriefsData.items as HomepageBrief[];
+
+const checked = homepageBriefsData.checkedAt;
+export const briefingCheckedLabel = {
+  en: `Updated ${checked}`,
+  ko: `${checked} 업데이트`,
+  ja: `${checked} 更新`,
+};
 
 export const koreaTimeline: KoreaTimelineEntry[] = [
   // === PRE-MARTIAL LAW: Why it happened ===
