@@ -2,6 +2,20 @@
   "checkedAt": "2026-09-14",
   "items": [
     {
+      "id": "3db9cc36-d0b9-8161-9ad5-ee4ef5bc0f82",
+      "date": "2026-09-14",
+      "title": "Acting police chief reaffirms efforts for investigative reform",
+      "description": "Korea Times says acting National Police Agency head Kim Jong-chul on Monday (2026-09-14) reaffirmed investigative reform, after police last week launched a dedicated reform body following a Criminal Procedure Act revision that strips prosecutors of direct and supplementary investigative powers and leaves most remaining investigations with police, amid scrutiny of alleged misconduct including a Jeju missing-person case.",
+      "category": "court-case",
+      "source": "Korea Times",
+      "sourceUrl": "https://www.koreatimes.co.kr/southkorea/law-crime/20260914/acting-police-chief-reaffirms-efforts-for-investigative-reform",
+      "whyPeople": "Excerpt says an officer closed a missing-person case without confirming a missing woman’s safety; her body was later found. That is a reported alleged failure, not a verified court finding here.",
+      "whyInstitutions": "Statutory rollback of prosecutors’ investigative powers; NPA reform body; acting chief citing scene faults, a system that failed to catch them, and leadership responsibility he says he will correct.",
+      "notionUrl": "https://app.notion.com/p/Editorial-Acting-police-chief-reaffirms-efforts-for-investigative-reform-e91c0045e63830061be6-3db9cc36d0b981619ad5ee4ef5bc0f82",
+      "showCaseProgression": false,
+      "caseThread": "standalone"
+    },
+    {
       "id": "3db9cc36-d0b9-8125-9fa8-f0c6b044e7db",
       "date": "2026-09-14",
       "title": "President forwards only one of two chief-justice Supreme Court recommendations",
