@@ -1,6 +1,34 @@
 {
-  "checkedAt": "2026-09-14",
+  "checkedAt": "2026-09-15",
   "items": [
+    {
+      "id": "3da9cc36-d0b9-81e2-8174-fd1507e95ec7",
+      "date": "2026-09-15",
+      "title": "Human Rights Watch alleges systemic gender and age discrimination against women at work in South Korea",
+      "description": "The group published a 2025-interview report, plus expert and official-data review, alleging systemic gender and age bias in South Korean workplaces. It calls for action on equal work and pensions. This is an advocacy finding, not a court judgment.",
+      "category": "court-case",
+      "source": "Human Rights Watch",
+      "sourceUrl": "https://www.hrw.org/news/2026/09/08/south-korea-systemic-gender-age-discrimination-at-work",
+      "whyPeople": "If the allegations hold, older women face a narrower path into stable work, pay, and retirement security.",
+      "whyInstitutions": "The report presses the government on hiring, promotion, and pension rules; official response was not retrieved here.",
+      "notionUrl": "https://app.notion.com/p/Editorial-HRW-alleges-systemic-gender-and-age-discrimination-against-women-at-work-in-South-Korea--3da9cc36d0b981e28174fd1507e95ec7",
+      "showCaseProgression": false,
+      "caseThread": "standalone"
+    },
+    {
+      "id": "3da9cc36-d0b9-8113-ab8d-fe34efd3cfa8",
+      "date": "2026-09-15",
+      "title": "Japan Justice Ministry to test GPS tracking of sex offenders on parole",
+      "description": "Japan Times reports the Justice Ministry plans a FY2027 pilot to track consenting sex-offender parolees with portable GPS, not body-worn devices. Statute text and an official ministry notice were not issued.",
+      "category": "court-case",
+      "source": "Japan Times",
+      "sourceUrl": "https://www.japantimes.co.jp/news/2026/09/12/japan/crime-legal/sex-offender-parole-gps/",
+      "whyPeople": "The pilot would affect parolees’ movement and privacy, and the safety conditions offered to victims and the public.",
+      "whyInstitutions": "It would expand Justice Ministry supervision tools and set a precedent for electronic monitoring after release.",
+      "notionUrl": "https://app.notion.com/p/Editorial-Japan-Justice-Ministry-to-test-GPS-tracking-of-sex-offenders-on-parole-5a948f1a6e37c913-3da9cc36d0b98113ab8dfe34efd3cfa8",
+      "showCaseProgression": false,
+      "caseThread": "standalone"
+    },
     {
       "id": "3db9cc36-d0b9-8161-9ad5-ee4ef5bc0f82",
       "date": "2026-09-14",
