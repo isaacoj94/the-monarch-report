@@ -6,8 +6,8 @@ import Link from 'next/link';
 import MonarchNewsHero from '@/components/MonarchNewsHero';
 import { siteConfig } from '@/lib/content';
 import { currentSnapshot } from '@/lib/data';
-import { homepageBriefs, briefingCheckedLabel, caseProgression } from '@/lib/editorial';
-import { articles, articleCategory, articleLang, articleSlug } from '@/lib/articles';
+import { homepageBriefs, briefingCheckedLabel, caseProgression, localizedBrief } from '@/lib/editorial';
+import { articles, articleCategory, articleLang, articleSlug, localizedArticle } from '@/lib/articles';
 import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
 import { useLocale } from '@/components/LocaleProvider';
 import styles from './home.module.css';
@@ -160,10 +160,7 @@ export default function Home() {
   useEffect(() => { utms.current = captureUtms(); }, []);
 
   const latestBriefs = useMemo(() => homepageBriefs.slice(0, 4), []);
-  const latestArticles = useMemo(() => {
-    const localized = articles.filter((article) => articleLang(article) === locale);
-    return (localized.length > 0 ? localized : articles.filter((article) => articleLang(article) === 'en')).slice(0, 6);
-  }, [locale]);
+  const latestArticles = useMemo(() => articles.filter((article) => articleLang(article) === 'en').slice(0, 6), []);
   const dateLocale = locale === 'ko' ? 'ko-KR' : locale === 'ja' ? 'ja-JP' : 'en-US';
 
   const submitNewsletter = async (event: React.FormEvent) => {
@@ -222,10 +219,11 @@ export default function Home() {
 
         <div className={styles.briefGrid}>
           {latestBriefs.map((brief, index) => {
-            const briefTitle = locale === 'ko' ? brief.titleKo ?? brief.title : locale === 'ja' ? brief.titleJa ?? brief.title : brief.title;
-            const briefDescription = locale === 'ko' ? brief.descriptionKo ?? brief.description : locale === 'ja' ? brief.descriptionJa ?? brief.description : brief.description;
-            const localizedImpact = (brief.whyPeople || brief.whyInstitutions)
-              ? (impactView === 'people' ? (brief.whyPeople || brief.whyInstitutions) : (brief.whyInstitutions || brief.whyPeople))
+            const copyForLocale = localizedBrief(brief, locale);
+            const briefTitle = copyForLocale.title;
+            const briefDescription = copyForLocale.description;
+            const localizedImpact = (copyForLocale.whyPeople || copyForLocale.whyInstitutions)
+              ? (impactView === 'people' ? (copyForLocale.whyPeople || copyForLocale.whyInstitutions) : (copyForLocale.whyInstitutions || copyForLocale.whyPeople))
               : (impactByCategory[brief.category] ?? impactByCategory.legislation)[locale][impactView];
             const briefKey = `${brief.date}-${brief.title}`;
             const progression = caseProgression(brief);
@@ -279,13 +277,14 @@ export default function Home() {
         <div className={styles.articleGrid}>
           {latestArticles.map((article, index) => {
             const category = articleCategory(article);
+            const local = localizedArticle(article, locale);
             return (
               <Link className={index === 0 ? styles.featuredArticle : styles.articleCard} href={`/articles/${articleSlug(article)}`} key={article.id}>
                 {article.coverImage && <img src={article.coverImage} alt="" />}
                 <div>
                   <span>{categoryLabels[locale][category as keyof typeof categoryLabels.en] ?? category} · {new Date(article.createdAt).toLocaleDateString(dateLocale, { month: 'short', day: 'numeric' })}</span>
-                  <h3>{article.title}</h3>
-                  <p>{article.previewText}</p>
+                  <h3>{local.title}</h3>
+                  <p>{local.previewText}</p>
                   <strong>{copy.read}</strong>
                 </div>
               </Link>

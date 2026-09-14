@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { articles, articleSlug, articleBySlug, articleCategory, articleLang } from '@/lib/articles';
 import type { ArticleBlock } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
-import { ArticleLanguageNotice, LocalizedDate, LocalizedText } from '@/components/LocalizedText';
+import { LocalizedDate, LocalizedText } from '@/components/LocalizedText';
+import { LocalizedArticleBody } from '@/components/LocalizedArticleBody';
 
 const categoryColors: Record<string, { color: string; label: { en: string; ko: string; ja: string } }> = {
   korea: { color: '#ef4444', label: { en: 'KOREA', ko: '한국', ja: '韓国' } },
@@ -191,11 +192,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           )}
         </div>
 
-        {/* Title */}
-        <h1 className="text-4xl md:text-6xl font-serif font-semibold text-tm-heading leading-[1.02] tracking-tight mb-6">
-          {article.title}
-        </h1>
-
         {/* Author + Stats */}
         <div className="flex items-center justify-between border-b border-tm-border-subtle pb-4 mb-8">
           <div className="flex items-center gap-2">
@@ -216,14 +212,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
 
-        <ArticleLanguageNotice articleLocale={lang} />
-
-        {/* Body */}
-        <div className="article-body">
-          {article.blocks.map((block, i) => (
-            <ArticleBlock key={i} block={block as ArticleBlock} index={i} />
-          ))}
-        </div>
+        <LocalizedArticleBody article={article} />
 
         {/* Sources */}
         {article.links.length > 0 && (
