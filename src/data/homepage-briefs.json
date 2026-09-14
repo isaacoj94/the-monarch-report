@@ -1,6 +1,20 @@
 {
-  "checkedAt": "2026-09-13",
+  "checkedAt": "2026-09-14",
   "items": [
+    {
+      "id": "3db9cc36-d0b9-8125-9fa8-f0c6b044e7db",
+      "date": "2026-09-14",
+      "title": "President forwards only one of two chief-justice Supreme Court recommendations",
+      "description": "14 Sep, Korea Times and Yonhap: nominee Kim Sung-soo appeared at an Assembly confirmation hearing after President Lee referred him. Last month Chief Justice Cho recommended two judges, Kim and one other. Lee referred only Kim. The presidential office said the other recommendation lacked “procedural completeness” and asked Cho for a new name.",
+      "category": "court-case",
+      "source": "Korea Times:  Yonhap: https://en.yna.co.kr/view/AEN20260914002800315",
+      "sourceUrl": "https://www.koreatimes.co.kr/southkorea/politics/20260914/supreme-court-justice-nominee-vows-efforts-to-keep-up-with-changing-times",
+      "whyPeople": "Korea Times quotes Kim pledging that a judiciary that protects people’s rights should not fall behind societal change.",
+      "whyInstitutions": "The excerpt documents a break between the chief justice’s two-person recommendation and the president’s single referral to the Assembly: the appointment filter for the Supreme Court.",
+      "notionUrl": "https://app.notion.com/p/Editorial-President-forwards-only-one-of-two-chief-justice-Supreme-Court-recommendations-7dfc78e0-3db9cc36d0b981259fa8f0c6b044e7db",
+      "showCaseProgression": false,
+      "caseThread": "standalone"
+    },
     {
       "id": "3da9cc36-d0b9-8108-9bd1-c19499f34be9",
       "date": "2026-09-13",
