@@ -6,7 +6,7 @@ import Link from 'next/link';
 import MonarchNewsHero from '@/components/MonarchNewsHero';
 import { siteConfig } from '@/lib/content';
 import { currentSnapshot } from '@/lib/data';
-import { koreaTimeline, homepageBriefs, briefingCheckedLabel } from '@/lib/editorial';
+import { homepageBriefs, briefingCheckedLabel, caseProgression } from '@/lib/editorial';
 import { articles, articleCategory, articleLang, articleSlug } from '@/lib/articles';
 import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
 import { useLocale } from '@/components/LocaleProvider';
@@ -228,11 +228,7 @@ export default function Home() {
               ? (impactView === 'people' ? (brief.whyPeople || brief.whyInstitutions) : (brief.whyInstitutions || brief.whyPeople))
               : (impactByCategory[brief.category] ?? impactByCategory.legislation)[locale][impactView];
             const briefKey = `${brief.date}-${brief.title}`;
-            const briefIndex = koreaTimeline.findIndex((item) => item.title === brief.title);
-            const progression = koreaTimeline
-              .slice(0, briefIndex + 1)
-              .filter((item) => item.category === brief.category)
-              .slice(-4);
+            const progression = caseProgression(brief);
             return (
               <article className={index === 0 ? styles.leadBrief : styles.brief} key={briefKey}>
                 <div className={styles.briefMeta}>

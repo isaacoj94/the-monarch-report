@@ -619,6 +619,57 @@ export const koreaTimelineCategories: Record<string, { label: string; color: str
   'corporate': { label: 'Corporate', color: '#f97316', icon: '🏢' },
 };
 
+const CASE_THREADS: { id: string; test: RegExp }[] = [
+  { id: 'hak-ja-han', test: /hak ja han|true mother|family federation|ffwpu|unification church/i },
+  { id: 'yoon-crisis', test: /yoon suk|martial law|impeachment of yoon|yoon impeach/i },
+  { id: 'japan-dissolution', test: /dissolution order|tokyo high court|tokyo district court/i },
+  { id: 'korea-religious-pressure', test: /missionary|yoido|son hyun-bo|church raid|far east broadcasting/i },
+];
+
+export function caseThreadOf(item: { title: string; description?: string }): string | null {
+  const text = `${item.title} ${item.description ?? ''}`;
+  return CASE_THREADS.find((thread) => thread.test.test(text))?.id ?? null;
+}
+
+function sortableDate(value: string): number {
+  const parsed = Date.parse(value);
+  return Number.isNaN(parsed) ? 0 : parsed;
+}
+
+export type ProgressionEvent = Pick<KoreaTimelineEntry, 'date' | 'title' | 'titleKo' | 'titleJa' | 'source' | 'sourceUrl'>;
+
+export function caseProgression(brief: HomepageBrief): ProgressionEvent[] {
+  const current: ProgressionEvent = {
+    date: brief.date,
+    title: brief.title,
+    titleKo: brief.titleKo,
+    titleJa: brief.titleJa,
+    source: brief.source,
+    sourceUrl: brief.sourceUrl,
+  };
+  const thread = caseThreadOf(brief);
+  if (thread) {
+    const related: ProgressionEvent[] = [];
+    for (const item of koreaTimeline) {
+      if (caseThreadOf(item) === thread) related.push(item);
+    }
+    for (const item of homepageBriefs) {
+      if (item.title !== brief.title && caseThreadOf(item) === thread) related.push(item);
+    }
+    const byTitle = new Map<string, ProgressionEvent>();
+    for (const item of related) byTitle.set(item.title, item);
+    byTitle.set(brief.title, current);
+    const ordered = [...byTitle.values()].sort((a, b) => sortableDate(a.date) - sortableDate(b.date));
+    return ordered.slice(-4);
+  }
+  const idx = koreaTimeline.findIndex((item) => item.title === brief.title);
+  if (idx < 0) return [];
+  return koreaTimeline
+    .slice(0, idx + 1)
+    .filter((item) => item.category === brief.category)
+    .slice(-4);
+}
+
 // === DEMOCRACY IN DECLINE: Bills Tracker ===
 
 export interface DangerousBill {
