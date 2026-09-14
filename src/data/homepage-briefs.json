@@ -5,12 +5,22 @@
       "id": "3da9cc36-d0b9-8108-9bd1-c19499f34be9",
       "date": "2026-09-13",
       "title": "Gender minister nominee Yong Hye-in withdraws amid dual-office criticism",
+      "titleKo": "용혜인 여가부 장관 후보자, 겸직 논란 끝에 사퇴",
+      "titleJa": "ヨン・ヘイン氏、女性家族部長官候補を辞退　兼職批判の中",
       "description": "Rep. Yong Hye-in of the Basic Income Party withdrew Sunday as President Lee Jae Myung’s nominee for minister of gender equality and family, 14 days after the Aug. 30 nomination. She announced it at a National Assembly press conference. The fight was her plan to keep her proportional-representation Assembly seat if appointed. She said the Democratic Party of Korea asked her to decide, citing weak public support for holding both jobs, and that ruling-party concern made the post unworkable in practice. Cheong Wa Dae said it respected a voluntary withdrawal meant to ease the burden on state affairs. Yong also said the People Power Party never scheduled a confirmation hearing. Full standalone DPK and PPP statements were not retrieved; those positions come from her remarks and the presidential office.",
+      "descriptionKo": "기본소득당 용혜인 의원이 13일 이재명 대통령의 여성가족부 장관 후보자직에서 물러났다. 8월 30일 지명 이후 14일 만이다. 국회 기자회견에서 밝힌 쟁점은 장관이 돼도 비례대표 의원직을 유지하려 한 점이다. 용 의원은 더불어민주당이 여론이 좋지 않다며 결정을 요구했고, 여당의 우려로 직무가 사실상 어려워졌다고 했다. 대통령실은 국정 부담을 덜기 위한 자진 사퇴로 존중한다고 밝혔다. 용 의원은 국민의힘이 인사청문 일정을 잡지 않았다고도 했다. 민주당·국민의힘의 별도 성명은 확인하지 못했고, 해당 입장은 본인 발언과 대통령실 설명에 따른다.",
+      "descriptionJa": "基本所得党のヨン・ヘイン議員は13日、李在明大統領が指名した女性家族部長官候補を辞退した。8月30日の指名から14日後である。国会での記者会見で争点になったのは、長官になっても比例代表の議席を維持する方針だった点だ。ヨン氏は、共に民主党が世論の支持が弱いとして判断を求め、与党の懸念で職務が事実上成り立たなくなったと述べた。大統領室は、国政の負担を軽くするための自発的な辞退として尊重するとした。ヨン氏は、国民の力が人事聴聞の日程を組まなかったとも述べた。与野党の単独声明は確認できておらず、その立場は本人の発言と大統領室の説明による。",
       "category": "legislation",
       "source": "Korea Times",
       "sourceUrl": "https://www.koreatimes.co.kr/southkorea/politics/20260913/controversial-gender-minister-nominee-steps-down-amid-criticism",
       "whyPeople": "The post shapes family and equality policy under the Lee administration. Yong is the Basic Income Party’s only lawmaker; giving up the seat would have left the party with no Assembly member.",
+      "whyPeopleKo": "여가부 장관은 이 정부 가족·평등 정책의 방향을 쥔다. 용 의원은 기본소득당의 유일 의원이다. 의원직을 내려놓으면 당은 국회에 자리가 없다.",
+      "whyPeopleJa": "女性家族部長官は、李政権の家族・平等政策の方向を握る。ヨン氏は基本所得党の唯一の国会議員であり、議席を手放せば党は国会に席を失う。",
       "whyInstitutions": "The fight tests whether a minister may also keep a parliamentary seat. Law allows concurrent service; custom is that proportional-representation lawmakers resign the seat. It also shows how nomination disputes are settled inside the ruling bloc when a confirmation hearing is never scheduled. Yong is the fourth ministerial nominee under Lee to withdraw, and the second sitting lawmaker to drop a gender-ministry nomination after Kang Sun-woo.",
+      "whyInstitutionsKo": "장관이 의원직을 겸할 수 있는지가 시험대에 올랐다. 법은 겸직을 허용하지만, 관례상 비례대표는 자리를 던진다. 청문 일정도 없이 여당 내부에서 지명 갈등을 정리하는 방식도 드러났다. 이 대통령 취임 후 장관 후보 사퇴는 네 번째이며, 현역 의원이 여가부 지명을 접은 것은 강선우에 이어 두 번째다.",
+      "whyInstitutionsJa": "長官が議員職を兼ねられるかが問われた。法律は兼職を認めるが、慣例では比例代表は議席を手放す。聴聞の日程もないまま、与党内部で指名対立を収める形も見えた。李大統領の就任後、長官候補の辞退は4人目。現職議員が女性家族部の指名を降りたのは、カン・ソンウ氏に次いで2人目である。",
+      "showCaseProgression": false,
+      "caseThread": "standalone",
       "notionUrl": "https://app.notion.com/p/Editorial-Gender-minister-nominee-Yong-Hye-in-withdraws-amid-dual-office-criticism-bf6feebd6dbaf2-3da9cc36d0b981089bd1c19499f34be9"
     },
     {
@@ -26,7 +36,13 @@
       "source": "The Monarch Report on X",
       "sourceUrl": "https://x.com/monarchreport25/status/2089327475226775667",
       "whyPeople": "Who controls the public square shapes what citizens can hear and say.",
-      "whyInstitutions": "Media-rule changes alter reputation risk, advertising markets and political exposure."
+      "whyPeopleKo": "공론장을 누가 쥐느냐가, 시민이 듣고 말할 수 있는 범위를 정한다.",
+      "whyPeopleJa": "言論の場を誰が握るかが、市民が聞き、話せる範囲を決める。",
+      "whyInstitutions": "Media-rule changes alter reputation risk, advertising markets and political exposure.",
+      "whyInstitutionsKo": "미디어 규칙이 바뀌면 평판과 광고, 정치 노출이 달라진다.",
+      "whyInstitutionsJa": "メディアのルールが変われば、評判と広告、政治的露出が変わる。",
+      "showCaseProgression": true,
+      "caseThread": "standalone"
     },
     {
       "id": "seed-2026-08-14-testimony",
@@ -41,7 +57,13 @@
       "source": "The Monarch Report on X",
       "sourceUrl": "https://x.com/monarchreport25/status/2088228544606519789",
       "whyPeople": "The ruling tests due process and the balance between state power and individual liberty.",
-      "whyInstitutions": "Court independence and predictable enforcement are core conditions for long-term investment."
+      "whyPeopleKo": "판결은 적법절차와, 국가권력과 개인의 자유 사이 균형을 시험한다.",
+      "whyPeopleJa": "判決は適正手続と、国家権力と個人の自由の均衡を試す。",
+      "whyInstitutions": "Court independence and predictable enforcement are core conditions for long-term investment.",
+      "whyInstitutionsKo": "법원의 독립과 예측 가능한 집행이 장기 투자의 전제다.",
+      "whyInstitutionsJa": "裁判所の独立と予測可能な執行が、長期投資の前提だ。",
+      "showCaseProgression": true,
+      "caseThread": "hak-ja-han"
     },
     {
       "id": "seed-2026-08-08-missionary",
@@ -56,7 +78,13 @@
       "source": "The Monarch Report on X",
       "sourceUrl": "https://x.com/monarchreport25/status/2085917079509877041",
       "whyPeople": "The precedent affects how freely communities can organize, worship and participate in public life.",
-      "whyInstitutions": "Institutional targeting can signal wider rule-of-law and reputation risks for organizations operating in Korea."
+      "whyPeopleKo": "선례가 남으면 모여 예배하고 공론장에 서는 일이 좁아진다.",
+      "whyPeopleJa": "先例が残れば、集い、礼拝し、公の場に出ることが狭まる。",
+      "whyInstitutions": "Institutional targeting can signal wider rule-of-law and reputation risks for organizations operating in Korea.",
+      "whyInstitutionsKo": "특정 단체를 겨냥하면 한국에서 활동하는 조직의 법치와 평판 위험이 커진다.",
+      "whyInstitutionsJa": "特定の団体を狙えば、韓国で活動する組織の法治と評判のリスクが膨らむ。",
+      "showCaseProgression": true,
+      "caseThread": "korea-religious-pressure"
     },
     {
       "id": "seed-2026-08-01-police",
@@ -71,7 +99,13 @@
       "source": "The Monarch Report on X",
       "sourceUrl": "https://x.com/monarchreport25/status/2083538660138614813",
       "whyPeople": "Changes to law can alter speech, court access and the protections available to ordinary citizens.",
-      "whyInstitutions": "New enforcement powers can change compliance exposure, litigation risk and investor confidence."
+      "whyPeopleKo": "법이 바뀌면 발언과 재판, 시민이 기대하는 보호가 달라진다.",
+      "whyPeopleJa": "法が変われば、発言と裁判、市民が頼る保護が変わる。",
+      "whyInstitutions": "New enforcement powers can change compliance exposure, litigation risk and investor confidence.",
+      "whyInstitutionsKo": "집행 권한이 커지면 준법 부담과 소송, 투자 심리가 흔들린다.",
+      "whyInstitutionsJa": "執行権限が広がれば、コンプライアンスと訴訟、投資心理が揺れる。",
+      "showCaseProgression": false,
+      "caseThread": "standalone"
     }
   ]
 }

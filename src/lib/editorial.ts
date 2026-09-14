@@ -172,10 +172,41 @@ export type HomepageBrief = {
   source: string;
   sourceUrl: string;
   whyPeople?: string;
+  whyPeopleKo?: string;
+  whyPeopleJa?: string;
   whyInstitutions?: string;
+  whyInstitutionsKo?: string;
+  whyInstitutionsJa?: string;
+  showCaseProgression?: boolean;
+  caseThread?: string;
 };
 
 export const homepageBriefs: HomepageBrief[] = homepageBriefsData.items as HomepageBrief[];
+
+export function localizedBrief(brief: HomepageBrief, locale: 'en' | 'ko' | 'ja') {
+  if (locale === 'ko') {
+    return {
+      title: brief.titleKo || brief.title,
+      description: brief.descriptionKo || brief.description,
+      whyPeople: brief.whyPeopleKo || brief.whyPeople || '',
+      whyInstitutions: brief.whyInstitutionsKo || brief.whyInstitutions || '',
+    };
+  }
+  if (locale === 'ja') {
+    return {
+      title: brief.titleJa || brief.title,
+      description: brief.descriptionJa || brief.description,
+      whyPeople: brief.whyPeopleJa || brief.whyPeople || '',
+      whyInstitutions: brief.whyInstitutionsJa || brief.whyInstitutions || '',
+    };
+  }
+  return {
+    title: brief.title,
+    description: brief.description,
+    whyPeople: brief.whyPeople || '',
+    whyInstitutions: brief.whyInstitutions || '',
+  };
+}
 
 const checked = homepageBriefsData.checkedAt;
 export const briefingCheckedLabel = {
@@ -639,6 +670,7 @@ function sortableDate(value: string): number {
 export type ProgressionEvent = Pick<KoreaTimelineEntry, 'date' | 'title' | 'titleKo' | 'titleJa' | 'source' | 'sourceUrl'>;
 
 export function caseProgression(brief: HomepageBrief): ProgressionEvent[] {
+  if (brief.showCaseProgression === false) return [];
   const current: ProgressionEvent = {
     date: brief.date,
     title: brief.title,

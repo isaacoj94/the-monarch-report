@@ -3,6 +3,8 @@
 // To add new articles, run the scrape script and update src/data/articles.json.
 
 import articlesData from '@/data/articles.json';
+import articleTranslations from '@/data/article-translations.json';
+import type { Locale } from '@/lib/translations';
 
 export interface ArticleBlock {
   type: 'paragraph' | 'heading' | 'blockquote' | 'list-item' | 'image' | 'video' | 'divider';
@@ -85,4 +87,25 @@ export function articleCategory(a: Article): 'korea' | 'japan' | 'democracy' | '
   if (text.includes('economic') || text.includes('won') || text.includes('kospi')) return 'economy';
   if (text.includes('crackdown') || text.includes('religious') || text.includes('pastor') || text.includes('church') || text.includes('ccp')) return 'religion';
   return 'korea';
+}
+
+export type ArticleLocaleCopy = {
+  title: string;
+  previewText: string;
+  blocks: ArticleBlock[];
+};
+
+type TranslationBag = Record<string, Partial<Record<'ko' | 'ja', ArticleLocaleCopy>>>;
+
+const translations = articleTranslations as TranslationBag;
+
+export function localizedArticle(article: Article, locale: Locale): ArticleLocaleCopy & { translated: boolean } {
+  if (locale === 'en') {
+    return { title: article.title, previewText: article.previewText, blocks: article.blocks, translated: true };
+  }
+  const local = translations[article.id]?.[locale];
+  if (!local?.title || !local.previewText || !local.blocks?.length) {
+    return { title: article.title, previewText: article.previewText, blocks: article.blocks, translated: false };
+  }
+  return { ...local, translated: true };
 }

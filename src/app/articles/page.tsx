@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { articles, articleSlug, articleCategory, articleLang } from '@/lib/articles';
+import { articles, articleSlug, articleCategory, articleLang, localizedArticle } from '@/lib/articles';
 import ThemeToggle from '@/components/ThemeToggle';
 import { useLocale } from '@/components/LocaleProvider';
 
@@ -22,14 +22,14 @@ const categoryLabels = {
 
 const pageCopy = {
   en: { home: 'Home', dashboard: 'Data', title: 'Articles', description: 'Independent English-language reporting for people, families, and organizations that need to understand what developments in Korea and across Asia mean in practice.', latest: 'LATEST', read: 'Read Article →', empty: 'No English-language articles are available yet.', likes: 'likes', views: 'views' },
-  ko: { home: '홈', dashboard: '데이터', title: '한국어 기사', description: '한국과 아시아 현안이 가계와 기업에 남기는 흔적.', latest: '최신', read: '기사 읽기 →', empty: '아직 실린 한국어 기사가 없습니다.', likes: '공감', views: '조회' },
-  ja: { home: 'ホーム', dashboard: 'データ', title: '日本語記事', description: '韓国とアジアの懸案が、家計と企業に残す痕跡。', latest: '最新', read: '記事を読む →', empty: '日本語の記事はまだありません。', likes: '反応', views: '閲覧' },
+  ko: { home: '홈', dashboard: '데이터', title: '기사', description: '한국과 아시아 현안이 가계와 기업에 남기는 흔적.', latest: '최신', read: '기사 읽기 →', empty: '아직 실린 기사가 없습니다.', likes: '공감', views: '조회' },
+  ja: { home: 'ホーム', dashboard: 'データ', title: '記事', description: '韓国とアジアの懸案が、家計と企業に残す痕跡。', latest: '最新', read: '記事を読む →', empty: '記事はまだありません。', likes: '反応', views: '閲覧' },
 } as const;
 
 export default function ArticlesPage() {
   const { locale } = useLocale();
   const copy = pageCopy[locale];
-  const selectedArticles = articles.filter(a => articleLang(a) === locale);
+  const selectedArticles = articles.filter(a => articleLang(a) === 'en');
   const dateLocale = locale === 'ko' ? 'ko-KR' : locale === 'ja' ? 'ja-JP' : 'en-US';
 
   return (
@@ -63,6 +63,7 @@ export default function ArticlesPage() {
         {/* Featured (latest) article */}
         {selectedArticles[0] && (() => {
           const a = selectedArticles[0];
+          const local = localizedArticle(a, locale);
           const cat = articleCategory(a);
           const catInfo = categoryColors[cat];
           const dateStr = new Date(a.createdAt).toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' });
@@ -84,9 +85,9 @@ export default function ArticlesPage() {
                     <span className="text-[9px] font-sans text-tm-gold bg-[var(--tm-gold-bg)] px-2 py-0.5 rounded border border-[var(--tm-gold-border)]">{copy.latest}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-serif font-semibold text-tm-heading group-hover:text-tm-gold transition-colors mb-3 leading-tight tracking-tight">
-                    {a.title}
+                    {local.title}
                   </h2>
-                  <p className="text-tm-secondary text-base font-sans leading-relaxed max-w-3xl">{a.previewText}</p>
+                  <p className="text-tm-secondary text-base font-sans leading-relaxed max-w-3xl">{local.previewText}</p>
                   <div className="flex items-center gap-4 mt-4 text-tm-faint text-xs font-sans">
                     <span>{a.likes.toLocaleString(dateLocale)} {copy.likes}</span>
                     <span>{a.views.toLocaleString(dateLocale)} {copy.views}</span>
@@ -103,6 +104,7 @@ export default function ArticlesPage() {
           {selectedArticles.slice(1).map(a => {
             const cat = articleCategory(a);
             const catInfo = categoryColors[cat];
+            const local = localizedArticle(a, locale);
             const dateStr = new Date(a.createdAt).toLocaleDateString(dateLocale, { month: 'short', day: 'numeric', year: 'numeric' });
 
             return (
@@ -123,10 +125,10 @@ export default function ArticlesPage() {
                       <span className="text-tm-faint text-[10px] font-sans">{dateStr}</span>
                     </div>
                     <h3 className="text-tm-heading text-xl font-serif font-semibold leading-snug group-hover:text-tm-gold transition-colors mb-3 flex-1">
-                      {a.title}
+                      {local.title}
                     </h3>
                     <p className="text-tm-muted text-[13px] font-sans leading-relaxed mb-4 line-clamp-3">
-                      {a.previewText}
+                      {local.previewText}
                     </p>
                     <div className="flex items-center justify-between text-tm-faint text-[10px] font-sans pt-2 border-t border-tm-border-subtle">
                       <span>{a.likes.toLocaleString(dateLocale)} {copy.likes} · {a.views.toLocaleString(dateLocale)} {copy.views}</span>
