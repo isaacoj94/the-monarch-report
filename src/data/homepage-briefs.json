@@ -1,6 +1,28 @@
 {
-  "checkedAt": "2026-09-15",
+  "checkedAt": "2026-09-17",
   "items": [
+    {
+      "id": "3dc9cc36-d0b9-81e3-ad59-ebd07d0ced72",
+      "date": "2026-09-16",
+      "title": "Japan moves to step up anti-trafficking measures as identified cases rise",
+      "description": "Japan Times, published 2026-09-15, reports that on Sept. 15 the government adopted its annual trafficking report and discussed a proposed 2026 anti-trafficking action plan, the first overhaul since 2022. The report said 78 victims were identified in 2025, up 12, including 53 minors. The draft targets host-club coercion and labor and online sexual exploitation. It is not yet in force and names no Diet bill or start date.",
+      "category": "legislation",
+      "source": "Japan Times,",
+      "sourceUrl": "https://www.japantimes.co.jp/news/2026/09/15/japan/human-trafficking-report/",
+      "whyPeople": "Identified trafficking victims (unnamed in the excerpt) are the affected class. Labor and sexual exploitation are human-rights harms. The article states that confirmed cases rose in the government’s annual report.",
+      "whyInstitutions": "Japan’s adoption of the annual report and discussion of a proposed 2026 action plan is an institutional response. Chief Cabinet Secretary Minoru Kihara chaired the meeting. The article does not name a Diet bill or a budget figure.",
+      "notionUrl": "https://app.notion.com/p/Editorial-Japan-moves-to-step-up-anti-trafficking-measures-as-identified-cases-rise-d006d7a7fc1b9-3dc9cc36d0b981e3ad59ebd07d0ced72",
+      "showCaseProgression": false,
+      "caseThread": "standalone",
+      "titleKo": "일본, 확인 사례 증가에 인신매매 대책 강화 추진",
+      "titleJa": "日本、確認件数増を受け人身取引対策を強化へ",
+      "descriptionKo": "재팬타임스(2026-09-15)에 따르면, 정부는 9월 15일 연례 보고서를 채택하고 2022년 이후 처음인 2026년 인신매매 대책 행동계획안을 협의했다. 보고서는 2025년 확인 피해자 78명(12명 증가), 이 중 미성년 53명을 밝혔다. 안은 호스트클럽 강요와 노동·온라인 성착취를 겨냥한다. 아직 시행 전이며, 국회 법안과 시행일은 없다.",
+      "descriptionJa": "ジャパンタイムズ（2026年9月15日付）によると、政府は同日、年次報告を採択し、2022年以来初となる「人身取引対策行動計画2026」案を協議した。報告は2025年の確認被害者78人（12人増）、うち18歳未満53人とする。案はホストクラブによる強要と労働・オンライン性的搾取を対象とする。未施行で、国会提出法案と施行日は示されていない。",
+      "whyPeopleKo": "확인된 인신매매 피해자(발췌문에는 익명)가 영향받는 계층이다. 노동·성착취는 인권 침해다. 기사는 정부 연례 보고에서 확인 사례가 증가했다고 명시한다.",
+      "whyPeopleJa": "確認された人身取引被害者（抜粋では無名）が影響を受ける層である。労働搾取と性的搾取は人権侵害である。記事は、政府の年次報告で確認件数が増えたと明記している。",
+      "whyInstitutionsKo": "일본 정부가 연례 보고서를 채택하고 2026년 행동계획안을 협의한 것은 제도적 대응이다. 회의 의장은 기하라 관방장관이다. 기사는 국회 제출 법안명이나 예산액을 밝히지 않았다.",
+      "whyInstitutionsJa": "日本政府が年次報告を採択し、「人身取引対策行動計画2026」案を協議したことは制度的対応である。会議の議長は木原官房長官。記事は国会提出法案や予算額を示していない。"
+    },
     {
       "id": "3da9cc36-d0b9-81e2-8174-fd1507e95ec7",
       "date": "2026-09-15",
