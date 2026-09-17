@@ -12,6 +12,15 @@ test('recognizes supported X Articles operation naming variants, not other timel
   assert.equal(mod.isArticleResponse('https://x.com/i/api/graphql/hash/HomeTimeline'), false);
   assert.equal(mod.isArticleResponse('https://evil.example/i/api/graphql/hash/UserArticles'), false);
 });
+test('accepts authenticated article pagination only after three settled scrolls', () => {
+  assert.equal(mod.isSettledDiscovery(true, 1, 2), false);
+  assert.equal(mod.isSettledDiscovery(true, 1, 3), true);
+  assert.equal(mod.isSettledDiscovery(false, 1, 3), false);
+  assert.equal(mod.isSettledDiscovery(true, 0, 3), false);
+});
+test('allows enough scrolls to reach the current terminal Articles page', () => {
+  assert.equal(mod.MAX_DISCOVERY_SCROLLS, 20);
+});
 test('recovers only dead-process locks and refuses concurrent importer', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-lock-')); const file = path.join(dir, 'lock');
   await writeFile(file, '2147483647');

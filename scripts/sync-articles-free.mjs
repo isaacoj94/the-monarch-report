@@ -13,6 +13,7 @@ export const AUTH_PROFILE_LABEL = 'Yoo Suk';
 const STATE = path.join(os.homedir(), '.hermes/profiles/monarch/state/x-article-sync');
 export const AUTH_COOKIE_FILE = '/Users/jeongxclaw1/.hermes/profiles/monarch/state/x-article-sync/yoo-suk-x-cookies.json';
 export const MAX_AUTH_FILE_BYTES = 64 * 1024;
+export const MAX_DISCOVERY_SCROLLS = 20;
 const STATUS = path.join(STATE, 'import-status.json');
 const BACKOFF = path.join(STATE, 'auth-backoff.json');
 export async function activeBackoff(file, now = Date.now()) {
@@ -206,6 +207,9 @@ export async function createAuthenticatedContext({ chromiumApi = chromium, cooki
 export function isArticleResponse(url) {
   return /^https:\/\/(?:x\.com|api\.x\.com)\/(?:i\/api\/)?graphql\/[^/]+\/UserArticles(?:Tweets)?(?:\?|$)/.test(url);
 }
+export function isSettledDiscovery(verified, responseVersion, stableScrolls) {
+  return verified && responseVersion > 0 && stableScrolls >= 3;
+}
 export async function acquireLock(file) {
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
@@ -227,6 +231,7 @@ export async function discover(context) {
   const page = context.pages()[0] ?? await context.newPage();
   const found = new Map();
   let verified = false, complete = false, upstreamError = false, rateLimited = false;
+  let responseVersion = 0;
   const pending = new Set();
   const listener = response => {
     if (!isArticleResponse(response.url())) return;
@@ -234,6 +239,7 @@ export async function discover(context) {
       if (response.status() === 429) { rateLimited = true; return; }
       if (!response.ok()) { upstreamError = true; return; }
       const result = parseDiscovery(await response.json());
+      responseVersion++;
       verified ||= result.verified; complete ||= result.complete;
       for (const c of result.candidates) found.set(c.articleId, c);
     })().catch(() => { upstreamError = true; });
@@ -246,11 +252,14 @@ export async function discover(context) {
     // Presence of authenticated navigation, not cookies, is the authorization check.
     try { await page.locator('[data-testid="SideNav_AccountSwitcher_Button"]').waitFor({ timeout: 12000 }); }
     catch { fail(rateLimited ? 'RATE_LIMITED' : 'LOGIN_REQUIRED'); }
-    for (let step = 0; step < 15; step++) {
+    let previousVersion = -1, stableScrolls = 0;
+    for (let step = 0; step < MAX_DISCOVERY_SCROLLS; step++) {
       await page.waitForTimeout(1200);
       await Promise.all([...pending]);
       if (rateLimited) fail('RATE_LIMITED');
-      if (verified && complete) break;
+      stableScrolls = responseVersion === previousVersion ? stableScrolls + 1 : 0;
+      previousVersion = responseVersion;
+      if (verified && (complete || isSettledDiscovery(verified, responseVersion, stableScrolls))) { complete = true; break; }
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     }
     if (upstreamError) fail('DISCOVERY_UPSTREAM_ERROR');
