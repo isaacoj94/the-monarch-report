@@ -2,6 +2,27 @@
   "checkedAt": "2026-09-17",
   "items": [
     {
+      "id": "3dc9cc36-d0b9-8117-8191-c66d419692c7",
+      "date": "2026-09-17",
+      "title": "Over 300 S. Korean workers file administrative claims over 2025 Georgia immigration raid, CNN says",
+      "description": "Yonhap, published 2026-09-16 (Washington dateline Sept. 15), citing CNN, reports that more than 300 South Korean workers detained in last year’s immigration raid at a Hyundai–LG Energy Solution battery plant site in Ellabell, Georgia, have begun filing administrative claims with nine U.S. federal agencies. The raid was Sept. 4, 2025; 475 people were detained, a majority of them South Korean. The claims are a required step before any federal lawsuit. Publication date is not the raid date.",
+      "category": "legislation",
+      "source": "Yonhap",
+      "sourceUrl": "https://en.yna.co.kr/view/AEN20260916000300315",
+      "whyPeople": "More than 300 South Korean workers detained in the 2025 Georgia raid have begun seeking damages, alleging unlawful arrest and harsh conditions; U.S. authorities have said the operation targeted unlawful employment. That is a due-process dispute, not a verdict.",
+      "whyInstitutions": "The action names federal agencies, not a court judgment against the Trump administration.",
+      "notionUrl": "https://app.notion.com/p/Editorial-Over-300-S-Korean-workers-challenging-Trump-government-over-last-year-s-Georgia-immigrat-3dc9cc36d0b981178191c66d419692c7",
+      "showCaseProgression": false,
+      "caseThread": "standalone",
+      "titleKo": "작년 조지아 이민 단속 한국인 300명 이상, 미 연방기관에 행정청구 개시…CNN",
+      "titleJa": "昨年のジョージア州移民摘発、韓国人労働者300人超が米連邦機関に行政請求開始（CNN）",
+      "descriptionKo": "연합뉴스는 2026년 9월 16일 게재(워싱턴 발 9월 15일)로 CNN을 인용해, 2025년 9월 4일 조지아주 엘러벨 현대차·LG엔솔 합작 배터리 공장 건설 현장에서 구금된 한국인 근로자 300명 이상이 미 연방기관 9곳에 행정청구를 내기 시작했다고 보도했다. 당시 구금은 475명이었고 다수가 한국인이었다. 행정청구는 연방 소송 전 필수 절차다. 게재일은 단속일이 아니다.",
+      "descriptionJa": "聯合ニュースは2026年9月16日付（ワシントン発9月15日）でCNNを引用し、2025年9月4日にジョージア州エラベルの現代自動車・LGエナジーソリューション合弁バッテリー工場建設現場で拘束された韓国人労働者300人超が、米連邦機関9か所への行政請求を始めたと報じた。当時の拘束は475人で過半数が韓国人。行政請求は連邦訴訟の前置手続である。掲載日は摘発日ではない。",
+      "whyPeopleKo": "2025년 조지아 단속에서 구금된 한국인 근로자 300명 이상이 위법 구금·열악한 수용을 주장하며 배상을 구하기 시작했다. 미 당국은 불법 고용 수사였다고 설명한다. 적법절차 쟁점이지 판결이 아니다. Institutions: 대상은 트럼프 정권에 대한 법원 판결이 아니라 연방 기관이다.",
+      "whyPeopleJa": "2025年のジョージア州摘発で拘束された韓国人労働者300人超が、違法拘束と劣悪な収容を主張して損害賠償を求め始めた。米当局は違法雇用の捜査だったと説明する。適正手続の争いであり、評決ではない。",
+      "whyInstitutionsJa": "対象はトランプ政権に対する裁判所の判決ではなく、連邦機関である。"
+    },
+    {
       "id": "3dc9cc36-d0b9-8139-9b06-d21b9c34d774",
       "date": "2026-09-17",
       "title": "Rival parties clash as National Assembly confirmation hearings open over justice minister nominee Kim Seung-won’s lobbying allegations",
