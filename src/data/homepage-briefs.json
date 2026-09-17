@@ -2,6 +2,28 @@
   "checkedAt": "2026-09-17",
   "items": [
     {
+      "id": "3dc9cc36-d0b9-8139-9b06-d21b9c34d774",
+      "date": "2026-09-17",
+      "title": "Rival parties clash as National Assembly confirmation hearings open over justice minister nominee Kim Seung-won’s lobbying allegations",
+      "description": "Yonhap, published 2026-09-15, reports that on Tuesday the National Assembly began confirmation hearings for Cabinet nominees and that rival parties clashed over allegations surrounding Justice Minister nominee Kim Seung-won’s illegal lobbying. Event date in the copy is Tuesday (Sept. 15 per dateline); source publication is the same day.",
+      "category": "legislation",
+      "source": "Yonhap",
+      "sourceUrl": "https://en.yna.co.kr/view/AEN20260915004151315",
+      "whyPeople": "Kim Seung-won, if confirmed, would hold charging and due-process power; allegations of illegal lobbying, if true or if mishandled, affect public trust in that office.",
+      "whyInstitutions": "National Assembly confirmation is the fairness mechanism for a justice portfolio; a partisan clash over lobbying allegations is an institutional test of equal standards, not a verdict.",
+      "notionUrl": "https://app.notion.com/p/Editorial-Rival-parties-clash-as-National-Assembly-confirmation-hearings-open-over-justice-minister-3dc9cc36d0b981399b06d21b9c34d774",
+      "showCaseProgression": false,
+      "caseThread": "standalone",
+      "titleKo": "김승원 법무부 장관 후보자 로비 의혹 놓고 국회 인사청문회 개막…여야 충돌",
+      "titleJa": "金承源法相指名者のロビー疑惑めぐり国会人事聴聞会が開始、与野党が対立",
+      "descriptionKo": "연합뉴스는 2026년 9월 15일 보도에서, 화요일 국회가 내각 후보자들에 대한 인사청문회를 시작했으며 김승원 법무부 장관 후보자의 불법 로비 의혹을 놓고 여야가 충돌했다고 전했다. 기사 속 행사 일자는 화요일(보도일 기준 9월 15일)이며 출처 보도일은 당일이다.",
+      "descriptionJa": "聯合ニュースは2026年9月15日付で、火曜日に国会が閣僚指名者の人事聴聞会を開始し、法相指名者の金承源氏の違法ロビー疑惑をめぐって与野党が対立したと報じた。本文の行事日は火曜日（日付欄によれば9月15日）で、出典の発行は同日である。",
+      "whyPeopleKo": "김승원 후보자가 인준되면 기소 및 적법절차 권한을 쥐게 된다. 불법 로비 의혹이 사실이거나 제대로 다루어지지 않으면 해당 직에 대한 국민의 신뢰에 영향을 준다.",
+      "whyPeopleJa": "金承源氏が承認されれば起訴および適正手続の権限を握る。違法ロビーの疑惑が事実であるか、あるいは適切に扱われなければ、その職への公の信頼に影響する。",
+      "whyInstitutionsKo": "국회 인사청문은 법무 포트폴리오에 대한 공정성 장치다. 로비 의혹을 둘러싼 당파적 충돌은 동등한 기준의 제도적 시험이지 판결이 아니다.",
+      "whyInstitutionsJa": "国会の人事承認は法務ポートフォリオの公正さの仕組みである。ロビー疑惑をめぐる党派対立は同等基準の制度的試験であり、評決ではない。"
+    },
+    {
       "id": "3dc9cc36-d0b9-81e3-ad59-ebd07d0ced72",
       "date": "2026-09-16",
       "title": "Japan moves to step up anti-trafficking measures as identified cases rise",
