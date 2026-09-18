@@ -2,6 +2,28 @@
   "checkedAt": "2026-09-18",
   "items": [
     {
+      "id": "3dd9cc36-d0b9-81b9-ab48-c13656f2736a",
+      "date": "2026-09-18",
+      "title": "Seoul plans to introduce abortion pills; responses mixed",
+      "description": "South Korea’s government on Wednesday, 16 September 2026, announced plans to introduce abortion pills for pregnancies of up to nine weeks. Yonhap reported the announcement that day, along with mixed responses to a plan to allow imports. The pills have not been approved. Prime Minister Han Seong-sook said the government would phase in hospital prescription and dispensing first.",
+      "category": "legislation",
+      "source": "Yonhap",
+      "sourceUrl": "https://en.yna.co.kr/view/AEN20260916003552315",
+      "whyPeople": "Who may obtain medication abortion in Korea, and under what clinical limits, is a rights and safety question for patients and clinicians.",
+      "whyInstitutions": "The executive announced a phased plan; MFDS import review and follow-on statute are not completed in the excerpts.",
+      "notionUrl": "https://app.notion.com/p/Editorial-Yonhap-government-announces-plan-on-abortion-pills-responses-mixed-521694cc1474fd0de7-3dd9cc36d0b981b9ab48c13656f2736a",
+      "showCaseProgression": false,
+      "caseThread": "standalone",
+      "titleKo": "정부, 낙태약 도입 계획…반응은 엇갈려",
+      "titleJa": "韓国政府、中絶薬の導入を計画…反応は分かれる",
+      "descriptionKo": "한국 정부는 2026년 9월 16일 수요일, 임신 9주까지 쓸 수 있는 낙태약을 도입하는 계획을 발표했다. 연합뉴스는 이날 그 발표와 함께, 수입 허용 계획에 반응이 엇갈렸다고 보도했다. 해당 약은 아직 승인되지 않았다. 한성숙 총리는 우선 병원에서 처방·조제하는 방식으로 단계 도입하겠다고 말했다.",
+      "descriptionJa": "韓国政府は2026年9月16日水曜日、妊娠9週まで使える中絶薬を導入する計画を発表した。聯合ニュースは同日、その発表と、輸入を認める計画に反応が分かれたと報じた。薬はまだ承認されていない。韓成熟首相は、まず病院での処方・調剤から段階的に導入すると述べた。",
+      "whyPeopleKo": "한국의 환자와 의료인에게는, 약물 임신중절을 누가, 몇 주까지, 어디서 받을 수 있는지가 달라진다.",
+      "whyPeopleJa": "韓国の患者と臨床医にとって、薬物中絶を誰が、何週まで、どこで受けられるかが変わる。",
+      "whyInstitutionsKo": "행정부가 단계적 계획을 발표했다. 발췌문상 식약처의 수입 심사와 후속 입법은 끝나지 않았다.",
+      "whyInstitutionsJa": "行政府が段階的計画を発表した。抜粋の時点では、食品医薬品安全処の輸入審査と後続立法は完了していない。"
+    },
+    {
       "id": "3dd9cc36-d0b9-8101-b931-f0b46d1e24e9",
       "date": "2026-09-18",
       "title": "Japan Times: false Tamaki posts in Okinawa governor race mostly amplified outside Okinawa",
