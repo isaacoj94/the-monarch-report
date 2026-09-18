@@ -1,6 +1,27 @@
 {
-  "checkedAt": "2026-09-17",
+  "checkedAt": "2026-09-18",
   "items": [
+    {
+      "id": "3dd9cc36-d0b9-8101-b931-f0b46d1e24e9",
+      "date": "2026-09-18",
+      "title": "Japan Times: false Tamaki posts in Okinawa governor race mostly amplified outside Okinawa",
+      "description": "Japan Times item published 16 September 2026 states that almost all first-day, location-inferred reposts of a 26 July false Tamaki post were by X users outside Okinawa (98.8%), and that during the campaign from 27 August through Sunday 13 September about 1.67 million posts on X contained the words “Okinawa gubernatorial election.” Distinguish that publication date from the campaign window.",
+      "category": "media",
+      "source": "Japan Times",
+      "sourceUrl": "https://www.japantimes.co.jp/news/2026/09/16/japan/tamaki-social-media-okinawa/",
+      "whyPeople": "Okinawa voters were the audience for false claims about a named incumbent.",
+      "whyInstitutions": "Campaign-period X traffic is the mechanism described; the excerpt states no court, election-board, or platform enforcement outcome.",
+      "notionUrl": "https://app.notion.com/p/Editorial-Japan-Times-false-Tamaki-posts-in-Okinawa-governor-race-mostly-amplified-outside-Okinawa-3dd9cc36d0b98101b931f0b46d1e24e9",
+      "showCaseProgression": false,
+      "caseThread": "standalone",
+      "titleKo": "재팬타임스, 오키나와 지사 선거 다마키 관련 허위 게시물이 오키나와 밖에서 주로 확산됐다고 보도",
+      "titleJa": "ジャパンタイムズ、沖縄知事選前の玉城氏虚偽投稿は主に県外で拡散と報道",
+      "descriptionKo": "재팬타임스 2026년 9월 16일자 기사는, 7월 26일 다마키 관련 허위 게시물의 첫날 재게시 가운데 소재를 추정할 수 있는 건의 거의 전부(98.8%)가 오키나와 밖 엑스 이용자에 의한 것이었다고 밝혔다. 또한 8월 27일부터 일요일인 9월 13일까지의 선거 운동 기간에 ‘오키나와 지사 선거’라는 말이 담긴 엑스 게시물은 약 167만 건이었다고 했다. 기사 게재일과 선거 운동 기간은 구분된다.",
+      "descriptionJa": "ジャパンタイムズ2026年9月16日付記事は、7月26日の玉城氏に関する虚偽投稿について、初日のリポストのうち所在を推定できたもののほぼすべて（98.8%）が沖縄県外のX利用者によるものだったと述べた。また、8月27日から日曜の9月13日までの選挙運動期間に「沖縄知事選」の語を含むX投稿は約167万件だったとした。掲載日と選挙運動期間は別である。",
+      "whyPeopleKo": "오키나와 유권자는 현직 후보자에 관한 허위 주장의 대상이었다. Institutions: 기사가 다루는 메커니즘은 선거 운동 기간의 엑스 정보 유통이다. 발췌문은 법원·선관위·플랫폼의 단속 결과는 언급하지 않는다.",
+      "whyPeopleJa": "沖縄の有権者は現職候補に関する虚偽主張の受け手だった。",
+      "whyInstitutionsJa": "当該記事が述べる仕組みは選挙運動期間のX上の情報流通である。抜粋は裁判所、選挙管理委員会、プラットフォームの執行結果には触れていない。"
+    },
     {
       "id": "3dc9cc36-d0b9-8117-8191-c66d419692c7",
       "date": "2026-09-17",
