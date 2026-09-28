@@ -2,6 +2,28 @@
   "checkedAt": "2026-09-28",
   "items": [
     {
+      "id": "3e59cc36-d0b9-81d1-9704-d6e73a2fcc7f",
+      "date": "2026-09-28",
+      "title": "Japanese abduction families ask Trump administration to raise North Korea abductions in possible Kim talks",
+      "description": "Japan Times, published 2026-09-24, reports that families of Japanese citizens abducted by North Korea, meeting U.S. officials in Washington on 23 September, asked that Donald Trump raise the issue if he holds talks with Kim Jong Un. U.S. officials said they would continue to support immediate resolution. The ask went to the administration, not to Trump in person.",
+      "category": "foreign-policy",
+      "source": "Japan Times",
+      "sourceUrl": "https://www.japantimes.co.jp/news/2026/09/24/japan/japan-families-north-korea-abduction-victims-trump-kim-talks/",
+      "whyPeople": "Families of unresolved abductees are seeking U.S. intervention while parents are still alive.",
+      "whyInstitutions": "The request tests whether any Trump-Kim channel treats abductions as a live demand, not only a historical talking point.",
+      "notionUrl": "https://app.notion.com/p/Editorial-Japanese-abduction-families-ask-Trump-to-raise-North-Korea-abductions-in-possible-Kim-tal-3e59cc36d0b981d19704d6e73a2fcc7f",
+      "showCaseProgression": false,
+      "caseThread": "standalone",
+      "titleKo": "일본 납치 피해자 가족, 트럼프 행정부에 김정은 회담 시 납치 문제 제기 요청",
+      "titleJa": "拉致被害者家族、トランプ政権に金正恩氏との会談で拉致問題提起を要請",
+      "descriptionKo": "재팬타임스(2026-09-24)에 따르면, 북한에 납치된 일본인 가족들이 9월 23일 워싱턴에서 미 당국자를 만나, 트럼프가 김정은과 회담할 경우 납치 문제를 제기해 달라고 요청했다. 미 당국자는 즉각적 해결 지지를 이어가겠다고 밝혔다. 요청 상대는 트럼프 본인이 아니라 행정부다.",
+      "descriptionJa": "ジャパンタイムズ（2026-09-24）によると、北朝鮮による日本人拉致の家族らは9月23日、ワシントンで米当局者と会い、トランプ氏が金正恩氏と会談する場合は拉致問題を取り上げるよう求めた。米側は即時解決への支持を続けると述べた。要請の相手はトランプ氏本人ではなく政権側である。",
+      "whyPeopleKo": "미해결 납치 가족들이, 부모 세대가 살아 있는 동안 미국의 개입을 구하고 있다.",
+      "whyPeopleJa": "未解決の拉致被害者の家族は、親世代が健在なうちに米国の介入を求めている。",
+      "whyInstitutionsKo": "트럼프–김정은 채널이 납치를 과거 화제가 아닌 현행 요구로 다룰지를 시험한다.",
+      "whyInstitutionsJa": "トランプ氏と金正恩氏のパイプで、拉致を過去の話題ではなく現行の要求として扱うかが問われる。"
+    },
+    {
       "id": "3e59cc36-d0b9-81ce-99e6-c8a6004d81b2",
       "date": "2026-09-28",
       "title": "U.S. judge issues 14-day order restoring White House hard passes for CNN, MS NOW, Politico on due-process grounds",
