@@ -1,6 +1,28 @@
 {
-  "checkedAt": "2026-09-18",
+  "checkedAt": "2026-09-28",
   "items": [
+    {
+      "id": "3e59cc36-d0b9-81ce-99e6-c8a6004d81b2",
+      "date": "2026-09-28",
+      "title": "U.S. judge issues 14-day order restoring White House hard passes for CNN, MS NOW, Politico on due-process grounds",
+      "description": "Japan Times, published 2026-09-24, reports that Judge Timothy Kelly found revocation of press passes for CNN, MS NOW, and Politico “likely violated their constitutional due process rights.” President Trump announced the ban on 18 September. Kelly’s order, issued early on 24 September, is a 14-day temporary restraining order, not a final judgment. He relied on Fifth Amendment due process. He did not decide the First Amendment claim.",
+      "category": "media",
+      "source": "Japan Times",
+      "sourceUrl": "https://www.japantimes.co.jp/news/2026/09/24/world/politics/us-judge-trump-media-ban/",
+      "whyPeople": "Correspondents for the three outlets regain White House access for two weeks while the suit continues.",
+      "whyInstitutions": "A federal judge, the same Trump appointee who restored Jim Acosta’s pass in 2018, again constrained hard-pass revocation under D.C. Circuit precedent.",
+      "notionUrl": "https://app.notion.com/p/Editorial-U-S-judge-reported-to-block-White-House-press-pass-revocations-for-CNN-MS-NOW-Politico-3e59cc36d0b981ce99e6c8a6004d81b2",
+      "showCaseProgression": false,
+      "caseThread": "standalone",
+      "titleKo": "미 판사, CNN·MS NOW·폴리티코 백악관 출입증 취소를 적법절차 위반 소지로 14일간 정지",
+      "titleJa": "米判事、CNN・MS NOW・ポリティコのホワイトハウス通行証取り消しを適正手続き違反の恐れで14日間停止",
+      "descriptionKo": "재팬타임스(2026-09-24)에 따르면 티머시 켈리 판사는 CNN, MS NOW, 폴리티코 출입증 취소가 “헌법상 적법절차 권리를 침해했을 가능성이 크다”고 판단했다. 금지 발표는 9월 18일 트럼프다. 명령은 9월 24일 새벽의 14일 일시정지이며 최종 판결이 아니다. 근거는 수정 제5조 적법절차이고, 수정 제1조는 판단하지 않았다.",
+      "descriptionJa": "ジャパンタイムズ（2026-09-24）によると、ティモシー・ケリー判事はCNN、MS NOW、ポリティコの記者パス取り消しが「憲法上の適正手続きの権利を侵害した可能性が高い」と判断した。禁止を発表したのは9月18日のトランプ。命令は9月24日未明の14日間一時差止であり、終局判決ではない。根拠は修正第5条の適正手続きで、修正第1条は判断していない。",
+      "whyPeopleKo": "세 언론 특파원은 2주간 백악관 출입을 회복한다. 본안은 계속된다.",
+      "whyPeopleJa": "3社の担当記者は2週間、ホワイトハウスへの出入りを回復する。本案は続く。",
+      "whyInstitutionsKo": "2018년 아코스타 출입증을 회복시킨 바로 그 판사가, 다시 D.C. 순회 판례로 하드패스 취소를 제약했다.",
+      "whyInstitutionsJa": "2018年にアコスタのパスを戻した同一判事が、再びD.C.巡回区先例でハードパス取り消しを制約した。"
+    },
     {
       "id": "3dd9cc36-d0b9-81b9-ab48-c13656f2736a",
       "date": "2026-09-18",
