@@ -21,6 +21,12 @@ test('accepts authenticated article pagination only after three settled scrolls'
 test('allows enough scrolls to reach the current terminal Articles page', () => {
   assert.equal(mod.MAX_DISCOVERY_SCROLLS, 20);
 });
+test('bounds browser shutdown even when Playwright close promises never settle', async () => {
+  let calls = 0;
+  const stuck = { close: () => { calls++; return new Promise(() => {}); } };
+  await mod.closeResources(stuck, stuck, () => Promise.resolve());
+  assert.equal(calls, 2);
+});
 test('recovers only dead-process locks and refuses concurrent importer', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'synthetic-lock-')); const file = path.join(dir, 'lock');
   await writeFile(file, '2147483647');

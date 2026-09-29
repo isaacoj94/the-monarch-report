@@ -210,6 +210,10 @@ export function isArticleResponse(url) {
 export function isSettledDiscovery(verified, responseVersion, stableScrolls) {
   return verified && responseVersion > 0 && stableScrolls >= 3;
 }
+export async function closeResources(context, browser, wait = ms => new Promise(resolve => setTimeout(resolve, ms))) {
+  await Promise.race([context?.close().catch(() => {}) ?? Promise.resolve(), wait(500)]);
+  await Promise.race([browser?.close().catch(() => {}) ?? Promise.resolve(), wait(500)]);
+}
 export async function acquireLock(file) {
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
@@ -286,9 +290,7 @@ export async function main(args = process.argv.slice(2)) {
   await fs.mkdir(STATE, { recursive: true, mode: 0o700 });
   // Hard process deadline also covers hung browser shutdown.
   const deadline = setTimeout(async () => {
-    const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-    await Promise.race([context?.close().catch(() => {}), wait(500)]);
-    await browser?.close().catch(() => {});
+    await closeResources(context, browser);
     await writeStatus(STATUS, { status: 'error', errorCode: 'TIMEOUT', lastSuccessfulDiscoveryAt: discoveryAt, addedCount: 0 }).catch(() => {});
     process.exit(1);
   }, 115000);
@@ -315,9 +317,7 @@ export async function main(args = process.argv.slice(2)) {
     console.error(`${code}: Import aborted without partial article writes.`);
     process.exitCode = 1;
   } finally {
-    await context?.close().catch(() => {});
-    await browser?.close().catch(() => {});
-
+    await closeResources(context, browser);
     if (lock) { await lock.close(); await fs.rm(path.join(STATE, 'import.lock'), { force: true }); }
     clearTimeout(deadline);
   }

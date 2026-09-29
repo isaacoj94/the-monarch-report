@@ -1,5 +1,491 @@
 [
   {
+    "id": "2104745974661017600",
+    "tweetId": "2104757384061349915",
+    "title": "Japan's Closed News System and the Fall in Trust",
+    "previewText": "On September 26, 2026, a Japanese user on X asked Elon Musk @elonmusk to buy a TV network. The reason was the news. The article says this user felt every channel leaned the same way each night, and",
+    "createdAt": "2026-09-29T02:17:19.000Z",
+    "coverImage": "https://pbs.twimg.com/media/HTWZk2zbEAESs8a.jpg",
+    "likes": 1,
+    "views": 429,
+    "retweets": 1,
+    "bookmarks": 0,
+    "blocks": [
+      {
+        "type": "image",
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HTWPb3BbsAAsj9y.png"
+      },
+      {
+        "type": "paragraph",
+        "text": "On September 26, 2026, a Japanese user on X asked Elon Musk @elonmusk to buy a TV network. The reason was the news. The article says this user felt every channel leaned the same way each night, and nobody in Japan could buy one and change it. Musk answered on September 27 with a question: \"Would the government in Japan allow me to do so?\""
+      },
+      {
+        "type": "paragraph",
+        "text": "The request shows how people feel, and the numbers agree. Trust in news in Japan dropped to 39 percent in 2025, its lowest level since 2021 (Reuters Institute data via NHK). At the same time, a film called Biased Reporting was filling small theaters with people who see the first TV version of a story as a slant.\n",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 206,
+            "length": 16
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Why Musk could not buy a station",
+        "level": 2,
+        "styles": [
+          {
+            "style": "bold",
+            "offset": 0,
+            "length": 32
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HTWQJNsbEAAt8th.png"
+      },
+      {
+        "type": "paragraph",
+        "text": "The short answer is no. Japanese law blocks it, and that block is part of the problem viewers see. A newsroom that can never be sold has no rival owner to push it."
+      },
+      {
+        "type": "paragraph",
+        "text": "Under Japan's broadcast laws, a TV station or its parent company cannot hold a license if foreign people, governments, or companies own 20 percent or more of the voting rights. If a company crosses that line, it can lose its license, so stations refuse to record share sales that would push them over. TV Asahi Holdings reported that foreign owners held 19.99 percent as of March 31, 2026. The market is closed down to the last decimal point.\n"
+      },
+      {
+        "type": "heading",
+        "text": "What a closed market creates",
+        "level": 2,
+        "styles": [
+          {
+            "style": "bold",
+            "offset": 0,
+            "length": 28
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HTWQNQXaMAAPFWn.jpg"
+      },
+      {
+        "type": "paragraph",
+        "text": "Japan ranked 62nd of 180 countries in the 2026 World Press Freedom Index. That is up four places, but still marked \"problematic.\" The US was 64th, so Japan is second to last in the G7."
+      },
+      {
+        "type": "paragraph",
+        "text": "Reporters Without Borders points to political pressure, a secrets law that does little to protect sources, limits on who can attend press conferences, and the press club system."
+      },
+      {
+        "type": "paragraph",
+        "text": "Press clubs, called kisha clubs, place reporters from big newspapers, NHK, and major TV networks inside government offices, the Diet, and large companies. Freelancers and small outlets are kept out."
+      },
+      {
+        "type": "paragraph",
+        "text": "A 2002 EU review found the system let officials hide bad news and made reporters less likely to check with a second source. Five media groups lead the market: Yomiuri with Nippon TV, Asahi with TV Asahi, Mainichi with TBS, Sankei with Fuji, and Nikkei with TV Tokyo.\n"
+      },
+      {
+        "type": "heading",
+        "text": "How the newsroom works",
+        "level": 2,
+        "styles": [
+          {
+            "style": "bold",
+            "offset": 0,
+            "length": 22
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The bias people talk about is a work routine, and people who worked inside it are starting to describe it. Biased Reporting opened on June 19, 2026 in Ikebukuro. It was written and directed by Kinshiro Ogino, a former director on TV Asahi's Super J Channel.",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 107,
+            "length": 16
+          },
+          {
+            "style": "italic",
+            "offset": 241,
+            "length": 15
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HTWQRvhaAAAodR6.jpg"
+      },
+      {
+        "type": "paragraph",
+        "text": "It spread by word of mouth and sold out in Osaka. Ogino says the film shows how slanted reports get made and takes no political side. He said the words \"biased reporting\" were never used in his newsroom, which made the work easier."
+      },
+      {
+        "type": "paragraph",
+        "text": "In the film, an unsigned letter accuses a governor, and a crew makes a report before anyone checks if it is true. Faces are blurred so the emotion stays and the speaker disappears. Shots are set up to make a person look like they are running away."
+      },
+      {
+        "type": "paragraph",
+        "text": "The same pattern showed up on real TV this month. On September 18, 2026, Nippon TV's ZIP! said, citing people close to the prime minister, that Defense Minister Shinjiro Koizumi had written on a cabinet survey that he wanted to keep his job, and that minister Kimi Onoda wanted to focus on foreigner policy. Neither had turned in the survey. Koizumi said the network never contacted him.",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 85,
+            "length": 4
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HTWQgnha8AARpKY.jpg"
+      },
+      {
+        "type": "paragraph",
+        "text": "news zero corrected the story and said sorry that night, and ZIP! added Onoda to the apology on September 21. An unnamed source near power took the place of checking, and the press club system makes that shortcut easy.\n",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 0,
+            "length": 9
+          },
+          {
+            "style": "italic",
+            "offset": 61,
+            "length": 4
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "The Trump coverage",
+        "level": 2,
+        "styles": [
+          {
+            "style": "bold",
+            "offset": 0,
+            "length": 18
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The same habits shape how Donald Trump is shown on Japanese TV, mostly on morning shows, in editorials, and in captions. These choices come from small edits that add up over time."
+      },
+      {
+        "type": "paragraph",
+        "text": "During Trump's first term, TV Asahi's Hodo Station told viewers he had called \"the media\" the enemy of the people. What he actually said was \"fake news.\" The station said he uses the phrase to mean most news outlets, so the change was fair. Still, one word turned an attack on false reports into an attack on the whole press.",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 38,
+            "length": 12
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "text": "",
+        "imageUrl": "https://pbs.twimg.com/media/HTWQkcBaoAAT80i.jpg"
+      },
+      {
+        "type": "paragraph",
+        "text": "In July 2026, Trump mixed up Iran and Japan and said \"the Islamic Republic of Japan.\" TV Asahi aired the slip as the story and left out the policy point he was trying to make. Airing only the mistake was an editing decision."
+      },
+      {
+        "type": "paragraph",
+        "text": "In September 2026, TV Asahi's Morning Show and an Asahi editorial called his move to limit White House access for CNN, MS NOW, and Politico an attack on democracy. The access fight is real news. What the reports did not mention is that many Americans already distrust those outlets. Japanese newsrooms repeated how the American media sees itself.",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 30,
+            "length": 12
+          },
+          {
+            "style": "italic",
+            "offset": 50,
+            "length": 5
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "A researcher also found that Japanese papers quoted Obama word for word while turning Trump's words into loose summaries. Over time, readers get Obama's exact voice and only a general mood from Trump."
+      },
+      {
+        "type": "paragraph",
+        "text": "Each of these is an editing choice: the harsher translation, the shorter clip, the expert who already dislikes him. Added together, they give viewers a picture of Trump that the newsroom has already shaped, and few people stop to check whether that picture is fair.\n"
+      },
+      {
+        "type": "heading",
+        "text": "The main point",
+        "level": 2,
+        "styles": [
+          {
+            "style": "bold",
+            "offset": 0,
+            "length": 14
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Many democracies limit foreign ownership of TV stations, and that is a fair choice for a country to make. The concern is what a closed system does to fair reporting."
+      },
+      {
+        "type": "paragraph",
+        "text": "Closed ownership, closed access, and five big groups can all lean the same way, and newsrooms are rewarded for finishing the report before finishing the check. Fair news comes from competition: someone with the power and money to run the story others skip,. When no one new can enter, the popular view of the week has no one to challenge it."
+      },
+      {
+        "type": "paragraph",
+        "text": "A film can show the trick, and a post can ask a billionaire for help, yet neither can put a new newsroom on the air. Musk asked if Japan would let him buy a station. The post he answered had already asked the bigger question: if the license holders will not check the story, who else is allowed to?\n"
+      },
+      {
+        "type": "heading",
+        "text": "Sources",
+        "level": 2,
+        "styles": [
+          {
+            "style": "bold",
+            "offset": 0,
+            "length": 7
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "Elon Musk on X, reply of September 27, 2026 asking whether Japan's government would allow him to buy a TV stationhttps://x.com/elonmusk/status/2104294501317488771",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "Reuters Institute for the Study of Journalism, Digital News Report 2025: Japanhttps://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/japan",
+        "listType": "ordered",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 47,
+            "length": 31
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "NHK Broadcasting Culture Research Institute, \"How News Is Read in the Digital Age 2025\" (Japanese)https://www.jstage.jst.go.jp/article/bunken/75/11/75_30/_article/-char/ja",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "TV Asahi Holdings, notice on voting rights held by foreign nationals, filed April 2026 (via Nikkei, Japanese)https://www.nikkei.com/nkd/disclosure/tdnr/20260422508556/",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "Nippon.com, Japan's ranking in the 2026 World Press Freedom Indexhttps://www.nippon.com/en/japan-data/h02781/",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "Reporters Without Borders, Japan country pagehttps://rsf.org/en/country/japan",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "Biased Reporting (Henko Hodo), official film site (Japanese)https://henkohodo.com/",
+        "listType": "ordered",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 0,
+            "length": 16
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "Eiga Hiho, interview with director Kinshiro Ogino and actress Miyuki Torii (Japanese)https://note.com/eiga_hiho/n/nc4450d4a086b",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "Yorozu News via Yahoo! Japan, director Ogino on his years in TV news (Japanese)https://news.yahoo.co.jp/articles/2c1977a3ce9cf35495277dc355b6cd1b78541d7e",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "J-Cast News, September 21, 2026, Nippon TV's ZIP! apologizes over the Koizumi and Onoda survey report (Japanese)https://www.j-cast.com/2026/09/21518004.html?p=all",
+        "listType": "ordered",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 45,
+            "length": 4
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "Sports Hochi via Yahoo! Japan, news zero apology over the ZIP! report (Japanese)https://news.yahoo.co.jp/articles/c4de8388df17d28c4820e6d7495a21afdf4a348b",
+        "listType": "ordered",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 31,
+            "length": 9
+          },
+          {
+            "style": "italic",
+            "offset": 58,
+            "length": 4
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "Logmi Business, transcript of Sanae Takaichi's 2016 Diet answer on stopping broadcasts (Japanese)https://logmi.jp/business/articles/125281",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "Tokyo Shimbun, on political fairness under the Broadcasting Act and Takaichi's answer (Japanese)https://www.tokyo-np.co.jp/article/242622",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "J-Cast News, on Hodo Station's translation of Trump's \"enemy of the people\" remark (Japanese)https://www.j-cast.com/2018/08/21336630.html?p=all",
+        "listType": "ordered",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 16,
+            "length": 12
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "text": "TV Asahi News via docomo, Trump's \"Islamic Republic of Japan\" slip, July 2026 (Japanese)https://topics.smt.docomo.ne.jp/article/tvasahinews/world/tvasahinews-000517867",
+        "listType": "ordered"
+      },
+      {
+        "type": "list-item",
+        "text": "J-Cast News, September 24, 2026, Morning Show coverage of the White House cutting CNN's access (Japanese)https://www.j-cast.com/2026/09/24518081.html",
+        "listType": "ordered",
+        "styles": [
+          {
+            "style": "italic",
+            "offset": 33,
+            "length": 12
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "url": "https://pbs.twimg.com/media/HTWZk2zbEAESs8a.jpg",
+        "width": 1600,
+        "height": 640,
+        "type": "cover"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HTWQRvhaAAAodR6.jpg",
+        "width": 720,
+        "height": 1026,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HTWQgnha8AARpKY.jpg",
+        "width": 1537,
+        "height": 1023,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HTWQkcBaoAAT80i.jpg",
+        "width": 960,
+        "height": 540,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HTWPb3BbsAAsj9y.png",
+        "width": 600,
+        "height": 400,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HTWQNQXaMAAPFWn.jpg",
+        "width": 1536,
+        "height": 864,
+        "type": "inline"
+      },
+      {
+        "url": "https://pbs.twimg.com/media/HTWQJNsbEAAt8th.png",
+        "width": 710,
+        "height": 300,
+        "type": "inline"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/japan",
+        "text": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/japan"
+      },
+      {
+        "url": "https://www.jstage.jst.go.jp/article/bunken/75/11/75_30/_article/-char/ja",
+        "text": "https://www.jstage.jst.go.jp/article/bunken/75/11/75_30/_article/-char/ja"
+      },
+      {
+        "url": "https://www.nikkei.com/nkd/disclosure/tdnr/20260422508556/",
+        "text": "https://www.nikkei.com/nkd/disclosure/tdnr/20260422508556/"
+      },
+      {
+        "url": "https://henkohodo.com/",
+        "text": "https://henkohodo.com/"
+      },
+      {
+        "url": "https://note.com/eiga_hiho/n/nc4450d4a086b",
+        "text": "https://note.com/eiga_hiho/n/nc4450d4a086b"
+      },
+      {
+        "url": "https://news.yahoo.co.jp/articles/2c1977a3ce9cf35495277dc355b6cd1b78541d7e",
+        "text": "https://news.yahoo.co.jp/articles/2c1977a3ce9cf35495277dc355b6cd1b78541d7e"
+      },
+      {
+        "url": "https://www.j-cast.com/2026/09/21518004.html?p=all",
+        "text": "https://www.j-cast.com/2026/09/21518004.html?p=all"
+      },
+      {
+        "url": "https://news.yahoo.co.jp/articles/c4de8388df17d28c4820e6d7495a21afdf4a348b",
+        "text": "https://news.yahoo.co.jp/articles/c4de8388df17d28c4820e6d7495a21afdf4a348b"
+      },
+      {
+        "url": "https://logmi.jp/business/articles/125281",
+        "text": "https://logmi.jp/business/articles/125281"
+      },
+      {
+        "url": "https://www.tokyo-np.co.jp/article/242622",
+        "text": "https://www.tokyo-np.co.jp/article/242622"
+      },
+      {
+        "url": "https://www.j-cast.com/2018/08/21336630.html?p=all",
+        "text": "https://www.j-cast.com/2018/08/21336630.html?p=all"
+      },
+      {
+        "url": "https://topics.smt.docomo.ne.jp/article/tvasahinews/world/tvasahinews-000517867",
+        "text": "https://topics.smt.docomo.ne.jp/article/tvasahinews/world/tvasahinews-000517867"
+      },
+      {
+        "url": "https://www.j-cast.com/2026/09/24518081.html",
+        "text": "https://www.j-cast.com/2026/09/24518081.html"
+      }
+    ]
+  },
+  {
     "id": "2101289504703397888",
     "tweetId": "2101332872703672711",
     "title": "The Quiet Damage of Lee Jae-myung’s First Year",
