@@ -20256,5 +20256,819 @@
         }
       ]
     }
+  },
+  "2104745974661017600": {
+    "ko": {
+      "title": "일본의 폐쇄적 뉴스 체제와 신뢰 하락",
+      "previewText": "2026년 9월 26일, X의 한 일본 이용자가 일론 머스크 @elonmusk에게 TV 네트워크를 사달라고 요청했다. 이유는 뉴스였다. 기사는 이 이용자가 매일 밤 모든 채널이 같은 쪽으로 기울었다고 느꼈고,",
+      "blocks": [
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWPb3BbsAAsj9y.png",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "2026년 9월 26일, X의 한 일본 이용자가 일론 머스크 @elonmusk에게 TV 네트워크를 사달라고 요청했다. 이유는 뉴스였다. 기사는 이 이용자가 매일 밤 모든 채널이 같은 쪽으로 기울었다고 느꼈고, 일본에서는 누구도 사서 바꿀 수 없다고 느꼈다고 전한다. 머스크는 9월 27일 질문으로 답했다. \"일본 정부가 그걸 허용할까?\"",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "이 요청은 사람들의 체감을 보여 주며, 수치도 일치한다. 일본의 뉴스 신뢰도는 2025년 39%로 떨어졌고, 2021년 이후 최저 수준이다(로이터 연구소 자료, NHK 경유). 동시에 영화 〈편향 보도〉가 소극장들을 채우며, 사람들은 이야기의 첫 TV 버전을 편향으로 본다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "머스크가 방송국을 살 수 없었던 이유",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQJNsbEAAt8th.png",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "짧은 답은 안 된다는 것이다. 일본 법이 막고, 그 장벽이 시청자가 보는 문제의 일부다. 절대 매각될 수 없는 뉴스룸에는 밀어붙일 경쟁 소유자가 없다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "일본 방송법에 따르면, 외국인·외국 정부·외국 기업이 의결권의 20% 이상을 보유하면 TV 방송국이나 그 모회사는 면허를 가질 수 없다. 그 선을 넘으면 면허를 잃을 수 있어, 방송국들은 그 선을 넘게 할 주식 매각을 기록하지 않는다. TV 아사히 홀딩스는 2026년 3월 31일 기준 외국인 소유가 19.99%라고 보고했다. 시장은 소수점 한 자리까지 닫혀 있다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "폐쇄 시장이 만드는 것",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQNQXaMAAPFWn.jpg",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "일본은 2026년 세계 언론자유지수에서 180개국 중 62위였다. 네 계단 올랐지만 여전히 \"문제 있음\"으로 분류됐다. 미국은 64위로, 일본은 G7에서 뒤에서 두 번째다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "국경없는기자회는 정치적 압력, 취재원을 거의 보호하지 않는 비밀법, 기자회견 참석 제한, 기자클럽 제도를 지적한다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "기자클럽(기샤 클럽)은 대형 신문, NHK, 주요 TV 네트워크 기자를 관청, 국회, 대기업 안에 둔다. 프리랜서와 소규모 매체는 배제된다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "2002년 EU 검토는 이 제도가 당국이 나쁜 소식을 숨기게 하고, 기자가 제2의 취재원을 확인할 가능성을 낮춘다고 봤다. 시장을 이끄는 다섯 미디어 그룹은 요미우리·닛폰TV, 아사히·TV아사히, 마이니치·TBS, 산케이·후지, 닛케이·TV도쿄다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "뉴스룸이 돌아가는 방식",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "사람들이 말하는 편향은 업무 루틴이며, 안에서 일했던 이들이 그것을 말하기 시작했다. 〈편향 보도〉는 2026년 6월 19일 이케부쿠로에서 개봉했다. 각본·감독은 TV 아사히 〈슈퍼 J 채널〉 전 연출가 오기노 긴시로다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQRvhaAAAodR6.jpg",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "입소문으로 퍼져 오사카에서 매진됐다. 오기노는 영화가 편향 보도가 만들어지는 과정을 보여 주며 정치적 편을 들지 않는다고 한다. 그는 자신의 뉴스룸에서 \"편향 보도\"라는 말이 쓰인 적이 없어 일이 더 쉬웠다고 했다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "영화에서는 익명의 편지가 지사를 고발하고, 진위 확인 전에 취재팀이 보도를 만든다. 얼굴은 흐려져 감정만 남고 화자는 사라진다. 도망가는 것처럼 보이게 샷을 짠다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "같은 패턴이 이달 실제 TV에도 나타났다. 2026년 9월 18일 닛폰TV 〈ZIP!〉는 총리 주변 인사를 인용해, 고이즈미 신지로 방위상이 각료 설문에 유임을 원한다고 썼고, 오노다 기미 장관은 외국인 정책에 집중하고 싶어 했다고 전했다. 둘 다 설문을 제출하지 않았다. 고이즈미는 방송국이 자신에게 연락한 적이 없다고 했다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQgnha8AARpKY.jpg",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "news zero는 그날 밤 정정하고 사과했고, ZIP!는 9월 21일 오노다를 사과에 추가했다. 권력 근처의 익명 취재원이 확인을 대신했고, 기자클럽 제도가 그 지름길을 쉽게 만든다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "트럼프 보도",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "같은 습관이 일본 TV에서 도널드 트럼프가 그려지는 방식을 만든다. 주로 아침 방송, 사설, 자막에서다. 이런 선택은 시간이 지나며 쌓이는 작은 편집에서 나온다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "트럼프 1기 때 TV 아사히 〈호도 스테이션〉은 그가 \"미디어\"를 인민의 적으로 불렀다고 시청자에게 전했다. 실제 발언은 \"가짜 뉴스\"였다. 방송국은 그가 그 표현으로 대부분 언론을 뜻하니 변경이 공정하다고 했다. 그래도 한 단어가 허위 보도에 대한 공격을 언론 전체에 대한 공격으로 바꿨다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQkcBaoAAT80i.jpg",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "2026년 7월 트럼프는 이란과 일본을 혼동해 \"이슬람 공화국 일본\"이라고 했다. TV 아사히는 그 말실수를 본 이야기로 내보내고, 그가 말하려던 정책 요점은 뺐다. 실수만 내보낸 것은 편집 결정이었다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "2026년 9월 TV 아사히 〈모닝 쇼〉와 아사히 사설은 CNN, MS NOW, 폴리티코에 대한 백악관 출입 제한을 민주주의에 대한 공격이라고 불렀다. 출입 갈등은 실재하는 뉴스다. 보도가 언급하지 않은 것은 많은 미국인이 이미 그 매체들을 불신한다는 점이다. 일본 뉴스룸은 미국 미디어가 스스로를 보는 방식을 반복했다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "한 연구자는 일본 신문이 오바마는 一字一句 인용하면서 트럼프의 말은 느슨한 요약으로 바꿨다고도 했다. 시간이 지나면 독자는 오바마의 정확한 목소리와 트럼프의 대략적 분위기만 얻는다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "각각은 편집 선택이다. 더 거친 번역, 더 짧은 클립, 이미 그를 싫어하는 전문가. 합치면 시청자에게 뉴스룸이 이미 빚은 트럼프의 상을 주고, 그 상이 공정한지 확인하는 사람은 거의 없다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "핵심",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "많은 민주주의 국가가 TV 방송국의 외국인 소유를 제한하며, 그것은 한 나라가 할 수 있는 타당한 선택이다. 문제는 폐쇄 체제가 공정 보도에 미치는 영향이다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "닫힌 소유, 닫힌 접근, 다섯 거대 그룹이 모두 같은 쪽으로 기울 수 있고, 뉴스룸은 확인을 끝내기 전에 보도를 끝내는 쪽으로 보상받는다. 공정 뉴스는 경쟁에서 나온다. 남들이 건너뛰는 이야기를 할 권한과 돈을 가진 누군가다. 새로 들어올 수 없으면, 그주 유행하는 시각을 도전할 이가 없다.",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "영화는 수법을 보여 줄 수 있고, 게시물은 억만장자에게 도움을 청할 수 있지만, 어느 쪽도 새 뉴스룸을 전파에 올릴 수는 없다. 머스크는 일본이 방송국 매입을 허용할지 물었다. 그가 답한 게시물은 이미 더 큰 질문을 던졌다. 면허 보유자가 이야기를 확인하지 않으면, 누구를 허용하는가?",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "출처",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "list-item",
+          "text": "일론 머스크 X, 2026년 9월 27일 일본 정부가 TV 방송국 매입을 허용할지 묻는 답글https://x.com/elonmusk/status/2104294501317488771",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "로이터 저널리즘 연구소, 디지털 뉴스 리포트 2025: 일본https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/japan",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "NHK 방송문화연구소, 「디지털 시대의 뉴스 읽기 2025」(일본어)https://www.jstage.jst.go.jp/article/bunken/75/11/75_30/_article/-char/ja",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "TV 아사히 홀딩스, 외국인 의결권 보유 공시, 2026년 4월 제출(닛케이 경유, 일본어)https://www.nikkei.com/nkd/disclosure/tdnr/20260422508556/",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "Nippon.com, 2026년 세계 언론자유지수 일본 순위https://www.nippon.com/en/japan-data/h02781/",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "국경없는기자회, 일본 국가 페이지https://rsf.org/en/country/japan",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "〈편향 보도〉(ヘンコウ報道), 공식 영화 사이트(일본어)https://henkohodo.com/",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "에이가 히호, 오기노 긴시로 감독·토리이 미유키 배우 인터뷰(일본어)https://note.com/eiga_hiho/n/nc4450d4a086b",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "요로즈 뉴스 경유 야후 재팬, 오기노 감독의 TV 뉴스 시절(일본어)https://news.yahoo.co.jp/articles/2c1977a3ce9cf35495277dc355b6cd1b78541d7e",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "제이캐스트 뉴스, 2026년 9월 21일, 닛폰TV ZIP!의 고이즈미·오노다 설문 보도 사과(일본어)https://www.j-cast.com/2026/09/21518004.html?p=all",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "스포츠 호치 경유 야후 재팬, ZIP! 보도에 대한 news zero 사과(일본어)https://news.yahoo.co.jp/articles/c4de8388df17d28c4820e6d7495a21afdf4a348b",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "로그미 비즈니스, 다카이치 사나에의 2016년 방송 정지 국회 답변 녹취(일본어)https://logmi.jp/business/articles/125281",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "도쿄신문, 방송법상 정치적 공정과 다카이치 답변(일본어)https://www.tokyo-np.co.jp/article/242622",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "제이캐스트 뉴스, 〈호도 스테이션〉의 트럼프 \"인민의 적\" 발언 번역(일본어)https://www.j-cast.com/2018/08/21336630.html?p=all",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "TV 아사히 뉴스 경유 도코모, 트럼프의 \"이슬람 공화국 일본\" 말실수, 2026년 7월(일본어)https://topics.smt.docomo.ne.jp/article/tvasahinews/world/tvasahinews-000517867",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "제이캐스트 뉴스, 2026년 9월 24일, 〈모닝 쇼〉의 백악관 CNN 출입 제한 보도(일본어)https://www.j-cast.com/2026/09/24518081.html",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        }
+      ]
+    },
+    "ja": {
+      "title": "日本の閉鎖的な報道体制と信頼の低下",
+      "previewText": "2026年9月26日、X上の日本人ユーザーがイーロン・マスク氏（@elonmusk）にテレビ局の買収を求めた。理由はニュースである。記事によれば、このユーザーは毎晩どのチャンネルも同じ方向に傾いていると感じ、日本では誰も局を買ってそれを変えられないと考えていた、という。",
+      "blocks": [
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWPb3BbsAAsj9y.png",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "2026年9月26日、X上の日本人ユーザーがイーロン・マスク氏（@elonmusk）にテレビ局の買収を求めた。理由はニュースである。記事によれば、このユーザーは毎晩どのチャンネルも同じ方向に傾いていると感じ、日本では誰も局を買ってそれを変えられないと考えていた、という。マスク氏は9月27日、「日本政府はそれを認めるのか」と問い返す形で答えた。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "この依頼は人々の実感を示しており、数字も一致する。日本のニュースへの信頼は2025年に39％まで落ち、2021年以降で最低となった（ロイター・インスティテュートのデータ、NHK経由）。同時に、映画『偏向報道』は小劇場を満員にし、最初に流れるテレビ版の話を偏向と見る人々を集めている。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "マスク氏が局を買えなかった理由",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQJNsbEAAt8th.png",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "短い答えは「否」である。日本の法律が阻んでおり、その障壁は視聴者が見る問題の一部でもある。決して売却できない報道機関には、押し返すライバルの所有者がいない。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "日本の放送法制の下では、外国人、外国政府、外国企業が議決権の20％以上を持つ場合、テレビ局またはその親会社は免許を保持できない。その線を超えれば免許を失い得るため、局は超えることになる株式売却の記録を拒む。テレビ朝日ホールディングスは、2026年3月31日時点で外国人保有が19.99％だったと報告した。市場は小数点以下まで閉じている。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "閉鎖市場が生むもの",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQNQXaMAAPFWn.jpg",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "日本は2026年世界報道自由度指数で180カ国中62位だった。4位上がったが、なお「問題あり」とされる。米国は64位であり、日本はG7で下から2番目である。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "国境なき記者団は、政治的圧力、情報源をほとんど守らない秘密法、記者会見への出席制限、記者クラブ制度を指摘する。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "記者クラブ（キシャクラブ）は、大手紙、NHK、主要テレビ局の記者を官庁、国会、大企業の内部に置く。フリーランスや小規模媒体は排除される。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "2002年のEUの検証は、この制度が当局に悪いニュースを隠させ、記者が第二の情報源で確認しにくくするとした。市場を主導するのは5つのメディアグループである。読売と日本テレビ、朝日とテレビ朝日、毎日とTBS、産経とフジ、日経とテレビ東京である。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "報道現場の働き方",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "人々が語る偏向は仕事のルーチンであり、内部で働いた人々がそれを語り始めている。『偏向報道』は2026年6月19日に池袋で公開された。脚本・監督は、テレビ朝日『スーパーJチャンネル』の元ディレクター、荻野欣士郎氏である。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQRvhaAAAodR6.jpg",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "口コミで広がり、大阪では完売した。荻野氏は、映画は偏向した報道がどう作られるかを示し、政治的な立場は取らないと言う。報道現場では「偏向報道」という言葉は一度も使われず、それが仕事を容易にした、と述べた。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "映画では、無記名の手紙が知事を告発し、真偽を誰も確認する前にクルーが報道を作る。顔はぼかされ、感情は残り、話し手は消える。逃げるように見せるためのショットが組まれる。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "同じ型が今月の実際のテレビにも出た。2026年9月18日、日本テレビ『ZIP!』は首相周辺を引用し、防衛相の小泉進次郎氏が閣僚アンケートに続投希望と書き、小野田紀美大臣は外国人政策に注力したいとした、と報じた。二人ともアンケートは提出していなかった。小泉氏は、局から一度も連絡がなかったと述べた。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQgnha8AARpKY.jpg",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "『news zero』はその夜に訂正し謝罪し、『ZIP!』は9月21日に小野田氏を謝罪に加えた。権力に近い匿名筋が確認の代わりになり、記者クラブ制度がその近道を容易にする。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "トランプ報道",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "同じ習性が、日本のテレビでドナルド・トランプ氏がどう描かれるかを形づくる。主に朝の番組、社説、字幕である。これらの選択は、時間とともに積み重なる小さな編集から来る。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "トランプ氏の第1期、テレビ朝日『報道ステーション』は、彼が「メディア」を人民の敵と呼んだと視聴者に伝えた。実際に言ったのは「フェイクニュース」である。局は、彼がその語をほとんどの報道機関を指して使うので変更は妥当だとした。それでも、一語が虚偽報道への攻撃を、報道全体への攻撃に変えた。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "image",
+          "text": "",
+          "imageUrl": "https://pbs.twimg.com/media/HTWQkcBaoAAT80i.jpg",
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "2026年7月、トランプ氏はイランと日本を取り違え、「イスラム共和国日本」と言った。テレビ朝日はその失言を本筋として流し、彼が述べようとしていた政策の論点を省いた。失言だけを流すのは編集上の判断である。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "2026年9月、テレビ朝日『モーニングショー』と朝日の社説は、CNN、MS NOW、Politicoのホワイトハウス取材を制限する動きを民主主義への攻撃と呼んだ。取材権の争いは本物のニュースである。報じなかったのは、多くの米国人がすでにそれらの媒体を信用していないことである。日本の報道現場は、米国メディアの自己像を繰り返した。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "研究者はまた、日本の新聞がオバマ氏の言葉を逐語で引用する一方、トランプ氏の言葉は大まかな要約に変えていることを見つけた。時間とともに読者はオバマ氏の正確な声を得、トランプ氏からは一般的な空気だけを得る。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "いずれも編集の選択である。より厳しい訳、短いクリップ、すでに彼を嫌う専門家。合わさると、報道現場がすでに形づくったトランプ像を視聴者に与え、その像が公正かどうかを確かめる人は少ない。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "要点",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "多くの民主主義国はテレビ局の外国所有を制限しており、それは国として妥当な選択である。懸念は、閉鎖的な制度が公正な報道に何をするかである。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "閉じた所有、閉じたアクセス、五大グループはみな同じ方向に傾き得、報道現場は確認を終える前に原稿を仕上げることで報われる。公正なニュースは競争から来る。他が飛ばす話を流す力と資金を持つ者がいることである。新たに入れる者がいなければ、その週の世論に挑む者はいない。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "paragraph",
+          "text": "映画は手口を示せ、投稿は億万長者に助けを求め得る。しかしどちらも新しい報道機関を電波に乗せられない。マスク氏は、日本が局の買収を認めるかと問うた。彼が答えた投稿は、すでに大きな問いを立てていた。免許保持者が話を確認しないなら、ほかに誰が許されるのか、と。",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": null
+        },
+        {
+          "type": "heading",
+          "text": "出典",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": 2,
+          "listType": null
+        },
+        {
+          "type": "list-item",
+          "text": "イーロン・マスク氏のX、2026年9月27日の返信。日本政府がテレビ局買収を認めるかを問うhttps://x.com/elonmusk/status/2104294501317488771",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "ロイター・インスティテュート・フォー・ザ・スタディ・オブ・ジャーナリズム、デジタル・ニュース・レポート2025：日本https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/japan",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "NHK放送文化研究所「デジタル時代のニュースの読まれ方2025」（日本語）https://www.jstage.jst.go.jp/article/bunken/75/11/75_30/_article/-char/ja",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "テレビ朝日ホールディングス、外国人の議決権保有に関するお知らせ、2026年4月提出（日経経由、日本語）https://www.nikkei.com/nkd/disclosure/tdnr/20260422508556/",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "Nippon.com、2026年世界報道自由度指数における日本の順位https://www.nippon.com/en/japan-data/h02781/",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "国境なき記者団、日本の国別ページhttps://rsf.org/en/country/japan",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "『偏向報道』（Henko Hodo）、公式映画サイト（日本語）https://henkohodo.com/",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "映画秘宝、監督・荻野欣士郎氏と女優・鳥居みゆき氏のインタビュー（日本語）https://note.com/eiga_hiho/n/nc4450d4a086b",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "よろず～ニュース（Yahoo! JAPAN経由）、荻野監督のテレビ報道時代について（日本語）https://news.yahoo.co.jp/articles/2c1977a3ce9cf35495277dc355b6cd1b78541d7e",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "J-CASTニュース、2026年9月21日、日本テレビ『ZIP!』が小泉・小野田のアンケート報道で謝罪（日本語）https://www.j-cast.com/2026/09/21518004.html?p=all",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "スポーツ報知（Yahoo! JAPAN経由）、『news zero』の『ZIP!』報道に関する謝罪（日本語）https://news.yahoo.co.jp/articles/c4de8388df17d28c4820e6d7495a21afdf4a348b",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "ログミーBiz、高市早苗氏の2016年国会答弁（放送停止）の書き起こし（日本語）https://logmi.jp/business/articles/125281",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "東京新聞、放送法の政治的公平と高市氏の答弁について（日本語）https://www.tokyo-np.co.jp/article/242622",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "J-CASTニュース、『報道ステーション』のトランプ氏「人民の敵」発言の訳について（日本語）https://www.j-cast.com/2018/08/21336630.html?p=all",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "テレビ朝日ニュース（docomo経由）、トランプ氏の「イスラム共和国日本」失言、2026年7月（日本語）https://topics.smt.docomo.ne.jp/article/tvasahinews/world/tvasahinews-000517867",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        },
+        {
+          "type": "list-item",
+          "text": "J-CASTニュース、2026年9月24日、『モーニングショー』のホワイトハウスによるCNN取材制限報道（日本語）https://www.j-cast.com/2026/09/24518081.html",
+          "imageUrl": null,
+          "videoUrl": null,
+          "level": null,
+          "listType": "ordered"
+        }
+      ]
+    }
   }
 }
