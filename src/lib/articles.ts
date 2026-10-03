@@ -97,7 +97,7 @@ export type ArticleLocaleCopy = {
 
 type TranslationBag = Record<string, Partial<Record<'ko' | 'ja', ArticleLocaleCopy>>>;
 
-const translations = articleTranslations as TranslationBag;
+const translations = articleTranslations as unknown as TranslationBag;
 
 export function localizedArticle(article: Article, locale: Locale): ArticleLocaleCopy & { translated: boolean } {
   if (locale === 'en') {
