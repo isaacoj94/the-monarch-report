@@ -7,10 +7,13 @@ import { captureUtms, trackEvent, type UtmPayload } from '@/lib/utm-client';
 import { FILM_EPISODES } from '@/lib/film-episodes';
 import { useLocale } from '@/components/LocaleProvider';
 import styles from './documentary.module.css';
+import SubtitledPlayer, { hasVideo, type SubtitledVideo } from './SubtitledPlayer';
 
-const EPISODE_1_VIDEO_ID = 'xCm4PlXl35M';
-// Set the YouTube id once Episode 2 is uploaded; until then the poster stands in for the player.
-const EPISODE_2_VIDEO_ID: string | null = null;
+// Episode 1 is one upload with English, Korean and Japanese caption tracks.
+const EPISODE_1_VIDEO: SubtitledVideo = { shared: 'xCm4PlXl35M' };
+// Episode 2 is three uploads, one per subtitle language (all premiere Oct 6, 8 PM ET).
+// The poster shows until the premiere time passes.
+const EPISODE_2_VIDEO: SubtitledVideo = { perLanguage: { en: 'oCaHZBxjTzY', ja: 'yAbydvoDnFU', ko: 'bQKQCGyPMzM' } };
 // October 6, 8 PM ET (EDT) = October 7, 00:00 UTC
 const EPISODE_2_PREMIERE_AT = new Date('2026-10-07T00:00:00Z').getTime();
 const EPISODE_2_POSTER = '/films/episode-02-poster.jpg';
@@ -81,7 +84,7 @@ export default function DocumentaryPage() {
   const [chapter, setChapter] = useState(0);
   const [trailerOpen, setTrailerOpen] = useState(false);
   const [episode2IsLive, setEpisode2IsLive] = useState(() => Date.now() >= EPISODE_2_PREMIERE_AT);
-  const episode2Playable = episode2IsLive && EPISODE_2_VIDEO_ID !== null;
+  const episode2Playable = episode2IsLive && hasVideo(EPISODE_2_VIDEO);
   const utms = useRef<UtmPayload>({});
 
   useEffect(() => {
@@ -141,19 +144,18 @@ export default function DocumentaryPage() {
             <p>{copy.episode2Dek}</p>
             <strong>{episode2Playable ? copy.nowPlaying : copy.episode2Premiere}</strong>
           </div>
-          <div className={styles.episodeFrame}>
-            {episode2Playable ? (
-              <iframe
-                src={`https://www.youtube.com/embed/${EPISODE_2_VIDEO_ID}?rel=0`}
-                title={`You're Next | Ep. 2: ${FILM_EPISODES[1].title}`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-            ) : (
+          {episode2Playable ? (
+            <SubtitledPlayer
+              video={EPISODE_2_VIDEO}
+              title={`You're Next | Ep. 2: ${FILM_EPISODES[1].title}`}
+              locale={locale}
+              onSwitch={(lang) => trackEvent('documentary_subtitle_switch', { episode: 2, lang, source_page: 'films', ...utms.current })}
+            />
+          ) : (
+            <div className={styles.episodeFrame}>
               <Image src={EPISODE_2_POSTER} alt={`You're Next: Do Nothing, Episode 2, Japan: ${FILM_EPISODES[1].title}. Premieres October 6 at 8 PM ET.`} fill sizes="(max-width: 900px) 100vw, 60vw" priority />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -165,15 +167,12 @@ export default function DocumentaryPage() {
             <p>{copy.episodeVideoDek}</p>
             <strong>{copy.episode1Section}</strong>
           </div>
-          <div className={styles.episodeFrame}>
-            <iframe
-              src={`https://www.youtube.com/embed/${EPISODE_1_VIDEO_ID}?rel=0`}
-              title="You're Next | Ep. 1: Inside the Machine — How China Erases Religion"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
+          <SubtitledPlayer
+            video={EPISODE_1_VIDEO}
+            title="You're Next | Ep. 1: Inside the Machine — How China Erases Religion"
+            locale={locale}
+            onSwitch={(lang) => trackEvent('documentary_subtitle_switch', { episode: 1, lang, source_page: 'films', ...utms.current })}
+          />
         </div>
       </section>
 
