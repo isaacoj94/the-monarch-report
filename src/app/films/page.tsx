@@ -12,7 +12,7 @@ import SubtitledPlayer, { hasVideo, type SubtitledVideo } from './SubtitledPlaye
 // Episode 1 is one upload with English, Korean and Japanese caption tracks.
 const EPISODE_1_VIDEO: SubtitledVideo = { shared: 'xCm4PlXl35M' };
 // Episode 2 is three uploads, one per subtitle language (all premiere Oct 6, 8 PM ET).
-// The poster shows until the premiere time passes.
+// Embeds show YouTube's premiere countdown until then; labels switch to "Now playing" at the premiere time.
 const EPISODE_2_VIDEO: SubtitledVideo = { perLanguage: { en: 'oCaHZBxjTzY', ja: 'yAbydvoDnFU', ko: 'bQKQCGyPMzM' } };
 // October 6, 8 PM ET (EDT) = October 7, 00:00 UTC
 const EPISODE_2_PREMIERE_AT = new Date('2026-10-07T00:00:00Z').getTime();
@@ -144,7 +144,7 @@ export default function DocumentaryPage() {
             <p>{copy.episode2Dek}</p>
             <strong>{episode2Playable ? copy.nowPlaying : copy.episode2Premiere}</strong>
           </div>
-          {episode2Playable ? (
+          {hasVideo(EPISODE_2_VIDEO) ? (
             <SubtitledPlayer
               video={EPISODE_2_VIDEO}
               title={`You're Next | Ep. 2: ${FILM_EPISODES[1].title}`}
